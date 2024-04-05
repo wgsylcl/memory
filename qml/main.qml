@@ -11,11 +11,31 @@ FluWindow {
     FluImage {
         id: background
         anchors {
-            top: parent.top
+            centerIn: parent
         }
-        width: parent.parent.width
-        height: width * 373 / 668
         source: "qrc:/res/school.png"
+    }
+
+    onWidthChanged: {
+        if(width*373 <= height*668){
+            background.height = height
+            background.width = height*668/373
+        }
+        else{
+            background.width = width
+            background.height = width*373/668
+        }
+    }
+
+    onHeightChanged: {
+        if(width*373 <= height*668){
+            background.height = height
+            background.width = height*668/373
+        }
+        else{
+            background.width = width
+            background.height = width*373/668
+        }
     }
 
     FluAcrylic {
@@ -37,11 +57,33 @@ FluWindow {
             }
             FluPaneItem {
                 icon: FluentIcons.GuestUser
+                url: "qrc:/qml/teacherPage.qml"
+                title: qsTr("我的老师们")
+                onTap: navigationview.push(url)
+            }
+            FluPaneItem {
+                icon: FluentIcons.PhoneBook
                 url: "qrc:/qml/studentPage.qml"
-                title: qsTr("同学信息")
+                title: qsTr("我和我的同学")
+                onTap: navigationview.push(url)
+            }
+            FluPaneItemExpander{
+                title: qsTr("回忆")
+                icon: FluentIcons.Emoji
+                FluPaneItem {
+
+                }
+            }
+        }
+        footerItems: FluObject {
+            FluPaneItem {
+                icon: FluentIcons.Settings
+                url: "qrc:/qml/settingsPage.qml"
+                title: qsTr("设置和关于")
                 onTap: navigationview.push(url)
             }
         }
+
         Component.onCompleted: setCurrentIndex(0)
     }
 

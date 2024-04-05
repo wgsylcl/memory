@@ -2,6 +2,7 @@
 #include <QQmlApplicationEngine>
 #include <QTranslator>
 #include "timelinereader.h"
+#include "studentreader.h"
 
 int main(int argc, char *argv[])
 {
@@ -21,6 +22,7 @@ int main(int argc, char *argv[])
     }
 
     qmlRegisterType<TimelineReader>("timelinehelper", 1, 0, "TimelineReader");
+    qmlRegisterType<StudentReader>("studenthelper", 1, 0, "StudentReader");
 
     QQmlApplicationEngine engine;
     const QUrl url(QStringLiteral("qrc:/App.qml"));

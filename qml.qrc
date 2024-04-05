@@ -6,5 +6,8 @@
         <file>qml/homePage.qml</file>
         <file>qml/studentPage.qml</file>
         <file>res/school.png</file>
+        <file>qml/settingsPage.qml</file>
+        <file>qml/teacherPage.qml</file>
+        <file>qml/profilewindow.qml</file>
     </qresource>
 </RCC>
