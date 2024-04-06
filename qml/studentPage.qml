@@ -60,9 +60,8 @@ FluContentPage {
                 anchors.centerIn: parent
                 text: qsTr("看看ta的资料卡片")
                 onClicked: {
-                    console.log(row)
                     var stu = maintable.getRow(row)
-                    FluRouter.navigate("/profile",{name:stu.name,id:stu.id})
+                    FluRouter.navigate("/profile",{name:stu.name,id:stu.id,key:row,profile:stu.profile})
                 }
             }
         }

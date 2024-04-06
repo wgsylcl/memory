@@ -9,5 +9,6 @@
         <file>qml/settingsPage.qml</file>
         <file>qml/teacherPage.qml</file>
         <file>qml/profilewindow.qml</file>
+        <file>qml/pictureviewwindow.qml</file>
     </qresource>
 </RCC>

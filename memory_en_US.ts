@@ -254,10 +254,28 @@
     </message>
 </context>
 <context>
+    <name>pictureviewwindow</name>
+    <message>
+        <location filename="qml/pictureviewwindow.qml" line="8"/>
+        <source>查看图片</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
     <name>profilewindow</name>
     <message>
-        <location filename="qml/profilewindow.qml" line="6"/>
+        <location filename="qml/profilewindow.qml" line="9"/>
         <source>资料卡片</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="qml/profilewindow.qml" line="42"/>
+        <source>有关ta的一刻</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="qml/profilewindow.qml" line="72"/>
+        <source>留言栏</source>
         <translation type="unfinished"></translation>
     </message>
 </context>

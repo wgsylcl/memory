@@ -3,7 +3,7 @@
 // 读取顺序：学号、名字、生日、电话号码、QQ号、微信号
 
 StudentReader::StudentReader(QObject *parent)
-    : QObject{parent}, file("./data/student.csv")
+    : QObject{parent}, file("./data/student.txt")
 {
 }
 
