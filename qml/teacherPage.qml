@@ -9,12 +9,53 @@ FluScrollablePage {
         wrapMode: Text.WordWrap
     }
 
-    Column {
-        spacing: 10
+    TeacherCard {
         width: parent.width
-        FluFrame {
-            width: parent.width
-
-        }
+        key: 0
     }
+    TeacherCard {
+        width: parent.width
+        key: 1
+    }
+    TeacherCard {
+        width: parent.width
+        key: 2
+    }
+    TeacherCard {
+        width: parent.width
+        key: 3
+    }
+    TeacherCard {
+        width: parent.width
+        key: 4
+    }
+    TeacherCard {
+        width: parent.width
+        key: 5
+    }
+    TeacherCard {
+        width: parent.width
+        key: 6
+    }
+    TeacherCard {
+        width: parent.width
+        key: 7
+    }
+    TeacherCard {
+        width: parent.width
+        key: 8
+    }
+    TeacherCard {
+        width: parent.width
+        key: 9
+    }
+    TeacherCard {
+        width: parent.width
+        key: 10
+    }
+    TeacherCard {
+        width: parent.width
+        key: 11
+    }
+
 }

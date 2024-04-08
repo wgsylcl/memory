@@ -205,6 +205,31 @@
     </message>
 </context>
 <context>
+    <name>TeacherCard</name>
+    <message>
+        <location filename="qml/TeacherCard.qml" line="38"/>
+        <source>有关ta的一刻</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="qml/TeacherCard.qml" line="68"/>
+        <source>留言栏</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="qml/TeacherCard.qml" line="93"/>
+        <source>我的%1老师 —— %2</source>
+        <oldsource>你的%1老师 —— %2</oldsource>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="qml/TeacherCard.qml" line="97"/>
+        <source>&quot;%1&quot;
+</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
     <name>homePage</name>
     <message>
         <location filename="qml/homePage.qml" line="7"/>
@@ -243,28 +268,28 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="qml/main.qml" line="55"/>
+        <location filename="qml/main.qml" line="34"/>
         <source>主界面</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="qml/main.qml" line="61"/>
+        <location filename="qml/main.qml" line="40"/>
         <source>我的老师们</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="qml/main.qml" line="67"/>
+        <location filename="qml/main.qml" line="46"/>
         <source>我和我的同学</source>
         <oldsource>同学信息</oldsource>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="qml/main.qml" line="71"/>
+        <location filename="qml/main.qml" line="50"/>
         <source>回忆</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="qml/main.qml" line="82"/>
+        <location filename="qml/main.qml" line="61"/>
         <source>设置和关于</source>
         <translation type="unfinished"></translation>
     </message>
@@ -285,12 +310,12 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="qml/profilewindow.qml" line="42"/>
+        <location filename="qml/profilewindow.qml" line="56"/>
         <source>有关ta的一刻</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="qml/profilewindow.qml" line="72"/>
+        <location filename="qml/profilewindow.qml" line="86"/>
         <source>留言栏</source>
         <translation type="unfinished"></translation>
     </message>
@@ -298,22 +323,22 @@
 <context>
     <name>settingsPage</name>
     <message>
-        <location filename="qml/settingsPage.qml" line="6"/>
+        <location filename="qml/settingsPage.qml" line="11"/>
         <source>设置</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="qml/settingsPage.qml" line="17"/>
+        <location filename="qml/settingsPage.qml" line="24"/>
         <source>数据库更新（暂未完成）</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="qml/settingsPage.qml" line="23"/>
+        <location filename="qml/settingsPage.qml" line="30"/>
         <source>检查更新</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="qml/settingsPage.qml" line="34"/>
+        <location filename="qml/settingsPage.qml" line="41"/>
         <source>关于</source>
         <translation type="unfinished"></translation>
     </message>

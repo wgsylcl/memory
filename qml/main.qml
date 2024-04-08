@@ -10,32 +10,11 @@ FluWindow {
     title: qsTr("毕业留念")
     FluImage {
         id: background
-        anchors {
-            centerIn: parent
-        }
+        anchors.centerIn: parent
+        width: parent.width
+        height: parent.height
+        fillMode: Image.PreserveAspectCrop
         source: "qrc:/res/school.png"
-    }
-
-    onWidthChanged: {
-        if(width*373 <= height*668){
-            background.height = height
-            background.width = height*668/373
-        }
-        else{
-            background.width = width
-            background.height = width*373/668
-        }
-    }
-
-    onHeightChanged: {
-        if(width*373 <= height*668){
-            background.height = height
-            background.width = height*668/373
-        }
-        else{
-            background.width = width
-            background.height = width*373/668
-        }
     }
 
     FluAcrylic {

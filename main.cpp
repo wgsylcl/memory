@@ -4,6 +4,7 @@
 #include "timelinereader.h"
 #include "studentreader.h"
 #include "profilereader.h"
+#include "teacherfilereader.h"
 
 int main(int argc, char *argv[])
 {
@@ -25,6 +26,7 @@ int main(int argc, char *argv[])
     qmlRegisterType<TimelineReader>("timelinehelper", 1, 0, "TimelineReader");
     qmlRegisterType<StudentReader>("studenthelper", 1, 0, "StudentReader");
     qmlRegisterType<ProfileReader>("profilehelper", 1, 0, "ProfileReader");
+    qmlRegisterType<TeacherFileReader>("teacherfilehelper", 1, 0, "TeacherFileReader");
 
     QQmlApplicationEngine engine;
     const QUrl url(QStringLiteral("qrc:/App.qml"));

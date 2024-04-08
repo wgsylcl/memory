@@ -10,5 +10,7 @@
         <file>qml/teacherPage.qml</file>
         <file>qml/profilewindow.qml</file>
         <file>qml/pictureviewwindow.qml</file>
+        <file>res/door.png</file>
+        <file>qml/TeacherCard.qml</file>
     </qresource>
 </RCC>

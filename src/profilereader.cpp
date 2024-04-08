@@ -20,6 +20,7 @@ Q_INVOKABLE void ProfileReader::readfile(int key)
     {
         picpaths.push_back(QString("file:./data/pictures/")+picdatas.at(i).toString());
     }
+    if(picdatas.empty()) picpaths.push_back("file:./data/pictures/nopicture.png");
     // deal with review :
     this->reviews.clear();
     for(int i=0;i<revdatas.count();i++)

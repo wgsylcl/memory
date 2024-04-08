@@ -1,55 +1,37 @@
 import QtQuick
 import QtQuick.Layouts
 import QtQuick.Controls
+import teacherfilehelper
 import FluentUI
-import profilehelper
 
-FluWindow {
-    id: window
-    title: qsTr("资料卡片")
-    width: 500
-    height: 600
-    launchMode: FluWindowType.Standard
-    property string name: ""
-    property int id: 0
+FluContentPage {
+    id: root
     property int key: 0
-    onInitArgument:
-        (argument)=>{
-            window.name = argument.name
-            window.id = Number(argument.id)
-            window.key = argument.key
-            selfintroduction.text = argument.profile
-        }
 
-    FluImage {
-        id: background
-        source: "qrc:/res/door.png"
-        anchors.centerIn: parent
-        fillMode: Image.PreserveAspectCrop
+    TeacherFileReader {
+        id: reader
+    }
+
+    Column {
         width: parent.width
-        height: parent.height
-    }
-
-    FluAcrylic {
-        anchors.fill: background
-        blurRadius: 20
-    }
-
-    Column{
-        anchors.fill: parent
-        anchors.margins: 30
-
-        spacing: 20
-
-        FluText {
-            id: nametitle
-            font: FluTextStyle.Title
-            text: window.name + "(" + window.id.toString() + ")"
-        }
-
-        FluText {
-            id: selfintroduction
-            wrapMode: Text.WordWrap
+        FluFrame {
+            Layout.fillWidth: true
+            Layout.preferredHeight: 100
+            padding: 10
+            Layout.topMargin: 20
+            Column {
+                spacing: 0
+                FluText {
+                    id: cardtitle
+                    font: FluTextStyle.Subtitle
+                    text: ""
+                }
+                FluText { text: "                                                                                                                                                                                                                                                   " }
+                FluText {
+                    id: petphraseview
+                    text: ""
+                }
+            }
         }
 
         FluExpander {
@@ -106,12 +88,14 @@ FluWindow {
         }
     }
 
-    ProfileReader {
-        id: reader
-    }
-
     Component.onCompleted: {
-        reader.readfile(window.key)
+        reader.readdata(key)
+        cardtitle.text = qsTr("我的%1老师 —— %2").arg(reader.getsubject()).arg(reader.getname())
+        var petphrase = []
+        petphrase = reader.getpetphrase()
+        for(var k=0;k<petphrase.length;k++) {
+            petphraseview.text += qsTr("\"%1\"\n").arg(petphrase[k])
+        }
         var datas = []
         var picpaths = []
         picpaths = reader.getpicpaths()
@@ -127,4 +111,5 @@ FluWindow {
             reviewtext.text += '\n'
         }
     }
+
 }
