@@ -27,6 +27,7 @@ Q_INVOKABLE void ProfileReader::readfile(int key)
     {
         reviews.push_back(revdatas.at(i).toString());
     }
+    if(reviews.empty()) reviews.push_back("还没有人给ta留言哦~");
     return;
 }
 

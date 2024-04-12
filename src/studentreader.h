@@ -7,7 +7,12 @@
 #include <QFile>
 #include <QVariantMap>
 #include <QDebug>
-#include <QTextStream>
+#include <QJsonDocument>
+#include <QJsonParseError>
+#include <QJsonObject>
+#include <QJsonArray>
+#include <QJsonValue>
+#include <QJsonValueRef>
 
 class StudentReader : public QObject
 {
