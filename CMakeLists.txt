@@ -57,12 +57,6 @@ if(${QT_VERSION_MAJOR} GREATER_EQUAL 6)
     qt_add_executable(${PROJECT_NAME}
         MANUAL_FINALIZATION
         ${PROJECT_SOURCES}
-        src/timelinereader.h src/timelinereader.cpp
-        src/studentreader.h src/studentreader.cpp
-        src/profilereader.h src/profilereader.cpp
-        src/teacherfilereader.h src/teacherfilereader.cpp
-
-
     )
 else()
     add_executable(${PROJECT_NAME}
