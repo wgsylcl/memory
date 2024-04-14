@@ -1,8 +1,8 @@
-import QtQuick
-import QtQuick.Layouts
-import QtQuick.Controls
-import teacherfilehelper
-import FluentUI
+import QtQuick 2.15
+import QtQuick.Layouts 1.15
+import QtQuick.Controls 2.15
+import teacherfilehelper 1.0
+import FluentUI 1.0
 
 FluContentPage {
     id: root

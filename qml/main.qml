@@ -1,6 +1,6 @@
-import QtQuick
-import QtQuick.Window
-import FluentUI
+import QtQuick 2.15
+import QtQuick.Window 2.15
+import FluentUI 1.0
 
 FluWindow {
     width: 668*2

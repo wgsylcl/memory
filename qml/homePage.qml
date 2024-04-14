@@ -1,7 +1,7 @@
-import QtQuick
-import QtQuick.Layouts
-import FluentUI
-import timelinehelper
+import QtQuick 2.15
+import QtQuick.Layouts 1.15
+import FluentUI 1.0
+import timelinehelper 1.0
 
 FluScrollablePage {
     title: qsTr("毕业留念")

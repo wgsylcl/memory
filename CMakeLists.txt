@@ -67,6 +67,10 @@ if(${QT_VERSION_MAJOR} GREATER_EQUAL 6)
 else()
     add_executable(${PROJECT_NAME}
         ${PROJECT_SOURCES}
+        src/timelinereader.h src/timelinereader.cpp
+        src/studentreader.h src/studentreader.cpp
+        src/profilereader.h src/profilereader.cpp
+        src/teacherfilereader.h src/teacherfilereader.cpp
     )
 endif()
 
@@ -101,7 +105,7 @@ endif()
 
 if (CMAKE_BUILD_TYPE MATCHES "Release")
     if (APPLE)
-        find_program(QT_DEPLOY_QT NAMES macdeployqt6)
+        find_program(QT_DEPLOY_QT NAMES macdeployqt)
         add_custom_target(Script-DeployRelease
             COMMAND ${CMAKE_COMMAND} -E remove_directory ${CMAKE_SOURCE_DIR}/dist
             COMMAND ${CMAKE_COMMAND} -E copy_directory ${CMAKE_RUNTIME_OUTPUT_DIRECTORY} ${CMAKE_SOURCE_DIR}/dist
@@ -113,7 +117,7 @@ if (CMAKE_BUILD_TYPE MATCHES "Release")
         )
     endif()
     if(WIN32)
-        find_program(QT_DEPLOY_QT NAMES windeployqt6)
+        find_program(QT_DEPLOY_QT NAMES windeployqt)
         add_custom_target(Script-DeployRelease
             COMMAND ${CMAKE_COMMAND} -E remove_directory ${CMAKE_SOURCE_DIR}/dist
             COMMAND ${CMAKE_COMMAND} -E copy_directory ${CMAKE_RUNTIME_OUTPUT_DIRECTORY} ${CMAKE_SOURCE_DIR}/dist
@@ -126,7 +130,7 @@ if (CMAKE_BUILD_TYPE MATCHES "Release")
     endif()
 else()
     if (APPLE)
-        find_program(QT_DEPLOY_QT NAMES macdeployqt6)
+        find_program(QT_DEPLOY_QT NAMES macdeployqt)
         add_custom_target(Script-DeployDebug
             COMMAND ${QT_DEPLOY_QT} ${CMAKE_SOURCE_DIR}/bin/Debug/${PROJECT_NAME}.app -qmldir=${CMAKE_CURRENT_LIST_DIR} -dmg
             COMMENT "MacOS Deploying Qt Dependencies After Build........."
@@ -135,7 +139,7 @@ else()
         )
     endif()
     if(WIN32)
-        find_program(QT_DEPLOY_QT NAMES windeployqt6)
+        find_program(QT_DEPLOY_QT NAMES windeployqt)
         add_custom_target(Script-DeployDebug
             COMMAND ${QT_DEPLOY_QT} ${CMAKE_SOURCE_DIR}/bin/Debug/${PROJECT_NAME}.exe -qmldir=${CMAKE_CURRENT_LIST_DIR}/qml
             COMMENT "Windows Deploying Qt Dependencies After Build........."

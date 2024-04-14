@@ -2,6 +2,611 @@
 <!DOCTYPE TS>
 <TS version="2.1" language="en_US">
 <context>
+    <name>DefaultColorDialog</name>
+    <message>
+        <location filename="bin/Debug/QtQuick/Dialogs/DefaultColorDialog.qml" line="281"/>
+        <source>Hue</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="bin/Debug/QtQuick/Dialogs/DefaultColorDialog.qml" line="302"/>
+        <source>Saturation</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="bin/Debug/QtQuick/Dialogs/DefaultColorDialog.qml" line="318"/>
+        <source>Luminosity</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="bin/Debug/QtQuick/Dialogs/DefaultColorDialog.qml" line="336"/>
+        <source>Alpha</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="bin/Debug/QtQuick/Dialogs/DefaultColorDialog.qml" line="395"/>
+        <source>Cancel</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="bin/Debug/QtQuick/Dialogs/DefaultColorDialog.qml" line="400"/>
+        <source>OK</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
+    <name>DefaultDialogWrapper</name>
+    <message>
+        <location filename="bin/Debug/QtQuick/Dialogs/DefaultDialogWrapper.qml" line="109"/>
+        <source>Show Details...</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
+    <name>DefaultFileDialog</name>
+    <message>
+        <location filename="bin/Debug/QtQuick/Dialogs/DefaultFileDialog.qml" line="148"/>
+        <source>Go up to the folder containing this one</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="bin/Debug/QtQuick/Dialogs/DefaultFileDialog.qml" line="271"/>
+        <source>Remove favorite</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="bin/Debug/QtQuick/Dialogs/DefaultFileDialog.qml" line="313"/>
+        <source>Add the current directory as a favorite</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="bin/Debug/QtQuick/Dialogs/DefaultFileDialog.qml" line="351"/>
+        <source>Filename</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="bin/Debug/QtQuick/Dialogs/DefaultFileDialog.qml" line="378"/>
+        <source>Type</source>
+        <comment>file type (extension)</comment>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="bin/Debug/QtQuick/Dialogs/DefaultFileDialog.qml" line="401"/>
+        <source>Size</source>
+        <comment>file size</comment>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="bin/Debug/QtQuick/Dialogs/DefaultFileDialog.qml" line="404"/>
+        <source>Modified</source>
+        <comment>last-modified time</comment>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="bin/Debug/QtQuick/Dialogs/DefaultFileDialog.qml" line="405"/>
+        <source>Accessed</source>
+        <comment>last-accessed time</comment>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="bin/Debug/QtQuick/Dialogs/DefaultFileDialog.qml" line="470"/>
+        <source>Cancel</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="bin/Debug/QtQuick/Dialogs/DefaultFileDialog.qml" line="475"/>
+        <source>Choose</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="bin/Debug/QtQuick/Dialogs/DefaultFileDialog.qml" line="475"/>
+        <source>Open</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="bin/Debug/QtQuick/Dialogs/DefaultFileDialog.qml" line="475"/>
+        <source>Save</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
+    <name>DefaultFontDialog</name>
+    <message>
+        <location filename="bin/Debug/QtQuick/Dialogs/DefaultFontDialog.qml" line="120"/>
+        <source>Font</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="bin/Debug/QtQuick/Dialogs/DefaultFontDialog.qml" line="121"/>
+        <location filename="bin/Debug/QtQuick/Dialogs/DefaultFontDialog.qml" line="202"/>
+        <source>Weight</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="bin/Debug/QtQuick/Dialogs/DefaultFontDialog.qml" line="122"/>
+        <location filename="bin/Debug/QtQuick/Dialogs/DefaultFontDialog.qml" line="276"/>
+        <source>Size</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="bin/Debug/QtQuick/Dialogs/DefaultFontDialog.qml" line="135"/>
+        <source>Font Family</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="bin/Debug/QtQuick/Dialogs/DefaultFontDialog.qml" line="205"/>
+        <source>Thin</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="bin/Debug/QtQuick/Dialogs/DefaultFontDialog.qml" line="206"/>
+        <source>ExtraLight</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="bin/Debug/QtQuick/Dialogs/DefaultFontDialog.qml" line="207"/>
+        <source>Light</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="bin/Debug/QtQuick/Dialogs/DefaultFontDialog.qml" line="208"/>
+        <source>Normal</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="bin/Debug/QtQuick/Dialogs/DefaultFontDialog.qml" line="209"/>
+        <source>Medium</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="bin/Debug/QtQuick/Dialogs/DefaultFontDialog.qml" line="210"/>
+        <source>DemiBold</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="bin/Debug/QtQuick/Dialogs/DefaultFontDialog.qml" line="211"/>
+        <source>Bold</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="bin/Debug/QtQuick/Dialogs/DefaultFontDialog.qml" line="212"/>
+        <source>ExtraBold</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="bin/Debug/QtQuick/Dialogs/DefaultFontDialog.qml" line="213"/>
+        <source>Black</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="bin/Debug/QtQuick/Dialogs/DefaultFontDialog.qml" line="303"/>
+        <source>Style</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="bin/Debug/QtQuick/Dialogs/DefaultFontDialog.qml" line="306"/>
+        <source>Italic</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="bin/Debug/QtQuick/Dialogs/DefaultFontDialog.qml" line="312"/>
+        <source>Underline</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="bin/Debug/QtQuick/Dialogs/DefaultFontDialog.qml" line="318"/>
+        <source>Overline</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="bin/Debug/QtQuick/Dialogs/DefaultFontDialog.qml" line="324"/>
+        <source>Strikeout</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="bin/Debug/QtQuick/Dialogs/DefaultFontDialog.qml" line="329"/>
+        <source>Writing System</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="bin/Debug/QtQuick/Dialogs/DefaultFontDialog.qml" line="338"/>
+        <source>Sample</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="bin/Debug/QtQuick/Dialogs/DefaultFontDialog.qml" line="390"/>
+        <source>Cancel</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="bin/Debug/QtQuick/Dialogs/DefaultFontDialog.qml" line="394"/>
+        <source>OK</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
+    <name>DefaultMessageDialog</name>
+    <message>
+        <location filename="bin/Debug/QtQuick/Dialogs/DefaultMessageDialog.qml" line="142"/>
+        <source>OK</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="bin/Debug/QtQuick/Dialogs/DefaultMessageDialog.qml" line="148"/>
+        <source>Open</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="bin/Debug/QtQuick/Dialogs/DefaultMessageDialog.qml" line="154"/>
+        <source>Save</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="bin/Debug/QtQuick/Dialogs/DefaultMessageDialog.qml" line="160"/>
+        <source>Save All</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="bin/Debug/QtQuick/Dialogs/DefaultMessageDialog.qml" line="166"/>
+        <source>Retry</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="bin/Debug/QtQuick/Dialogs/DefaultMessageDialog.qml" line="172"/>
+        <source>Ignore</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="bin/Debug/QtQuick/Dialogs/DefaultMessageDialog.qml" line="178"/>
+        <source>Apply</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="bin/Debug/QtQuick/Dialogs/DefaultMessageDialog.qml" line="184"/>
+        <source>Yes</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="bin/Debug/QtQuick/Dialogs/DefaultMessageDialog.qml" line="190"/>
+        <source>Yes to All</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="bin/Debug/QtQuick/Dialogs/DefaultMessageDialog.qml" line="196"/>
+        <source>No</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="bin/Debug/QtQuick/Dialogs/DefaultMessageDialog.qml" line="202"/>
+        <source>No to All</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="bin/Debug/QtQuick/Dialogs/DefaultMessageDialog.qml" line="208"/>
+        <source>Discard</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="bin/Debug/QtQuick/Dialogs/DefaultMessageDialog.qml" line="214"/>
+        <source>Reset</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="bin/Debug/QtQuick/Dialogs/DefaultMessageDialog.qml" line="220"/>
+        <source>Restore Defaults</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="bin/Debug/QtQuick/Dialogs/DefaultMessageDialog.qml" line="226"/>
+        <source>Cancel</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="bin/Debug/QtQuick/Dialogs/DefaultMessageDialog.qml" line="232"/>
+        <source>Abort</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="bin/Debug/QtQuick/Dialogs/DefaultMessageDialog.qml" line="238"/>
+        <source>Close</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="bin/Debug/QtQuick/Dialogs/DefaultMessageDialog.qml" line="244"/>
+        <source>Show Details...</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="bin/Debug/QtQuick/Dialogs/DefaultMessageDialog.qml" line="250"/>
+        <source>Help</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="bin/Debug/QtQuick/Dialogs/DefaultMessageDialog.qml" line="306"/>
+        <source>Hide Details</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
+    <name>EditMenu_base</name>
+    <message>
+        <location filename="bin/Debug/QtQuick/Controls/Private/EditMenu_base.qml" line="51"/>
+        <source>&amp;Undo</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="bin/Debug/QtQuick/Controls/Private/EditMenu_base.qml" line="62"/>
+        <source>&amp;Redo</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="bin/Debug/QtQuick/Controls/Private/EditMenu_base.qml" line="73"/>
+        <source>Cu&amp;t</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="bin/Debug/QtQuick/Controls/Private/EditMenu_base.qml" line="87"/>
+        <source>&amp;Copy</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="bin/Debug/QtQuick/Controls/Private/EditMenu_base.qml" line="101"/>
+        <source>&amp;Paste</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="bin/Debug/QtQuick/Controls/Private/EditMenu_base.qml" line="112"/>
+        <source>Delete</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="bin/Debug/QtQuick/Controls/Private/EditMenu_base.qml" line="123"/>
+        <source>Clear</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="bin/Debug/QtQuick/Controls/Private/EditMenu_base.qml" line="134"/>
+        <source>Select All</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
+    <name>FluAppBar</name>
+    <message>
+        <location filename="bin/Debug/FluentUI/Controls/FluAppBar.qml" line="9"/>
+        <source>Dark</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="bin/Debug/FluentUI/Controls/FluAppBar.qml" line="10"/>
+        <source>Light</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="bin/Debug/FluentUI/Controls/FluAppBar.qml" line="11"/>
+        <source>Minimize</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="bin/Debug/FluentUI/Controls/FluAppBar.qml" line="12"/>
+        <source>Restore</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="bin/Debug/FluentUI/Controls/FluAppBar.qml" line="13"/>
+        <source>Maximize</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="bin/Debug/FluentUI/Controls/FluAppBar.qml" line="14"/>
+        <source>Close</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="bin/Debug/FluentUI/Controls/FluAppBar.qml" line="15"/>
+        <source>Sticky on Top</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="bin/Debug/FluentUI/Controls/FluAppBar.qml" line="16"/>
+        <source>Sticky on Top cancelled</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
+    <name>FluAutoSuggestBox</name>
+    <message>
+        <location filename="bin/Debug/FluentUI/Controls/FluAutoSuggestBox.qml" line="8"/>
+        <source>No results found</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
+    <name>FluCalendarPicker</name>
+    <message>
+        <location filename="bin/Debug/FluentUI/Controls/FluCalendarPicker.qml" line="13"/>
+        <source>Pick a date</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
+    <name>FluContentDialog</name>
+    <message>
+        <location filename="bin/Debug/FluentUI/Controls/FluContentDialog.qml" line="11"/>
+        <source>Close</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="bin/Debug/FluentUI/Controls/FluContentDialog.qml" line="12"/>
+        <source>Cancel</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="bin/Debug/FluentUI/Controls/FluContentDialog.qml" line="13"/>
+        <source>OK</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
+    <name>FluDatePicker</name>
+    <message>
+        <location filename="bin/Debug/FluentUI/Controls/FluDatePicker.qml" line="11"/>
+        <source>Year</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="bin/Debug/FluentUI/Controls/FluDatePicker.qml" line="12"/>
+        <source>Month</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="bin/Debug/FluentUI/Controls/FluDatePicker.qml" line="13"/>
+        <source>Day</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="bin/Debug/FluentUI/Controls/FluDatePicker.qml" line="14"/>
+        <source>Cancel</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="bin/Debug/FluentUI/Controls/FluDatePicker.qml" line="15"/>
+        <source>OK</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
+    <name>FluImage</name>
+    <message>
+        <location filename="bin/Debug/FluentUI/Controls/FluImage.qml" line="6"/>
+        <source>Reload</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
+    <name>FluPagination</name>
+    <message>
+        <location filename="bin/Debug/FluentUI/Controls/FluPagination.qml" line="8"/>
+        <source>&lt;Previous</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="bin/Debug/FluentUI/Controls/FluPagination.qml" line="9"/>
+        <source>Next&gt;</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
+    <name>FluShortcutPicker</name>
+    <message>
+        <location filename="bin/Debug/FluentUI/Controls/FluShortcutPicker.qml" line="8"/>
+        <source>Activate the Shortcut</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="bin/Debug/FluentUI/Controls/FluShortcutPicker.qml" line="9"/>
+        <source>Press the key combination to change the shortcut</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="bin/Debug/FluentUI/Controls/FluShortcutPicker.qml" line="10"/>
+        <source>Save</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="bin/Debug/FluentUI/Controls/FluShortcutPicker.qml" line="11"/>
+        <source>Cancel</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="bin/Debug/FluentUI/Controls/FluShortcutPicker.qml" line="12"/>
+        <source>Reset</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
+    <name>FluTextBoxMenu</name>
+    <message>
+        <location filename="bin/Debug/FluentUI/Controls/FluTextBoxMenu.qml" line="6"/>
+        <source>Cut</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="bin/Debug/FluentUI/Controls/FluTextBoxMenu.qml" line="7"/>
+        <source>Copy</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="bin/Debug/FluentUI/Controls/FluTextBoxMenu.qml" line="8"/>
+        <source>Paste</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="bin/Debug/FluentUI/Controls/FluTextBoxMenu.qml" line="9"/>
+        <source>Select All</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
+    <name>FluTimePicker</name>
+    <message>
+        <location filename="bin/Debug/FluentUI/Controls/FluTimePicker.qml" line="11"/>
+        <source>AM</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="bin/Debug/FluentUI/Controls/FluTimePicker.qml" line="12"/>
+        <source>PM</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="bin/Debug/FluentUI/Controls/FluTimePicker.qml" line="13"/>
+        <source>Hour</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="bin/Debug/FluentUI/Controls/FluTimePicker.qml" line="14"/>
+        <source>Minute</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="bin/Debug/FluentUI/Controls/FluTimePicker.qml" line="15"/>
+        <source>Cancel</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="bin/Debug/FluentUI/Controls/FluTimePicker.qml" line="16"/>
+        <source>OK</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
+    <name>FluTour</name>
+    <message>
+        <location filename="bin/Debug/FluentUI/Controls/FluTour.qml" line="13"/>
+        <source>Finish</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="bin/Debug/FluentUI/Controls/FluTour.qml" line="14"/>
+        <source>Next</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="bin/Debug/FluentUI/Controls/FluTour.qml" line="15"/>
+        <source>Previous</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
+    <name>FluWindow</name>
+    <message>
+        <location filename="bin/Debug/FluentUI/Controls/FluWindow.qml" line="288"/>
+        <source>Loading...</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
     <name>StudentReader</name>
     <message>
         <location filename="src/studentreader.cpp" line="27"/>
