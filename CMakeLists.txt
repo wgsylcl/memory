@@ -12,7 +12,7 @@ set(CMAKE_RUNTIME_OUTPUT_DIRECTORY ${CMAKE_SOURCE_DIR}/bin/${CMAKE_BUILD_TYPE})
 
 if(APPLE)
     set(APPLICATION_DIR_PATH ${CMAKE_RUNTIME_OUTPUT_DIRECTORY}/${PROJECT_NAME}.app/Contents/MacOS)
-    set(CMAKE_MACOSX_DEPLOYMENT_TARGET "10.13" CACHE STRING "Minimum OS X deployment version")
+    set(CMAKE_MACOSX_DEPLOYMENT_TARGET "10.13")
 else()
     set(APPLICATION_DIR_PATH ${CMAKE_RUNTIME_OUTPUT_DIRECTORY})
 endif()
@@ -57,6 +57,12 @@ if(${QT_VERSION_MAJOR} GREATER_EQUAL 6)
     qt_add_executable(${PROJECT_NAME}
         MANUAL_FINALIZATION
         ${PROJECT_SOURCES}
+        src/timelinereader.h src/timelinereader.cpp
+        src/studentreader.h src/studentreader.cpp
+        src/profilereader.h src/profilereader.cpp
+        src/teacherfilereader.h src/teacherfilereader.cpp
+        src/maintool.h src/maintool.cpp
+        src/activityhelper.h src/activityhelper.cpp
     )
 else()
     add_executable(${PROJECT_NAME}
@@ -65,6 +71,7 @@ else()
         src/studentreader.h src/studentreader.cpp
         src/profilereader.h src/profilereader.cpp
         src/teacherfilereader.h src/teacherfilereader.cpp
+        src/maintool.h src/maintool.cpp
     )
 endif()
 

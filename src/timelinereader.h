@@ -9,6 +9,7 @@
 #include <QJsonArray>
 #include <QJsonValue>
 #include <QJsonValueRef>
+#include <QCoreApplication>
 
 class TimelineReader : public QObject
 {

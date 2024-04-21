@@ -1,7 +1,9 @@
 import QtQuick 2.15
+import QtQuick.Window 2.15
 import FluentUI 1.0
 
 FluWindow {
+
     width: 800
     height: 600
     id: rootwindow

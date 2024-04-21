@@ -6,7 +6,7 @@ ProfileReader::ProfileReader(QObject *parent)
 
 Q_INVOKABLE void ProfileReader::readfile(int key)
 {
-    QFile file(QString("./data/students/%1.json").arg(key));
+    QFile file(QString(QCoreApplication::applicationDirPath()+"/data/students/%1.json").arg(key));
     file.open(QIODevice::ReadOnly|QIODevice::Text);
     QByteArray jsondata = file.readAll();
     file.close();
@@ -18,9 +18,9 @@ Q_INVOKABLE void ProfileReader::readfile(int key)
     this->picpaths.clear();
     for(int i=0;i<picdatas.count();i++)
     {
-        picpaths.push_back(QString("file:./data/pictures/")+picdatas.at(i).toString());
+        picpaths.push_back(QString("file:"+QCoreApplication::applicationDirPath()+"/data/pictures/")+picdatas.at(i).toString());
     }
-    if(picdatas.empty()) picpaths.push_back("file:./data/pictures/nopicture.png");
+    if(picdatas.empty()) picpaths.push_back("file:"+QCoreApplication::applicationDirPath()+"/data/pictures/nopicture.png");
     // deal with review :
     this->reviews.clear();
     for(int i=0;i<revdatas.count();i++)

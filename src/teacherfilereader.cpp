@@ -1,7 +1,7 @@
 #include "teacherfilereader.h"
 
 TeacherFileReader::TeacherFileReader(QObject *parent)
-    : QObject{parent},file("./data/teachers.json")
+    : QObject{parent},file(QCoreApplication::applicationDirPath()+"/data/teachers.json")
 {}
 
 Q_INVOKABLE void TeacherFileReader::readdata(int key)
@@ -19,9 +19,9 @@ Q_INVOKABLE void TeacherFileReader::readdata(int key)
     this->picpaths.clear();
     for(int i=0;i<picdatas.count();i++)
     {
-        picpaths.push_back(QString("file:./data/pictures/")+picdatas.at(i).toString());
+        picpaths.push_back(QString("file:"+QCoreApplication::applicationDirPath()+"/data/pictures/")+picdatas.at(i).toString());
     }
-    if(picpaths.empty()) picpaths.push_back("file:./data/pictures/nopicture.png");
+    if(picpaths.empty()) picpaths.push_back("file:"+QCoreApplication::applicationDirPath()+"/data/pictures/nopicture.png");
     // deal with review :
     this->reviews.clear();
     for(int i=0;i<revdatas.count();i++)

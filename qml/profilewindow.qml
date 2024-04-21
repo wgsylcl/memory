@@ -61,6 +61,7 @@ FluWindow {
                 anchors.fill: parent
                 delegate: Component {
                     Image {
+                        z: 1
                         anchors.fill: parent
                         source: model.url
                         asynchronous: true

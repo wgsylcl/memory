@@ -8,6 +8,7 @@ FluWindow {
     minimumWidth: 668
     minimumHeight: 373
     title: qsTr("毕业留念")
+
     FluImage {
         id: background
         anchors.centerIn: parent
@@ -23,11 +24,13 @@ FluWindow {
     }
 
     FluNavigationView {
+        z: 1
         anchors.fill: parent
         pageMode: FluNavigationViewType.NoStack
         displayMode: FluNavigationViewType.Auto
         id: navigationview
         items: FluObject {
+            id: itemobj
             FluPaneItem {
                 icon: FluentIcons.Home
                 url: "qrc:/qml/homePage.qml"
@@ -46,12 +49,11 @@ FluWindow {
                 title: qsTr("我和我的同学")
                 onTap: navigationview.push(url)
             }
-            FluPaneItemExpander{
+            FluPaneItem{
                 title: qsTr("回忆")
                 icon: FluentIcons.Emoji
-                FluPaneItem {
-
-                }
+                url: "qrc:/qml/activitypage.qml"
+                onTap: navigationview.push(url)
             }
         }
         footerItems: FluObject {
@@ -63,7 +65,9 @@ FluWindow {
             }
         }
 
-        Component.onCompleted: setCurrentIndex(0)
+        Component.onCompleted: {
+            setCurrentIndex(0)
+        }
     }
 
 }

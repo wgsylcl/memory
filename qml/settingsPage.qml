@@ -1,6 +1,8 @@
 import QtQuick 2.15
 import FluentUI 1.0
 import QtQuick.Layouts 1.15
+import QtQuick.Window 2.15
+import QtQml 2.15
 
 FluScrollablePage {
 
@@ -41,7 +43,7 @@ FluScrollablePage {
             text: qsTr("关于")
             font: FluTextStyle.Title
         }
-    }
 
+    }
 
 }

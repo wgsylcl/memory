@@ -1,7 +1,7 @@
 #include "timelinereader.h"
 
 TimelineReader::TimelineReader(QObject *parent)
-    : QObject{parent},jsonfile("./data/timelinedata.json")
+    : QObject{parent},jsonfile(QCoreApplication::applicationDirPath()+"/data/timelinedata.json")
 {}
 
 Q_INVOKABLE int TimelineReader::readdata(void)

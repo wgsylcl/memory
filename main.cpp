@@ -1,10 +1,14 @@
 #include <QGuiApplication>
 #include <QQmlApplicationEngine>
 #include <QTranslator>
+#include <QtQml>
+#include <QQmlContext>
 #include "timelinereader.h"
 #include "studentreader.h"
 #include "profilereader.h"
 #include "teacherfilereader.h"
+#include "maintool.h"
+#include "activityhelper.h"
 
 int main(int argc, char *argv[])
 {
@@ -19,9 +23,11 @@ int main(int argc, char *argv[])
 
     QTranslator translator;
     const QStringList uiLanguages = QLocale::system().uiLanguages();
-    for (const QString &locale : uiLanguages) {
+    for (const QString &locale : uiLanguages)
+    {
         const QString baseName = "Template_" + QLocale(locale).name();
-        if (translator.load("./i18n/"+ baseName)) {
+        if (translator.load("./i18n/" + baseName))
+        {
             app.installTranslator(&translator);
             break;
         }
@@ -33,12 +39,20 @@ int main(int argc, char *argv[])
     qmlRegisterType<TeacherFileReader>("teacherfilehelper", 1, 0, "TeacherFileReader");
 
     QQmlApplicationEngine engine;
+
+    MainTool maintool;
+    engine.rootContext()->setContextProperty("MainTool", &maintool);
+    ActivityHelper activityreader;
+    engine.rootContext()->setContextProperty("ActivityReader",&activityreader);
+
     const QUrl url(QStringLiteral("qrc:/App.qml"));
-    QObject::connect(&engine, &QQmlApplicationEngine::objectCreated,
-        &app, [url](QObject *obj, const QUrl &objUrl) {
+    QObject::connect(
+        &engine, &QQmlApplicationEngine::objectCreated,
+        &app, [url](QObject *obj, const QUrl &objUrl)
+        {
             if (!obj && url == objUrl)
-                QCoreApplication::exit(-1);
-        }, Qt::QueuedConnection);
+                QCoreApplication::exit(-1); },
+        Qt::QueuedConnection);
     engine.load(url);
 
     return app.exec();

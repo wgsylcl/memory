@@ -13,6 +13,7 @@
 #include <QJsonArray>
 #include <QJsonValue>
 #include <QJsonValueRef>
+#include <QCoreApplication>
 
 class StudentReader : public QObject
 {
