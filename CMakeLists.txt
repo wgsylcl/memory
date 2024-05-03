@@ -20,8 +20,8 @@ endif()
 file(COPY ${CMAKE_CURRENT_SOURCE_DIR}/data DESTINATION ${APPLICATION_DIR_PATH})
 include_directories(./src)
 
-find_package(QT NAMES Qt6 Qt5 REQUIRED COMPONENTS Core Quick)
-find_package(Qt${QT_VERSION_MAJOR} REQUIRED COMPONENTS Core Quick)
+find_package(QT NAMES Qt6 Qt5 REQUIRED COMPONENTS Core Quick Multimedia)
+find_package(Qt${QT_VERSION_MAJOR} REQUIRED COMPONENTS Core Quick Multimedia)
 
 find_program(QT_LUPDATE NAMES lupdate)
 find_program(QT_LRELEASE NAMES lrelease)
@@ -36,6 +36,15 @@ add_custom_target(Script-UpdateTranslations
     SOURCES ${TS_FILE_PATHS}
 )
 
+if(WIN32)
+    set(3RDPARTY_PATH ${CMAKE_SOURCE_DIR}/3rdparty/win32)
+elseif(APPLE)
+    set(3RDPARTY_PATH ${CMAKE_SOURCE_DIR}/3rdparty/macos)
+endif()
+
+link_directories(${3RDPARTY_PATH}/ffmpeg/lib)
+include_directories(${3RDPARTY_PATH}/ffmpeg/include)
+
 qt_add_big_resources(QRC_RESOURCES qml.qrc)
 list(APPEND QRC_RESOURCES qml.qrc)
 set_property(SOURCE qml.qrc PROPERTY SKIP_AUTORCC ON)
@@ -43,11 +52,27 @@ set_property(SOURCE qml.qrc PROPERTY SKIP_AUTORCC ON)
 if(APPLE)
     set(PROJECT_SOURCES
         main.cpp
+        src/timelinereader.h src/timelinereader.cpp
+        src/studentreader.h src/studentreader.cpp
+        src/profilereader.h src/profilereader.cpp
+        src/teacherfilereader.h src/teacherfilereader.cpp
+        src/maintool.h src/maintool.cpp
+        src/activityhelper.h src/activityhelper.cpp
+        src/FluentPlayer.h src/FluentPlayer.cpp
+        src/stdafx.h
         ${QRC_RESOURCES}
     )
 elseif(WIN32)
     set(PROJECT_SOURCES
         main.cpp
+        src/timelinereader.h src/timelinereader.cpp
+        src/studentreader.h src/studentreader.cpp
+        src/profilereader.h src/profilereader.cpp
+        src/teacherfilereader.h src/teacherfilereader.cpp
+        src/maintool.h src/maintool.cpp
+        src/activityhelper.h src/activityhelper.cpp
+        src/FluentPlayer.h src/FluentPlayer.cpp
+        src/stdafx.h
         ${QRC_RESOURCES}
         win32_logo.rc
     )
@@ -57,21 +82,10 @@ if(${QT_VERSION_MAJOR} GREATER_EQUAL 6)
     qt_add_executable(${PROJECT_NAME}
         MANUAL_FINALIZATION
         ${PROJECT_SOURCES}
-        src/timelinereader.h src/timelinereader.cpp
-        src/studentreader.h src/studentreader.cpp
-        src/profilereader.h src/profilereader.cpp
-        src/teacherfilereader.h src/teacherfilereader.cpp
-        src/maintool.h src/maintool.cpp
-        src/activityhelper.h src/activityhelper.cpp
     )
 else()
     add_executable(${PROJECT_NAME}
         ${PROJECT_SOURCES}
-        src/timelinereader.h src/timelinereader.cpp
-        src/studentreader.h src/studentreader.cpp
-        src/profilereader.h src/profilereader.cpp
-        src/teacherfilereader.h src/teacherfilereader.cpp
-        src/maintool.h src/maintool.cpp
     )
 endif()
 
@@ -80,7 +94,24 @@ add_dependencies(${PROJECT_NAME} Script-UpdateTranslations)
 target_link_libraries(${PROJECT_NAME} PRIVATE
     Qt${QT_VERSION_MAJOR}::Core
     Qt${QT_VERSION_MAJOR}::Quick
+    Qt${QT_VERSION_MAJOR}::Multimedia
+    avformat
+    avcodec
+    avutil
+    swscale
+    swresample
+    avdevice
+    avfilter
 )
+
+if(WIN32)
+    file(GLOB_RECURSE DLL_FILES ${3RDPARTY_PATH}/ffmpeg/bin/*.dll ${3RDPARTY_PATH}/ffmpeg/bin/*.exe)
+    add_custom_command(TARGET ${PROJECT_NAME} POST_BUILD
+        COMMAND ${CMAKE_COMMAND} -E copy
+        ${DLL_FILES}
+        ${APPLICATION_DIR_PATH}
+    )
+endif()
 
 if(${QT_VERSION} VERSION_LESS 6.1.0)
     set(BUNDLE_ID_OPTION MACOSX_BUNDLE_GUI_IDENTIFIER com.example.${PROJECT_NAME})

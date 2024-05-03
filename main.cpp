@@ -9,6 +9,7 @@
 #include "teacherfilereader.h"
 #include "maintool.h"
 #include "activityhelper.h"
+#include "FluentPlayer.h"
 
 int main(int argc, char *argv[])
 {
@@ -37,6 +38,7 @@ int main(int argc, char *argv[])
     qmlRegisterType<StudentReader>("studenthelper", 1, 0, "StudentReader");
     qmlRegisterType<ProfileReader>("profilehelper", 1, 0, "ProfileReader");
     qmlRegisterType<TeacherFileReader>("teacherfilehelper", 1, 0, "TeacherFileReader");
+    qmlRegisterType<FluentPlayer>("mediahelper", 1, 0, "MediaPlayer");
 
     QQmlApplicationEngine engine;
 

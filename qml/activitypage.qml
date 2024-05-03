@@ -81,7 +81,7 @@ FluContentPage {
     }
     Component {
         id: mainview
-        Image {
+        FluImage {
             z: 0
             source: ""
             width: root.width
@@ -104,6 +104,25 @@ FluContentPage {
                             showWarning(qsTr("已经到顶端了噢~"))
                         }
                     }
+                }
+            }
+
+            focus: true
+            Keys.enabled: true
+            Keys.onPressed: {
+                console.log("Press "+event.key)
+                if(!index) return
+                if (event.key === Qt.Key_Up) {
+                    if(index > 1) {
+                        index--
+                        stack.pop()
+                    }
+                    else {
+                        showWarning(qsTr("已经到顶端了噢~"))
+                    }
+                } else if (event.key === Qt.Key_Down) {
+                    index++
+                    stack.push(mainview)
                 }
             }
             Component.onCompleted: {

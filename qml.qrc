@@ -13,5 +13,7 @@
         <file>res/door.png</file>
         <file>qml/TeacherCard.qml</file>
         <file>qml/activitypage.qml</file>
+        <file>qml/Mediaplayer.qml</file>
+        <file>qml/Qt5Mediaplayer.qml</file>
     </qresource>
 </RCC>

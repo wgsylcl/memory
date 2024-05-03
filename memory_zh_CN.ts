@@ -53,6 +53,7 @@
     </message>
     <message>
         <location filename="qml/activitypage.qml" line="104"/>
+        <location filename="qml/activitypage.qml" line="121"/>
         <source>已经到顶端了噢~</source>
         <translation type="unfinished"></translation>
     </message>
