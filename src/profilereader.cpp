@@ -18,9 +18,9 @@ Q_INVOKABLE void ProfileReader::readfile(int key)
     this->picpaths.clear();
     for(int i=0;i<picdatas.count();i++)
     {
-        picpaths.push_back(QString("file:"+QCoreApplication::applicationDirPath()+"/data/pictures/")+picdatas.at(i).toString());
+        picpaths.push_back(QUrl(QString("file:"+QCoreApplication::applicationDirPath()+"/data/pictures/")+picdatas.at(i).toString()));
     }
-    if(picdatas.empty()) picpaths.push_back("file:"+QCoreApplication::applicationDirPath()+"/data/pictures/nopicture.png");
+    if(picdatas.empty()) picpaths.push_back(QUrl("file:"+QCoreApplication::applicationDirPath()+"/data/pictures/nopicture.png"));
     // deal with review :
     this->reviews.clear();
     for(int i=0;i<revdatas.count();i++)
@@ -31,7 +31,7 @@ Q_INVOKABLE void ProfileReader::readfile(int key)
     return;
 }
 
-Q_INVOKABLE QStringList ProfileReader::getpicpaths(void)
+Q_INVOKABLE QList<QUrl> ProfileReader::getpicpaths(void)
 {
     return this->picpaths;
 }

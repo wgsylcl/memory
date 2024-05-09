@@ -21,14 +21,14 @@ public:
     Q_INVOKABLE QString getsubject(void);
     Q_INVOKABLE QStringList getpetphrase(void);
     Q_INVOKABLE QStringList getreviews(void);
-    Q_INVOKABLE QStringList getpicpaths(void);
+    Q_INVOKABLE QList<QUrl> getpicpaths(void);
 
 private:
     QString name;
     QString subject;
     QStringList petphrase;
     QStringList reviews;
-    QStringList picpaths;
+    QList<QUrl> picpaths;
     QFile file;
 };
 

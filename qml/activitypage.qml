@@ -28,6 +28,7 @@ FluContentPage {
         FluComboBox {
             id: activitybox
             model: activitiymodel
+            width: 400
             onCurrentIndexChanged: {
                 mediasize = ActivityReader.readAllMedia(activitynames[currentIndex])
                 for(var i=0;i<mediasize;i++) {
@@ -35,9 +36,28 @@ FluContentPage {
                 }
 
                 stack.clear()
+
                 index = 1
-                stack.push(mainview)
+                var url = ActivityReader.getMediaPath((index-1)%mediasize)
+                if(MainTool.isVedio(url)) {
+                    stack.push(videoview)
+                }
+                else {
+                    stack.push(imageview)
+                }
             }
+        }
+
+        FluButton {
+            text: qsTr("上一张")
+            enabled: index > 1
+            onClicked: popmedia()
+        }
+
+        FluFilledButton {
+            text: qsTr("下一张")
+            enabled: index
+            onClicked: pushmedia()
         }
     }
 
@@ -50,91 +70,131 @@ FluContentPage {
             top: chooseactivityrow.bottom
             bottom: parent.bottom
         }
+
+
         pushEnter: Transition {
-            PropertyAnimation {
-                property: "y"
-                from: root.height
-                to: 0
-            }
+            // 定义淡入效果
+            NumberAnimation { property: "opacity"; from: 0.0; to: 1.0; duration: 100 }
         }
+
         pushExit: Transition {
-            PropertyAnimation {
-                property: "y"
-                from: 0
-                to: -root.height
-            }
+            // 定义淡出效果
+            // NumberAnimation { property: "opacity"; from: 1.0; to: 0.0; duration: 500 }
         }
+
         popEnter: Transition {
-            PropertyAnimation {
-                property: "y"
-                from: -root.height
-                to: 0
-            }
+            // 定义淡入效果
+            NumberAnimation { property: "opacity"; from: 0.0; to: 1.0; duration: 100 }
         }
+
         popExit: Transition {
-            PropertyAnimation {
-                property: "y"
-                from: 0
-                to: root.height
-            }
+            // 定义淡出效果
+            // NumberAnimation { property: "opacity"; from: 1.0; to: 0.0; duration: 500 }
         }
     }
     Component {
-        id: mainview
-        FluImage {
-            z: 0
-            source: ""
-            width: root.width
-            height: parent.height
-            fillMode: Image.PreserveAspectFit
-            MouseArea {
-                anchors.fill: parent
-                onWheel: {
-                    if(stack.busy) return;
-                    if(wheel.angleDelta.y < 0) {
-                        index++
-                        stack.push(mainview)
-                    }
-                    else {
-                        if(index > 1) {
-                            index--
-                            stack.pop()
-                        }
-                        else {
-                            showWarning(qsTr("已经到顶端了噢~"))
-                        }
-                    }
+        id: imageview
+        MouseArea {
+            anchors.fill: parent
+            propagateComposedEvents: true
+            onWheel: function(wheel){
+                if(stack.busy) return;
+                if(wheel.angleDelta.y < 0) {
+                    pushmedia()
+                }
+                else {
+                    popmedia()
                 }
             }
-
+            FluImage {
+                z: 0
+                source: ""
+                width: root.width
+                height: parent.height
+                fillMode: Image.PreserveAspectFit
+                Component.onCompleted: {
+                    source = ActivityReader.getMediaPath((index-1)%mediasize)
+                    console.log("construct image!")
+                }
+            }
             focus: true
-            Keys.enabled: true
-            Keys.onPressed: {
-                console.log("Press "+event.key)
-                if(!index) return
-                if (event.key === Qt.Key_Up) {
-                    if(index > 1) {
-                        index--
-                        stack.pop()
-                    }
-                    else {
-                        showWarning(qsTr("已经到顶端了噢~"))
-                    }
-                } else if (event.key === Qt.Key_Down) {
-                    index++
-                    stack.push(mainview)
-                }
-            }
-            Component.onCompleted: {
-                source = ActivityReader.getMediaPath((index-1)%mediasize)
-            }
         }
     }
-
+    Keys.onPressed: function(event) {
+        console.log("press key!")
+        if(stack.busy) return;
+        switch(event.key) {
+        case Qt.Key_Right :
+            pushmedia()
+            break
+        case Qt.Key_Left :
+            popmedia()
+            break
+        }
+    }
+    Component {
+        id: videoview
+        MouseArea {
+            anchors.fill: parent
+            propagateComposedEvents: true
+            onWheel: function(wheel){
+                if(stack.busy) return;
+                if(wheel.angleDelta.y < 0) {
+                    player.pause()
+                    pushmedia()
+                }
+                else {
+                    player.pause()
+                    popmedia()
+                }
+            }
+            FluMediaPlayer {
+                id: player
+                width: root.width
+                height: parent.height
+                Component.onCompleted: {
+                    vediosource = ActivityReader.getMediaPath((index-1)%mediasize)
+                    reset()
+                }
+                Component.onDestruction: console.log("1destruction!")
+            }
+            Component.onDestruction: console.log("2destruction!")
+        }
+    }
     Component.onCompleted: {
         activitynames = ActivityReader.getAllActivities()
         for(var i=0;i<activitynames.length;i++) {
             activitiymodel.append({text:activitynames[i]})
+        }
+    }
+
+    function pushmedia(){
+        console.log("push!")
+        stack.pop()
+        index++
+        var url = ActivityReader.getMediaPath((index-1)%mediasize)
+        if(MainTool.isVedio(url)) {
+            stack.push(videoview)
+        }
+        else {
+            stack.push(imageview)
+        }
+    }
+
+    function popmedia(){
+        console.log("pop!")
+        if(index < 2) {
+            showWarning(qsTr("已经到顶端了噢~"))
+            return
+        }
+        stack.pop()
+        index--
+        var url = ActivityReader.getMediaPath((index-1)%mediasize)
+        if(MainTool.isVedio(url)) {
+            stack.push(videoview)
+        }
+        else {
+            stack.push(imageview)
         }
     }
 }

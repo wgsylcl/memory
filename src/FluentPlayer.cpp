@@ -93,10 +93,14 @@ FluentPlayer::FluentPlayer(QObject *parent)
         updateVideoFrame(frame);
     });
     startTimer(1000);
+    qDebug() << "construct player!" << this;
 }
 
 FluentPlayer::~FluentPlayer(){
     stop();
+    cleanVideoFrame();
+    cleanAudioFrame();
+    qDebug() << "disconstruct player!";
 }
 
 void FluentPlayer::timerEvent(QTimerEvent *event){
@@ -532,7 +536,7 @@ void FluentPlayer::doInWorkAudioDecode(qint64 seek){
             qWarning()<<"Could not allocate SwrContext";
             return false;
         }
-        ret =swr_init(swrCtx);
+        ret = swr_init(swrCtx);
         if(ret < 0){
             release();
             qWarning()<<"Error SwrContext init";

@@ -3,6 +3,9 @@
 
 #include <QObject>
 #include <QCoreApplication>
+#include <QString>
+#include <QUrl>
+#include <QFileInfo>
 
 class MainTool : public QObject
 {
@@ -10,6 +13,7 @@ class MainTool : public QObject
 public:
     explicit MainTool(QObject *parent = nullptr);
     Q_INVOKABLE QString getCurrentApplicationPath(void);
+    Q_INVOKABLE bool isVedio(QUrl url);
 signals:
 
 private:

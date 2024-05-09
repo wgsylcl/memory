@@ -13,6 +13,8 @@
 #include <QJsonArray>
 #include <QJsonValue>
 #include <QJsonValueRef>
+#include <algorithm>
+#include <random>
 
 class ActivityHelper : public QObject
 {
@@ -34,7 +36,7 @@ private:
         QString fullpath;
     };
     QMap<QString,Activity> activities;
-    QStringList mediapaths;
+    QList<QUrl> mediapaths;
     QFile file;
 };
 

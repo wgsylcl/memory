@@ -52,8 +52,17 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="qml/activitypage.qml" line="104"/>
-        <location filename="qml/activitypage.qml" line="121"/>
+        <location filename="qml/activitypage.qml" line="52"/>
+        <source>上一张</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="qml/activitypage.qml" line="58"/>
+        <source>下一张</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="qml/activitypage.qml" line="187"/>
         <source>已经到顶端了噢~</source>
         <translation type="unfinished"></translation>
     </message>

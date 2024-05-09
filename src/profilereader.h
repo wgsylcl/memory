@@ -17,10 +17,10 @@ class ProfileReader : public QObject
 public:
     explicit ProfileReader(QObject *parent = nullptr);
     Q_INVOKABLE void readfile(int key);
-    Q_INVOKABLE QStringList getpicpaths(void);
+    Q_INVOKABLE QList<QUrl> getpicpaths(void);
     Q_INVOKABLE QStringList getreviews(void);
 private:
-    QStringList picpaths;
+    QList<QUrl> picpaths;
     QStringList reviews;
 };
 

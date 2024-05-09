@@ -1,7 +1,7 @@
 import QtQuick 2.15
 import QtQuick.Window 2.15
 import FluentUI 1.0
-import FluentPlayer 1.0
+import mediahelper 1.0
 import QtMultimedia 5.15
 
 FluContentPage {
@@ -67,7 +67,7 @@ FluContentPage {
         anchors.fill: parent
         color: FluColors.Black
     }
-    FluentPlayer{
+    MediaPlayerItem{
         id:player
         onPositionChanged: {
             if(d.flag){

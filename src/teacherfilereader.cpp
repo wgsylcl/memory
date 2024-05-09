@@ -19,9 +19,9 @@ Q_INVOKABLE void TeacherFileReader::readdata(int key)
     this->picpaths.clear();
     for(int i=0;i<picdatas.count();i++)
     {
-        picpaths.push_back(QString("file:"+QCoreApplication::applicationDirPath()+"/data/pictures/")+picdatas.at(i).toString());
+        picpaths.push_back(QUrl(QString("file:"+QCoreApplication::applicationDirPath()+"/data/pictures/")+picdatas.at(i).toString()));
     }
-    if(picpaths.empty()) picpaths.push_back("file:"+QCoreApplication::applicationDirPath()+"/data/pictures/nopicture.png");
+    if(picpaths.empty()) picpaths.push_back(QUrl("file:"+QCoreApplication::applicationDirPath()+"/data/pictures/nopicture.png"));
     // deal with review :
     this->reviews.clear();
     for(int i=0;i<revdatas.count();i++)
@@ -62,7 +62,7 @@ Q_INVOKABLE QStringList TeacherFileReader::getreviews(void)
     return this->reviews;
 }
 
-Q_INVOKABLE QStringList TeacherFileReader::getpicpaths(void)
+Q_INVOKABLE QList<QUrl> TeacherFileReader::getpicpaths(void)
 {
     return this->picpaths;
 }

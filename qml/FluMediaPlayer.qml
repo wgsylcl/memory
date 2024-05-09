@@ -3,12 +3,13 @@ import QtQml
 import QtQuick.Controls
 import QtQuick.Window
 import FluentUI
-import FluentPlayer
+import mediahelper
 import QtMultimedia
 
 FluContentPage {
     id: window
-    property alias vediosource:player.source
+    property alias vediosource: player.source
+    property alias isplaying: player.playing
     QtObject{
         id:d
         property bool flag: true
@@ -69,7 +70,7 @@ FluContentPage {
         anchors.fill: parent
         color: FluColors.Black
     }
-    FluentPlayer{
+    MediaPlayerItem{
         id:player
         onPositionChanged: {
             if(d.flag){
@@ -132,6 +133,7 @@ FluContentPage {
                 }
             }
         FluFrame{
+            focus: true
             id:layout_control
             width: parent.width-30
             height: 100
@@ -339,7 +341,7 @@ FluContentPage {
     }
     function start() {
         if(!player.playing){
-            player.pause()
+            player.start()
         }
     }
     function pause() {

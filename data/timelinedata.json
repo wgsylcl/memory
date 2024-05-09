@@ -1,39 +1,48 @@
 {
     "data": [
         {
-            "lable" : "时间轴测试",
-            "text" : "2024.4.5"
+            "lable": "时间轴测试",
+            "text": "2024.4.5"
         },
         {
-            "lable" : "1",
-            "text" : "t1"
-        },{
-            "lable" : "2",
-            "text" : "t2"
-        },{
-            "lable" : "3",
-            "text" : "t3"
-        },{
-            "lable" : "4",
-            "text" : "t4"
-        },{
-            "lable" : "5",
-            "text" : "t5"
-        },{
-            "lable" : "6",
-            "text" : "t6"
-        },{
-            "lable" : "7",
-            "text" : "t7"
-        },{
-            "lable" : "8",
-            "text" : "t8"
-        },{
-            "lable" : "9",
-            "text" : "t9"
-        },{
-            "lable" : "10",
-            "text" : "t10"
+            "lable": "1",
+            "text": "t1"
+        },
+        {
+            "lable": "2",
+            "text": "t2"
+        },
+        {
+            "lable": "3",
+            "text": "t3"
+        },
+        {
+            "lable": "4",
+            "text": "t4"
+        },
+        {
+            "lable": "5",
+            "text": "t5"
+        },
+        {
+            "lable": "6",
+            "text": "t6"
+        },
+        {
+            "lable": "7",
+            "text": "t7"
+        },
+        {
+            "lable": "8",
+            "text": "t8"
+        },
+        {
+            "lable": "9",
+            "text": "t9"
+        },
+        {
+            "lable": "10",
+            "text": "t10"
         }
     ]
 }
