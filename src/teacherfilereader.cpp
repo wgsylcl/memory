@@ -19,9 +19,9 @@ Q_INVOKABLE void TeacherFileReader::readdata(int key)
     this->picpaths.clear();
     for(int i=0;i<picdatas.count();i++)
     {
-        picpaths.push_back(QUrl(QString("file:"+QCoreApplication::applicationDirPath()+"/data/pictures/")+picdatas.at(i).toString()));
+        picpaths.push_back(QUrl(QString("image://provider/")+picdatas.at(i).toString()));
     }
-    if(picpaths.empty()) picpaths.push_back(QUrl("file:"+QCoreApplication::applicationDirPath()+"/data/pictures/nopicture.png"));
+    if(picpaths.empty()) picpaths.push_back(QUrl("image://provider/nopicture.png"));
     // deal with review :
     this->reviews.clear();
     for(int i=0;i<revdatas.count();i++)

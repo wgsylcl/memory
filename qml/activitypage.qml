@@ -39,7 +39,7 @@ FluContentPage {
 
                 index = 1
                 var url = ActivityReader.getMediaPath((index-1)%mediasize)
-                if(MainTool.isVedio(url)) {
+                if(MainTool.isvideo(url)) {
                     stack.push(videoview)
                 }
                 else {
@@ -78,8 +78,7 @@ FluContentPage {
         }
 
         pushExit: Transition {
-            // 定义淡出效果
-            // NumberAnimation { property: "opacity"; from: 1.0; to: 0.0; duration: 500 }
+
         }
 
         popEnter: Transition {
@@ -88,8 +87,7 @@ FluContentPage {
         }
 
         popExit: Transition {
-            // 定义淡出效果
-            // NumberAnimation { property: "opacity"; from: 1.0; to: 0.0; duration: 500 }
+
         }
     }
     Component {
@@ -173,7 +171,7 @@ FluContentPage {
         stack.pop()
         index++
         var url = ActivityReader.getMediaPath((index-1)%mediasize)
-        if(MainTool.isVedio(url)) {
+        if(MainTool.isvideo(url)) {
             stack.push(videoview)
         }
         else {
@@ -190,7 +188,7 @@ FluContentPage {
         stack.pop()
         index--
         var url = ActivityReader.getMediaPath((index-1)%mediasize)
-        if(MainTool.isVedio(url)) {
+        if(MainTool.isvideo(url)) {
             stack.push(videoview)
         }
         else {

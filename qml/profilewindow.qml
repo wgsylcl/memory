@@ -71,7 +71,8 @@ FluWindow {
                         MouseArea {
                             anchors.fill: parent
                             onDoubleClicked: {
-                                FluRouter.navigate("/viewpicture",{pictureurl:parent.source})
+                                if(MainTool.isvideo(MainTool.toLocalMediaUrl(parent.source))) FluRouter.navigate("/playvideo",{videourl:MainTool.toLocalMediaUrl(parent.source)})
+                                else FluRouter.navigate("/viewpicture",{pictureurl:MainTool.toLocalMediaUrl(parent.source)})
                             }
                         }
                     }

@@ -2,16 +2,20 @@
 
 MainTool::MainTool(QObject *parent)
     : QObject{parent}
-{}
+{
+}
 
 Q_INVOKABLE QString MainTool::getCurrentApplicationPath(void)
 {
     return QCoreApplication::applicationFilePath();
 }
 
-Q_INVOKABLE bool MainTool::isVedio(QUrl url)
+Q_INVOKABLE bool MainTool::isvideo(QUrl url)
 {
-    QFileInfo fileinfo(url.toLocalFile());
-    QString suffix = fileinfo.suffix().toLower();
-    return suffix == "mp4" || suffix == "mkv";
+    return memorybase::isvideo(url);
+}
+
+Q_INVOKABLE QUrl MainTool::toLocalMediaUrl(QUrl url)
+{
+    return memorybase::toLocalMediaUrl(url);
 }

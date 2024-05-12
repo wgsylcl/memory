@@ -11,9 +11,11 @@
         <file>qml/profilewindow.qml</file>
         <file>qml/pictureviewwindow.qml</file>
         <file>res/door.png</file>
+        <file>res/play.png</file>
         <file>qml/TeacherCard.qml</file>
         <file>qml/activitypage.qml</file>
         <file>qml/FluMediaPlayer.qml</file>
         <file>qml/Qt5FluMediaPlayer.qml</file>
+        <file>qml/videoplaywindow.qml</file>
     </qresource>
 </RCC>

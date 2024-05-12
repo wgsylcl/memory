@@ -18,37 +18,38 @@ FluWindow {
             mainimage.source = argument.pictureurl
         }
 
-    FluImage {
-        id: mainimage
-        x: 400
-        y: 300
-        onStatusChanged: {
-            if(status == Image.Ready) {
-                picwidth = mainimage.width
-                picheight = mainimage.height
-                x -= picwidth/2
-                y -= picheight/2
+    MouseArea {
+        anchors.fill: parent
+
+        drag.target: mainimage
+
+        onWheel: {
+            if(wheel.angleDelta.y > 0) {
+                scale *= 1.1
             }
+            else {
+                scale = Math.max(0.000000001,scale/1.1)
+            }
+            mainimage.x -= (picwidth * scale - mainimage.width)/2
+            mainimage.y -= (picheight * scale - mainimage.height)/2
+            mainimage.width = picwidth * scale
+            mainimage.height = picheight * scale
         }
 
-        MouseArea {
-            anchors.fill: parent
-            drag.target: parent
-            onWheel: {
-                if(wheel.angleDelta.y > 0) {
-                    scale *= 1.1
+        FluImage {
+            id: mainimage
+            x: 400
+            y: 300
+            onStatusChanged: {
+                if(status == Image.Ready) {
+                    picwidth = mainimage.width
+                    picheight = mainimage.height
+                    x -= picwidth/2
+                    y -= picheight/2
                 }
-                else {
-                    scale = Math.max(0.00000000000001,scale/1.1)
-                }
-                mainimage.x -= (picwidth * scale - mainimage.width)/2
-                mainimage.y -= (picheight * scale - mainimage.height)/2
-                mainimage.width = picwidth * scale
-                mainimage.height = picheight * scale
             }
 
         }
-
     }
 
 }

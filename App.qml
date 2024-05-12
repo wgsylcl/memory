@@ -12,7 +12,8 @@ FluLauncher {
         FluRouter.routes = {
             "/":"qrc:/qml/main.qml",
             "/profile":"qrc:/qml/profilewindow.qml",
-            "/viewpicture":"qrc:/qml/pictureviewwindow.qml"
+            "/viewpicture":"qrc:/qml/pictureviewwindow.qml",
+            "/playvideo":"qrc:/qml/videoplaywindow.qml"
         }
         FluRouter.navigate("/")
     }

@@ -10,6 +10,7 @@
 #include "maintool.h"
 #include "activityhelper.h"
 #include "FluentPlayer.h"
+#include "imageprovider.h"
 
 int main(int argc, char *argv[])
 {
@@ -46,6 +47,9 @@ int main(int argc, char *argv[])
     engine.rootContext()->setContextProperty("MainTool", &maintool);
     ActivityHelper activityreader;
     engine.rootContext()->setContextProperty("ActivityReader",&activityreader);
+
+    ImageProvider imageprovider;
+    engine.addImageProvider("provider",&imageprovider);
 
     const QUrl url(QStringLiteral("qrc:/App.qml"));
     QObject::connect(

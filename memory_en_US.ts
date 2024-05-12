@@ -22,18 +22,18 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="qml/TeacherCard.qml" line="68"/>
+        <location filename="qml/TeacherCard.qml" line="69"/>
         <source>留言栏</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="qml/TeacherCard.qml" line="93"/>
+        <location filename="qml/TeacherCard.qml" line="94"/>
         <source>我的%1老师 —— %2</source>
         <oldsource>你的%1老师 —— %2</oldsource>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="qml/TeacherCard.qml" line="97"/>
+        <location filename="qml/TeacherCard.qml" line="98"/>
         <source>&quot;%1&quot;
 </source>
         <translation type="unfinished"></translation>
@@ -62,7 +62,7 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="qml/activitypage.qml" line="187"/>
+        <location filename="qml/activitypage.qml" line="185"/>
         <source>已经到顶端了噢~</source>
         <translation type="unfinished"></translation>
     </message>
@@ -137,7 +137,7 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="qml/profilewindow.qml" line="87"/>
+        <location filename="qml/profilewindow.qml" line="88"/>
         <source>留言栏</source>
         <translation type="unfinished"></translation>
     </message>
