@@ -110,7 +110,6 @@ void ImageProvider::loadvideo(QUrl url)
                           linesize);
                 sws_freeContext(sws_ctx);
 
-                avcodec_close(codec_ctx);
                 avcodec_free_context(&codec_ctx);
                 preview_done = true;
                 break;

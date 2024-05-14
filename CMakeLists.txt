@@ -17,7 +17,7 @@ else()
     set(APPLICATION_DIR_PATH ${CMAKE_RUNTIME_OUTPUT_DIRECTORY})
 endif()
 
-file(COPY ${CMAKE_CURRENT_SOURCE_DIR}/data DESTINATION ${APPLICATION_DIR_PATH})
+
 include_directories(./src)
 
 find_package(QT NAMES Qt6 Qt5 REQUIRED COMPONENTS Core Quick Multimedia)
@@ -44,47 +44,37 @@ endif()
 
 link_directories(${3RDPARTY_PATH}/ffmpeg/lib)
 include_directories(${3RDPARTY_PATH}/ffmpeg/include)
+include_directories(${CMAKE_SOURCE_DIR}/3rdparty/qtaes)
+include_directories(${CMAKE_SOURCE_DIR}/3rdparty/qtaes/aesni)
 
 qt_add_big_resources(QRC_RESOURCES qml.qrc)
 list(APPEND QRC_RESOURCES qml.qrc)
 set_property(SOURCE qml.qrc PROPERTY SKIP_AUTORCC ON)
 
-if(APPLE)
-    set(PROJECT_SOURCES
-        main.cpp
-        src/timelinereader.h src/timelinereader.cpp
-        src/studentreader.h src/studentreader.cpp
-        src/profilereader.h src/profilereader.cpp
-        src/teacherfilereader.h src/teacherfilereader.cpp
-        src/maintool.h src/maintool.cpp
-        src/activityhelper.h src/activityhelper.cpp
-        src/FluentPlayer.h src/FluentPlayer.cpp
-        src/stdafx.h
-        ${QRC_RESOURCES}
-    )
-elseif(WIN32)
-    set(PROJECT_SOURCES
-        main.cpp
-        src/timelinereader.h src/timelinereader.cpp
-        src/studentreader.h src/studentreader.cpp
-        src/profilereader.h src/profilereader.cpp
-        src/teacherfilereader.h src/teacherfilereader.cpp
-        src/maintool.h src/maintool.cpp
-        src/activityhelper.h src/activityhelper.cpp
-        src/FluentPlayer.h src/FluentPlayer.cpp
-        src/stdafx.h
-        ${QRC_RESOURCES}
-        win32_logo.rc
-    )
+set(PROJECT_SOURCES
+    main.cpp
+    src/timelinereader.h src/timelinereader.cpp
+    src/studentreader.h src/studentreader.cpp
+    src/profilereader.h src/profilereader.cpp
+    src/teacherfilereader.h src/teacherfilereader.cpp
+    src/maintool.h src/maintool.cpp
+    src/activityhelper.h src/activityhelper.cpp
+    src/FluentPlayer.h src/FluentPlayer.cpp
+    src/stdafx.h
+    ${QRC_RESOURCES}
+    src/imageprovider.h src/imageprovider.cpp
+    src/base.h src/base.cpp
+    3rdparty/qtaes/qaesencryption.h 3rdparty/qtaes/qaesencryption.cpp
+)
+
+if(WIN32)
+    list(APPEND PROJECT_SOURCES win32_logo.rc)
 endif()
 
 if(${QT_VERSION_MAJOR} GREATER_EQUAL 6)
     qt_add_executable(${PROJECT_NAME}
         MANUAL_FINALIZATION
         ${PROJECT_SOURCES}
-        src/imageprovider.h src/imageprovider.cpp
-        src/base.h src/base.cpp
-
     )
 else()
     add_executable(${PROJECT_NAME}
@@ -106,6 +96,12 @@ target_link_libraries(${PROJECT_NAME} PRIVATE
     avdevice
     avfilter
 )
+
+add_custom_command(TARGET ${PROJECT_NAME} POST_BUILD
+        COMMAND ${CMAKE_COMMAND} -E copy_directory
+        ${CMAKE_SOURCE_DIR}/data
+        ${APPLICATION_DIR_PATH}/data
+    )
 
 if(WIN32)
     file(GLOB_RECURSE DLL_FILES ${3RDPARTY_PATH}/ffmpeg/bin/*.dll ${3RDPARTY_PATH}/ffmpeg/bin/*.exe)
@@ -157,6 +153,7 @@ if (CMAKE_BUILD_TYPE MATCHES "Release")
             COMMAND ${CMAKE_COMMAND} -E remove_directory ${CMAKE_SOURCE_DIR}/dist
             COMMAND ${CMAKE_COMMAND} -E copy_directory ${CMAKE_RUNTIME_OUTPUT_DIRECTORY} ${CMAKE_SOURCE_DIR}/dist
             COMMAND ${CMAKE_COMMAND} -E copy_directory ${CMAKE_CURRENT_SOURCE_DIR}/data ${CMAKE_SOURCE_DIR}/dist
+            COMMAND ${CMAKE_COMMAND} -E copy_directory ${DLL_FILES} ${CMAKE_SOURCE_DIR}/dist
             COMMAND ${QT_DEPLOY_QT} ${CMAKE_SOURCE_DIR}/dist/${PROJECT_NAME}.exe -qmldir=${CMAKE_CURRENT_LIST_DIR}/qml
             COMMENT "Windows Deploying Qt Dependencies After Build........."
             SOURCES ${CMAKE_CURRENT_SOURCE_DIR}/CMakeLists.txt
