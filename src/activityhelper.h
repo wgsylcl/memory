@@ -32,7 +32,7 @@ private:
         QString name;
         QString version;
         QString size;
-        QString downloadurl;
+        QStringList downloadurl;
         QString fullpath;
     };
     QMap<QString,Activity> activities;

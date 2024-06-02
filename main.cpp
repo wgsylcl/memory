@@ -2,6 +2,7 @@
 #include <QQmlApplicationEngine>
 #include <QTranslator>
 #include <QtQml>
+#include <QDebug>
 #include <QQmlContext>
 #include "timelinereader.h"
 #include "studentreader.h"
@@ -11,6 +12,28 @@
 #include "activityhelper.h"
 #include "FluentPlayer.h"
 #include "imageprovider.h"
+#include "direncoder.h"
+#include "taskloghelper.h"
+
+TasklogManager* TasklogManager::globalinstance = nullptr;
+
+QMutex logmessagelock;
+
+void logmessagehander(QtMsgType type, const QMessageLogContext &context, const QString &msg)
+{
+    QMutexLocker locker(&logmessagelock);
+
+    const char *function = context.function ? context.function : "";
+
+    QString time = QDateTime::currentDateTime().toString("yyyy-MM-dd hh-mm-ss:");
+    QString OutMsg = time + QString(" %1 ").arg(function) + msg + "\n";
+
+    // 输出信息至文件中
+    FILE *f = fopen("log.txt", "a");
+    fputs(OutMsg.toStdString().c_str(), f);
+    fclose(f);
+    f = NULL;
+}
 
 int main(int argc, char *argv[])
 {
@@ -35,21 +58,26 @@ int main(int argc, char *argv[])
         }
     }
 
+    TasklogManager* tasklogmanager = new TasklogManager(&app);
+
+    qInstallMessageHandler(logmessagehander);
+
+    threadpool->setMaxThreadCount(18);
+
     qmlRegisterType<TimelineReader>("timelinehelper", 1, 0, "TimelineReader");
     qmlRegisterType<StudentReader>("studenthelper", 1, 0, "StudentReader");
     qmlRegisterType<ProfileReader>("profilehelper", 1, 0, "ProfileReader");
     qmlRegisterType<TeacherFileReader>("teacherfilehelper", 1, 0, "TeacherFileReader");
     qmlRegisterType<FluentPlayer>("mediahelper", 1, 0, "MediaPlayerItem");
+    qmlRegisterType<Direncoder>("codehelper", 1, 0, "Direncoder");
+    qmlRegisterType<TasklogHelper>("taskloghelper", 1, 0, "TasklogHelper");
 
     QQmlApplicationEngine engine;
 
-    MainTool maintool;
-    engine.rootContext()->setContextProperty("MainTool", &maintool);
-    ActivityHelper activityreader;
-    engine.rootContext()->setContextProperty("ActivityReader",&activityreader);
+    engine.rootContext()->setContextProperty("MainTool", new MainTool(&app));
+    engine.rootContext()->setContextProperty("ActivityReader", new ActivityHelper(&app));
 
-    ImageProvider imageprovider;
-    engine.addImageProvider("provider",&imageprovider);
+    engine.addImageProvider("provider", new ImageProvider(&app));
 
     const QUrl url(QStringLiteral("qrc:/App.qml"));
     QObject::connect(

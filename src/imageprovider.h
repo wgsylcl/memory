@@ -17,7 +17,7 @@ class ImageProvider : public QQuickImageProvider
 {
     Q_OBJECT
 public:
-    explicit ImageProvider();
+    explicit ImageProvider(QObject *parent = nullptr);
     QImage requestImage(const QString &id, QSize *size, const QSize &requestedSize);
 signals:
 

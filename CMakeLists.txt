@@ -51,6 +51,8 @@ qt_add_big_resources(QRC_RESOURCES qml.qrc)
 list(APPEND QRC_RESOURCES qml.qrc)
 set_property(SOURCE qml.qrc PROPERTY SKIP_AUTORCC ON)
 
+add_definitions(-DPASSWORD="$ENV{PASSWORD}")
+
 set(PROJECT_SOURCES
     main.cpp
     src/timelinereader.h src/timelinereader.cpp
@@ -65,6 +67,11 @@ set(PROJECT_SOURCES
     src/imageprovider.h src/imageprovider.cpp
     src/base.h src/base.cpp
     3rdparty/qtaes/qaesencryption.h 3rdparty/qtaes/qaesencryption.cpp
+    src/encodethread.h src/encodethread.cpp
+    src/downloadthread.h src/downloadthread.cpp
+    src/direncoder.h src/direncoder.cpp
+    src/tasklogmanager.h src/tasklogmanager.cpp
+    src/taskloghelper.h src/taskloghelper.cpp
 )
 
 if(WIN32)

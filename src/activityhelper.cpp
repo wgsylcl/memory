@@ -14,7 +14,9 @@ ActivityHelper::ActivityHelper(QObject *parent)
         activity.name = jactivitie.value("name").toString();
         activity.version = jactivitie.value("version").toString();
         activity.size = jactivitie.value("size").toString();
-        activity.downloadurl = jactivitie.value("downloadurl").toString();
+        QJsonArray downloadurls = jactivitie.value("downloadurl").toArray();
+        for (int j = 0; j < downloadurls.count(); j++)
+            activity.downloadurl.push_back(downloadurls.at(i).toString());
         activity.fullpath = QCoreApplication::applicationDirPath() + "/data/activities/" + activity.name + "/";
         activities.insert(activity.name, activity);
     }

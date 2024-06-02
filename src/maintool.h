@@ -11,6 +11,11 @@ public:
     Q_INVOKABLE QString getCurrentApplicationPath(void);
     Q_INVOKABLE bool isvideo(QUrl);
     Q_INVOKABLE QUrl toLocalMediaUrl(QUrl);
+    Q_INVOKABLE QString getpassword(void);
+    Q_INVOKABLE bool fileexist(QString);
+    Q_INVOKABLE bool direxist(QString);
+    Q_INVOKABLE QUrl toUrl(QString);
+    Q_INVOKABLE QString topath(QUrl);
 signals:
 
 private:

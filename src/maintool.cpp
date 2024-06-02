@@ -19,3 +19,28 @@ Q_INVOKABLE QUrl MainTool::toLocalMediaUrl(QUrl url)
 {
     return memorybase::toLocalMediaUrl(url);
 }
+
+Q_INVOKABLE QString MainTool::getpassword(void)
+{
+    return PASSWORD;
+}
+
+Q_INVOKABLE bool MainTool::fileexist(QString filepath)
+{
+    return memorybase::fileexist(filepath);
+}
+
+Q_INVOKABLE bool MainTool::direxist(QString dirpath)
+{
+    return memorybase::direxist(dirpath);
+}
+
+Q_INVOKABLE QUrl MainTool::toUrl(QString path)
+{
+    return memorybase::toUrl(path);
+}
+
+Q_INVOKABLE QString MainTool::topath(QUrl url)
+{
+    return memorybase::topath(url);
+}

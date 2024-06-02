@@ -17,5 +17,9 @@
         <file>qml/FluMediaPlayer.qml</file>
         <file>qml/Qt5FluMediaPlayer.qml</file>
         <file>qml/videoplaywindow.qml</file>
+        <file>qml/datamanagepage.qml</file>
+        <file>qml/dataupdatepage.qml</file>
+        <file>qml/dataprovidepage.qml</file>
+        <file>qml/taskpage.qml</file>
     </qresource>
 </RCC>

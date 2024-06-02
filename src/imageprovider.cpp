@@ -1,8 +1,9 @@
 #include "imageprovider.h"
 
-ImageProvider::ImageProvider()
+ImageProvider::ImageProvider(QObject* parent)
     : QQuickImageProvider{QQmlImageProviderBase::Image},playimg(":/res/play.png")
 {
+    setParent(parent);
     playimg = playimg.scaled(80, 80, Qt::KeepAspectRatio, Qt::SmoothTransformation);
 }
 
