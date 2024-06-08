@@ -8,9 +8,14 @@ class Direncoder : public QObject
 {
     Q_OBJECT
 public:
-    explicit Direncoder(QObject *parent = nullptr);
-    Q_INVOKABLE void encodedir(QString);
+    explicit Direncoder(QString path,QObject *parent = nullptr);
+public slots:
+    void encodedir(QString path);
+    void startencodedir();
 signals:
+
+private:
+    QString tpath;
 };
 
 #endif // DIRENCODER_H

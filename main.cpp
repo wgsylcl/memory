@@ -12,7 +12,7 @@
 #include "activityhelper.h"
 #include "FluentPlayer.h"
 #include "imageprovider.h"
-#include "direncoder.h"
+#include "direncodemanager.h"
 #include "taskloghelper.h"
 
 TasklogManager* TasklogManager::globalinstance = nullptr;
@@ -62,14 +62,12 @@ int main(int argc, char *argv[])
 
     qInstallMessageHandler(logmessagehander);
 
-    threadpool->setMaxThreadCount(18);
-
     qmlRegisterType<TimelineReader>("timelinehelper", 1, 0, "TimelineReader");
     qmlRegisterType<StudentReader>("studenthelper", 1, 0, "StudentReader");
     qmlRegisterType<ProfileReader>("profilehelper", 1, 0, "ProfileReader");
     qmlRegisterType<TeacherFileReader>("teacherfilehelper", 1, 0, "TeacherFileReader");
     qmlRegisterType<FluentPlayer>("mediahelper", 1, 0, "MediaPlayerItem");
-    qmlRegisterType<Direncoder>("codehelper", 1, 0, "Direncoder");
+    qmlRegisterType<Direncodemanager>("codehelper", 1, 0, "Direncoder");
     qmlRegisterType<TasklogHelper>("taskloghelper", 1, 0, "TasklogHelper");
 
     QQmlApplicationEngine engine;

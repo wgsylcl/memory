@@ -11,6 +11,7 @@
 #include <QDir>
 #include <QCoreApplication>
 #include <QThreadPool>
+#include <QThread>
 
 #define threadpool QThreadPool::globalInstance()
 const qint64 chunkSize = 99 * 1024 * 1024;
