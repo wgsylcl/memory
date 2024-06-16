@@ -1,0 +1,7 @@
+{
+    "files.associations": {
+        "*.qs": "javascript",
+        "*.ts": "xml",
+        "qqueue": "cpp"
+    }
+}

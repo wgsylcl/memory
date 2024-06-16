@@ -1,15 +1,7 @@
 #ifndef PROFILEREADER_H
 #define PROFILEREADER_H
 
-#include <QObject>
-#include <QFile>
-#include <QJsonDocument>
-#include <QJsonParseError>
-#include <QCoreApplication>
-#include <QJsonObject>
-#include <QJsonArray>
-#include <QJsonValue>
-#include <QJsonValueRef>
+#include "base.h"
 
 class ProfileReader : public QObject
 {

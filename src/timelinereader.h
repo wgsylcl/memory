@@ -1,15 +1,7 @@
 #ifndef TIMELINEREADER_H
 #define TIMELINEREADER_H
 
-#include <QObject>
-#include <QFile>
-#include <QJsonDocument>
-#include <QJsonParseError>
-#include <QJsonObject>
-#include <QJsonArray>
-#include <QJsonValue>
-#include <QJsonValueRef>
-#include <QCoreApplication>
+#include "base.h"
 
 class TimelineReader : public QObject
 {

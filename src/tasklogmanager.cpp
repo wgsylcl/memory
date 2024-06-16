@@ -1,9 +1,12 @@
 #include "tasklogmanager.h"
 
+TasklogManager *TasklogManager::globalinstance = nullptr;
+
 TasklogManager::TasklogManager(QObject *parent)
     : QObject{parent}
 {
-    if(!globalinstance) globalinstance = this;
+    if(!globalinstance)
+    globalinstance = this;
 }
 
 TasklogManager *TasklogManager::Instance(void)

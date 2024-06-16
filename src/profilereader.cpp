@@ -2,12 +2,13 @@
 
 ProfileReader::ProfileReader(QObject *parent)
     : QObject{parent}
-{}
+{
+}
 
 Q_INVOKABLE void ProfileReader::readfile(int key)
 {
-    QFile file(QString(QCoreApplication::applicationDirPath()+"/data/students/%1.json").arg(key));
-    file.open(QIODevice::ReadOnly|QIODevice::Text);
+    QFile file(QString(runtimedir + "/data/students/%1.json").arg(key));
+    file.open(QIODevice::ReadOnly | QIODevice::Text);
     QByteArray jsondata = file.readAll();
     file.close();
     QJsonDocument jsondoc = QJsonDocument::fromJson(jsondata);
@@ -16,18 +17,20 @@ Q_INVOKABLE void ProfileReader::readfile(int key)
     QJsonArray revdatas = root.value("review").toArray();
     // deal with picture :
     this->picpaths.clear();
-    for(int i=0;i<picdatas.count();i++)
+    for (int i = 0; i < picdatas.count(); i++)
     {
-        picpaths.push_back(QUrl(QString("image://provider/")+picdatas.at(i).toString()));
+        picpaths.push_back(QUrl(QString("image://provider/") + picdatas.at(i).toString()));
     }
-    if(picdatas.empty()) picpaths.push_back(QUrl("image://provider/nopicture.png"));
+    if (picdatas.empty())
+        picpaths.push_back(QUrl("image://provider/nopicture.png"));
     // deal with review :
     this->reviews.clear();
-    for(int i=0;i<revdatas.count();i++)
+    for (int i = 0; i < revdatas.count(); i++)
     {
         reviews.push_back(revdatas.at(i).toString());
     }
-    if(reviews.empty()) reviews.push_back("还没有人给ta留言哦~");
+    if (reviews.empty())
+        reviews.push_back("还没有人给ta留言哦~");
     return;
 }
 

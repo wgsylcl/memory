@@ -1,15 +1,7 @@
 #ifndef TEACHERFILEREADER_H
 #define TEACHERFILEREADER_H
 
-#include <QObject>
-#include <QFile>
-#include <QJsonDocument>
-#include <QJsonParseError>
-#include <QJsonObject>
-#include <QJsonArray>
-#include <QJsonValue>
-#include <QJsonValueRef>
-#include <QCoreApplication>
+#include "base.h"
 
 class TeacherFileReader : public QObject
 {

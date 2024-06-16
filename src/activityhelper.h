@@ -1,18 +1,7 @@
 #ifndef ACTIVITYHELPER_H
 #define ACTIVITYHELPER_H
 
-#include <QObject>
-#include <QFile>
-#include <QFileInfo>
-#include <QFileInfoList>
-#include <QDir>
-#include <QJsonDocument>
-#include <QJsonParseError>
-#include <QCoreApplication>
-#include <QJsonObject>
-#include <QJsonArray>
-#include <QJsonValue>
-#include <QJsonValueRef>
+#include "database.h"
 #include <algorithm>
 #include <random>
 
@@ -27,17 +16,7 @@ public:
 signals:
 
 private:
-    struct Activity
-    {
-        QString name;
-        QString version;
-        QString size;
-        QStringList downloadurl;
-        QString fullpath;
-    };
-    QMap<QString,Activity> activities;
     QList<QUrl> mediapaths;
-    QFile file;
 };
 
 #endif // ACTIVITYHELPER_H

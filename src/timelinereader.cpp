@@ -1,13 +1,14 @@
 #include "timelinereader.h"
 
 TimelineReader::TimelineReader(QObject *parent)
-    : QObject{parent},jsonfile(QCoreApplication::applicationDirPath()+"/data/timelinedata.json")
-{}
+    : QObject{parent}, jsonfile(runtimedir + "/data/timelinedata.json")
+{
+}
 
 Q_INVOKABLE int TimelineReader::readdata(void)
 {
     QByteArray jsondata;
-    if(jsonfile.open(QIODevice::ReadOnly))
+    if (jsonfile.open(QIODevice::ReadOnly))
     {
         jsondata = jsonfile.readAll();
         jsonfile.close();
@@ -17,7 +18,7 @@ Q_INVOKABLE int TimelineReader::readdata(void)
     QJsonObject root = jsondoc.object();
     QJsonValue jdatas = root.value("data");
     QJsonArray arr = jdatas.toArray();
-    for(int i=0;i<arr.count();i++)
+    for (int i = 0; i < arr.count(); i++)
     {
         QJsonObject element = arr.at(i).toObject();
         QVariantMap map;

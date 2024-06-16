@@ -20,8 +20,8 @@ endif()
 
 include_directories(./src)
 
-find_package(QT NAMES Qt6 Qt5 REQUIRED COMPONENTS Core Quick Multimedia)
-find_package(Qt${QT_VERSION_MAJOR} REQUIRED COMPONENTS Core Quick Multimedia)
+find_package(QT NAMES Qt6 Qt5 REQUIRED COMPONENTS Core Quick Multimedia Network)
+find_package(Qt${QT_VERSION_MAJOR} REQUIRED COMPONENTS Core Quick Multimedia Network)
 
 find_program(QT_LUPDATE NAMES lupdate)
 find_program(QT_LRELEASE NAMES lrelease)
@@ -68,10 +68,15 @@ set(PROJECT_SOURCES
     src/base.h src/base.cpp
     3rdparty/qtaes/qaesencryption.h 3rdparty/qtaes/qaesencryption.cpp
     src/encodethread.h src/encodethread.cpp
-    src/downloadthread.h src/downloadthread.cpp
     src/direncoder.h src/direncoder.cpp
     src/tasklogmanager.h src/tasklogmanager.cpp
     src/taskloghelper.h src/taskloghelper.cpp
+    src/direncodemanager.h src/direncodemanager.cpp
+    src/database.h src/database.cpp
+    src/memoryapplication.h src/memoryapplication.cpp
+    src/databaseinitializer.h src/databaseinitializer.cpp
+    src/downloader.h src/downloader.cpp
+    src/downloadmanager.h src/downloadmanager.cpp
 )
 
 if(WIN32)
@@ -82,7 +87,6 @@ if(${QT_VERSION_MAJOR} GREATER_EQUAL 6)
     qt_add_executable(${PROJECT_NAME}
         MANUAL_FINALIZATION
         ${PROJECT_SOURCES}
-        src/direncodemanager.h src/direncodemanager.cpp
     )
 else()
     add_executable(${PROJECT_NAME}
@@ -96,6 +100,7 @@ target_link_libraries(${PROJECT_NAME} PRIVATE
     Qt${QT_VERSION_MAJOR}::Core
     Qt${QT_VERSION_MAJOR}::Quick
     Qt${QT_VERSION_MAJOR}::Multimedia
+    Qt${QT_VERSION_MAJOR}::Network
     avformat
     avcodec
     avutil
