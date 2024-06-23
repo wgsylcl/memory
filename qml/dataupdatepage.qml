@@ -7,7 +7,7 @@ FluScrollablePage {
     id: root
     title: qsTr("更改数据库")
     FluGroupBox {
-        title: qsTr("加密数据生成")
+        title: qsTr("数据库配置")
         Row {
             spacing: 36
             FluText {

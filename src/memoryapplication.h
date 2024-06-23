@@ -7,6 +7,7 @@
 #include <QTranslator>
 #include <QtQml>
 #include <QDebug>
+#include <QLockFile>
 #include <QQmlContext>
 #include "timelinereader.h"
 #include "studentreader.h"
@@ -39,8 +40,10 @@ private:
     ActivityHelper *activityhelper;
     DataBaseInitializer *databaseinitializer;
     QThread *databaseinitializethread;
-    DownloadManager *m_downloadmanager;
     DataBase *m_database;
+    QLockFile filelocker;
+    DownloadManager *m_downloadmanager;
+    void checksingle();
     void setuptranslator();
     void registermodules();
     void setupqmlengine();

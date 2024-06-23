@@ -38,13 +38,14 @@ namespace memorybase
     QString topath(QUrl);
     QString getfilesuffix(QString);
     QString getfilesuffix(QUrl);
+    QUrl generaterequesturl(QString reponame, QString filepath);
     struct Activity
     {
         QString name;
-        QString version;
+        QString loaclversion;
+        QString remoteversion;
         QString size;
-        QStringList downloadurl;
-        QString fullpath;
+        QStringList reponame;
     };
     using Activities = QMap<QString, memorybase::Activity>;
 }

@@ -17,6 +17,7 @@ signals:
 
 private:
     QList<QUrl> mediapaths;
+    QString getfullpath(memorybase::Activity activity);
 };
 
 #endif // ACTIVITYHELPER_H

@@ -52,8 +52,11 @@ list(APPEND QRC_RESOURCES qml.qrc)
 set_property(SOURCE qml.qrc PROPERTY SKIP_AUTORCC ON)
 
 add_definitions(-DPASSWORD="$ENV{PASSWORD}")
+add_definitions(-DTOKEN="$ENV{access_token}")
+add_definitions(-DVERSION="1.0.1")
 
 set(PROJECT_SOURCES
+    ${QRC_RESOURCES}
     main.cpp
     src/timelinereader.h src/timelinereader.cpp
     src/studentreader.h src/studentreader.cpp
@@ -63,7 +66,6 @@ set(PROJECT_SOURCES
     src/activityhelper.h src/activityhelper.cpp
     src/FluentPlayer.h src/FluentPlayer.cpp
     src/stdafx.h
-    ${QRC_RESOURCES}
     src/imageprovider.h src/imageprovider.cpp
     src/base.h src/base.cpp
     3rdparty/qtaes/qaesencryption.h 3rdparty/qtaes/qaesencryption.cpp
@@ -168,6 +170,7 @@ if (CMAKE_BUILD_TYPE MATCHES "Release")
             COMMAND ${CMAKE_COMMAND} -E copy_directory ${CMAKE_CURRENT_SOURCE_DIR}/data ${CMAKE_SOURCE_DIR}/dist
             COMMAND ${CMAKE_COMMAND} -E copy_directory ${DLL_FILES} ${CMAKE_SOURCE_DIR}/dist
             COMMAND ${QT_DEPLOY_QT} ${CMAKE_SOURCE_DIR}/dist/${PROJECT_NAME}.exe -qmldir=${CMAKE_CURRENT_LIST_DIR}/qml
+            COMMAND ${QT_DEPLOY_QT} ${CMAKE_SOURCE_DIR}/dist/downloader.exe -qmldir=${CMAKE_CURRENT_LIST_DIR}/qml
             COMMENT "Windows Deploying Qt Dependencies After Build........."
             SOURCES ${CMAKE_CURRENT_SOURCE_DIR}/CMakeLists.txt
             WORKING_DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR}
@@ -187,6 +190,7 @@ else()
         find_program(QT_DEPLOY_QT NAMES windeployqt)
         add_custom_target(Script-DeployDebug
             COMMAND ${QT_DEPLOY_QT} ${CMAKE_SOURCE_DIR}/bin/Debug/${PROJECT_NAME}.exe -qmldir=${CMAKE_CURRENT_LIST_DIR}/qml
+            COMMAND ${QT_DEPLOY_QT} ${CMAKE_SOURCE_DIR}/bin/Debug/downloader.exe -qmldir=${CMAKE_CURRENT_LIST_DIR}/qml
             COMMENT "Windows Deploying Qt Dependencies After Build........."
             SOURCES ${CMAKE_CURRENT_SOURCE_DIR}/CMakeLists.txt
             WORKING_DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR}

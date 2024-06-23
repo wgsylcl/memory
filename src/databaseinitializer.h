@@ -14,14 +14,14 @@ signals:
 
 public slots:
     void initialize();
-    void receiveremoteinfo();
+    void readremoteinfo();
 
 private:
-    void readinfo();
     void downloadremoteinfo();
     void parseprofile();
     void parseactivities();
     void parsepictures();
+    void readlocalversion();
 };
 
 #endif // DATABASEINITIALIZER_H

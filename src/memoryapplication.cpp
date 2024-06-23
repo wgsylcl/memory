@@ -4,7 +4,7 @@ MemoryApplication::MemoryApplication(int &argc, char *argv[])
     : QGuiApplication{argc,argv},uiLanguages(QLocale::system().uiLanguages()),
     tasklogmanager(new TasklogManager(this)),engine(new QQmlApplicationEngine(this)),
     activityhelper(new ActivityHelper(this)),maintool(new MainTool(this)),imageprovider(new ImageProvider(this)),
-    m_database(new DataBase(this)),m_downloadmanager(new DownloadManager(this))
+    m_database(new DataBase(this)),filelocker(runtimedir + "/filelock"),m_downloadmanager(new DownloadManager(this))
 {
 #if (QT_VERSION < QT_VERSION_CHECK(6, 0, 0))
     QGuiApplication::setAttribute(Qt::AA_EnableHighDpiScaling);
@@ -13,7 +13,11 @@ MemoryApplication::MemoryApplication(int &argc, char *argv[])
 #if (QT_VERSION >= QT_VERSION_CHECK(5, 14, 0))
     QGuiApplication::setHighDpiScaleFactorRoundingPolicy(Qt::HighDpiScaleFactorRoundingPolicy::PassThrough);
 #endif
+    setOrganizationName("wgsylcl");
+    setApplicationName("memory");
+    // checksingle();
     threadpool -> setExpiryTimeout(-1);
+    setupfiles();
     setuptranslator();
     registermodules();
     setupqmlengine();
@@ -23,7 +27,10 @@ MemoryApplication::MemoryApplication(int &argc, char *argv[])
 MemoryApplication::~MemoryApplication()
 {
     if(databaseinitializethread -> isRunning())
-        databaseinitializethread -> terminate();
+        databaseinitializethread -> exit();
+    databaseinitializer -> deleteLater();
+    if(filelocker.isLocked())
+        filelocker.unlock();
 }
 
 void MemoryApplication::setuptranslator()
@@ -70,7 +77,7 @@ void MemoryApplication::setupqmlengine()
 void MemoryApplication::startinitalize()
 {
     databaseinitializethread = new QThread(this);
-    databaseinitializer = new DataBaseInitializer(this);
+    databaseinitializer = new DataBaseInitializer();
     databaseinitializer -> moveToThread(databaseinitializethread);
     QObject::connect(databaseinitializethread,&QThread::started,databaseinitializer,&DataBaseInitializer::initialize);
     databaseinitializethread -> start();
@@ -81,4 +88,10 @@ void MemoryApplication::setupfiles()
     QDir cachedir(runtimedir + "/cache");
     if(!cachedir.exists())
         cachedir.mkdir(runtimedir + "/cache");
+}
+
+void MemoryApplication::checksingle()
+{
+    if(!filelocker.tryLock(1000))
+        ::exit(0);
 }

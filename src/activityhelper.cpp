@@ -13,7 +13,7 @@ Q_INVOKABLE QStringList ActivityHelper::getAllActivities(void)
 Q_INVOKABLE int ActivityHelper::readAllMedia(QString activityname)
 {
     memorybase::Activity activity = DataBase::instance() -> getactivity(activityname);
-    QDir dirc(activity.fullpath);
+    QDir dirc(getfullpath(activity));
     QFileInfoList fileinfos = dirc.entryInfoList(QDir::Files);
     mediapaths.clear();
     QList<QUrl> videopaths, imagepaths;
@@ -44,4 +44,9 @@ Q_INVOKABLE int ActivityHelper::readAllMedia(QString activityname)
 Q_INVOKABLE QUrl ActivityHelper::getMediaPath(int index)
 {
     return mediapaths.at(index % mediapaths.size());
+}
+
+QString ActivityHelper::getfullpath(memorybase::Activity activity)
+{
+    return runtimedir + "/" + activity.name;
 }

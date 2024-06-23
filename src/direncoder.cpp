@@ -24,7 +24,12 @@ void Direncoder::encodedir(QString path)
         QTextStream fout(&listfile);
         fout << "";
         listfile.close();
-        EncodeThread *encoder = new EncodeThread(filepath,path + "/filelist.txt");
+        QFile ignorefile(path + "/.gitignore");
+        ignorefile.open(QIODevice::WriteOnly | QIODevice::Text);
+        QTextStream tout(&ignorefile);
+        tout << "";
+        ignorefile.close();
+        EncodeThread *encoder = new EncodeThread(filepath,path + "/filelist.txt",path + "/.gitignore");
         threadpool->start(encoder);
     }
     for(QFileInfo subdir:subdirs) {

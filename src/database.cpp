@@ -16,11 +16,8 @@ DataBase *DataBase::instance()
 QStringList DataBase::getAllLocalActivitieNames()
 {
     QStringList ret;
-    for (auto activity : activities)
-    {
-        if (activity.version != "0.0.0")
-            ret.push_back(activity.name);
-    }
+    for(auto it = localactivityversions.begin();it != localactivityversions.end();it++)
+        ret.append(it.key());
     return ret;
 }
 

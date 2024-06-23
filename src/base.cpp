@@ -47,3 +47,8 @@ QString memorybase::getfilesuffix(QUrl url)
     QFileInfo fileinfo(url.toLocalFile());
     return fileinfo.suffix().toLower();
 }
+
+QUrl memorybase::generaterequesturl(QString reponame,QString filepath)
+{
+    return QUrl(QString("https://gitee.com/api/v5/repos/wgsylcl/%1/raw/%2?access_token=%3").arg(reponame,filepath,TOKEN));
+}

@@ -21,5 +21,7 @@
         <file>qml/dataupdatepage.qml</file>
         <file>qml/dataprovidepage.qml</file>
         <file>qml/taskpage.qml</file>
+        <file>res/groupphoto.jpg</file>
+        <file>qml/timelinePage.qml</file>
     </qresource>
 </RCC>

@@ -25,6 +25,10 @@ FluWindow {
         blurRadius: 20
     }
 
+    Component.onDestruction: {
+        FluRouter.exit(0)
+    }
+
     FluNavigationView {
         z: 1
         anchors.fill: parent
@@ -55,6 +59,12 @@ FluWindow {
                 title: qsTr("回忆")
                 icon: FluentIcons.Emoji
                 url: "qrc:/qml/activitypage.qml"
+                onTap: navigationview.push(url)
+            }
+            FluPaneItem{
+                title: qsTr("我们的班史")
+                icon: FluentIcons.History
+                url: "qrc:/qml/timelinePage.qml"
                 onTap: navigationview.push(url)
             }
             FluPaneItemExpander {
@@ -126,5 +136,7 @@ FluWindow {
         }
         onNegativeClicked: showWarning(qsTr("您退出了验证"))
     }
+
+    // onDestroyed: FluApp.deleteLater()
 
 }

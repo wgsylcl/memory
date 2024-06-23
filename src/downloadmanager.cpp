@@ -3,7 +3,7 @@
 DownloadManager *DownloadManager::_instance = nullptr;
 
 DownloadManager::DownloadManager(QObject *parent)
-    : QObject{parent}, maxrunningdownloads(32)
+    : QObject{parent}, maxrunningdownloads(8)
 {
     _instance = this;
 }

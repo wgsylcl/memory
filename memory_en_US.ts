@@ -40,12 +40,13 @@
     <name>EncodeThread</name>
     <message>
         <location filename="src/encodethread.cpp" line="15"/>
-        <source>开始加密 %1 ……</source>
+        <source>开始配置 %1 ……</source>
+        <oldsource>开始加密 %1 ……</oldsource>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="src/encodethread.cpp" line="23"/>
-        <source>%1 加密完成！</source>
+        <location filename="src/encodethread.cpp" line="21"/>
+        <source>%1 配置完成！</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -251,7 +252,8 @@ Replacing it will overwrite its current contents.</source>
     </message>
     <message>
         <location filename="qml/dataupdatepage.qml" line="10"/>
-        <source>加密数据生成</source>
+        <source>数据库配置</source>
+        <oldsource>加密数据生成</oldsource>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -284,13 +286,13 @@ Replacing it will overwrite its current contents.</source>
 <context>
     <name>homePage</name>
     <message>
-        <location filename="qml/homePage.qml" line="8"/>
+        <location filename="qml/homePage.qml" line="7"/>
         <source>毕业留念</source>
         <oldsource>班级信息</oldsource>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="qml/homePage.qml" line="19"/>
+        <location filename="qml/homePage.qml" line="15"/>
         <source>我来自武钢实验学校，2021年入学，成为了光荣的14班的一员，在这里，我先后与46名小伙伴一起学习、交流、成长。三年的成长后，我将从这里再度起航！</source>
         <oldsource>我来自武钢实验学校，2021年入学，成为了光荣的14班的一员，在这里，我先后与46名小伙伴一起学习、交流、成长，三年的成长后，我将从这里再度起航！</oldsource>
         <translation type="unfinished"></translation>
@@ -304,89 +306,94 @@ Replacing it will overwrite its current contents.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="qml/main.qml" line="39"/>
+        <location filename="qml/main.qml" line="43"/>
         <source>主界面</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="qml/main.qml" line="45"/>
+        <location filename="qml/main.qml" line="49"/>
         <source>我的老师们</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="qml/main.qml" line="51"/>
+        <location filename="qml/main.qml" line="55"/>
         <source>我和我的同学</source>
         <oldsource>同学信息</oldsource>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="qml/main.qml" line="55"/>
+        <location filename="qml/main.qml" line="59"/>
         <source>回忆</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="qml/main.qml" line="62"/>
+        <location filename="qml/main.qml" line="65"/>
+        <source>我们的班史</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="qml/main.qml" line="72"/>
         <source>数据库管理</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="qml/main.qml" line="65"/>
+        <location filename="qml/main.qml" line="75"/>
         <source>同步数据库</source>
         <oldsource>数据库同步</oldsource>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="qml/main.qml" line="71"/>
+        <location filename="qml/main.qml" line="81"/>
         <source>上传图文</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="qml/main.qml" line="77"/>
+        <location filename="qml/main.qml" line="87"/>
         <source>更改数据库</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="qml/main.qml" line="90"/>
+        <location filename="qml/main.qml" line="100"/>
         <source>设置和关于</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="qml/main.qml" line="96"/>
+        <location filename="qml/main.qml" line="106"/>
         <source>任务面板</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="qml/main.qml" line="108"/>
+        <location filename="qml/main.qml" line="118"/>
         <source>需要验证</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="qml/main.qml" line="109"/>
+        <location filename="qml/main.qml" line="119"/>
         <source>输入 Developer 的密码以授权对数据库的更改</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="qml/main.qml" line="116"/>
+        <location filename="qml/main.qml" line="126"/>
         <source>验证</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="qml/main.qml" line="117"/>
+        <location filename="qml/main.qml" line="127"/>
         <source>取消</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="qml/main.qml" line="120"/>
+        <location filename="qml/main.qml" line="130"/>
         <source>验证成功!</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="qml/main.qml" line="124"/>
+        <location filename="qml/main.qml" line="134"/>
         <source>密码错误!</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="qml/main.qml" line="127"/>
+        <location filename="qml/main.qml" line="137"/>
         <source>您退出了验证</source>
         <translation type="unfinished"></translation>
     </message>
@@ -505,6 +512,14 @@ Replacing it will overwrite its current contents.</source>
         <location filename="qml/teacherPage.qml" line="8"/>
         <source>您的教诲如同明灯，照亮我们前行的道路，感谢您陪伴我们度过这段美好的求学时光，愿您在新的旅程中，继续发光发热，教学事业蒸蒸日上，身体健康，生活幸福美满。</source>
         <oldsource>亲爱的老师，您的教诲如同明灯，照亮我们前行的道路，感谢您陪伴我们度过这段美好的求学时光。在毕业之际，我想对您表达最真挚的祝福。愿您在新的旅程中，继续发光发热，教学事业蒸蒸日上，身体健康，生活幸福美满。</oldsource>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
+    <name>timelinePage</name>
+    <message>
+        <location filename="qml/timelinePage.qml" line="7"/>
+        <source>我们的班史</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
