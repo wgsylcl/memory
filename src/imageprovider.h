@@ -15,16 +15,16 @@ extern "C" {
 
 class ImageProvider : public QQuickImageProvider
 {
-    Q_OBJECT
 public:
-    explicit ImageProvider(QObject *parent = nullptr);
+    explicit ImageProvider();
+    ~ImageProvider();
     QImage requestImage(const QString &id, QSize *size, const QSize &requestedSize);
 signals:
 
 private:
-    QImage image,playimg;
-    void loadimage(QUrl);
-    void loadvideo(QUrl);
+    QImage playimg;
+    void loadimage(QUrl,QImage&);
+    void loadvideo(QUrl,QImage&);
 };
 
 #endif // IMAGEPROVIDER_H

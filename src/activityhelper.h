@@ -10,6 +10,7 @@ class ActivityHelper : public QObject
     Q_OBJECT
 public:
     explicit ActivityHelper(QObject *parent = nullptr);
+    ~ActivityHelper();
     Q_INVOKABLE QStringList getAllActivities(void);
     Q_INVOKABLE int readAllMedia(QString);
     Q_INVOKABLE QUrl getMediaPath(int index);

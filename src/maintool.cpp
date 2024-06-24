@@ -5,6 +5,11 @@ MainTool::MainTool(QObject *parent)
 {
 }
 
+MainTool::~MainTool()
+{
+    
+}
+
 Q_INVOKABLE QString MainTool::getCurrentApplicationPath(void)
 {
     return QCoreApplication::applicationFilePath();

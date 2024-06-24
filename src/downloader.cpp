@@ -26,7 +26,7 @@ void Downloader::startdownload()
     reply = manager -> get(QNetworkRequest(downloadurl));
     QObject::connect(reply,&QNetworkReply::readyRead,this,&Downloader::receivedata);
     QObject::connect(reply,&QNetworkReply::finished,this,&Downloader::downloadfinish);
-    qDebug() << "start downloading " << downloadurl;
+    // qDebug() << "start downloading " << downloadurl;
 }
 
 void Downloader::receivedata()
@@ -41,6 +41,6 @@ void Downloader::downloadfinish()
     reply = nullptr;
     manager -> deleteLater();
     manager = nullptr;
-    qDebug() << "download " << downloadurl << " successfully";
+    // qDebug() << "download " << downloadurl << " successfully";
     emit downloadfinished(this);
 }

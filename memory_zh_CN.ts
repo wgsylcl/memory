@@ -2,41 +2,6 @@
 <!DOCTYPE TS>
 <TS version="2.1" language="zh_CN">
 <context>
-    <name>ColorDialog</name>
-    <message>
-        <location filename="bin/Debug/qml/QtQuick/Dialogs/quickimpl/qml/+Fusion/ColorDialog.qml" line="203"/>
-        <location filename="bin/Debug/qml/QtQuick/Dialogs/quickimpl/qml/+Imagine/ColorDialog.qml" line="210"/>
-        <location filename="bin/Debug/qml/QtQuick/Dialogs/quickimpl/qml/+Material/ColorDialog.qml" line="201"/>
-        <location filename="bin/Debug/qml/QtQuick/Dialogs/quickimpl/qml/+Universal/ColorDialog.qml" line="204"/>
-        <location filename="bin/Debug/qml/QtQuick/Dialogs/quickimpl/qml/ColorDialog.qml" line="210"/>
-        <source>Color</source>
-        <translation type="unfinished"></translation>
-    </message>
-</context>
-<context>
-    <name>ColorInputs</name>
-    <message>
-        <location filename="bin/Debug/qml/QtQuick/Dialogs/quickimpl/qml/ColorInputs.qml" line="50"/>
-        <source>Hex</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="bin/Debug/qml/QtQuick/Dialogs/quickimpl/qml/ColorInputs.qml" line="53"/>
-        <source>RGB</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="bin/Debug/qml/QtQuick/Dialogs/quickimpl/qml/ColorInputs.qml" line="56"/>
-        <source>HSV</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="bin/Debug/qml/QtQuick/Dialogs/quickimpl/qml/ColorInputs.qml" line="59"/>
-        <source>HSL</source>
-        <translation type="unfinished"></translation>
-    </message>
-</context>
-<context>
     <name>EncodeThread</name>
     <message>
         <location filename="src/encodethread.cpp" line="15"/>
@@ -51,125 +16,14 @@
     </message>
 </context>
 <context>
-    <name>FileDialog</name>
-    <message>
-        <location filename="bin/Debug/qml/QtQuick/Dialogs/quickimpl/qml/+Fusion/FileDialog.qml" line="41"/>
-        <location filename="bin/Debug/qml/QtQuick/Dialogs/quickimpl/qml/+Imagine/FileDialog.qml" line="50"/>
-        <location filename="bin/Debug/qml/QtQuick/Dialogs/quickimpl/qml/+Material/FileDialog.qml" line="42"/>
-        <location filename="bin/Debug/qml/QtQuick/Dialogs/quickimpl/qml/+Universal/FileDialog.qml" line="40"/>
-        <location filename="bin/Debug/qml/QtQuick/Dialogs/quickimpl/qml/FileDialog.qml" line="44"/>
-        <source>“%1” already exists. Do you want to replace it?</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="bin/Debug/qml/QtQuick/Dialogs/quickimpl/qml/+Fusion/FileDialog.qml" line="44"/>
-        <location filename="bin/Debug/qml/QtQuick/Dialogs/quickimpl/qml/+Imagine/FileDialog.qml" line="54"/>
-        <location filename="bin/Debug/qml/QtQuick/Dialogs/quickimpl/qml/+Material/FileDialog.qml" line="45"/>
-        <location filename="bin/Debug/qml/QtQuick/Dialogs/quickimpl/qml/+Universal/FileDialog.qml" line="43"/>
-        <location filename="bin/Debug/qml/QtQuick/Dialogs/quickimpl/qml/FileDialog.qml" line="47"/>
-        <source>A file with the same name already exists in %1.
-Replacing it will overwrite its current contents.</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="bin/Debug/qml/QtQuick/Dialogs/quickimpl/qml/+Fusion/FileDialog.qml" line="162"/>
-        <location filename="bin/Debug/qml/QtQuick/Dialogs/quickimpl/qml/+Imagine/FileDialog.qml" line="152"/>
-        <location filename="bin/Debug/qml/QtQuick/Dialogs/quickimpl/qml/+Material/FileDialog.qml" line="132"/>
-        <location filename="bin/Debug/qml/QtQuick/Dialogs/quickimpl/qml/+Universal/FileDialog.qml" line="137"/>
-        <location filename="bin/Debug/qml/QtQuick/Dialogs/quickimpl/qml/FileDialog.qml" line="149"/>
-        <source>File name</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="bin/Debug/qml/QtQuick/Dialogs/quickimpl/qml/+Fusion/FileDialog.qml" line="176"/>
-        <location filename="bin/Debug/qml/QtQuick/Dialogs/quickimpl/qml/+Imagine/FileDialog.qml" line="167"/>
-        <location filename="bin/Debug/qml/QtQuick/Dialogs/quickimpl/qml/+Material/FileDialog.qml" line="149"/>
-        <location filename="bin/Debug/qml/QtQuick/Dialogs/quickimpl/qml/+Universal/FileDialog.qml" line="152"/>
-        <location filename="bin/Debug/qml/QtQuick/Dialogs/quickimpl/qml/FileDialog.qml" line="164"/>
-        <source>Filter</source>
-        <translation type="unfinished"></translation>
-    </message>
-</context>
-<context>
-    <name>FontDialog</name>
-    <message>
-        <location filename="bin/Debug/qml/QtQuick/Dialogs/quickimpl/qml/+Fusion/FontDialog.qml" line="91"/>
-        <location filename="bin/Debug/qml/QtQuick/Dialogs/quickimpl/qml/+Imagine/FontDialog.qml" line="115"/>
-        <location filename="bin/Debug/qml/QtQuick/Dialogs/quickimpl/qml/+Material/FontDialog.qml" line="89"/>
-        <location filename="bin/Debug/qml/QtQuick/Dialogs/quickimpl/qml/+Universal/FontDialog.qml" line="79"/>
-        <location filename="bin/Debug/qml/QtQuick/Dialogs/quickimpl/qml/FontDialog.qml" line="93"/>
-        <source>Writing System</source>
-        <translation type="unfinished"></translation>
-    </message>
-</context>
-<context>
-    <name>FontDialogContent</name>
-    <message>
-        <location filename="bin/Debug/qml/QtQuick/Dialogs/quickimpl/qml/FontDialogContent.qml" line="30"/>
-        <source>Family</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="bin/Debug/qml/QtQuick/Dialogs/quickimpl/qml/FontDialogContent.qml" line="80"/>
-        <source>Style</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="bin/Debug/qml/QtQuick/Dialogs/quickimpl/qml/FontDialogContent.qml" line="126"/>
-        <source>Size</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="bin/Debug/qml/QtQuick/Dialogs/quickimpl/qml/FontDialogContent.qml" line="178"/>
-        <source>Effects</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="bin/Debug/qml/QtQuick/Dialogs/quickimpl/qml/FontDialogContent.qml" line="193"/>
-        <source>Underline</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="bin/Debug/qml/QtQuick/Dialogs/quickimpl/qml/FontDialogContent.qml" line="198"/>
-        <source>Strikeout</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="bin/Debug/qml/QtQuick/Dialogs/quickimpl/qml/FontDialogContent.qml" line="207"/>
-        <source>Sample</source>
-        <translation type="unfinished"></translation>
-    </message>
-</context>
-<context>
-    <name>MessageDialog</name>
-    <message>
-        <location filename="bin/Debug/qml/QtQuick/Dialogs/quickimpl/qml/+Fusion/MessageDialog.qml" line="88"/>
-        <location filename="bin/Debug/qml/QtQuick/Dialogs/quickimpl/qml/+Imagine/MessageDialog.qml" line="109"/>
-        <location filename="bin/Debug/qml/QtQuick/Dialogs/quickimpl/qml/+Material/MessageDialog.qml" line="87"/>
-        <location filename="bin/Debug/qml/QtQuick/Dialogs/quickimpl/qml/+Universal/MessageDialog.qml" line="89"/>
-        <location filename="bin/Debug/qml/QtQuick/Dialogs/quickimpl/qml/MessageDialog.qml" line="93"/>
-        <source>Hide Details...</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="bin/Debug/qml/QtQuick/Dialogs/quickimpl/qml/+Fusion/MessageDialog.qml" line="88"/>
-        <location filename="bin/Debug/qml/QtQuick/Dialogs/quickimpl/qml/+Imagine/MessageDialog.qml" line="109"/>
-        <location filename="bin/Debug/qml/QtQuick/Dialogs/quickimpl/qml/+Material/MessageDialog.qml" line="87"/>
-        <location filename="bin/Debug/qml/QtQuick/Dialogs/quickimpl/qml/+Universal/MessageDialog.qml" line="89"/>
-        <location filename="bin/Debug/qml/QtQuick/Dialogs/quickimpl/qml/MessageDialog.qml" line="93"/>
-        <source>Show Details...</source>
-        <translation type="unfinished"></translation>
-    </message>
-</context>
-<context>
     <name>StudentReader</name>
     <message>
-        <location filename="src/studentreader.cpp" line="27"/>
+        <location filename="src/studentreader.cpp" line="26"/>
         <source>ta还没提供生日噢~</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="src/studentreader.cpp" line="28"/>
+        <location filename="src/studentreader.cpp" line="27"/>
         <source>ta还没来个简单的自我介绍噢~</source>
         <translation type="unfinished"></translation>
     </message>
@@ -430,12 +284,17 @@ Replacing it will overwrite its current contents.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="qml/profilewindow.qml" line="56"/>
+        <location filename="qml/profilewindow.qml" line="59"/>
+        <source>ta的亲笔签名</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="qml/profilewindow.qml" line="81"/>
         <source>有关ta的一刻</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="qml/profilewindow.qml" line="88"/>
+        <location filename="qml/profilewindow.qml" line="113"/>
         <source>留言栏</source>
         <translation type="unfinished"></translation>
     </message>

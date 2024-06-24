@@ -61,7 +61,7 @@ FluContentPage {
                 text: qsTr("看看ta的资料卡片")
                 onClicked: {
                     var stu = maintable.getRow(row)
-                    FluRouter.navigate("/profile",{name:stu.name,id:stu.id,key:row,profile:stu.profile})
+                    FluRouter.navigate("/profile",{name:stu.name,id:stu.id,key:row,profile:stu.profile,sign:stu.sign})
                 }
             }
         }
@@ -81,7 +81,8 @@ FluContentPage {
                 name: stu["name"],
                 birthday: stu["birthday"],
                 action: maintable.customItem(lookaction),
-                profile: stu["profile"]
+                profile: stu["profile"],
+                sign: stu["sign"]
             })
         }
 

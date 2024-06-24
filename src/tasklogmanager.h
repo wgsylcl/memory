@@ -11,6 +11,7 @@ class TasklogManager : public QObject
     Q_OBJECT
 public:
     explicit TasklogManager(QObject *parent = nullptr);
+    ~TasklogManager();
     static TasklogManager* Instance(void);
     void addlog(QString);
     QString getlog(void);

@@ -5,6 +5,11 @@ ActivityHelper::ActivityHelper(QObject *parent)
 {
 }
 
+ActivityHelper::~ActivityHelper()
+{
+    
+}
+
 Q_INVOKABLE QStringList ActivityHelper::getAllActivities(void)
 {
     return DataBase::instance() -> getAllLocalActivitieNames();

@@ -8,6 +8,11 @@ DataBase::DataBase(QObject *parent)
     _instance = this;
 }
 
+DataBase::~DataBase()
+{
+    
+}
+
 DataBase *DataBase::instance()
 {
     return _instance;

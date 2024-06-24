@@ -8,6 +8,7 @@ class MainTool : public QObject
     Q_OBJECT
 public:
     explicit MainTool(QObject *parent = nullptr);
+    ~MainTool();
     Q_INVOKABLE QString getCurrentApplicationPath(void);
     Q_INVOKABLE bool isvideo(QUrl);
     Q_INVOKABLE QUrl toLocalMediaUrl(QUrl);

@@ -8,6 +8,7 @@ class DataBase : public QObject
     Q_OBJECT
 public:
     explicit DataBase(QObject *parent = nullptr);
+    ~DataBase();
     static DataBase* instance();
     QStringList getAllLocalActivitieNames();
     memorybase::Activity& getactivity(QString activityname);

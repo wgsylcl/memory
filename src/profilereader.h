@@ -8,6 +8,7 @@ class ProfileReader : public QObject
     Q_OBJECT
 public:
     explicit ProfileReader(QObject *parent = nullptr);
+    ~ProfileReader();
     Q_INVOKABLE void readfile(int key);
     Q_INVOKABLE QList<QUrl> getpicpaths(void);
     Q_INVOKABLE QStringList getreviews(void);

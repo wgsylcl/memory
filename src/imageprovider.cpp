@@ -1,28 +1,28 @@
 #include "imageprovider.h"
 
-ImageProvider::ImageProvider(QObject* parent)
+ImageProvider::ImageProvider()
     : QQuickImageProvider{QQmlImageProviderBase::Image},playimg(":/res/play.png")
 {
-    setParent(parent);
     playimg = playimg.scaled(80, 80, Qt::KeepAspectRatio, Qt::SmoothTransformation);
 }
 
 QImage ImageProvider::requestImage(const QString &id, QSize *size, const QSize &requestedSize)
 {
     QUrl url = memorybase::toLocalMediaUrl(id);
+    QImage image;
     if (memorybase::isvideo(url))
-        loadvideo(url);
+        loadvideo(url,image);
     else
-        loadimage(url);
+        loadimage(url,image);
     return image;
 }
 
-void ImageProvider::loadimage(QUrl url)
+void ImageProvider::loadimage(QUrl url,QImage &image)
 {
     image.load(url.toLocalFile());
 }
 
-void ImageProvider::loadvideo(QUrl url)
+void ImageProvider::loadvideo(QUrl url,QImage &image)
 {
     AVFormatContext* fmt_ctx_ = nullptr;
 
@@ -124,4 +124,9 @@ void ImageProvider::loadvideo(QUrl url)
     image = preview;
     QPainter painter(&image);
     painter.drawImage(QPoint((image.width()-playimg.width())/2,(image.height()-playimg.height())/2),playimg);
+}
+
+ImageProvider::~ImageProvider()
+{
+
 }

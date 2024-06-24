@@ -49,6 +49,7 @@ private:
     void setupqmlengine();
     void startinitalize();
     void setupfiles();
+    void releseresources();
 };
 
 #endif // MEMORYAPPLICATION_H

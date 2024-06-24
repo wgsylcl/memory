@@ -2,9 +2,9 @@
 
 MemoryApplication::MemoryApplication(int &argc, char *argv[])
     : QGuiApplication{argc,argv},uiLanguages(QLocale::system().uiLanguages()),
-    tasklogmanager(new TasklogManager(this)),engine(new QQmlApplicationEngine(this)),
-    activityhelper(new ActivityHelper(this)),maintool(new MainTool(this)),imageprovider(new ImageProvider(this)),
-    m_database(new DataBase(this)),filelocker(runtimedir + "/filelock"),m_downloadmanager(new DownloadManager(this))
+    tasklogmanager(new TasklogManager()),engine(new QQmlApplicationEngine()),
+    activityhelper(new ActivityHelper()),maintool(new MainTool()),imageprovider(new ImageProvider()),
+    m_database(new DataBase()),filelocker(runtimedir + "/filelock"),m_downloadmanager(new DownloadManager())
 {
 #if (QT_VERSION < QT_VERSION_CHECK(6, 0, 0))
     QGuiApplication::setAttribute(Qt::AA_EnableHighDpiScaling);
@@ -31,6 +31,17 @@ MemoryApplication::~MemoryApplication()
     databaseinitializer -> deleteLater();
     if(filelocker.isLocked())
         filelocker.unlock();
+    releseresources();
+}
+
+void MemoryApplication::releseresources()
+{
+    engine->deleteLater();
+    activityhelper->deleteLater();
+    database->deleteLater();
+    downloadmanager->deleteLater();
+    maintool->deleteLater();
+    tasklogmanager->deleteLater();
 }
 
 void MemoryApplication::setuptranslator()

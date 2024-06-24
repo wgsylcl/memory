@@ -65,7 +65,7 @@ void DataBaseInitializer::parsepictures()
     QJsonObject pictures = database->remoteroot.value("pictures").toObject();
     database->remotepictureversion = pictures.value("version").toString();
     QJsonArray reponames = pictures.value("reponame").toArray();
-    for(int i=0;i<reponames.count();i++)
+    for (int i = 0; i < reponames.count(); i++)
         database->picturereponames.append(reponames.at(i).toString());
 }
 
@@ -84,12 +84,12 @@ void DataBaseInitializer::readlocalversion()
     database->localprofileversion = localjsonroot.value("profiles").toString();
     database->localpictureversion = localjsonroot.value("pictures").toString();
     QJsonArray localactivitiesjsonarray = localjsonroot.value("activities").toArray();
-    for(int i=0;i<localactivitiesjsonarray.count();i++)
+    for (int i = 0; i < localactivitiesjsonarray.count(); i++)
     {
         QJsonObject localactivity = localactivitiesjsonarray.at(i).toObject();
         QString name = localactivity.value("name").toString();
         QString version = localactivity.value("version").toString();
-        database->localactivityversions.insert(name,version);
+        database->localactivityversions.insert(name, version);
         database->activities[name].loaclversion = version;
     }
 }

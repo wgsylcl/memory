@@ -19,6 +19,7 @@ FluWindow {
             window.id = Number(argument.id)
             window.key = argument.key
             selfintroduction.text = argument.profile
+            signimage.source = argument.sign
         }
 
     FluImage {
@@ -35,77 +36,103 @@ FluWindow {
         blurRadius: 20
     }
 
-    Column{
+    FluScrollablePage {
         anchors.fill: parent
-        anchors.margins: 30
+        anchors.margins: 20
 
-        spacing: 20
+        ColumnLayout {
+            Layout.fillHeight: true
+            Layout.fillWidth: true
 
-        FluText {
-            id: nametitle
-            font: FluTextStyle.Title
-            text: window.name + "(" + window.id.toString() + ")"
-        }
+            FluText {
+                id: nametitle
+                font: FluTextStyle.Title
+                text: window.name + "(" + window.id.toString() + ")"
+            }
 
-        FluText {
-            id: selfintroduction
-            wrapMode: Text.WordWrap
-        }
+            FluText {
+                id: selfintroduction
+                wrapMode: Text.WordWrap
+            }
 
-        FluExpander {
-            headerText: qsTr("有关ta的一刻")
-            Layout.topMargin: 20
-            width: parent.width
-            FluCarousel {
-                id: carousel
-                anchors.fill: parent
-                delegate: Component {
-                    Image {
-                        z: 1
+            FluExpander {
+                headerText: qsTr("ta的亲笔签名")
+                Layout.topMargin: 20
+                width: parent.width
+                FluImage {
+                    id: signimage
+                    z: 1
+                    anchors.fill: parent
+                    asynchronous: true
+                    width: parent.width
+                    fillMode:Image.PreserveAspectFit
+                    anchors.margins: 10
+                    MouseArea {
                         anchors.fill: parent
-                        source: model.url
-                        asynchronous: true
-                        width: parent.parent.width
-                        fillMode:Image.PreserveAspectFit
-                        anchors.margins: 10
-                        MouseArea {
-                            anchors.fill: parent
-                            onDoubleClicked: {
-                                if(MainTool.isvideo(MainTool.toLocalMediaUrl(parent.source))) FluRouter.navigate("/playvideo",{videourl:MainTool.toLocalMediaUrl(parent.source)})
-                                else FluRouter.navigate("/viewpicture",{pictureurl:MainTool.toLocalMediaUrl(parent.source)})
-                            }
+                        onDoubleClicked: {
+                            if(MainTool.isvideo(MainTool.toLocalMediaUrl(parent.source))) FluRouter.navigate("/playvideo",{videourl:MainTool.toLocalMediaUrl(parent.source)})
+                            else FluRouter.navigate("/viewpicture",{pictureurl:MainTool.toLocalMediaUrl(parent.source)})
                         }
                     }
                 }
-                Layout.topMargin: 20
-                Layout.leftMargin: 5
             }
-        }
 
-        FluExpander{
-            Layout.topMargin: 20
-            width: parent.width
-            headerText: qsTr("留言栏")
-            Item{
-                anchors.fill: parent
-                Flickable{
-                    id:scrollview
-                    width: parent.width
-                    height: parent.height
-                    contentWidth: width
-                    boundsBehavior: Flickable.StopAtBounds
-                    contentHeight: reviewtext.height
-                    ScrollBar.vertical: FluScrollBar {}
-                    FluText{
-                        id:reviewtext
-                        width: scrollview.width
-                        wrapMode: Text.WrapAnywhere
-                        text: ""
-                        padding: 14
+            FluExpander {
+                headerText: qsTr("有关ta的一刻")
+                Layout.topMargin: 20
+                width: parent.width
+                FluCarousel {
+                    id: carousel
+                    anchors.fill: parent
+                    delegate: Component {
+                        FluImage {
+                            z: 1
+                            anchors.fill: parent
+                            source: model.url
+                            asynchronous: true
+                            width: parent.parent.width
+                            fillMode:Image.PreserveAspectFit
+                            anchors.margins: 10
+                            MouseArea {
+                                anchors.fill: parent
+                                onDoubleClicked: {
+                                    if(MainTool.isvideo(MainTool.toLocalMediaUrl(parent.source))) FluRouter.navigate("/playvideo",{videourl:MainTool.toLocalMediaUrl(parent.source)})
+                                    else FluRouter.navigate("/viewpicture",{pictureurl:MainTool.toLocalMediaUrl(parent.source)})
+                                }
+                            }
+                        }
+                    }
+                    Layout.topMargin: 20
+                    Layout.leftMargin: 5
+                }
+            }
+
+            FluExpander{
+                Layout.topMargin: 20
+                width: parent.width
+                headerText: qsTr("留言栏")
+                Item{
+                    anchors.fill: parent
+                    Flickable{
+                        id:scrollview
+                        width: parent.width
+                        height: parent.height
+                        contentWidth: width
+                        boundsBehavior: Flickable.StopAtBounds
+                        contentHeight: reviewtext.height
+                        ScrollBar.vertical: FluScrollBar {}
+                        FluText{
+                            id:reviewtext
+                            width: scrollview.width
+                            wrapMode: Text.WrapAnywhere
+                            text: ""
+                            padding: 14
+                        }
                     }
                 }
             }
         }
+
     }
 
     ProfileReader {
@@ -128,5 +155,6 @@ FluWindow {
             reviewtext.text += reviews[j]
             reviewtext.text += '\n'
         }
-    }
+    }    
+
 }

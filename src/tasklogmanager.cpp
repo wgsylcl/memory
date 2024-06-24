@@ -9,6 +9,11 @@ TasklogManager::TasklogManager(QObject *parent)
     globalinstance = this;
 }
 
+TasklogManager::~TasklogManager()
+{
+    
+}
+
 TasklogManager *TasklogManager::Instance(void)
 {
     return globalinstance;

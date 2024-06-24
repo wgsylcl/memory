@@ -43,3 +43,8 @@ Q_INVOKABLE QStringList ProfileReader::getreviews(void)
 {
     return this->reviews;
 }
+
+ProfileReader::~ProfileReader()
+{
+    
+}
