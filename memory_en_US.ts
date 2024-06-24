@@ -32,22 +32,27 @@
     <name>TeacherCard</name>
     <message>
         <location filename="qml/TeacherCard.qml" line="38"/>
+        <source>ta的亲笔签名</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="qml/TeacherCard.qml" line="60"/>
         <source>有关ta的一刻</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="qml/TeacherCard.qml" line="69"/>
+        <location filename="qml/TeacherCard.qml" line="91"/>
         <source>留言栏</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="qml/TeacherCard.qml" line="94"/>
+        <location filename="qml/TeacherCard.qml" line="117"/>
         <source>我的%1老师 —— %2</source>
         <oldsource>你的%1老师 —— %2</oldsource>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="qml/TeacherCard.qml" line="98"/>
+        <location filename="qml/TeacherCard.qml" line="121"/>
         <source>&quot;%1&quot;
 </source>
         <translation type="unfinished"></translation>

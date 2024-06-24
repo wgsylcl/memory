@@ -15,7 +15,7 @@ MemoryApplication::MemoryApplication(int &argc, char *argv[])
 #endif
     setOrganizationName("wgsylcl");
     setApplicationName("memory");
-    // checksingle();
+    checksingle();
     threadpool -> setExpiryTimeout(-1);
     setupfiles();
     setuptranslator();

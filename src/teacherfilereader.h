@@ -13,11 +13,13 @@ public:
     Q_INVOKABLE QString getsubject(void);
     Q_INVOKABLE QStringList getpetphrase(void);
     Q_INVOKABLE QStringList getreviews(void);
+    Q_INVOKABLE QUrl getsign(void);
     Q_INVOKABLE QList<QUrl> getpicpaths(void);
 
 private:
     QString name;
     QString subject;
+    QUrl sign;
     QStringList petphrase;
     QStringList reviews;
     QList<QUrl> picpaths;

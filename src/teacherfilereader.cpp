@@ -43,6 +43,9 @@ Q_INVOKABLE void TeacherFileReader::readdata(int key)
     // deal with name and subject :
     name = teacher.value("name").toString();
     subject = teacher.value("subject").toString();
+    QString jsign = teacher.value("sign").toString();
+    if(jsign.isEmpty()) jsign = "nopicture.png";
+    sign = QUrl(QString("image://provider/") + jsign);
     return;
 }
 
@@ -69,4 +72,9 @@ Q_INVOKABLE QStringList TeacherFileReader::getreviews(void)
 Q_INVOKABLE QList<QUrl> TeacherFileReader::getpicpaths(void)
 {
     return this->picpaths;
+}
+
+Q_INVOKABLE QUrl TeacherFileReader::getsign()
+{
+    return this->sign;
 }
