@@ -1,5 +1,6 @@
 import QtQuick 2.15
 import QtQuick.Controls 2.15
+import QtQuick.Layouts
 import FluentUI 1.0
 
 FluContentPage {
@@ -15,7 +16,7 @@ FluContentPage {
         id: activitiymodel
     }
 
-    Row {
+    RowLayout {
         z: 1
         spacing: 20
 
@@ -23,12 +24,14 @@ FluContentPage {
 
         FluText {
             text: qsTr("选择要查看的活动")
+            Layout.alignment: Qt.AlignHCenter
         }
 
         FluComboBox {
             id: activitybox
             model: activitiymodel
             width: 400
+            Layout.preferredWidth: 400
             onCurrentIndexChanged: {
                 mediasize = ActivityReader.readAllMedia(activitynames[currentIndex])
                 for(var i=0;i<mediasize;i++) {

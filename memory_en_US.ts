@@ -61,27 +61,27 @@
 <context>
     <name>activitypage</name>
     <message>
-        <location filename="qml/activitypage.qml" line="6"/>
+        <location filename="qml/activitypage.qml" line="7"/>
         <source>回忆</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="qml/activitypage.qml" line="25"/>
+        <location filename="qml/activitypage.qml" line="26"/>
         <source>选择要查看的活动</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="qml/activitypage.qml" line="52"/>
+        <location filename="qml/activitypage.qml" line="55"/>
         <source>上一张</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="qml/activitypage.qml" line="58"/>
+        <location filename="qml/activitypage.qml" line="61"/>
         <source>下一张</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="qml/activitypage.qml" line="185"/>
+        <location filename="qml/activitypage.qml" line="188"/>
         <source>已经到顶端了噢~</source>
         <translation type="unfinished"></translation>
     </message>
@@ -89,8 +89,18 @@
 <context>
     <name>datamanagepage</name>
     <message>
-        <location filename="qml/datamanagepage.qml" line="6"/>
+        <location filename="qml/datamanagepage.qml" line="7"/>
         <source>数据库同步</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="qml/datamanagepage.qml" line="9"/>
+        <source>图文数据库更新</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="qml/datamanagepage.qml" line="30"/>
+        <source>活动数据库更新</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -105,39 +115,39 @@
 <context>
     <name>dataupdatepage</name>
     <message>
-        <location filename="qml/dataupdatepage.qml" line="8"/>
+        <location filename="qml/dataupdatepage.qml" line="9"/>
         <source>更改数据库</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="qml/dataupdatepage.qml" line="10"/>
+        <location filename="qml/dataupdatepage.qml" line="11"/>
         <source>数据库配置</source>
         <oldsource>加密数据生成</oldsource>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="qml/dataupdatepage.qml" line="14"/>
+        <location filename="qml/dataupdatepage.qml" line="15"/>
         <source>打开数据文件夹</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="qml/dataupdatepage.qml" line="19"/>
+        <location filename="qml/dataupdatepage.qml" line="21"/>
         <source>输入待加密的文件夹路径</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="qml/dataupdatepage.qml" line="22"/>
-        <location filename="qml/dataupdatepage.qml" line="40"/>
+        <location filename="qml/dataupdatepage.qml" line="24"/>
+        <location filename="qml/dataupdatepage.qml" line="42"/>
         <source>打开待加密的文件夹</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="qml/dataupdatepage.qml" line="28"/>
+        <location filename="qml/dataupdatepage.qml" line="30"/>
         <source>加密</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="qml/dataupdatepage.qml" line="31"/>
+        <location filename="qml/dataupdatepage.qml" line="33"/>
         <source>文件夹路径不正确！</source>
         <translation type="unfinished"></translation>
     </message>

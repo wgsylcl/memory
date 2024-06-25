@@ -19,6 +19,8 @@
 #include <QJsonArray>
 #include <QJsonValue>
 #include <QJsonValueRef>
+#include <private/qzipreader_p.h>
+#include <private/qzipwriter_p.h>
 
 #define threadpool QThreadPool::globalInstance()
 #define database DataBase::instance()

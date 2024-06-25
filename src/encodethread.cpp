@@ -1,7 +1,7 @@
 #include "encodethread.h"
 
 EncodeThread::EncodeThread(QString filepath,QString filelistpath,QString ignorepath,QObject *parent)
-    : QObject{parent},filelistpath(filelistpath),ignorepath(ignorepath),encryption(QAESEncryption::AES_128,QAESEncryption::ECB,QAESEncryption::PKCS7),filepath(filepath)
+    : QObject{parent},filelistpath(filelistpath),ignorepath(ignorepath),filepath(filepath)
 {}
 
 void EncodeThread::run()

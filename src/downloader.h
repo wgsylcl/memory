@@ -2,7 +2,6 @@
 #define DOWNLOADER_H
 
 #include "base.h"
-#include "qaesencryption.h"
 #include <QNetworkAccessManager>
 #include <QNetworkReply>
 #include <QNetworkRequest>

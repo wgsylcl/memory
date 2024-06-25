@@ -4,7 +4,6 @@
 #include <QObject>
 #include "tasklogmanager.h"
 #include "base.h"
-#include "qaesencryption.h"
 
 class EncodeThread : public QObject , public QRunnable
 {
@@ -15,7 +14,6 @@ public:
 signals:
 
 private:
-    QAESEncryption encryption;
     QString filepath;
     QString filelistpath;
     QString ignorepath;

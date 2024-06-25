@@ -55,30 +55,12 @@ add_definitions(-DPASSWORD="$ENV{PASSWORD}")
 add_definitions(-DTOKEN="$ENV{access_token}")
 add_definitions(-DVERSION="1.0.1")
 
+aux_source_directory(${CMAKE_SOURCE_DIR}/src MEMORY_SOURCES)
+
 set(PROJECT_SOURCES
     ${QRC_RESOURCES}
     main.cpp
-    src/timelinereader.h src/timelinereader.cpp
-    src/studentreader.h src/studentreader.cpp
-    src/profilereader.h src/profilereader.cpp
-    src/teacherfilereader.h src/teacherfilereader.cpp
-    src/maintool.h src/maintool.cpp
-    src/activityhelper.h src/activityhelper.cpp
-    src/FluentPlayer.h src/FluentPlayer.cpp
-    src/stdafx.h
-    src/imageprovider.h src/imageprovider.cpp
-    src/base.h src/base.cpp
-    3rdparty/qtaes/qaesencryption.h 3rdparty/qtaes/qaesencryption.cpp
-    src/encodethread.h src/encodethread.cpp
-    src/direncoder.h src/direncoder.cpp
-    src/tasklogmanager.h src/tasklogmanager.cpp
-    src/taskloghelper.h src/taskloghelper.cpp
-    src/direncodemanager.h src/direncodemanager.cpp
-    src/database.h src/database.cpp
-    src/memoryapplication.h src/memoryapplication.cpp
-    src/databaseinitializer.h src/databaseinitializer.cpp
-    src/downloader.h src/downloader.cpp
-    src/downloadmanager.h src/downloadmanager.cpp
+    ${MEMORY_SOURCES}
 )
 
 if(WIN32)
@@ -95,6 +77,8 @@ else()
         ${PROJECT_SOURCES}
     )
 endif()
+
+target_include_directories(${PROJECT_NAME} PRIVATE ${Qt6Core_PRIVATE_INCLUDE_DIRS})
 
 add_dependencies(${PROJECT_NAME} Script-UpdateTranslations)
 

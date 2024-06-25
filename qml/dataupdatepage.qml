@@ -1,4 +1,5 @@
 import QtQuick 2.15
+import QtQuick.Layouts
 import FluentUI 1.0
 import Qt.labs.platform 1.1
 import codehelper 1.0
@@ -8,10 +9,11 @@ FluScrollablePage {
     title: qsTr("更改数据库")
     FluGroupBox {
         title: qsTr("数据库配置")
-        Row {
+        RowLayout {
             spacing: 36
             FluText {
                 text: qsTr("打开数据文件夹")
+                Layout.alignment: Qt.AlignHCenter
             }
             FluTextBox {
                 id: encodedirtextbox
