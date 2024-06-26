@@ -93,6 +93,7 @@ if(${QT_VERSION_MAJOR} GREATER_EQUAL 6)
     qt_add_executable(${PROJECT_NAME}
         MANUAL_FINALIZATION
         ${PROJECT_SOURCES}
+        src/activityupdater.h src/activityupdater.cpp
     )
 else()
     add_executable(${PROJECT_NAME}
@@ -203,7 +204,7 @@ else()
     endif()
 endif()
 
-add_custom_command(TARGET ${PROJECT_NAME}
+add_custom_target(RELOAD_DATABASE
     COMMAND ${CMAKE_COMMAND} -E remove_directory ${APPLICATION_DIR_PATH}/data
     COMMAND ${CMAKE_COMMAND} -E copy_directory ${CMAKE_SOURCE_DIR}/data ${APPLICATION_DIR_PATH}/data
     )

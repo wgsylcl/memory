@@ -3,7 +3,7 @@
 ProfilePictureUpdater* ProfilePictureUpdater::_instance = nullptr;
 
 ProfilePictureUpdater::ProfilePictureUpdater(QObject *parent)
-    : QObject{parent},taskcount(0)
+    : QObject{parent},taskcount(0),updating(false)
 {
     _instance = this;
 }
@@ -11,6 +11,7 @@ ProfilePictureUpdater::ProfilePictureUpdater(QObject *parent)
 void ProfilePictureUpdater::run()
 {
     QMutexLocker locker(&lock);
+    updating = true;
     FilelistReader *profilelistreader = new FilelistReader(database->getprofilereponame());
     QObject::connect(profilelistreader,&FilelistReader::receivefilelistfinished,this,&ProfilePictureUpdater::updateprofile);
     QObject::connect(profilelistreader,&FilelistReader::receivefilelistfinished,profilelistreader,&QObject::deleteLater);
@@ -73,7 +74,12 @@ void ProfilePictureUpdater::dealdownloadfinished()
 {
     QMutexLocker locker(&lock);
     if(--taskcount) return;
+    updating = false;
     database -> synclocalprofilepictureversion();
-
     emit updatefinished();
+}
+
+Q_INVOKABLE bool ProfilePictureUpdater::is_updating()
+{
+    return updating;
 }

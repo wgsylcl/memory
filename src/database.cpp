@@ -51,7 +51,7 @@ QString DataBase::getremoteprofilepictureversion(void)
 
 QString DataBase::getlocalactivityversionbyname(QString name)
 {
-    return activities[name].loaclversion;
+    return activities[name].localversion;
 }
 
 QString DataBase::getremoteactivityversionbyname(QString name)
@@ -69,17 +69,37 @@ QStringList DataBase::getpicturereponames(void)
     return picturereponames;
 }
 
+QStringList DataBase::getactivityreponames(QString activityname)
+{
+    return activities[activityname].reponame;
+}
+
 void DataBase::synclocalprofilepictureversion(void)
 {
-    localprofileversion = localpictureversion = remoteprofileversion;
+    localprofileversion = (localpictureversion = remoteprofileversion);
     jsonroot["profiles"] = localprofileversion;
     jsonroot["pictures"] = localpictureversion;
     saveinfo();
 }
 
+void DataBase::syncactivityversion(QString activityname)
+{
+    localactivityversions[activityname] = (activities[activityname].localversion = activities[activityname].remoteversion);
+    QJsonArray jactivities;
+    for(auto it = localactivityversions.begin();it != localactivityversions.end();it++)
+    {
+        QJsonObject localactivity;
+        localactivity["name"] = it.key();
+        localactivity["version"] = it.value();
+        jactivities.append(localactivity);
+    }
+    jsonroot["activities"] = jactivities;
+    saveinfo();
+}
+
 void DataBase::removelocalactivityversionbyname(QString name)
 {
-    activities[name].loaclversion = "0.0.0";
+    activities[name].localversion = "0.0.0";
     localactivityversions.remove(name);
     QJsonArray jactivities;
     for(auto it = localactivityversions.begin();it != localactivityversions.end();it++)

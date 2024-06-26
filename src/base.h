@@ -45,10 +45,12 @@ namespace memorybase
     QStringList getfilenamelist(QDir dir);
     QFileInfoList getfileinfolist(QDir dir);
     QString to_qstring(int num);
+    QString to_qstring(qint64 num);
+    QString getdirsize(QDir dir);
     struct Activity
     {
         QString name;
-        QString loaclversion = "0.0.0";
+        QString localversion = "0.0.0";
         QString remoteversion;
         QString size;
         QStringList reponame;

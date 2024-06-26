@@ -63,7 +63,21 @@ QFileInfoList memorybase::getfileinfolist(QDir dir)
     return dir.entryInfoList(QDir::Files);
 }
 
+QString memorybase::getdirsize(QDir dir)
+{
+    qint64 size = 0;
+    QFileInfoList infolist = getfileinfolist(dir);
+    for(QFileInfo fileinfo:infolist)
+        size += fileinfo.size();
+    return to_qstring(size >> 20) + "MB";
+}
+
 QString memorybase::to_qstring(int num)
+{
+    return QString::fromStdString(std::to_string(num));
+}
+
+QString memorybase::to_qstring(qint64 num)
 {
     return QString::fromStdString(std::to_string(num));
 }

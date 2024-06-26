@@ -20,7 +20,9 @@ public:
     QString getremoteactivityversionbyname(QString name);
     QString getprofilereponame(void);
     QStringList getpicturereponames(void);
+    QStringList getactivityreponames(QString activityname);
     void synclocalprofilepictureversion(void);
+    void syncactivityversion(QString activityname);
     void removelocalactivityversionbyname(QString name);
 signals:
 

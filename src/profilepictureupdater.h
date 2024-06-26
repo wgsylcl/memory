@@ -16,11 +16,13 @@ public slots:
     void updateprofile(QStringList filelist);
     void updatepicture(QString reponame,QStringList filelist);
     void dealdownloadfinished();
+    Q_INVOKABLE bool is_updating();
 signals:
     void updatefinished();
 private:
     QMutex lock;
     int taskcount;
+    bool updating;
     static ProfilePictureUpdater *_instance;
 };
 

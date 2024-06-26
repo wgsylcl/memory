@@ -7,7 +7,7 @@ ActivityHelper::ActivityHelper(QObject *parent)
 
 ActivityHelper::~ActivityHelper()
 {
-    
+
 }
 
 Q_INVOKABLE QStringList ActivityHelper::getAllActivities(void)
@@ -53,5 +53,5 @@ Q_INVOKABLE QUrl ActivityHelper::getMediaPath(int index)
 
 QString ActivityHelper::getfullpath(memorybase::Activity activity)
 {
-    return runtimedir + "/" + activity.name;
+    return runtimedir + "/data/activities/" + activity.name;
 }

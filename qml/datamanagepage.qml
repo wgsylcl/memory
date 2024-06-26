@@ -23,7 +23,7 @@ FluContentPage {
         height: 50
         RowLayout {
             anchors.centerIn: parent
-            spacing: 200
+            spacing: 180
             FluText {
                 Layout.alignment: Qt.AlignHCenter
                 id: localprofilepictrueviewtext
@@ -41,19 +41,22 @@ FluContentPage {
                 id: remoteprofilepictrueviewtext
                 text: "远程数据库版本：" + datamanagehelper.getremoteprofilepictureversion()
             }
-            FluFilledButton {
+            FluLoadingButton {
                 id: syncprofilepictruebotton
                 text: "更新本地数据库"
-                enabled: datamanagehelper.getlocalprofilepictureversion() < datamanagehelper.getremoteprofilepictureversion()
+                enabled: (!profilepictureupdater.is_updating()) && datamanagehelper.getlocalprofilepictureversion() < datamanagehelper.getremoteprofilepictureversion()
+                loading: profilepictureupdater.is_updating()
                 onClicked: {
-                    showInfo("开始更新")
+                    showInfo("开始更新图文数据库")
                     datamanagehelper.startsyncprofilepicture()
+                    syncprofilepictruebotton.loading = true
+                    syncprofilepictruebotton.enabled = false
                 }
                 Connections {
                     target: profilepictureupdater
                     function onUpdatefinished()
                     {
-                        syncprofilepictruebotton.enabled = false
+                        syncprofilepictruebotton.loading = false
                     }
                 }
             }
@@ -135,14 +138,48 @@ FluContentPage {
 
                 RowLayout {
                     spacing: 10
-                    FluFilledButton {
+                    FluLoadingButton {
                         id: activityupdatebotton
                         text: qsTr("更新本地数据库")
+                        loading: activityupdater.is_updating(name)
+                        enabled: (!activityupdater.is_updating(name)) && datamanagehelper.getlocalactivityversionbyname(name) < datamanagehelper.getremoteactivityversionbyname(name)
+                        onClicked: {
+                            showInfo(qsTr("开始更新数据库%1!").arg('"' + name + '"'))
+                            datamanagehelper.startsyncactivity(name)
+                            activitylocalversiontext.text = datamanagehelper.getlocalactivityversionbyname(name) === "0.0.0" ?
+                                        "还未下载这个数据库到本地噢" :
+                                        "本地数据库版本：" + datamanagehelper.getlocalactivityversionbyname(name)
+                            activityupdatebotton.enabled = (!activityupdater.is_updating(name)) && datamanagehelper.getlocalactivityversionbyname(name) < datamanagehelper.getremoteactivityversionbyname(name)
+                            activityupdatebotton.loading = activityupdater.is_updating(name)
+                            activitydeletebotton.enabled = (!activityupdater.is_updating(name)) && datamanagehelper.getlocalactivityversionbyname(name) !== "0.0.0"
+                        }
                     }
                     FluButton {
                         id: activitydeletebotton
                         text: qsTr("删除本地数据库")
-                        enabled: datamanagehelper.getlocalactivityversionbyname(name) !== "0.0.0"
+                        enabled: (!activityupdater.is_updating(name)) && datamanagehelper.getlocalactivityversionbyname(name) !== "0.0.0"
+                        onClicked: {
+                            showInfo(qsTr("已删除数据库%1!").arg('"' + name + '"'))
+                            datamanagehelper.removelocalactivitybyname(name)
+                            activitylocalversiontext.text = datamanagehelper.getlocalactivityversionbyname(name) === "0.0.0" ?
+                                        "还未下载这个数据库到本地噢" :
+                                        "本地数据库版本：" + datamanagehelper.getlocalactivityversionbyname(name)
+                            activityupdatebotton.enabled = datamanagehelper.getlocalactivityversionbyname(name) < datamanagehelper.getremoteactivityversionbyname(name)
+                            activityupdatebotton.loading = activityupdater.is_updating(name)
+                            activitydeletebotton.enabled = (!activityupdater.is_updating(name)) && datamanagehelper.getlocalactivityversionbyname(name) !== "0.0.0"
+                        }
+                    }
+                }
+
+                Connections {
+                    target: activityupdater
+                    function onUpdatefinished() {
+                        activitylocalversiontext.text = datamanagehelper.getlocalactivityversionbyname(name) === "0.0.0" ?
+                                    "还未下载这个数据库到本地噢" :
+                                    "本地数据库版本：" + datamanagehelper.getlocalactivityversionbyname(name)
+                        activityupdatebotton.enabled = (!activityupdater.is_updating(name)) && datamanagehelper.getlocalactivityversionbyname(name) < datamanagehelper.getremoteactivityversionbyname(name)
+                        activityupdatebotton.loading = activityupdater.is_updating(name)
+                        activitydeletebotton.enabled = (!activityupdater.is_updating(name)) && datamanagehelper.getlocalactivityversionbyname(name) !== "0.0.0"
                     }
                 }
             }

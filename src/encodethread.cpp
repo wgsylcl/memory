@@ -1,7 +1,7 @@
 #include "encodethread.h"
 
-EncodeThread::EncodeThread(QString filepath,QString filelistpath,QString ignorepath,QObject *parent)
-    : QObject{parent},filelistpath(filelistpath),ignorepath(ignorepath),filepath(filepath)
+EncodeThread::EncodeThread(QString filepath,QString filelistpath,QString ignorepath,QMutex &appendfilelistlock,QMutex &appendignorefilelock,QObject *parent)
+    : QObject{parent},filelistpath(filelistpath),ignorepath(ignorepath),filepath(filepath),appendfilelistlock(appendfilelistlock),appendignorefilelock(appendignorefilelock)
 {}
 
 void EncodeThread::run()
@@ -43,7 +43,6 @@ void EncodeThread::writemultifile(QByteArray &encodedata)
 
 void EncodeThread::appendfilelist(QString filepath)
 {
-    static QMutex appendfilelistlock;
     QMutexLocker appendfilelistlocker(&appendfilelistlock);
     QFile filelistfile(filelistpath);
     filelistfile.open(QIODevice::WriteOnly | QIODevice::Text | QIODevice::Append);
@@ -54,8 +53,7 @@ void EncodeThread::appendfilelist(QString filepath)
 
 void EncodeThread::appendignorefile(QString filepath)
 {
-    static QMutex appendfilelistlock;
-    QMutexLocker appendfilelistlocker(&appendfilelistlock);
+    QMutexLocker appendignorefilelocker(&appendignorefilelock);
     QFile filelistfile(ignorepath);
     filelistfile.open(QIODevice::WriteOnly | QIODevice::Text | QIODevice::Append);
     QTextStream qout(&filelistfile);

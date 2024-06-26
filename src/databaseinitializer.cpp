@@ -55,7 +55,7 @@ void DataBaseInitializer::parseactivities()
         activity.size = jactivitie.value("size").toString();
         QJsonArray reponames = jactivitie.value("reponame").toArray();
         for (int j = 0; j < reponames.count(); j++)
-            activity.reponame.push_back(reponames.at(i).toString());
+            activity.reponame.push_back(reponames.at(j).toString());
         database->activities.insert(activity.name, activity);
     }
 }
@@ -90,6 +90,6 @@ void DataBaseInitializer::readlocalversion()
         QString name = localactivity.value("name").toString();
         QString version = localactivity.value("version").toString();
         database->localactivityversions.insert(name, version);
-        database->activities[name].loaclversion = version;
+        database->activities[name].localversion = version;
     }
 }

@@ -6,7 +6,7 @@ BigFileDownloader::BigFileDownloader(QString reponame,QString filename,QString s
 
 void BigFileDownloader::startdownload()
 {
-    Downloader *headfiledownloader = new Downloader(memorybase::generaterequesturl(reponame,filename + ".0"),runtimedir + filename + ".0");
+    Downloader *headfiledownloader = new Downloader(memorybase::generaterequesturl(reponame,filename + ".0"),runtimedir + "/cache/" + filename + ".0");
     QObject::connect(headfiledownloader,&Downloader::downloadfinished,this,&BigFileDownloader::receiveheadfile);
     downloadmanager -> adddownloader(headfiledownloader);
 }
@@ -17,8 +17,8 @@ void BigFileDownloader::mergefile()
     bigfile.open(QIODevice::WriteOnly);
     for(int i=1;i<=filecount;i++)
     {
-        QFile partfile(runtimedir + filename + "." + memorybase::to_qstring(i));
-        partfile.open(QIODevice::WriteOnly);
+        QFile partfile(runtimedir + "/cache/" + filename + "." + memorybase::to_qstring(i));
+        partfile.open(QIODevice::ReadOnly);
         bigfile.write(partfile.readAll());
         partfile.close();
         partfile.remove();
@@ -36,7 +36,7 @@ void BigFileDownloader::receivepartfile()
 
 void BigFileDownloader::receiveheadfile()
 {
-    QFile headfile(runtimedir + filename + ".0");
+    QFile headfile(runtimedir + "/cache/" + filename + ".0");
     headfile.open(QIODevice::ReadOnly | QIODevice::Text);
     QTextStream qin(&headfile);
     qin >> filecount;
@@ -44,7 +44,7 @@ void BigFileDownloader::receiveheadfile()
     headfile.remove();
     for(int i=1;i<=filecount;i++)
     {
-        Downloader *headfiledownloader = new Downloader(memorybase::generaterequesturl(reponame,filename + "." + memorybase::to_qstring(i)),runtimedir + filename + "." + memorybase::to_qstring(i));
+        Downloader *headfiledownloader = new Downloader(memorybase::generaterequesturl(reponame,filename + "." + memorybase::to_qstring(i)),runtimedir + "/cache/" + filename + "." + memorybase::to_qstring(i));
         QObject::connect(headfiledownloader,&Downloader::downloadfinished,this,&BigFileDownloader::receivepartfile);
         downloadmanager -> adddownloader(headfiledownloader);
     }

@@ -23,6 +23,7 @@
 #include "downloadmanager.h"
 #include "datamanagerhelper.h"
 #include "profilepictureupdater.h"
+#include "activityupdater.h"
 
 class MemoryApplication : public QGuiApplication
 {
@@ -46,6 +47,7 @@ private:
     QLockFile filelocker;
     DownloadManager *m_downloadmanager;
     ProfilePictureUpdater *profilepictureupdater;
+    ActivityUpdater *activityupdater;
     void checksingle();
     void setuptranslator();
     void registermodules();

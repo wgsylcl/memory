@@ -4,6 +4,7 @@
 #include "base.h"
 #include "database.h"
 #include "profilepictureupdater.h"
+#include "activityupdater.h"
 
 class DataManagerHelper : public QObject
 {
@@ -17,10 +18,8 @@ public:
     Q_INVOKABLE void removelocalactivitybyname(QString name);
     Q_INVOKABLE QStringList getallactivitiynames(void);
     Q_INVOKABLE void startsyncprofilepicture(void);
-
-signals:
-    void syncprofilepicturefinish();
-    void syncactivityfinish(QString name);
+    Q_INVOKABLE void startsyncactivity(QString activityname);
+    Q_INVOKABLE QString getactivitysize(QString activityname);
 };
 
 #endif // DATAMANAGERHELPER_H

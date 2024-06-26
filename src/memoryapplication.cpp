@@ -4,7 +4,8 @@ MemoryApplication::MemoryApplication(int &argc, char *argv[])
     : QGuiApplication{argc,argv},uiLanguages(QLocale::system().uiLanguages()),
     tasklogmanager(new TasklogManager()),engine(new QQmlApplicationEngine()),
     activityhelper(new ActivityHelper()),maintool(new MainTool()),imageprovider(new ImageProvider()),
-    m_database(new DataBase()),filelocker(runtimedir + "/filelock"),m_downloadmanager(new DownloadManager()),profilepictureupdater(new ProfilePictureUpdater())
+    m_database(new DataBase()),filelocker(runtimedir + "/filelock"),m_downloadmanager(new DownloadManager()),
+    profilepictureupdater(new ProfilePictureUpdater()),activityupdater(new ActivityUpdater())
 {
 #if (QT_VERSION < QT_VERSION_CHECK(6, 0, 0))
     QGuiApplication::setAttribute(Qt::AA_EnableHighDpiScaling);
@@ -17,6 +18,7 @@ MemoryApplication::MemoryApplication(int &argc, char *argv[])
     setApplicationName("memory");
     checksingle();
     threadpool -> setExpiryTimeout(-1);
+    threadpool -> setMaxThreadCount(128);
     setupfiles();
     setuptranslator();
     registermodules();
@@ -43,6 +45,7 @@ void MemoryApplication::releseresources()
     maintool->deleteLater();
     tasklogmanager->deleteLater();
     profilepictureupdater->deleteLater();
+    activityupdater->deleteLater();
 }
 
 void MemoryApplication::setuptranslator()
@@ -75,6 +78,7 @@ void MemoryApplication::setupqmlengine()
     engine -> rootContext() -> setContextProperty("MainTool", maintool);
     engine -> rootContext() -> setContextProperty("ActivityReader", activityhelper);
     engine -> rootContext() -> setContextProperty("profilepictureupdater", profilepictureupdater);
+    engine -> rootContext() -> setContextProperty("activityupdater", activityupdater);
     engine -> addImageProvider("provider", imageprovider);
 
     const QUrl url(QStringLiteral("qrc:/App.qml"));

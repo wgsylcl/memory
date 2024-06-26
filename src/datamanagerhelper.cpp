@@ -38,6 +38,15 @@ Q_INVOKABLE QStringList DataManagerHelper::getallactivitiynames(void)
 
 Q_INVOKABLE void DataManagerHelper::startsyncprofilepicture(void)
 {
-    ProfilePictureUpdater* updater = ProfilePictureUpdater::instance();
-    updater->run();
+    ProfilePictureUpdater::instance() -> run();
+}
+
+Q_INVOKABLE void DataManagerHelper::startsyncactivity(QString activityname)
+{
+    ActivityUpdater::instance() -> startupdate(activityname);
+}
+
+Q_INVOKABLE QString DataManagerHelper::getactivitysize(QString activityname)
+{
+    return memorybase::getdirsize(runtimedir + "/datas/activities/" + activityname);
 }

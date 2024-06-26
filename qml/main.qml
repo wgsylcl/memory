@@ -31,9 +31,15 @@ FluWindow {
 
     Connections {
         target: profilepictureupdater
-        function onUpdatefinished()
-        {
-            showSuccess("更新完成!")
+        function onUpdatefinished() {
+            showSuccess(qsTr("图文数据库更新完成!"))
+        }
+    }
+
+    Connections {
+        target: activityupdater
+        function onUpdatefinished(activityname) {
+            showSuccess(qsTr("数据库%1更新成功!").arg('"' + activityname + '"'))
         }
     }
 
@@ -108,12 +114,12 @@ FluWindow {
                 title: qsTr("设置和关于")
                 onTap: navigationview.push(url)
             }
-            FluPaneItem {
-                icon: FluentIcons.TaskView
-                url: "qrc:/qml/taskpage.qml"
-                title: qsTr("任务面板")
-                onTap: navigationview.push(url)
-            }
+            // FluPaneItem {
+            //     icon: FluentIcons.TaskView
+            //     url: "qrc:/qml/taskpage.qml"
+            //     title: qsTr("任务面板")
+            //     onTap: navigationview.push(url)
+            // }
         }
 
         Component.onCompleted: {
