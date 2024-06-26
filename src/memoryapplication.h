@@ -21,6 +21,8 @@
 #include "taskloghelper.h"
 #include "databaseinitializer.h"
 #include "downloadmanager.h"
+#include "datamanagerhelper.h"
+#include "profilepictureupdater.h"
 
 class MemoryApplication : public QGuiApplication
 {
@@ -43,6 +45,7 @@ private:
     DataBase *m_database;
     QLockFile filelocker;
     DownloadManager *m_downloadmanager;
+    ProfilePictureUpdater *profilepictureupdater;
     void checksingle();
     void setuptranslator();
     void registermodules();

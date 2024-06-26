@@ -21,6 +21,8 @@ int main(int argc, char *argv[])
 {
     MemoryApplication app(argc, argv);
 
+    FILE *f = fopen("log.txt", "w");
+    fclose(f);
     qInstallMessageHandler(logmessagehander);
 
     return app.exec();

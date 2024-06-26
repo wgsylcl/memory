@@ -29,6 +29,14 @@ FluWindow {
         FluRouter.exit(0)
     }
 
+    Connections {
+        target: profilepictureupdater
+        function onUpdatefinished()
+        {
+            showSuccess("更新完成!")
+        }
+    }
+
     FluNavigationView {
         z: 1
         anchors.fill: parent

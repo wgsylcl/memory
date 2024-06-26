@@ -19,6 +19,7 @@
 #include <QJsonArray>
 #include <QJsonValue>
 #include <QJsonValueRef>
+#include <QtConcurrent>
 #include <private/qzipreader_p.h>
 #include <private/qzipwriter_p.h>
 
@@ -41,10 +42,13 @@ namespace memorybase
     QString getfilesuffix(QString);
     QString getfilesuffix(QUrl);
     QUrl generaterequesturl(QString reponame, QString filepath);
+    QStringList getfilenamelist(QDir dir);
+    QFileInfoList getfileinfolist(QDir dir);
+    QString to_qstring(int num);
     struct Activity
     {
         QString name;
-        QString loaclversion;
+        QString loaclversion = "0.0.0";
         QString remoteversion;
         QString size;
         QStringList reponame;

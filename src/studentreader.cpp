@@ -1,7 +1,7 @@
 #include "studentreader.h"
 
 StudentReader::StudentReader(QObject *parent)
-    : QObject{parent}, file(runtimedir + "/data/student.json")
+    : QObject{parent}, file(runtimedir + "/data/students/student.json")
 {
 }
 

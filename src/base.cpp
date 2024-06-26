@@ -52,3 +52,18 @@ QUrl memorybase::generaterequesturl(QString reponame,QString filepath)
 {
     return QUrl(QString("https://gitee.com/api/v5/repos/wgsylcl/%1/raw/%2?access_token=%3").arg(reponame,filepath,TOKEN));
 }
+
+QStringList memorybase::getfilenamelist(QDir dir)
+{
+    return dir.entryList(QDir::Files);
+}
+
+QFileInfoList memorybase::getfileinfolist(QDir dir)
+{
+    return dir.entryInfoList(QDir::Files);
+}
+
+QString memorybase::to_qstring(int num)
+{
+    return QString::fromStdString(std::to_string(num));
+}

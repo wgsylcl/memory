@@ -20,8 +20,8 @@ endif()
 
 include_directories(./src)
 
-find_package(QT NAMES Qt6 Qt5 REQUIRED COMPONENTS Core Quick Multimedia Network)
-find_package(Qt${QT_VERSION_MAJOR} REQUIRED COMPONENTS Core Quick Multimedia Network)
+find_package(QT NAMES Qt6 Qt5 REQUIRED COMPONENTS Core Quick Multimedia Network Concurrent)
+find_package(Qt${QT_VERSION_MAJOR} REQUIRED COMPONENTS Core Quick Multimedia Network Concurrent)
 
 find_program(QT_LUPDATE NAMES lupdate)
 find_program(QT_LRELEASE NAMES lrelease)
@@ -55,12 +55,34 @@ add_definitions(-DPASSWORD="$ENV{PASSWORD}")
 add_definitions(-DTOKEN="$ENV{access_token}")
 add_definitions(-DVERSION="1.0.1")
 
-aux_source_directory(${CMAKE_SOURCE_DIR}/src MEMORY_SOURCES)
-
 set(PROJECT_SOURCES
     ${QRC_RESOURCES}
     main.cpp
-    ${MEMORY_SOURCES}
+    src/timelinereader.h src/timelinereader.cpp
+    src/studentreader.h src/studentreader.cpp
+    src/profilereader.h src/profilereader.cpp
+    src/teacherfilereader.h src/teacherfilereader.cpp
+    src/maintool.h src/maintool.cpp
+    src/activityhelper.h src/activityhelper.cpp
+    src/FluentPlayer.h src/FluentPlayer.cpp
+    src/stdafx.h
+    src/imageprovider.h src/imageprovider.cpp
+    src/base.h src/base.cpp
+    src/encodethread.h src/encodethread.cpp
+    src/direncoder.h src/direncoder.cpp
+    src/tasklogmanager.h src/tasklogmanager.cpp
+    src/taskloghelper.h src/taskloghelper.cpp
+    src/direncodemanager.h src/direncodemanager.cpp
+    src/database.h src/database.cpp
+    src/memoryapplication.h src/memoryapplication.cpp
+    src/databaseinitializer.h src/databaseinitializer.cpp
+    src/downloader.h src/downloader.cpp
+    src/downloadmanager.h src/downloadmanager.cpp
+    src/datamanagerhelper.h src/datamanagerhelper.cpp
+    src/filelistreader.h src/filelistreader.cpp
+    src/profilepictureupdater.h src/profilepictureupdater.cpp
+    src/bigfiledownloader.h src/bigfiledownloader.cpp
+
 )
 
 if(WIN32)
@@ -87,6 +109,7 @@ target_link_libraries(${PROJECT_NAME} PRIVATE
     Qt${QT_VERSION_MAJOR}::Quick
     Qt${QT_VERSION_MAJOR}::Multimedia
     Qt${QT_VERSION_MAJOR}::Network
+    Qt${QT_VERSION_MAJOR}::Concurrent
     avformat
     avcodec
     avutil
@@ -179,3 +202,8 @@ else()
         )
     endif()
 endif()
+
+add_custom_command(TARGET ${PROJECT_NAME}
+    COMMAND ${CMAKE_COMMAND} -E remove_directory ${APPLICATION_DIR_PATH}/data
+    COMMAND ${CMAKE_COMMAND} -E copy_directory ${CMAKE_SOURCE_DIR}/data ${APPLICATION_DIR_PATH}/data
+    )

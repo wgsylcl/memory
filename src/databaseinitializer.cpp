@@ -10,11 +10,11 @@ void DataBaseInitializer::readremoteinfo()
     QFile infofile(runtimedir + "/cache/info.json");
     infofile.open(QIODevice::ReadOnly);
     database->remoteroot = QJsonDocument::fromJson(infofile.readAll()).object();
+    infofile.close();
     parseprofile();
     parsepictures();
     parseactivities();
     readlocalversion();
-    infofile.close();
     infofile.remove();
 }
 

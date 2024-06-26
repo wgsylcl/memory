@@ -1,7 +1,7 @@
 #include "timelinereader.h"
 
 TimelineReader::TimelineReader(QObject *parent)
-    : QObject{parent}, jsonfile(runtimedir + "/data/timelinedata.json")
+    : QObject{parent}, jsonfile(runtimedir + "/data/studnets/timelinedata.json")
 {
 }
 

@@ -64,7 +64,7 @@ FluContentPage {
                 id: carousel
                 anchors.fill: parent
                 delegate: Component {
-                    Image {
+                    FluImage {
                         anchors.fill: parent
                         source: model.url
                         asynchronous: true

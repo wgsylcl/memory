@@ -11,9 +11,17 @@ public:
     ~DataBase();
     static DataBase* instance();
     QStringList getAllLocalActivitieNames();
+    QStringList getAllRemoteActivitieNames();
     memorybase::Activity& getactivity(QString activityname);
     friend class DataBaseInitializer;
-
+    QString getlocalprofilepictureversion(void);
+    QString getremoteprofilepictureversion(void);
+    QString getlocalactivityversionbyname(QString name);
+    QString getremoteactivityversionbyname(QString name);
+    QString getprofilereponame(void);
+    QStringList getpicturereponames(void);
+    void synclocalprofilepictureversion(void);
+    void removelocalactivityversionbyname(QString name);
 signals:
 
 protected:
@@ -28,7 +36,6 @@ protected:
     QJsonObject jsonroot;
     QJsonObject remoteroot;
 private:
-
     static DataBase* _instance;
     void saveinfo();
 };
