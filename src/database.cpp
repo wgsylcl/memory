@@ -113,6 +113,11 @@ void DataBase::removelocalactivityversionbyname(QString name)
     saveinfo();
 }
 
+QUrl DataBase::generaterequesturl(QString reponame, QString filepath)
+{
+    return QUrl(QString("https://gitee.com/api/v5/repos/%1/%2/raw/%3?access_token=%4").arg(usernames[reponame],reponame,filepath,usertokens[usernames[reponame]]));
+}
+
 void DataBase::saveinfo()
 {
     QJsonDocument jdoc(jsonroot);

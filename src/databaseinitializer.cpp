@@ -15,6 +15,7 @@ void DataBaseInitializer::readremoteinfo()
     parsepictures();
     parseactivities();
     readlocalversion();
+    parsedatabaseinfo();
     infofile.remove();
 }
 
@@ -22,7 +23,7 @@ void DataBaseInitializer::downloadremoteinfo()
 {
 // #define MEMORY_NETWORK_TEST
 #ifndef MEMORY_NETWORK_TEST
-    QUrl downloadurl(memorybase::generaterequesturl("memorydata", "info.json"));
+    QUrl downloadurl(INFOURL);
     Downloader *infodownloader = new Downloader(downloadurl, runtimedir + "/cache/info.json");
     QObject::connect(infodownloader, &Downloader::downloadfinished, this, &DataBaseInitializer::readremoteinfo);
     downloadmanager->adddownloader(infodownloader);
@@ -67,6 +68,24 @@ void DataBaseInitializer::parsepictures()
     QJsonArray reponames = pictures.value("reponame").toArray();
     for (int i = 0; i < reponames.count(); i++)
         database->picturereponames.append(reponames.at(i).toString());
+}
+
+void DataBaseInitializer::parsedatabaseinfo()
+{
+    QJsonArray databaseinfos = database->remoteroot.value("users").toArray();
+    for(int i=0;i<databaseinfos.count();i++)
+    {
+        QJsonObject databaseinfo = databaseinfos.at(i).toObject();
+        QString username = databaseinfo.value("name").toString();
+        QString token = databaseinfo.value("access_token").toString();
+        database -> usertokens.insert(username,token);
+        QJsonArray reponames = databaseinfo.value("reponames").toArray();
+        for(int j=0;j<reponames.count();j++)
+        {
+            QString reponame = reponames.at(i).toString();
+            database -> usernames.insert(reponame,username);
+        }
+    }
 }
 
 void DataBaseInitializer::initialize()

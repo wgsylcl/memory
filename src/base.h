@@ -41,7 +41,6 @@ namespace memorybase
     QString topath(QUrl);
     QString getfilesuffix(QString);
     QString getfilesuffix(QUrl);
-    QUrl generaterequesturl(QString reponame, QString filepath);
     QStringList getfilenamelist(QDir dir);
     QFileInfoList getfileinfolist(QDir dir);
     QString to_qstring(int num);
@@ -56,5 +55,6 @@ namespace memorybase
         QStringList reponame;
     };
     using Activities = QMap<QString, memorybase::Activity>;
+
 }
 #endif // BASE_H

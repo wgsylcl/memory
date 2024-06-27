@@ -6,6 +6,7 @@
 #include <QMutex>
 #include <QMutexLocker>
 #include "downloader.h"
+#include "database.h"
 
 class DownloadManager : public QObject
 {

@@ -48,11 +48,6 @@ QString memorybase::getfilesuffix(QUrl url)
     return fileinfo.suffix().toLower();
 }
 
-QUrl memorybase::generaterequesturl(QString reponame,QString filepath)
-{
-    return QUrl(QString("https://gitee.com/api/v5/repos/wgsylcl/%1/raw/%2?access_token=%3").arg(reponame,filepath,TOKEN));
-}
-
 QStringList memorybase::getfilenamelist(QDir dir)
 {
     return dir.entryList(QDir::Files);

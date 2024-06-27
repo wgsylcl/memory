@@ -44,16 +44,14 @@ endif()
 
 link_directories(${3RDPARTY_PATH}/ffmpeg/lib)
 include_directories(${3RDPARTY_PATH}/ffmpeg/include)
-include_directories(${CMAKE_SOURCE_DIR}/3rdparty/qtaes)
-include_directories(${CMAKE_SOURCE_DIR}/3rdparty/qtaes/aesni)
 
 qt_add_big_resources(QRC_RESOURCES qml.qrc)
 list(APPEND QRC_RESOURCES qml.qrc)
 set_property(SOURCE qml.qrc PROPERTY SKIP_AUTORCC ON)
 
 add_definitions(-DPASSWORD="$ENV{PASSWORD}")
-add_definitions(-DTOKEN="$ENV{access_token}")
 add_definitions(-DVERSION="1.0.1")
+add_definitions(-DINFOURL="$ENV{memorydata_info_url}")
 
 set(PROJECT_SOURCES
     ${QRC_RESOURCES}
@@ -82,6 +80,7 @@ set(PROJECT_SOURCES
     src/filelistreader.h src/filelistreader.cpp
     src/profilepictureupdater.h src/profilepictureupdater.cpp
     src/bigfiledownloader.h src/bigfiledownloader.cpp
+    src/activityupdater.h src/activityupdater.cpp
 
 )
 
@@ -93,7 +92,6 @@ if(${QT_VERSION_MAJOR} GREATER_EQUAL 6)
     qt_add_executable(${PROJECT_NAME}
         MANUAL_FINALIZATION
         ${PROJECT_SOURCES}
-        src/activityupdater.h src/activityupdater.cpp
     )
 else()
     add_executable(${PROJECT_NAME}
@@ -175,8 +173,7 @@ if (CMAKE_BUILD_TYPE MATCHES "Release")
         add_custom_target(Script-DeployRelease
             COMMAND ${CMAKE_COMMAND} -E remove_directory ${CMAKE_SOURCE_DIR}/dist
             COMMAND ${CMAKE_COMMAND} -E copy_directory ${CMAKE_RUNTIME_OUTPUT_DIRECTORY} ${CMAKE_SOURCE_DIR}/dist
-            COMMAND ${CMAKE_COMMAND} -E copy_directory ${CMAKE_CURRENT_SOURCE_DIR}/data ${CMAKE_SOURCE_DIR}/dist
-            COMMAND ${CMAKE_COMMAND} -E copy_directory ${DLL_FILES} ${CMAKE_SOURCE_DIR}/dist
+            COMMAND ${CMAKE_COMMAND} -E copy_directory ${CMAKE_CURRENT_SOURCE_DIR}/data ${CMAKE_SOURCE_DIR}/dist/data
             COMMAND ${QT_DEPLOY_QT} ${CMAKE_SOURCE_DIR}/dist/${PROJECT_NAME}.exe -qmldir=${CMAKE_CURRENT_LIST_DIR}/qml
             COMMENT "Windows Deploying Qt Dependencies After Build........."
             SOURCES ${CMAKE_CURRENT_SOURCE_DIR}/CMakeLists.txt

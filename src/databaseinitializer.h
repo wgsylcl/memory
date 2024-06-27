@@ -21,6 +21,7 @@ private:
     void parseprofile();
     void parseactivities();
     void parsepictures();
+    void parsedatabaseinfo();
     void readlocalversion();
 };
 

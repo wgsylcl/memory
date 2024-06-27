@@ -24,6 +24,7 @@ public:
     void synclocalprofilepictureversion(void);
     void syncactivityversion(QString activityname);
     void removelocalactivityversionbyname(QString name);
+    QUrl generaterequesturl(QString reponame, QString filepath);
 signals:
 
 protected:
@@ -37,6 +38,7 @@ protected:
     QMap<QString,QString> localactivityversions;
     QJsonObject jsonroot;
     QJsonObject remoteroot;
+    QMap<QString,QString> usernames,usertokens;
 private:
     static DataBase* _instance;
     void saveinfo();
