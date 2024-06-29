@@ -5,7 +5,8 @@ MemoryApplication::MemoryApplication(int &argc, char *argv[])
     tasklogmanager(new TasklogManager()),engine(new QQmlApplicationEngine()),
     activityhelper(new ActivityHelper()),maintool(new MainTool()),imageprovider(new ImageProvider()),
     m_database(new DataBase()),filelocker(runtimedir + "/filelock"),m_downloadmanager(new DownloadManager()),
-    profilepictureupdater(new ProfilePictureUpdater()),activityupdater(new ActivityUpdater())
+    profilepictureupdater(new ProfilePictureUpdater()),activityupdater(new ActivityUpdater()),uploader(new Uploader()),
+    uploadpreviewimageprovider(new UploadPreviewImageProvider())
 {
 #if (QT_VERSION < QT_VERSION_CHECK(6, 0, 0))
     QGuiApplication::setAttribute(Qt::AA_EnableHighDpiScaling);
@@ -17,6 +18,7 @@ MemoryApplication::MemoryApplication(int &argc, char *argv[])
     setOrganizationName("wgsylcl");
     setApplicationName("memory");
     checksingle();
+    QObject::connect(qApp,&QCoreApplication::aboutToQuit,this,&MemoryApplication::releseresources);
     threadpool -> setExpiryTimeout(-1);
     threadpool -> setMaxThreadCount(128);
     setupfiles();
@@ -27,17 +29,14 @@ MemoryApplication::MemoryApplication(int &argc, char *argv[])
 }
 
 MemoryApplication::~MemoryApplication()
-{
-    if(databaseinitializethread -> isRunning())
-        databaseinitializethread -> exit();
-    databaseinitializer -> deleteLater();
-    if(filelocker.isLocked())
-        filelocker.unlock();
-    releseresources();
-}
+{}
 
 void MemoryApplication::releseresources()
 {
+    if(databaseinitializethread -> isRunning())
+        databaseinitializethread -> exit();
+    if(filelocker.isLocked())
+        filelocker.unlock();
     engine->deleteLater();
     activityhelper->deleteLater();
     database->deleteLater();
@@ -46,6 +45,9 @@ void MemoryApplication::releseresources()
     tasklogmanager->deleteLater();
     profilepictureupdater->deleteLater();
     activityupdater->deleteLater();
+    uploader->deleteLater();
+    databaseinitializer->deleteLater();
+    databaseinitializethread->deleteLater();
 }
 
 void MemoryApplication::setuptranslator()
@@ -76,10 +78,12 @@ void MemoryApplication::registermodules()
 void MemoryApplication::setupqmlengine()
 {
     engine -> rootContext() -> setContextProperty("MainTool", maintool);
+    engine -> rootContext() -> setContextProperty("uploader", uploader);
     engine -> rootContext() -> setContextProperty("ActivityReader", activityhelper);
     engine -> rootContext() -> setContextProperty("profilepictureupdater", profilepictureupdater);
     engine -> rootContext() -> setContextProperty("activityupdater", activityupdater);
     engine -> addImageProvider("provider", imageprovider);
+    engine -> addImageProvider("uploadpreviewimageprovider", uploadpreviewimageprovider);
 
     const QUrl url(QStringLiteral("qrc:/App.qml"));
     QObject::connect(

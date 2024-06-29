@@ -12,6 +12,7 @@ public:
     explicit ActivityHelper(QObject *parent = nullptr);
     ~ActivityHelper();
     Q_INVOKABLE QStringList getAllActivities(void);
+    Q_INVOKABLE QStringList getAllRemoteActivities(void);
     Q_INVOKABLE int readAllMedia(QString);
     Q_INVOKABLE QUrl getMediaPath(int index);
 signals:

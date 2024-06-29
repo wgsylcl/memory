@@ -82,7 +82,7 @@ void DataBaseInitializer::parsedatabaseinfo()
         QJsonArray reponames = databaseinfo.value("reponames").toArray();
         for(int j=0;j<reponames.count();j++)
         {
-            QString reponame = reponames.at(i).toString();
+            QString reponame = reponames.at(j).toString();
             database -> usernames.insert(reponame,username);
         }
     }

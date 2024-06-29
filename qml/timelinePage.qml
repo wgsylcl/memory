@@ -6,6 +6,10 @@ import timelinehelper 1.0
 FluScrollablePage {
     title: qsTr("我们的班史")
 
+    FluText {
+        text: "由于此页面不便修改，故请将修改请求直接反馈给lcl"
+    }
+
     ListModel {
         id: timelimelist
     }

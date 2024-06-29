@@ -18,43 +18,13 @@
 <context>
     <name>StudentReader</name>
     <message>
-        <location filename="src/studentreader.cpp" line="26"/>
+        <location filename="src/studentreader.cpp" line="40"/>
         <source>ta还没提供生日噢~</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="src/studentreader.cpp" line="27"/>
+        <location filename="src/studentreader.cpp" line="41"/>
         <source>ta还没来个简单的自我介绍噢~</source>
-        <translation type="unfinished"></translation>
-    </message>
-</context>
-<context>
-    <name>TeacherCard</name>
-    <message>
-        <location filename="qml/TeacherCard.qml" line="38"/>
-        <source>ta的亲笔签名</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="qml/TeacherCard.qml" line="60"/>
-        <source>有关ta的一刻</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="qml/TeacherCard.qml" line="91"/>
-        <source>留言栏</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="qml/TeacherCard.qml" line="117"/>
-        <source>我的%1老师 —— %2</source>
-        <oldsource>你的%1老师 —— %2</oldsource>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="qml/TeacherCard.qml" line="121"/>
-        <source>&quot;%1&quot;
-</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -66,23 +36,96 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="qml/activitypage.qml" line="26"/>
+        <location filename="qml/activitypage.qml" line="27"/>
         <source>选择要查看的活动</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="qml/activitypage.qml" line="55"/>
+        <location filename="qml/activitypage.qml" line="57"/>
         <source>上一张</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="qml/activitypage.qml" line="61"/>
+        <location filename="qml/activitypage.qml" line="63"/>
         <source>下一张</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="qml/activitypage.qml" line="188"/>
+        <location filename="qml/activitypage.qml" line="70"/>
+        <source>给活动添加图片/视频</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="qml/activitypage.qml" line="204"/>
         <source>已经到顶端了噢~</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
+    <name>addactivitypicturewindow</name>
+    <message>
+        <location filename="qml/addactivitypicturewindow.qml" line="12"/>
+        <source>给活动添加图片/视频</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
+    <name>addpicturedialog</name>
+    <message>
+        <location filename="qml/addpicturedialog.qml" line="12"/>
+        <source>添加ta的一刻</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
+    <name>addreviewdialog</name>
+    <message>
+        <location filename="qml/addreviewdialog.qml" line="11"/>
+        <source>留言</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="qml/addreviewdialog.qml" line="28"/>
+        <source>给%1留言</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
+    <name>addteacherpetphrasewindow</name>
+    <message>
+        <location filename="qml/addteacherpetphrasewindow.qml" line="11"/>
+        <source>留言</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="qml/addteacherpetphrasewindow.qml" line="28"/>
+        <source>给%1添加新的口头禅</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
+    <name>changebirthdaywindow</name>
+    <message>
+        <location filename="qml/changebirthdaywindow.qml" line="11"/>
+        <source>更改生日</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
+    <name>changeprofiledialog</name>
+    <message>
+        <location filename="qml/changeprofiledialog.qml" line="11"/>
+        <source>更改自我介绍</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="qml/changeprofiledialog.qml" line="29"/>
+        <source>新介绍（留空就没有了噢）</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="qml/changeprofiledialog.qml" line="32"/>
+        <source>提交更改</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -127,8 +170,68 @@
 <context>
     <name>dataprovidepage</name>
     <message>
-        <location filename="qml/dataprovidepage.qml" line="6"/>
+        <location filename="qml/dataprovidepage.qml" line="8"/>
         <source>上传图文</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="qml/dataprovidepage.qml" line="60"/>
+        <source>添加%1的口头禅</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="qml/dataprovidepage.qml" line="62"/>
+        <source>给活动&quot;%1&quot;添加图片</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="qml/dataprovidepage.qml" line="58"/>
+        <location filename="qml/dataprovidepage.qml" line="59"/>
+        <source>给%1添加图片</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="qml/dataprovidepage.qml" line="63"/>
+        <source>修改%1的自我介绍</source>
+        <oldsource>给%1添加自我介绍</oldsource>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="qml/dataprovidepage.qml" line="56"/>
+        <location filename="qml/dataprovidepage.qml" line="57"/>
+        <source>给%1留言</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="qml/dataprovidepage.qml" line="61"/>
+        <source>增添班史</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="qml/dataprovidepage.qml" line="64"/>
+        <source>修改%1的生日</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="qml/dataprovidepage.qml" line="84"/>
+        <source>&quot;%1&quot;</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="qml/dataprovidepage.qml" line="87"/>
+        <source>%1</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="qml/dataprovidepage.qml" line="88"/>
+        <source>%1的生日是：%2</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="qml/dataprovidepage.qml" line="80"/>
+        <location filename="qml/dataprovidepage.qml" line="81"/>
+        <location filename="qml/dataprovidepage.qml" line="85"/>
+        <source>%1:%2</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -319,22 +422,42 @@
 <context>
     <name>profilewindow</name>
     <message>
-        <location filename="qml/profilewindow.qml" line="9"/>
+        <location filename="qml/profilewindow.qml" line="10"/>
         <source>资料卡片</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="qml/profilewindow.qml" line="59"/>
+        <location filename="qml/profilewindow.qml" line="96"/>
+        <source>修改自我介绍</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="qml/profilewindow.qml" line="103"/>
+        <source></source>
+        <translation></translation>
+    </message>
+    <message>
+        <location filename="qml/profilewindow.qml" line="100"/>
+        <source>给ta留言</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="qml/profilewindow.qml" line="104"/>
+        <source>添加ta的一刻</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="qml/profilewindow.qml" line="110"/>
         <source>ta的亲笔签名</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="qml/profilewindow.qml" line="81"/>
+        <location filename="qml/profilewindow.qml" line="132"/>
         <source>有关ta的一刻</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="qml/profilewindow.qml" line="113"/>
+        <location filename="qml/profilewindow.qml" line="164"/>
         <source>留言栏</source>
         <translation type="unfinished"></translation>
     </message>
@@ -419,14 +542,40 @@
 <context>
     <name>teacherPage</name>
     <message>
-        <location filename="qml/teacherPage.qml" line="6"/>
+        <location filename="qml/teacherPage.qml" line="9"/>
         <source>我的老师们</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="qml/teacherPage.qml" line="8"/>
+        <location filename="qml/teacherPage.qml" line="11"/>
         <source>您的教诲如同明灯，照亮我们前行的道路，感谢您陪伴我们度过这段美好的求学时光，愿您在新的旅程中，继续发光发热，教学事业蒸蒸日上，身体健康，生活幸福美满。</source>
         <oldsource>亲爱的老师，您的教诲如同明灯，照亮我们前行的道路，感谢您陪伴我们度过这段美好的求学时光。在毕业之际，我想对您表达最真挚的祝福。愿您在新的旅程中，继续发光发热，教学事业蒸蒸日上，身体健康，生活幸福美满。</oldsource>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="qml/teacherPage.qml" line="117"/>
+        <source>ta的亲笔签名</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="qml/teacherPage.qml" line="140"/>
+        <source>有关ta的一刻</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="qml/teacherPage.qml" line="173"/>
+        <source>留言栏</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="qml/teacherPage.qml" line="200"/>
+        <source>我的%1老师 —— %2</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="qml/teacherPage.qml" line="204"/>
+        <source>&quot;%1&quot;
+</source>
         <translation type="unfinished"></translation>
     </message>
 </context>

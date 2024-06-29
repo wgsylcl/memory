@@ -13,7 +13,13 @@ FluLauncher {
             "/":"qrc:/qml/main.qml",
             "/profile":"qrc:/qml/profilewindow.qml",
             "/viewpicture":"qrc:/qml/pictureviewwindow.qml",
-            "/playvideo":"qrc:/qml/videoplaywindow.qml"
+            "/playvideo":"qrc:/qml/videoplaywindow.qml",
+            "/addpicture":"qrc:/qml/addpicturedialog.qml",
+            "/addreview":"qrc:/qml/addreviewdialog.qml",
+            "/changeprofile":"qrc:/qml/changeprofiledialog.qml",
+            "/changebirthday":"qrc:/qml/changebirthdaywindow.qml",
+            "/addactivitypicture":"qrc:/qml/addactivitypicturewindow.qml",
+            "/addteacherpetphrase":"qrc:/qml/addteacherpetphrasewindow.qml"
         }
         FluRouter.navigate("/")
     }

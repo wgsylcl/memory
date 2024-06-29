@@ -67,6 +67,34 @@ FluContentPage {
         }
     }
 
+    FluWindowResultLauncher {
+        id: changebirthdaywindow
+        path: "/changebirthday"
+        onResult:
+            (data) => {
+                uploader.addstudentbirthday(data.name,data.birthday)
+                showSuccess("提交成功，可在\"数据库管理 -> 上传图文\"处查看！")
+            }
+    }
+
+    Component {
+        id: birthdayaction
+        Item {
+            FluTextButton {
+                anchors.centerIn: parent
+                text: maintable.getRow(row).birthdaydata
+                onClicked: {
+                    changebirthdaywindow.launch({name:maintable.getRow(row).name})
+                }
+                FluTooltip {
+                    visible: parent.hovered
+                    delay: 1000
+                    text: "点我以修改ta的生日"
+                }
+            }
+        }
+    }
+
     StudentReader {
         id: reader
     }
@@ -79,7 +107,8 @@ FluContentPage {
             data.push({
                 id: stu["id"],
                 name: stu["name"],
-                birthday: stu["birthday"],
+                birthdaydata: stu["birthday"],
+                birthday: maintable.customItem(birthdayaction),
                 action: maintable.customItem(lookaction),
                 profile: stu["profile"],
                 sign: stu["sign"]

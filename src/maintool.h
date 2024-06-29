@@ -17,6 +17,8 @@ public:
     Q_INVOKABLE bool direxist(QString);
     Q_INVOKABLE QUrl toUrl(QString);
     Q_INVOKABLE QString topath(QUrl);
+    Q_INVOKABLE QString trimmed(QString);
+    Q_INVOKABLE bool is_empty(QString);
 signals:
 
 private:

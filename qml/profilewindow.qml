@@ -1,6 +1,7 @@
 import QtQuick 2.15
 import QtQuick.Layouts 1.15
 import QtQuick.Controls 2.15
+import Qt.labs.platform
 import FluentUI 1.0
 import profilehelper 1.0
 
@@ -13,6 +14,10 @@ FluWindow {
     property string name: ""
     property int id: 0
     property int key: 0
+    property var addfiles: []
+    property string newprofile: ""
+    property string sender: ""
+    property string sendtext: ""
     onInitArgument:
         (argument)=>{
             window.name = argument.name
@@ -36,6 +41,36 @@ FluWindow {
         blurRadius: 20
     }
 
+    FluWindowResultLauncher {
+        id: changeprofilewindow
+        path: "/changeprofile"
+        onResult:
+            (data) => {
+                uploader.addstudentprofile(window.name,data.newprofile)
+                showSuccess("提交成功，可在\"数据库管理 -> 上传图文\"处查看！")
+            }
+    }
+
+    FluWindowResultLauncher {
+        id: addreviewwindow
+        path: "/addreview"
+        onResult:
+            (data) => {
+                uploader.addreviewtostudent(data.sender,window.name,data.text)
+                showSuccess("提交成功，可在\"数据库管理 -> 上传图文\"处查看！")
+            }
+    }
+
+    FluWindowResultLauncher {
+        id: addpicturewindow
+        path: "/addpicture"
+        onResult:
+            (data) => {
+                uploader.addstudentpicture(window.name,data.addfilepaths)
+                showSuccess("提交成功，可在\"数据库管理 -> 上传图文\"处查看！")
+            }
+    }
+
     FluScrollablePage {
         anchors.fill: parent
         anchors.margins: 20
@@ -53,6 +88,22 @@ FluWindow {
             FluText {
                 id: selfintroduction
                 wrapMode: Text.WordWrap
+            }
+
+            RowLayout {
+                spacing: 20
+                FluFilledButton {
+                    text: qsTr("修改自我介绍")
+                    onClicked: changeprofilewindow.launch({name:window.name})
+                }
+                FluFilledButton {
+                    text: qsTr("给ta留言")
+                    onClicked: addreviewwindow.launch({sendto:window.name})
+                }
+                FluFilledButton {
+                    text: qsTr("添加ta的一刻")
+                    onClicked: addpicturewindow.launch({name:window.name})
+                }
             }
 
             FluExpander {
@@ -155,6 +206,6 @@ FluWindow {
             reviewtext.text += reviews[j]
             reviewtext.text += '\n'
         }
-    }    
+    }
 
 }

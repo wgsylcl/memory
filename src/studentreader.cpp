@@ -5,6 +5,15 @@ StudentReader::StudentReader(QObject *parent)
 {
 }
 
+QString context = R"({
+    "picture" : [
+
+    ],
+    "review" : [
+
+    ]
+})";
+
 Q_INVOKABLE int StudentReader::readdata(void)
 {
     file.open(QIODevice::ReadOnly);
@@ -18,6 +27,11 @@ Q_INVOKABLE int StudentReader::readdata(void)
         QVariantMap map;
         QString id = studata.value("id").toString();
         QString name = studata.value("name").toString();
+        QFile stufile(runtimedir + QString("/data/%1.json").arg(name));
+        stufile.open(QIODevice::WriteOnly | QIODevice::Text);
+        QTextStream qout(&stufile);
+        qout << context;
+        stufile.close();
         QString birthday = studata.value("birthday").toString();
         QString profile = studata.value("profile").toString();
         QString sign = studata.value("sign").toString();

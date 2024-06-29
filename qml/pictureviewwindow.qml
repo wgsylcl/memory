@@ -16,6 +16,7 @@ FluWindow {
     onInitArgument:
         (argument)=>{
             mainimage.source = argument.pictureurl
+            console.log("view "+mainimage.source)
         }
 
     MouseArea {

@@ -9,8 +9,7 @@ Downloader::~Downloader()
 {
     if(reply)
     {
-        savefile.close();
-        savefile.remove();
+        savefile.cancelWriting();
         reply -> abort();
         reply -> deleteLater();
         reply = nullptr;
@@ -36,7 +35,7 @@ void Downloader::receivedata()
 
 void Downloader::downloadfinish()
 {
-    savefile.close();
+    savefile.commit();
     reply -> deleteLater();
     reply = nullptr;
     manager -> deleteLater();

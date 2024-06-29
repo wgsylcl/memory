@@ -12,6 +12,8 @@
 #include <QCoreApplication>
 #include <QThreadPool>
 #include <QThread>
+#include <QMutex>
+#include <QMutexLocker>
 #include <QJsonDocument>
 #include <QJsonParseError>
 #include <QCoreApplication>
@@ -19,7 +21,8 @@
 #include <QJsonArray>
 #include <QJsonValue>
 #include <QJsonValueRef>
-#include <QtConcurrent>
+#include <QRandomGenerator>
+#include <QStandardPaths>
 #include <private/qzipreader_p.h>
 #include <private/qzipwriter_p.h>
 
@@ -33,6 +36,7 @@ const qint64 chunkSize = 99 * 1024 * 1024;
 namespace memorybase
 {
     bool isvideo(QUrl);
+    bool ismedia(QUrl);
     QUrl toLocalMediaUrl(QUrl);
     QUrl toLocalMediaUrl(QString);
     bool fileexist(QString);
@@ -45,7 +49,11 @@ namespace memorybase
     QFileInfoList getfileinfolist(QDir dir);
     QString to_qstring(int num);
     QString to_qstring(qint64 num);
+    bool is_empty(QString str);
     QString getdirsize(QDir dir);
+    QString getsystemdownloadpath(void);
+    void copyfile(QString from, QString to);
+    QString generaterandomqstring(int length = 18);
     struct Activity
     {
         QString name;
@@ -57,4 +65,35 @@ namespace memorybase
     using Activities = QMap<QString, memorybase::Activity>;
 
 }
+
+class UploadTasktype : public QObject
+{
+public:
+    UploadTasktype(QObject *parent = nullptr) : QObject{parent} {}
+    Q_ENUMS(TaskType)
+    enum TaskType
+    {
+        reviewtostudent,
+        reviewtoteacher,
+        picturetostudent,
+        picturetoteacher,
+        petphrasetoteacher,
+        timeline,
+        picturetoactivity,
+        profiletostudent,
+        birthdaytostudent
+    };
+};
+
+typedef UploadTasktype::TaskType UploadTaskType;
+
+struct UploadTask
+{
+    UploadTaskType type;
+    QString sender;
+    QString sendto;
+    QString text;
+    QStringList paths;
+};
+
 #endif // BASE_H

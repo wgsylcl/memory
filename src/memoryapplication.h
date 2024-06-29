@@ -24,6 +24,8 @@
 #include "datamanagerhelper.h"
 #include "profilepictureupdater.h"
 #include "activityupdater.h"
+#include "uploader.h"
+#include "uploadpreviewimageprovider.h"
 
 class MemoryApplication : public QGuiApplication
 {
@@ -48,6 +50,8 @@ private:
     DownloadManager *m_downloadmanager;
     ProfilePictureUpdater *profilepictureupdater;
     ActivityUpdater *activityupdater;
+    Uploader *uploader;
+    UploadPreviewImageProvider *uploadpreviewimageprovider;
     void checksingle();
     void setuptranslator();
     void registermodules();

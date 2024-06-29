@@ -7,7 +7,7 @@ MainTool::MainTool(QObject *parent)
 
 MainTool::~MainTool()
 {
-    
+
 }
 
 Q_INVOKABLE QString MainTool::getCurrentApplicationPath(void)
@@ -48,4 +48,14 @@ Q_INVOKABLE QUrl MainTool::toUrl(QString path)
 Q_INVOKABLE QString MainTool::topath(QUrl url)
 {
     return memorybase::topath(url);
+}
+
+Q_INVOKABLE QString MainTool::trimmed(QString str)
+{
+    return str.trimmed();
+}
+
+Q_INVOKABLE bool MainTool::is_empty(QString str)
+{
+    return memorybase::is_empty(str);
 }

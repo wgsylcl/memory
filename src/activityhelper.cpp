@@ -15,6 +15,11 @@ Q_INVOKABLE QStringList ActivityHelper::getAllActivities(void)
     return DataBase::instance() -> getAllLocalActivitieNames();
 }
 
+Q_INVOKABLE QStringList ActivityHelper::getAllRemoteActivities(void)
+{
+    return DataBase::instance() -> getAllRemoteActivitieNames();
+}
+
 Q_INVOKABLE int ActivityHelper::readAllMedia(QString activityname)
 {
     memorybase::Activity activity = DataBase::instance() -> getactivity(activityname);

@@ -20,8 +20,8 @@ endif()
 
 include_directories(./src)
 
-find_package(QT NAMES Qt6 Qt5 REQUIRED COMPONENTS Core Quick Multimedia Network Concurrent)
-find_package(Qt${QT_VERSION_MAJOR} REQUIRED COMPONENTS Core Quick Multimedia Network Concurrent)
+find_package(QT NAMES Qt6 Qt5 REQUIRED COMPONENTS Core Quick Svg Multimedia Network)
+find_package(Qt${QT_VERSION_MAJOR} REQUIRED COMPONENTS Core Quick Svg Multimedia Network)
 
 find_program(QT_LUPDATE NAMES lupdate)
 find_program(QT_LRELEASE NAMES lrelease)
@@ -81,7 +81,10 @@ set(PROJECT_SOURCES
     src/profilepictureupdater.h src/profilepictureupdater.cpp
     src/bigfiledownloader.h src/bigfiledownloader.cpp
     src/activityupdater.h src/activityupdater.cpp
-
+    src/uploader.h src/uploader.cpp
+    src/packer.h src/packer.cpp
+    src/uploadpreviewimageprovider.h src/uploadpreviewimageprovider.cpp
+    src/app_dump.h
 )
 
 if(WIN32)
@@ -99,6 +102,11 @@ else()
     )
 endif()
 
+target_compile_definitions(${PROJECT_NAME}
+    PRIVATE
+    QT_MESSAGELOGCONTEXT
+)
+
 target_include_directories(${PROJECT_NAME} PRIVATE ${Qt6Core_PRIVATE_INCLUDE_DIRS})
 
 add_dependencies(${PROJECT_NAME} Script-UpdateTranslations)
@@ -108,7 +116,7 @@ target_link_libraries(${PROJECT_NAME} PRIVATE
     Qt${QT_VERSION_MAJOR}::Quick
     Qt${QT_VERSION_MAJOR}::Multimedia
     Qt${QT_VERSION_MAJOR}::Network
-    Qt${QT_VERSION_MAJOR}::Concurrent
+    Qt${QT_VERSION_MAJOR}::Svg
     avformat
     avcodec
     avutil

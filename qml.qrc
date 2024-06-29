@@ -12,7 +12,6 @@
         <file>qml/pictureviewwindow.qml</file>
         <file>res/door.png</file>
         <file>res/play.png</file>
-        <file>qml/TeacherCard.qml</file>
         <file>qml/activitypage.qml</file>
         <file>qml/FluMediaPlayer.qml</file>
         <file>qml/Qt5FluMediaPlayer.qml</file>
@@ -23,5 +22,11 @@
         <file>qml/taskpage.qml</file>
         <file>res/groupphoto.jpg</file>
         <file>qml/timelinePage.qml</file>
+        <file>qml/addpicturedialog.qml</file>
+        <file>qml/addreviewdialog.qml</file>
+        <file>qml/changeprofiledialog.qml</file>
+        <file>qml/changebirthdaywindow.qml</file>
+        <file>qml/addactivitypicturewindow.qml</file>
+        <file>qml/addteacherpetphrasewindow.qml</file>
     </qresource>
 </RCC>

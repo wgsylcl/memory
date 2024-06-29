@@ -9,6 +9,7 @@ FluContentPage {
     // property var history: []
     property int index: 0
     property int mediasize: 0
+    property string currentactivityname: ""
 
     id: root
 
@@ -33,7 +34,8 @@ FluContentPage {
             width: 400
             Layout.preferredWidth: 400
             onCurrentIndexChanged: {
-                mediasize = ActivityReader.readAllMedia(activitynames[currentIndex])
+                currentactivityname = activitynames[currentIndex]
+                mediasize = ActivityReader.readAllMedia(currentactivityname)
                 for(var i=0;i<mediasize;i++) {
                     console.log(ActivityReader.getMediaPath(i))
                 }
@@ -62,6 +64,22 @@ FluContentPage {
             enabled: index
             onClicked: pushmedia()
         }
+
+        FluButton {
+            Layout.leftMargin: 50
+            text: qsTr("给活动添加图片/视频")
+            onClicked: addactivitypicturewindow.launch({name:currentactivityname})
+        }
+    }
+
+    FluWindowResultLauncher {
+        id: addactivitypicturewindow
+        path: "/addactivitypicture"
+        onResult:
+            (data) => {
+                uploader.addactivitypicture(data.activityname,data.addfilepaths)
+                showSuccess("提交成功，可在\"数据库管理 -> 上传图文\"处查看！")
+            }
     }
 
     StackView {
@@ -170,7 +188,6 @@ FluContentPage {
     }
 
     function pushmedia(){
-        console.log("push!")
         stack.pop()
         index++
         var url = ActivityReader.getMediaPath((index-1)%mediasize)
@@ -183,7 +200,6 @@ FluContentPage {
     }
 
     function popmedia(){
-        console.log("pop!")
         if(index < 2) {
             showWarning(qsTr("已经到顶端了噢~"))
             return

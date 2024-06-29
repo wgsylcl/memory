@@ -151,6 +151,11 @@ FluWindow {
         onNegativeClicked: showWarning(qsTr("您退出了验证"))
     }
 
-    // onDestroyed: FluApp.deleteLater()
+    Connections {
+        target: uploader
+        function onPackupfinished() {
+            showSuccess("打包完成!",0,"已保存压缩文件至系统的下载文件夹，将此文件发送给lcl即可。")
+        }
+    }
 
 }

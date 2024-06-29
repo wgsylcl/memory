@@ -1,4 +1,5 @@
 #include "memoryapplication.h"
+#include "app_dump.h"
 
 void logmessagehander(QtMsgType type, const QMessageLogContext &context, const QString &msg)
 {
@@ -24,6 +25,10 @@ int main(int argc, char *argv[])
     FILE *f = fopen("log.txt", "w");
     fclose(f);
     qInstallMessageHandler(logmessagehander);
+
+#ifdef Q_OS_WIN
+    SetUnhandledExceptionFilter(MyUnhandledExceptionFilter);
+#endif
 
     return app.exec();
 }

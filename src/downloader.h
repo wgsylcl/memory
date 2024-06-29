@@ -2,6 +2,7 @@
 #define DOWNLOADER_H
 
 #include "base.h"
+#include <QSaveFile>
 #include <QNetworkAccessManager>
 #include <QNetworkReply>
 #include <QNetworkRequest>
@@ -23,7 +24,7 @@ public slots:
 
 private:
     QUrl downloadurl;
-    QFile savefile;
+    QSaveFile savefile;
     QNetworkAccessManager *manager;
     QNetworkReply *reply;
 };
