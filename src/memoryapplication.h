@@ -11,7 +11,6 @@
 #include <QQmlContext>
 #include "timelinereader.h"
 #include "studentreader.h"
-#include "profilereader.h"
 #include "teacherfilereader.h"
 #include "maintool.h"
 #include "activityhelper.h"

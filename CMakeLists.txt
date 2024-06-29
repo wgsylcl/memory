@@ -58,7 +58,6 @@ set(PROJECT_SOURCES
     main.cpp
     src/timelinereader.h src/timelinereader.cpp
     src/studentreader.h src/studentreader.cpp
-    src/profilereader.h src/profilereader.cpp
     src/teacherfilereader.h src/teacherfilereader.cpp
     src/maintool.h src/maintool.cpp
     src/activityhelper.h src/activityhelper.cpp

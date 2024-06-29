@@ -3,7 +3,6 @@ import QtQuick.Layouts 1.15
 import QtQuick.Controls 2.15
 import Qt.labs.platform
 import FluentUI 1.0
-import profilehelper 1.0
 
 FluWindow {
     id: window
@@ -18,6 +17,9 @@ FluWindow {
     property string newprofile: ""
     property string sender: ""
     property string sendtext: ""
+    property var picpaths: []
+    property var reviews: []
+
     onInitArgument:
         (argument)=>{
             window.name = argument.name
@@ -25,6 +27,8 @@ FluWindow {
             window.key = argument.key
             selfintroduction.text = argument.profile
             signimage.source = argument.sign
+            picpaths = argument.picpaths
+            reviews = argument.reviews
         }
 
     FluImage {
@@ -186,22 +190,13 @@ FluWindow {
 
     }
 
-    ProfileReader {
-        id: reader
-    }
-
     Component.onCompleted: {
-        reader.readfile(window.key)
         var datas = []
-        var picpaths = []
-        picpaths = reader.getpicpaths()
         for(var i=0;i<picpaths.length;i++){
             var path = picpaths[i]
             datas.push({url:path})
         }
         carousel.model = datas
-        var reviews = []
-        reviews = reader.getreviews()
         for(var j=0;j<reviews.length;j++) {
             reviewtext.text += reviews[j]
             reviewtext.text += '\n'

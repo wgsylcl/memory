@@ -18,12 +18,12 @@
 <context>
     <name>StudentReader</name>
     <message>
-        <location filename="src/studentreader.cpp" line="40"/>
+        <location filename="src/studentreader.cpp" line="31"/>
         <source>ta还没提供生日噢~</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="src/studentreader.cpp" line="41"/>
+        <location filename="src/studentreader.cpp" line="32"/>
         <source>ta还没来个简单的自我介绍噢~</source>
         <translation type="unfinished"></translation>
     </message>
@@ -406,12 +406,12 @@
 <context>
     <name>profilewindow</name>
     <message>
-        <location filename="qml/profilewindow.qml" line="10"/>
+        <location filename="qml/profilewindow.qml" line="9"/>
         <source>资料卡片</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="qml/profilewindow.qml" line="96"/>
+        <location filename="qml/profilewindow.qml" line="100"/>
         <source>修改自我介绍</source>
         <translation type="unfinished"></translation>
     </message>
@@ -421,27 +421,27 @@
         <translation></translation>
     </message>
     <message>
-        <location filename="qml/profilewindow.qml" line="100"/>
+        <location filename="qml/profilewindow.qml" line="104"/>
         <source>给ta留言</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="qml/profilewindow.qml" line="104"/>
+        <location filename="qml/profilewindow.qml" line="108"/>
         <source>添加ta的一刻</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="qml/profilewindow.qml" line="110"/>
+        <location filename="qml/profilewindow.qml" line="114"/>
         <source>ta的亲笔签名</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="qml/profilewindow.qml" line="132"/>
+        <location filename="qml/profilewindow.qml" line="136"/>
         <source>有关ta的一刻</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="qml/profilewindow.qml" line="164"/>
+        <location filename="qml/profilewindow.qml" line="168"/>
         <source>留言栏</source>
         <translation type="unfinished"></translation>
     </message>

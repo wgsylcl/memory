@@ -1,8 +1,6 @@
 #ifndef STUDENTREADER_H
 #define STUDENTREADER_H
 
-// 读取顺序：学号、名字、生日、电话号码、QQ号、微信号
-
 #include "base.h"
 
 class StudentReader : public QObject
@@ -10,13 +8,17 @@ class StudentReader : public QObject
     Q_OBJECT
 public:
     explicit StudentReader(QObject *parent = nullptr);
-    Q_INVOKABLE int readdata(void);
-    Q_INVOKABLE QVariantMap at(int);
+    Q_INVOKABLE QStringList readdata(void);
+    Q_INVOKABLE QVariantMap at(QString name);
+    Q_INVOKABLE QList<QUrl> getpicpaths(QString name);
+    Q_INVOKABLE QStringList getreviews(QString name);
 signals:
 
 private:
     QFile file;
-    QVector<QVariantMap> datas;
+    QMap<QString,QVariantMap> datas;
+    QMap<QString,QList<QUrl>> picpaths;
+    QMap<QString,QStringList> reviews;
 };
 
 #endif // STUDENTREADER_H

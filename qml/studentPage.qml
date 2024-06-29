@@ -61,7 +61,7 @@ FluContentPage {
                 text: qsTr("看看ta的资料卡片")
                 onClicked: {
                     var stu = maintable.getRow(row)
-                    FluRouter.navigate("/profile",{name:stu.name,id:stu.id,key:row,profile:stu.profile,sign:stu.sign})
+                    FluRouter.navigate("/profile",{name:stu.name,id:stu.id,key:row,profile:stu.profile,sign:stu.sign,picpaths:stu.picpaths,reviews:stu.reviews})
                 }
             }
         }
@@ -101,9 +101,11 @@ FluContentPage {
 
     Component.onCompleted: {
         var data = []
-        var length = reader.readdata()
-        for(var i=0;i<length;i++){
-            var stu = reader.at(i)
+        var names = []
+        names = reader.readdata()
+        for(var i=0;i<names.length;i++){
+            var name = names[i]
+            var stu = reader.at(name)
             data.push({
                 id: stu["id"],
                 name: stu["name"],
@@ -111,7 +113,9 @@ FluContentPage {
                 birthday: maintable.customItem(birthdayaction),
                 action: maintable.customItem(lookaction),
                 profile: stu["profile"],
-                sign: stu["sign"]
+                sign: stu["sign"],
+                picpaths: reader.getpicpaths(name),
+                reviews: reader.getreviews(name)
             })
         }
 
