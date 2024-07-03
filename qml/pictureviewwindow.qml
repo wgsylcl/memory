@@ -24,18 +24,19 @@ FluWindow {
 
         drag.target: mainimage
 
-        onWheel: {
-            if(wheel.angleDelta.y > 0) {
-                scale *= 1.1
+        onWheel:
+            (wheel) => {
+                if(wheel.angleDelta.y > 0) {
+                    scale *= 1.1
+                }
+                else {
+                    scale = Math.max(0.001,scale/1.1)
+                }
+                mainimage.x -= (picwidth * scale - mainimage.width)/2
+                mainimage.y -= (picheight * scale - mainimage.height)/2
+                mainimage.width = picwidth * scale
+                mainimage.height = picheight * scale
             }
-            else {
-                scale = Math.max(0.001,scale/1.1)
-            }
-            mainimage.x -= (picwidth * scale - mainimage.width)/2
-            mainimage.y -= (picheight * scale - mainimage.height)/2
-            mainimage.width = picwidth * scale
-            mainimage.height = picheight * scale
-        }
 
         FluImage {
             id: mainimage

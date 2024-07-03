@@ -8,7 +8,7 @@ FluWindow {
     minimumWidth: 668
     minimumHeight: 373
     title: qsTr("毕业留念")
-    property bool isdeveloper: true
+    property bool isdeveloper: false
     property string inputpassword: ""
 
     FluImage {
@@ -154,7 +154,7 @@ FluWindow {
     Connections {
         target: uploader
         function onPackupfinished() {
-            showSuccess("打包完成!",0,"已保存压缩文件至系统的下载文件夹，将此文件发送给lcl即可。")
+            showSuccess("打包完成!",0,"已保存配置文件至系统的下载文件夹，将此文件发送给lcl即可。")
         }
     }
 

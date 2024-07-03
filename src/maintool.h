@@ -19,6 +19,8 @@ public:
     Q_INVOKABLE QString topath(QUrl);
     Q_INVOKABLE QString trimmed(QString);
     Q_INVOKABLE bool is_empty(QString);
+    Q_INVOKABLE void removefile(QString);
+    Q_INVOKABLE void creatdir(QString);
 signals:
 
 private:

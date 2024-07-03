@@ -14,7 +14,7 @@ void ActivityUpdater::startupdate(QString activityname)
     updatinglist.insert(activityname);
     QDir activitydir(runtimedir + "/data/activities/" + activityname);
     if (!activitydir.exists())
-        activitydir.mkdir(runtimedir + "/data/activities/" + activityname);
+        activitydir.mkpath(runtimedir + "/data/activities/" + activityname);
     QStringList reponames = database->getactivityreponames(activityname);
     for (QString reponame : reponames)
     {

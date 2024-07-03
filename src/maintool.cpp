@@ -7,7 +7,6 @@ MainTool::MainTool(QObject *parent)
 
 MainTool::~MainTool()
 {
-
 }
 
 Q_INVOKABLE QString MainTool::getCurrentApplicationPath(void)
@@ -58,4 +57,15 @@ Q_INVOKABLE QString MainTool::trimmed(QString str)
 Q_INVOKABLE bool MainTool::is_empty(QString str)
 {
     return memorybase::is_empty(str);
+}
+
+Q_INVOKABLE void MainTool::removefile(QString path)
+{
+    memorybase::removefile(path);
+}
+
+Q_INVOKABLE void MainTool::creatdir(QString dir)
+{
+    if (!QDir(dir).exists())
+        QDir().mkpath(dir);
 }

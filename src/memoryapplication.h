@@ -25,6 +25,7 @@
 #include "activityupdater.h"
 #include "uploader.h"
 #include "uploadpreviewimageprovider.h"
+#include "dataupdatehelper.h"
 
 class MemoryApplication : public QGuiApplication
 {

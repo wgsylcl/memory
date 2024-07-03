@@ -35,7 +35,7 @@ FluWindow {
                 Layout.fillWidth: true
             }
             FluFilledButton {
-                text: "提交留言"
+                text: "提交"
                 Layout.alignment: Qt.AlignHCenter
                 onClicked: {
                     if(MainTool.is_empty(petphrasetextbox.text)) {

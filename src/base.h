@@ -23,6 +23,7 @@
 #include <QJsonValueRef>
 #include <QRandomGenerator>
 #include <QStandardPaths>
+#include <QSettings>
 #include <private/qzipreader_p.h>
 #include <private/qzipwriter_p.h>
 
@@ -53,6 +54,9 @@ namespace memorybase
     QString getdirsize(QDir dir);
     QString getsystemdownloadpath(void);
     void copyfile(QString from, QString to);
+    void removefile(QString path);
+    QString getfilename(QString path);
+    QString getfilebasename(QString filename);
     QString generaterandomqstring(int length = 18);
     struct Activity
     {

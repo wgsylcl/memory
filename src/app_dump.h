@@ -65,7 +65,7 @@ void WriteDump(EXCEPTION_POINTERS *exp, const std::wstring &path) {
 
 LONG WINAPI MyUnhandledExceptionFilter(EXCEPTION_POINTERS *exp) {
     const QString dumpFileName = QString("%1_%2.dmp").arg("crash", QDateTime::currentDateTime().toString("yyyyMMdd_hhmmss"));
-    const QString dumpDirPath = QStandardPaths::writableLocation(QStandardPaths::AppLocalDataLocation) + "/dmp";
+    const QString dumpDirPath = runtimedir + "/dmp";
     const QDir dumpDir(dumpDirPath);
     if (!dumpDir.exists()) {
         dumpDir.mkpath(dumpDirPath);

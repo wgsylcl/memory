@@ -1,5 +1,6 @@
 import QtQuick 2.15
 import QtQuick.Layouts
+import QtQuick.Controls
 import FluentUI 1.0
 import datamanagehelper 1.0
 
@@ -101,6 +102,7 @@ FluContentPage {
             right: parent.right
             bottom: parent.bottom
         }
+        ScrollBar.vertical: FluScrollBar {}
     }
 
     Component {

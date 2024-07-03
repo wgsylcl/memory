@@ -5,7 +5,7 @@ Uploader::Uploader(QObject *parent)
 {
     QDir dir(uploaddir);
     if (!dir.exists())
-        dir.mkdir(uploaddir);
+        dir.mkpath(uploaddir);
     readtaskfile();
     QObject::connect(qApp, &QCoreApplication::aboutToQuit, this, &Uploader::savefile);
 }
@@ -215,7 +215,7 @@ Q_INVOKABLE QStringList Uploader::geturls(QString id)
 {
     QStringList urls;
     for (QString path : tasks[id].paths)
-        urls.append("image://uploadpreviewimageprovider/" + path);
+        urls.append("image://uploadpreviewimageprovider/upload/" + path);
     return urls;
 }
 
@@ -227,7 +227,7 @@ Q_INVOKABLE QUrl Uploader::tourl(QString str)
 Q_INVOKABLE void Uploader::packup()
 {
     savefile();
-    packer = new Packer(runtimedir + "/upload", memorybase::getsystemdownloadpath() + "/upload_" + memorybase::generaterandomqstring() + ".zip");
+    packer = new Packer(runtimedir + "/upload", memorybase::getsystemdownloadpath() + "/upload_" + memorybase::generaterandomqstring() + ".muf");
     QObject::connect(packer, &Packer::packupfinished, [this]()
                      {
         this->packing = false;

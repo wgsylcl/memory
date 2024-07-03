@@ -19,7 +19,9 @@ FluLauncher {
             "/changeprofile":"qrc:/qml/changeprofiledialog.qml",
             "/changebirthday":"qrc:/qml/changebirthdaywindow.qml",
             "/addactivitypicture":"qrc:/qml/addactivitypicturewindow.qml",
-            "/addteacherpetphrase":"qrc:/qml/addteacherpetphrasewindow.qml"
+            "/addteacherpetphrase":"qrc:/qml/addteacherpetphrasewindow.qml",
+            "/checkupload":"qrc:/qml/checkuploadwindow.qml",
+            "/newactivity":"qrc:/qml/newactivitywindow.qml"
         }
         FluRouter.navigate("/")
     }

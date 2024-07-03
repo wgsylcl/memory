@@ -130,39 +130,54 @@
     </message>
 </context>
 <context>
+    <name>checkuploadwindow</name>
+    <message>
+        <location filename="qml/checkuploadwindow.qml" line="11"/>
+        <source>审核</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="qml/checkuploadwindow.qml" line="193"/>
+        <source>sender:%1
+sendto:%2
+text:%3</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
     <name>datamanagepage</name>
     <message>
-        <location filename="qml/datamanagepage.qml" line="8"/>
+        <location filename="qml/datamanagepage.qml" line="9"/>
         <source>数据库同步</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="qml/datamanagepage.qml" line="14"/>
+        <location filename="qml/datamanagepage.qml" line="15"/>
         <source>图文数据库更新</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="qml/datamanagepage.qml" line="88"/>
+        <location filename="qml/datamanagepage.qml" line="89"/>
         <source>活动数据库更新</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="qml/datamanagepage.qml" line="143"/>
+        <location filename="qml/datamanagepage.qml" line="145"/>
         <source>更新本地数据库</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="qml/datamanagepage.qml" line="147"/>
+        <location filename="qml/datamanagepage.qml" line="149"/>
         <source>开始更新数据库%1!</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="qml/datamanagepage.qml" line="159"/>
+        <location filename="qml/datamanagepage.qml" line="161"/>
         <source>删除本地数据库</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="qml/datamanagepage.qml" line="162"/>
+        <location filename="qml/datamanagepage.qml" line="164"/>
         <source>已删除数据库%1!</source>
         <translation type="unfinished"></translation>
     </message>
@@ -238,39 +253,33 @@
 <context>
     <name>dataupdatepage</name>
     <message>
-        <location filename="qml/dataupdatepage.qml" line="9"/>
+        <location filename="qml/dataupdatepage.qml" line="10"/>
         <source>更改数据库</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="qml/dataupdatepage.qml" line="11"/>
-        <source>数据库配置</source>
-        <oldsource>加密数据生成</oldsource>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="qml/dataupdatepage.qml" line="15"/>
+        <location filename="qml/dataupdatepage.qml" line="28"/>
         <source>打开数据文件夹</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="qml/dataupdatepage.qml" line="21"/>
+        <location filename="qml/dataupdatepage.qml" line="34"/>
         <source>输入待加密的文件夹路径</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="qml/dataupdatepage.qml" line="24"/>
-        <location filename="qml/dataupdatepage.qml" line="42"/>
+        <location filename="qml/dataupdatepage.qml" line="37"/>
+        <location filename="qml/dataupdatepage.qml" line="56"/>
         <source>打开待加密的文件夹</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="qml/dataupdatepage.qml" line="30"/>
+        <location filename="qml/dataupdatepage.qml" line="43"/>
         <source>加密</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="qml/dataupdatepage.qml" line="33"/>
+        <location filename="qml/dataupdatepage.qml" line="46"/>
         <source>文件夹路径不正确！</source>
         <translation type="unfinished"></translation>
     </message>
@@ -392,6 +401,14 @@
     <message>
         <location filename="qml/main.qml" line="151"/>
         <source>您退出了验证</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
+    <name>newactivitywindow</name>
+    <message>
+        <location filename="qml/newactivitywindow.qml" line="10"/>
+        <source>迁移</source>
         <translation type="unfinished"></translation>
     </message>
 </context>

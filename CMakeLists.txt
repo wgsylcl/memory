@@ -84,6 +84,7 @@ set(PROJECT_SOURCES
     src/packer.h src/packer.cpp
     src/uploadpreviewimageprovider.h src/uploadpreviewimageprovider.cpp
     src/app_dump.h
+    src/dataupdatehelper.h src/dataupdatehelper.cpp
 )
 
 if(WIN32)

@@ -121,6 +121,7 @@ FluContentPage {
                         FluButton {
                             text: "撤销上传"
                             Layout.alignment: Qt.RightEdge
+                            enabled: !packing
                             onClicked: {
                                 taskmodel.remove(index)
                                 uploader.removetask(taskid)
@@ -198,6 +199,7 @@ FluContentPage {
             bottom: parent.bottom
             topMargin: 10
         }
+        ScrollBar.vertical: FluScrollBar {}
         model: taskmodel
         delegate: taskcard
         spacing: 10

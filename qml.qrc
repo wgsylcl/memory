@@ -28,5 +28,7 @@
         <file>qml/changebirthdaywindow.qml</file>
         <file>qml/addactivitypicturewindow.qml</file>
         <file>qml/addteacherpetphrasewindow.qml</file>
+        <file>qml/checkuploadwindow.qml</file>
+        <file>qml/newactivitywindow.qml</file>
     </qresource>
 </RCC>

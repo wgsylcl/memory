@@ -24,6 +24,8 @@ FluWindow {
         nameFilters: ["图片/视频文件 (*.mp4 *.mkv *.jpg *.jpeg *.png *.svg)"]
         fileMode: FileDialog.OpenFiles
         onAccepted: {
+            filepaths = []
+            openaddfilestextbox.text = ""
             for(var i=0;i<files.length;i++) {
                 var filepath = MainTool.topath(files[i])
                 filepaths.push(filepath)
@@ -64,6 +66,7 @@ FluWindow {
                 text: "浏览文件夹"
                 onClicked: openaddfilesdialog.open()
             }
+
             FluFrame {
                 Layout.preferredWidth: parent.parent.width
                 Layout.fillWidth: true

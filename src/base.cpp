@@ -81,11 +81,29 @@ QString memorybase::getsystemdownloadpath(void)
 
 void memorybase::copyfile(QString from, QString to)
 {
+    QFileInfo fileinfo(to);
+    QDir dir = fileinfo.absoluteDir();
+    if(!dir.exists()) dir.mkpath(dir.absolutePath());
     QFile infile(from), outfile(to);
     infile.open(QIODevice::ReadOnly);
     outfile.open(QIODevice::WriteOnly);
     outfile.write(infile.readAll());
     infile.close(), outfile.close();
+}
+
+void memorybase::removefile(QString path)
+{
+    QFile(path).remove();
+}
+
+QString memorybase::getfilename(QString path)
+{
+    return QFileInfo(path).fileName();
+}
+
+QString memorybase::getfilebasename(QString filename)
+{
+    return QFileInfo(filename).baseName();
 }
 
 QString memorybase::generaterandomqstring(int length)

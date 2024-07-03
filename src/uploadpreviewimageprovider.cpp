@@ -8,7 +8,7 @@ UploadPreviewImageProvider::UploadPreviewImageProvider()
 
 QImage UploadPreviewImageProvider::requestImage(const QString &id, QSize *size, const QSize &requestedSize)
 {
-    QUrl url = "file:" + runtimedir + "/upload/" + id;
+    QUrl url = "file:" + runtimedir + "/" + id;
     QImage image;
     if (memorybase::isvideo(url))
         loadvideo(url,image);
