@@ -9,7 +9,13 @@ void FilelistReader::startreadfilelist()
 {
     Downloader *downloader = new Downloader(database->generaterequesturl(reponame, "filelist.txt"), savepath);
     QObject::connect(downloader, &Downloader::downloadfinished, this, &FilelistReader::receivefilelist);
+    QObject::connect(downloader, &Downloader::downloadfailed, this, &FilelistReader::receivefail);
     downloadmanager->adddownloader(downloader);
+}
+
+void FilelistReader::receivefail(void)
+{
+    emit receivefilelistfailed();
 }
 
 void FilelistReader::receivefilelist(void)

@@ -10,11 +10,15 @@ class DataBaseInitializer : public QObject
     Q_OBJECT
 public:
     explicit DataBaseInitializer(QObject *parent = nullptr);
+
 signals:
+    void initializefinished();
+    void initializefailed();
 
 public slots:
     void initialize();
     void readremoteinfo();
+    void dealinitializefail();
 
 private:
     void downloadremoteinfo();

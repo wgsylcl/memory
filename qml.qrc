@@ -30,5 +30,6 @@
         <file>qml/addteacherpetphrasewindow.qml</file>
         <file>qml/checkuploadwindow.qml</file>
         <file>qml/newactivitywindow.qml</file>
+        <file>res/erroregg.png</file>
     </qresource>
 </RCC>

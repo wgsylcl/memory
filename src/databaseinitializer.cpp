@@ -17,24 +17,21 @@ void DataBaseInitializer::readremoteinfo()
     readlocalversion();
     parsedatabaseinfo();
     infofile.remove();
+    emit initializefinished();
+}
+
+void DataBaseInitializer::dealinitializefail()
+{
+    emit initializefailed();
 }
 
 void DataBaseInitializer::downloadremoteinfo()
 {
-// #define MEMORY_NETWORK_TEST
-#ifndef MEMORY_NETWORK_TEST
     QUrl downloadurl(INFOURL);
     Downloader *infodownloader = new Downloader(downloadurl, runtimedir + "/cache/info.json");
     QObject::connect(infodownloader, &Downloader::downloadfinished, this, &DataBaseInitializer::readremoteinfo);
+    QObject::connect(infodownloader, &Downloader::downloadfailed, this, &DataBaseInitializer::dealinitializefail);
     downloadmanager->adddownloader(infodownloader);
-#else
-    QUrl downloadurl("https://gitee.com/api/v5/repos/wgsylcl/memorydata007/raw/飞天梦.mp4.data.2?access_token=aad91f98d294fb7ce387995aa7c5b9fb");
-    for (int i = 0; i < 100; i++)
-    {
-        Downloader *infodownloader = new Downloader(downloadurl, runtimedir + QString("/cache/飞天梦%1.mp4.data.2").arg(i));
-        downloadmanager->adddownloader(infodownloader);
-    }
-#endif
 }
 
 void DataBaseInitializer::parseprofile()

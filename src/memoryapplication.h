@@ -33,6 +33,8 @@ class MemoryApplication : public QGuiApplication
 public:
     explicit MemoryApplication(int &argc,char *argv[]);
     ~MemoryApplication();
+public slots:
+    void startinitialize();
 signals:
 
 private:
@@ -56,7 +58,6 @@ private:
     void setuptranslator();
     void registermodules();
     void setupqmlengine();
-    void startinitalize();
     void setupfiles();
     void releseresources();
 };

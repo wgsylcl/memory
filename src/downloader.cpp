@@ -25,7 +25,6 @@ void Downloader::startdownload()
     reply = manager -> get(QNetworkRequest(downloadurl));
     QObject::connect(reply,&QNetworkReply::readyRead,this,&Downloader::receivedata);
     QObject::connect(reply,&QNetworkReply::finished,this,&Downloader::downloadfinish);
-    // qDebug() << "start downloading " << downloadurl;
 }
 
 void Downloader::receivedata()
@@ -35,11 +34,18 @@ void Downloader::receivedata()
 
 void Downloader::downloadfinish()
 {
-    savefile.commit();
+    if(reply->error() == QNetworkReply::NoError)
+    {
+        savefile.commit();
+        emit downloadfinished(this);
+    }
+    else
+    {
+        qDebug() << "Network error occurred:" << reply->errorString();
+        emit downloadfailed(this);
+    }
     reply -> deleteLater();
     reply = nullptr;
     manager -> deleteLater();
     manager = nullptr;
-    // qDebug() << "download " << downloadurl << " successfully";
-    emit downloadfinished(this);
 }

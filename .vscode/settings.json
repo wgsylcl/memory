@@ -1,8 +1,0 @@
-{
-    "files.associations": {
-        "*.qs": "javascript",
-        "*.ts": "xml",
-        "*.tcc": "cpp",
-        "string": "cpp"
-    }
-}

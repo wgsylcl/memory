@@ -21,8 +21,14 @@ public:
     Q_INVOKABLE bool is_empty(QString);
     Q_INVOKABLE void removefile(QString);
     Q_INVOKABLE void creatdir(QString);
+    Q_INVOKABLE void restartinitialize(void);
+public slots:
+    void dealinitializefinish();
+    void dealinitializefail();
 signals:
-
+    void initializefinished();
+    void initializefailed();
+    void requestrestartinitialize();
 private:
 };
 

@@ -12,9 +12,11 @@ public:
 
 public slots:
     void receivefilelist(void);
+    void receivefail(void);
 
 signals:
     void receivefilelistfinished(QStringList);
+    void receivefilelistfailed();
 
 private:
     QString reponame,savepath;

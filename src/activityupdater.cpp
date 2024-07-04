@@ -10,8 +10,11 @@ ActivityUpdater::ActivityUpdater(QObject *parent)
 
 void ActivityUpdater::startupdate(QString activityname)
 {
-    QMutexLocker locker(&lock);
     updatinglist.insert(activityname);
+    int idx = ++nidx[activityname];
+    repocount[activityname][idx] = 0;
+    taskcount[activityname][idx] = 0;
+    updatefail[activityname][idx] = false;
     QDir activitydir(runtimedir + "/data/activities/" + activityname);
     if (!activitydir.exists())
         activitydir.mkpath(runtimedir + "/data/activities/" + activityname);
@@ -19,15 +22,20 @@ void ActivityUpdater::startupdate(QString activityname)
     for (QString reponame : reponames)
     {
         FilelistReader *filelistreader = new FilelistReader(reponame);
-        QObject::connect(filelistreader, FilelistReader::receivefilelistfinished, this, [activityname, reponame, this](QStringList filelist)
-                         { this->updaterepo(activityname, reponame, filelist); });
-        repocount[activityname]++;
+        QObject::connect(filelistreader, FilelistReader::receivefilelistfinished, [activityname, reponame, idx, this](QStringList filelist)
+                         { this->updaterepo(activityname, reponame, filelist, idx); });
+        QObject::connect(filelistreader, FilelistReader::receivefilelistfailed, [activityname, reponame, idx, this]()
+                         { this->dealdownloadfailed(activityname, idx); });
+        repocount[activityname][idx]++;
         filelistreader->startreadfilelist();
     }
 }
 
-void ActivityUpdater::updaterepo(const QString activityname, const QString reponame, const QStringList filelist)
+void ActivityUpdater::updaterepo(const QString activityname, const QString reponame, const QStringList filelist, const int idx)
 {
+    if(updatefail[activityname][idx]) return;
+    if (idx < nidx[activityname])
+        return;
     const QString activitypath = runtimedir + "/data/activities/" + activityname;
     const QStringList localfilelist = memorybase::getfilenamelist(activitypath);
     for (QString filename : filelist)
@@ -39,38 +47,50 @@ void ActivityUpdater::updaterepo(const QString activityname, const QString repon
             if (!localfilelist.contains(filename))
             {
                 BigFileDownloader *bigfiledownloader = new BigFileDownloader(reponame, filename, activitypath + "/" + filename);
-                QObject::connect(bigfiledownloader, &BigFileDownloader::downloadfinished, this, [activityname, this]()
-                                 { this->dealdownloadfinished(activityname); });
-                taskcount[activityname]++;
+                QObject::connect(bigfiledownloader, &BigFileDownloader::downloadfinished, [activityname, idx, this]()
+                                 { this->dealdownloadfinished(activityname,idx); });
+                QObject::connect(bigfiledownloader, &BigFileDownloader::downloadfailed, [activityname, idx, this]()
+                                 { this->dealdownloadfailed(activityname,idx); });
+                taskcount[activityname][idx]++;
                 bigfiledownloader->startdownload();
             }
         }
         else if (!localfilelist.contains(filename))
         {
             Downloader *downloader = new Downloader(database->generaterequesturl(reponame, filename), activitypath + "/" + filename);
-            QObject::connect(downloader, &Downloader::downloadfinished, this, [activityname, this]()
-                             { this->dealdownloadfinished(activityname); });
-            taskcount[activityname]++;
+            QObject::connect(downloader, &Downloader::downloadfinished, [activityname, idx, this]()
+                             { this->dealdownloadfinished(activityname,idx); });
+            QObject::connect(downloader, &Downloader::downloadfailed, [activityname, idx, this]()
+                             { this->dealdownloadfailed(activityname,idx); });
+            taskcount[activityname][idx]++;
             downloadmanager->adddownloader(downloader);
         }
     }
-    if (--repocount[activityname])
+    if (--repocount[activityname][idx])
         return;
-    if (taskcount[activityname])
+    if (taskcount[activityname][idx])
         return;
     database->syncactivityversion(activityname);
     updatinglist.remove(activityname);
     emit updatefinished(activityname);
 }
 
-void ActivityUpdater::dealdownloadfinished(QString activityname)
+void ActivityUpdater::dealdownloadfinished(QString activityname,int idx)
 {
-    QMutexLocker locker(&lock);
-    if (--taskcount[activityname])
-        return;
+    if(updatefail[activityname][idx]) return;
+    if(--taskcount[activityname][idx]) return;
+    if(idx < nidx[activityname]) return;
     database->syncactivityversion(activityname);
     updatinglist.remove(activityname);
     emit updatefinished(activityname);
+}
+
+void ActivityUpdater::dealdownloadfailed(QString activityname,int idx)
+{
+    if(idx < nidx[activityname]) return;
+    updatefail[activityname][idx] = true;
+    updatinglist.remove(activityname);
+    emit updatefailed(activityname);
 }
 
 ActivityUpdater *ActivityUpdater::instance()

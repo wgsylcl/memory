@@ -17,6 +17,7 @@ public:
 
 signals:
     void downloadfinished(Downloader* from);
+    void downloadfailed(Downloader* from);
 
 public slots:
     void receivedata();

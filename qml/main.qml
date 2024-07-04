@@ -1,5 +1,6 @@
 import QtQuick 2.15
 import QtQuick.Window 2.15
+import QtQuick.Layouts
 import FluentUI 1.0
 
 FluWindow {
@@ -34,6 +35,9 @@ FluWindow {
         function onUpdatefinished() {
             showSuccess(qsTr("图文数据库更新完成!"))
         }
+        function onUpdatefailed() {
+            showError(qsTr("网络异常，图文数据库更新失败!"))
+        }
     }
 
     Connections {
@@ -41,89 +45,144 @@ FluWindow {
         function onUpdatefinished(activityname) {
             showSuccess(qsTr("数据库%1更新成功!").arg('"' + activityname + '"'))
         }
+        function onUpdatefailed(activityname) {
+            showError(qsTr("网络异常，数据库%1更新失败!").arg('"' + activityname + '"'))
+        }
     }
 
-    FluNavigationView {
-        z: 1
+    FluStatusLayout {
+        id: mainstatuslayout
         anchors.fill: parent
-        pageMode: FluNavigationViewType.NoStack
-        displayMode: FluNavigationViewType.Auto
-        id: navigationview
-        items: FluObject {
-            id: itemobj
-            FluPaneItem {
-                icon: FluentIcons.Home
-                url: "qrc:/qml/homePage.qml"
-                title: qsTr("主界面")
-                onTap: navigationview.push(url)
-            }
-            FluPaneItem {
-                icon: FluentIcons.GuestUser
-                url: "qrc:/qml/teacherPage.qml"
-                title: qsTr("我的老师们")
-                onTap: navigationview.push(url)
-            }
-            FluPaneItem {
-                icon: FluentIcons.PhoneBook
-                url: "qrc:/qml/studentPage.qml"
-                title: qsTr("我和我的同学")
-                onTap: navigationview.push(url)
-            }
-            FluPaneItem{
-                title: qsTr("回忆")
-                icon: FluentIcons.Emoji
-                url: "qrc:/qml/activitypage.qml"
-                onTap: navigationview.push(url)
-            }
-            FluPaneItem{
-                title: qsTr("我们的班史")
-                icon: FluentIcons.History
-                url: "qrc:/qml/timelinePage.qml"
-                onTap: navigationview.push(url)
-            }
-            FluPaneItemExpander {
-                icon: FluentIcons.FolderOpen
-                title: qsTr("数据库管理")
-                FluPaneItem {
-                    icon: FluentIcons.SyncFolder
-                    title: qsTr("同步数据库")
-                    url: "qrc:/qml/datamanagepage.qml"
-                    onTap: navigationview.push(url)
-                }
-                FluPaneItem {
-                    icon: FluentIcons.OpenFile
-                    title: qsTr("上传图文")
-                    url: "qrc:/qml/dataprovidepage.qml"
-                    onTap: navigationview.push(url)
-                }
-                FluPaneItem {
-                    icon: isdeveloper ? FluentIcons.Unlock : FluentIcons.Lock
-                    title: qsTr("更改数据库")
-                    url: "qrc:/qml/dataupdatepage.qml"
-                    onTap: {
-                        if(!isdeveloper) passworddialog.open()
-                        if(isdeveloper) navigationview.push(url)
+        statusMode: FluStatusLayoutType.Loading
+        loadingText: "连接到数据库……"
+        errorItem: com_loaderror
+
+        Component {
+            id:com_loaderror
+            FluFrame {
+                padding: 0
+                border.width: 0
+                radius: 0
+                color: Qt.rgba(0,0,0,0)
+                ColumnLayout{
+                    anchors.centerIn: parent
+                    spacing: 20
+
+                    FluImage {
+                        visible: true
+                        source: "qrc:/res/erroregg.png"
+                        Layout.fillHeight: true
+                        fillMode: Image.PreserveAspectFit
+                        Layout.preferredHeight: 120
+                    }
+
+                    FluText {
+                        text: "啊噢……"
+                        font: FluTextStyle.BodyStrong
+                        Layout.alignment: Qt.AlignHCenter
+                    }
+
+                    FluText {
+                        text: "网络异常，无法连接到服务器！"
+                        font: FluTextStyle.BodyStrong
+                        Layout.alignment: Qt.AlignHCenter
+                    }
+
+                    FluFilledButton {
+                        Layout.alignment: Qt.AlignHCenter
+                        text: "试试重新连接"
+                        onClicked: {
+                            MainTool.restartinitialize()
+                            mainstatuslayout.showLoadingView()
+                        }
                     }
                 }
             }
         }
-        footerItems: FluObject {
-            FluPaneItem {
-                icon: FluentIcons.Settings
-                url: "qrc:/qml/settingsPage.qml"
-                title: qsTr("设置和关于")
-                onTap: navigationview.push(url)
-            }
-            // FluPaneItem {
-            //     icon: FluentIcons.TaskView
-            //     url: "qrc:/qml/taskpage.qml"
-            //     title: qsTr("任务面板")
-            //     onTap: navigationview.push(url)
-            // }
-        }
 
-        Component.onCompleted: {
-            setCurrentIndex(0)
+        FluNavigationView {
+            z: 1
+            anchors.fill: parent
+            pageMode: FluNavigationViewType.NoStack
+            displayMode: FluNavigationViewType.Auto
+            id: navigationview
+            items: FluObject {
+                id: itemobj
+                FluPaneItem {
+                    icon: FluentIcons.Home
+                    url: "qrc:/qml/homePage.qml"
+                    title: qsTr("主界面")
+                    onTap: navigationview.push(url)
+                }
+                FluPaneItem {
+                    icon: FluentIcons.GuestUser
+                    url: "qrc:/qml/teacherPage.qml"
+                    title: qsTr("我的老师们")
+                    onTap: navigationview.push(url)
+                }
+                FluPaneItem {
+                    icon: FluentIcons.PhoneBook
+                    url: "qrc:/qml/studentPage.qml"
+                    title: qsTr("我和我的同学")
+                    onTap: navigationview.push(url)
+                }
+                FluPaneItem{
+                    title: qsTr("回忆")
+                    icon: FluentIcons.Emoji
+                    url: "qrc:/qml/activitypage.qml"
+                    onTap: navigationview.push(url)
+                }
+                FluPaneItem{
+                    title: qsTr("我们的班史")
+                    icon: FluentIcons.History
+                    url: "qrc:/qml/timelinePage.qml"
+                    onTap: navigationview.push(url)
+                }
+                FluPaneItemExpander {
+                    icon: FluentIcons.FolderOpen
+                    title: qsTr("数据库管理")
+                    FluPaneItem {
+                        icon: FluentIcons.SyncFolder
+                        title: qsTr("同步数据库")
+                        url: "qrc:/qml/datamanagepage.qml"
+                        onTap: navigationview.push(url)
+                    }
+                    FluPaneItem {
+                        icon: FluentIcons.OpenFile
+                        title: qsTr("上传图文")
+                        url: "qrc:/qml/dataprovidepage.qml"
+                        onTap: navigationview.push(url)
+                    }
+                    FluPaneItem {
+                        icon: isdeveloper ? FluentIcons.Unlock : FluentIcons.Lock
+                        title: qsTr("更改数据库")
+                        url: "qrc:/qml/dataupdatepage.qml"
+                        onTap: {
+                            if(!isdeveloper) passworddialog.open()
+                            if(isdeveloper) navigationview.push(url)
+                        }
+                    }
+                }
+            }
+            footerItems: FluObject {
+                FluPaneItem {
+                    icon: FluentIcons.Settings
+                    url: "qrc:/qml/settingsPage.qml"
+                    title: qsTr("设置和关于")
+                    onTap: navigationview.push(url)
+                }
+                FluPaneItem {
+                    visible: false
+                    icon: FluentIcons.TaskView
+                    url: "qrc:/qml/taskpage.qml"
+                    title: qsTr("任务面板")
+                    onTap: navigationview.push(url)
+                }
+            }
+
+            Component.onCompleted: {
+                setCurrentIndex(0)
+            }
         }
     }
 
@@ -155,6 +214,19 @@ FluWindow {
         target: uploader
         function onPackupfinished() {
             showSuccess("打包完成!",0,"已保存配置文件至系统的下载文件夹，将此文件发送给lcl即可。")
+        }
+    }
+
+    Connections {
+        target: MainTool
+        function onInitializefinished() {
+            mainstatuslayout.showSuccessView()
+        }
+    }
+    Connections {
+        target: MainTool
+        function onInitializefailed() {
+            mainstatuslayout.showErrorView()
         }
     }
 

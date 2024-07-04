@@ -35,6 +35,10 @@ FluContentPage {
                     {
                         localprofilepictrueviewtext.text = "本地数据库版本：" + datamanagehelper.getlocalprofilepictureversion()
                     }
+                    function onUpdatefailed()
+                    {
+                        localprofilepictrueviewtext.text = "本地数据库版本：" + datamanagehelper.getlocalprofilepictureversion()
+                    }
                 }
             }
             FluText {
@@ -58,6 +62,12 @@ FluContentPage {
                     function onUpdatefinished()
                     {
                         syncprofilepictruebotton.loading = false
+                        syncprofilepictruebotton.enabled = (!profilepictureupdater.is_updating()) && datamanagehelper.getlocalprofilepictureversion() < datamanagehelper.getremoteprofilepictureversion()
+                    }
+                    function onUpdatefailed()
+                    {
+                        syncprofilepictruebotton.loading = false
+                        syncprofilepictruebotton.enabled = (!profilepictureupdater.is_updating()) && datamanagehelper.getlocalprofilepictureversion() < datamanagehelper.getremoteprofilepictureversion()
                     }
                 }
             }
@@ -176,6 +186,14 @@ FluContentPage {
                 Connections {
                     target: activityupdater
                     function onUpdatefinished() {
+                        activitylocalversiontext.text = datamanagehelper.getlocalactivityversionbyname(name) === "0.0.0" ?
+                                    "还未下载这个数据库到本地噢" :
+                                    "本地数据库版本：" + datamanagehelper.getlocalactivityversionbyname(name)
+                        activityupdatebotton.enabled = (!activityupdater.is_updating(name)) && datamanagehelper.getlocalactivityversionbyname(name) < datamanagehelper.getremoteactivityversionbyname(name)
+                        activityupdatebotton.loading = activityupdater.is_updating(name)
+                        activitydeletebotton.enabled = (!activityupdater.is_updating(name)) && datamanagehelper.getlocalactivityversionbyname(name) !== "0.0.0"
+                    }
+                    function onUpdatefailed() {
                         activitylocalversiontext.text = datamanagehelper.getlocalactivityversionbyname(name) === "0.0.0" ?
                                     "还未下载这个数据库到本地噢" :
                                     "本地数据库版本：" + datamanagehelper.getlocalactivityversionbyname(name)

@@ -12,17 +12,23 @@ void ProfilePictureUpdater::run()
 {
     QMutexLocker locker(&lock);
     updating = true;
+    updatefail = false;
+    taskcount = 0;
     FilelistReader *profilelistreader = new FilelistReader(database->getprofilereponame());
     QObject::connect(profilelistreader, &FilelistReader::receivefilelistfinished, this, &ProfilePictureUpdater::updateprofile);
     QObject::connect(profilelistreader, &FilelistReader::receivefilelistfinished, profilelistreader, &QObject::deleteLater);
+    QObject::connect(profilelistreader, &FilelistReader::receivefilelistfailed, this, &ProfilePictureUpdater::dealdownloadfailed);
+    QObject::connect(profilelistreader, &FilelistReader::receivefilelistfailed, profilelistreader, &QObject::deleteLater);
     profilelistreader->startreadfilelist();
     QStringList picturereponames = database->getpicturereponames();
     for (QString picturereponame : picturereponames)
     {
         FilelistReader *picturelistreader = new FilelistReader(picturereponame);
-        QObject::connect(picturelistreader, &FilelistReader::receivefilelistfinished, this, [picturereponame, this](QStringList filelist)
+        QObject::connect(picturelistreader, &FilelistReader::receivefilelistfinished, [picturereponame, this](QStringList filelist)
                          { this->updatepicture(picturereponame, filelist); });
         QObject::connect(picturelistreader, &FilelistReader::receivefilelistfinished, picturelistreader, &QObject::deleteLater);
+        QObject::connect(picturelistreader, &FilelistReader::receivefilelistfailed, this, &ProfilePictureUpdater::dealdownloadfailed);
+        QObject::connect(picturelistreader, &FilelistReader::receivefilelistfailed, picturelistreader, &QObject::deleteLater);
         picturelistreader->startreadfilelist();
     }
 }
@@ -38,6 +44,7 @@ void ProfilePictureUpdater::updateprofile(QStringList filelist)
     {
         Downloader *downloader = new Downloader(database->generaterequesturl(database->getprofilereponame(), filename), runtimedir + "/data/students/" + filename);
         QObject::connect(downloader, &Downloader::downloadfinished, this, &ProfilePictureUpdater::dealdownloadfinished);
+        QObject::connect(downloader, &Downloader::downloadfailed, this, &ProfilePictureUpdater::dealdownloadfailed);
         downloadmanager->adddownloader(downloader);
         taskcount++;
     }
@@ -57,6 +64,7 @@ void ProfilePictureUpdater::updatepicture(QString reponame, const QStringList fi
                 BigFileDownloader *bigfiledownloader = new BigFileDownloader(reponame, filename, runtimedir + "/data/pictures/" + filename);
                 QObject::connect(bigfiledownloader, &BigFileDownloader::downloadfinished, bigfiledownloader, &QObject::deleteLater);
                 QObject::connect(bigfiledownloader, &BigFileDownloader::downloadfinished, this, &ProfilePictureUpdater::dealdownloadfinished);
+                QObject::connect(bigfiledownloader,&BigFileDownloader::downloadfailed,this,&ProfilePictureUpdater::dealdownloadfailed);
                 bigfiledownloader->startdownload();
                 taskcount++;
             }
@@ -65,6 +73,7 @@ void ProfilePictureUpdater::updatepicture(QString reponame, const QStringList fi
         {
             Downloader *downloader = new Downloader(database->generaterequesturl(reponame, filename), runtimedir + "/data/pictures/" + filename);
             QObject::connect(downloader, &Downloader::downloadfinished, this, &ProfilePictureUpdater::dealdownloadfinished);
+            QObject::connect(downloader, &Downloader::downloadfailed, this, &ProfilePictureUpdater::dealdownloadfailed);
             downloadmanager->adddownloader(downloader);
             taskcount++;
         }
@@ -79,6 +88,16 @@ void ProfilePictureUpdater::dealdownloadfinished()
     updating = false;
     database->synclocalprofilepictureversion();
     emit updatefinished();
+}
+
+void ProfilePictureUpdater::dealdownloadfailed()
+{
+    QMutexLocker locker(&lock);
+    if(updatefail)
+        return;
+    updating = false;
+    updatefail = true;
+    emit updatefailed();
 }
 
 Q_INVOKABLE bool ProfilePictureUpdater::is_updating()

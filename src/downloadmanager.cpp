@@ -23,6 +23,7 @@ void DownloadManager::adddownloader(Downloader *newdownloader)
 {
     QMutexLocker locker(&lock);
     QObject::connect(newdownloader, &Downloader::downloadfinished, this, &DownloadManager::downloadfinish);
+    QObject::connect(newdownloader, &Downloader::downloadfailed, this, &DownloadManager::downloadfinish);
     if (runningdownloaders.size() < maxrunningdownloads)
     {
         runningdownloaders.append(newdownloader);

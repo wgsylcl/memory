@@ -8,23 +8,39 @@ void logmessagehander(QtMsgType type, const QMessageLogContext &context, const Q
 
     const char *function = context.function ? context.function : "";
 
-    QString time = QDateTime::currentDateTime().toString("yyyy-MM-dd hh-mm-ss:");
-    QString OutMsg = time + QString(" %1 ").arg(function) + msg + "\n";
+    QString time = QDateTime::currentDateTime().toString("yyyy-MM-dd hh-mm-ss");
+    QString OutMsg = time + QString(": %1 :").arg(function) + msg + "\n";
 
-    // 输出信息至文件中
-    FILE *f = fopen("log.txt", "a");
-    fputs(OutMsg.toStdString().c_str(), f);
-    fclose(f);
-    f = NULL;
+    static QFile *logfile = nullptr;
+    if(!logfile)
+    {
+        QDir logdir(runtimedir + "/logs");
+        if (!logdir.exists())
+            logdir.mkpath(runtimedir + "/logs");
+        logfile = new QFile(runtimedir + "/logs/" + QDateTime::currentDateTime().toString("yyyyMMdd_hhmmss") + "v" + VERSION + ".log");
+        logfile -> open(QIODevice::WriteOnly | QIODevice::Text);
+        QObject::connect(qApp,&QCoreApplication::aboutToQuit,[&](){
+            if(logfile)
+            {
+                logfile -> close();
+                logfile -> deleteLater();
+                logfile = nullptr;
+            }
+        });
+    }
+
+    QTextStream logout(logfile);
+    logout << OutMsg;
+
 }
 
 int main(int argc, char *argv[])
 {
     MemoryApplication app(argc, argv);
 
-    FILE *f = fopen("log.txt", "w");
-    fclose(f);
     qInstallMessageHandler(logmessagehander);
+    qDebug() << "Hello memory!" ;
+    qDebug() << "Run at " << QDateTime::currentDateTime().toString("yyyy-MM-dd hh-mm-ss") << "!";
 
 #ifdef Q_OS_WIN
     SetUnhandledExceptionFilter(MyUnhandledExceptionFilter);

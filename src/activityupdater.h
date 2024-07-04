@@ -11,15 +11,18 @@ class ActivityUpdater : public QObject
 public:
     explicit ActivityUpdater(QObject *parent = nullptr);
     void startupdate(QString activityname);
-    void updaterepo(QString activityname,QString reponame,QStringList filelist);
-    void dealdownloadfinished(QString activityname);
+    void updaterepo(QString activityname,QString reponame,QStringList filelist,int idx);
+    void dealdownloadfinished(QString activityname,int idx);
+    void dealdownloadfailed(QString activityname,int idx);
     static ActivityUpdater* instance();
     Q_INVOKABLE bool is_updating(QString activityname);
 signals:
     void updatefinished(QString activityname);
+    void updatefailed(QString activityname);
 private:
     static ActivityUpdater* _instacnce;
-    QMap<QString,int> taskcount,repocount;
+    QMap<QString,QMap<int,int>> taskcount,repocount,updatefail;
+    QMap<QString,int> nidx;
     QMutex lock;
     QSet<QString> updatinglist;
 };

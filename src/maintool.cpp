@@ -69,3 +69,18 @@ Q_INVOKABLE void MainTool::creatdir(QString dir)
     if (!QDir(dir).exists())
         QDir().mkpath(dir);
 }
+
+Q_INVOKABLE void MainTool::restartinitialize(void)
+{
+    emit requestrestartinitialize();
+}
+
+void MainTool::dealinitializefail()
+{
+    emit initializefailed();
+}
+
+void MainTool::dealinitializefinish()
+{
+    emit initializefinished();
+}
