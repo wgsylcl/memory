@@ -10,22 +10,23 @@ class ProfilePictureUpdater : public QObject
     Q_OBJECT
 public:
     explicit ProfilePictureUpdater(QObject *parent = nullptr);
-    void run();
+    Q_INVOKABLE void run();
     static ProfilePictureUpdater* instance(void);
 public slots:
-    void updateprofile(QStringList filelist);
-    void updatepicture(QString reponame,QStringList filelist);
-    void dealdownloadfinished();
-    void dealdownloadfailed();
+    void updateprofile(QStringList filelist,int idx);
+    void updatepicture(QString reponame,QStringList filelist,int idx);
+    void dealdownloadfinished(int idx);
+    void dealdownloadfailed(int idx);
     Q_INVOKABLE bool is_updating();
 signals:
     void updatefinished();
     void updatefailed();
 private:
     QMutex lock;
-    int taskcount;
+    QMap<int,int> taskcount;
+    int nidx;
     bool updating;
-    bool updatefail;
+    QMap<int,bool> updatefail;
     static ProfilePictureUpdater *_instance;
 };
 
