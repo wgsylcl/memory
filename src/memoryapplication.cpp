@@ -117,6 +117,11 @@ void MemoryApplication::startinitialize()
 
 void MemoryApplication::setupfiles()
 {
+    const QString dumpDirPath = runtimedir + "/dmp";
+    const QDir dumpDir(dumpDirPath);
+    if (!dumpDir.exists()) {
+        dumpDir.mkpath(dumpDirPath);
+    }
     QDir cachedir(runtimedir + "/cache");
     if (!cachedir.exists())
         cachedir.mkpath(runtimedir + "/cache");

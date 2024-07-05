@@ -9,7 +9,7 @@ void logmessagehander(QtMsgType type, const QMessageLogContext &context, const Q
     const char *function = context.function ? context.function : "";
 
     QString time = QDateTime::currentDateTime().toString("yyyy-MM-dd hh-mm-ss");
-    QString OutMsg = time + QString(": %1 :").arg(function) + msg + "\n";
+    QString OutMsg = time + QString(" %1 :").arg(function) + msg + "\n";
 
     static QFile *logfile = nullptr;
     if(!logfile)

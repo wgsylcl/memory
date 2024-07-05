@@ -163,7 +163,6 @@ if(QT_VERSION_MAJOR EQUAL 6)
     qt_finalize_executable(${PROJECT_NAME})
 endif()
 
-if (CMAKE_BUILD_TYPE MATCHES "Release")
     if (APPLE)
         find_program(QT_DEPLOY_QT NAMES macdeployqt)
         add_custom_target(Script-DeployRelease
@@ -188,7 +187,6 @@ if (CMAKE_BUILD_TYPE MATCHES "Release")
             WORKING_DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR}
         )
     endif()
-else()
     if (APPLE)
         find_program(QT_DEPLOY_QT NAMES macdeployqt)
         add_custom_target(Script-DeployDebug
@@ -207,7 +205,6 @@ else()
             WORKING_DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR}
         )
     endif()
-endif()
 
 add_custom_target(RELOAD_DATABASE
     COMMAND ${CMAKE_COMMAND} -E remove_directory ${APPLICATION_DIR_PATH}/data
