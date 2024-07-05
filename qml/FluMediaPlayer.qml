@@ -341,7 +341,7 @@ FluContentPage {
     }
     function start() {
         if(!player.playing){
-            player.start()
+            player.play()
         }
     }
     function pause() {

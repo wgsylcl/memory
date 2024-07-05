@@ -174,7 +174,7 @@ FluContentPage {
             Action {
                 shortcut: "space"
                 onTriggered: {
-                    if(player.isplaying())
+                    if(player.isplaying)
                         player.pause()
                     else
                         player.start()
