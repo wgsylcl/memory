@@ -11,6 +11,7 @@ void DataBaseInitializer::readremoteinfo()
     infofile.open(QIODevice::ReadOnly);
     database->remoteroot = QJsonDocument::fromJson(infofile.readAll()).object();
     infofile.close();
+    database->latestapplicationversion = database->remoteroot.value("appversion").toString();
     parseprofile();
     parsepictures();
     parseactivities();

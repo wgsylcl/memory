@@ -126,6 +126,16 @@ Q_INVOKABLE void MainTool::cleanlog()
         QFile(runtimedir + "/dmp/" + dump).remove();
 }
 
+Q_INVOKABLE QString MainTool::getlatestapplicationversion()
+{
+    return database->getlatestapplicationversion();
+}
+
+Q_INVOKABLE QString MainTool::getlocalapplicationversion()
+{
+    return VERSION;
+}
+
 void MainTool::dealinitializefail()
 {
     emit initializefailed();

@@ -50,7 +50,7 @@ list(APPEND QRC_RESOURCES qml.qrc)
 set_property(SOURCE qml.qrc PROPERTY SKIP_AUTORCC ON)
 
 add_definitions(-DPASSWORD="$ENV{PASSWORD}")
-add_definitions(-DVERSION="1.0.1")
+add_definitions(-DVERSION="1.0.0")
 add_definitions(-DINFOURL="$ENV{memorydata_info_url}")
 
 set(PROJECT_SOURCES

@@ -226,6 +226,9 @@ FluWindow {
         target: MainTool
         function onInitializefinished() {
             mainstatuslayout.showSuccessView()
+            if(MainTool.getlatestapplicationversion() > MainTool.getlocalapplicationversion()) {
+                showInfo("有新版本可用噢，请在\"设置和关于\"中查看！",0)
+            }
         }
     }
     Connections {

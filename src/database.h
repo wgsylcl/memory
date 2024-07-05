@@ -25,10 +25,11 @@ public:
     void syncactivityversion(QString activityname);
     void removelocalactivityversionbyname(QString name);
     QUrl generaterequesturl(QString reponame, QString filepath);
+    QString getlatestapplicationversion();
     QString logfilename;
 signals:
 
-protected:
+private:
     memorybase::Activities activities;
     QString localpictureversion;
     QString remotepictureversion;
@@ -36,11 +37,11 @@ protected:
     QString localprofileversion;
     QString remoteprofileversion;
     QString profilereponame;
+    QString latestapplicationversion;
     QMap<QString,QString> localactivityversions;
     QJsonObject jsonroot;
     QJsonObject remoteroot;
     QMap<QString,QString> usernames,usertokens;
-private:
     static DataBase* _instance;
     void saveinfo();
 };

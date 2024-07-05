@@ -30,6 +30,8 @@ public:
     Q_INVOKABLE void testcrash(void);
     Q_INVOKABLE void restartapplication();
     Q_INVOKABLE void cleanlog();
+    Q_INVOKABLE QString getlatestapplicationversion();
+    Q_INVOKABLE QString getlocalapplicationversion();
 public slots:
     void dealinitializefinish();
     void dealinitializefail();
