@@ -1,5 +1,5 @@
 import QtQuick 2.15
-import QtQuick.Controls 2.15
+import QtQuick.Controls
 import QtQuick.Layouts
 import FluentUI 1.0
 
@@ -95,7 +95,7 @@ FluContentPage {
 
         pushEnter: Transition {
             // 定义淡入效果
-            NumberAnimation { property: "opacity"; from: 0.0; to: 1.0; duration: 100 }
+            NumberAnimation { property: "opacity"; from: 0.0; to: 1.0; duration: 50 }
         }
 
         pushExit: Transition {
@@ -104,19 +104,30 @@ FluContentPage {
 
         popEnter: Transition {
             // 定义淡入效果
-            NumberAnimation { property: "opacity"; from: 0.0; to: 1.0; duration: 100 }
+            NumberAnimation { property: "opacity"; from: 0.0; to: 1.0; duration: 50 }
         }
 
         popExit: Transition {
 
         }
     }
+
+    Action {
+        shortcut: "Down"
+        onTriggered: pushmedia()
+    }
+
+    Action {
+        shortcut: "Up"
+        onTriggered: popmedia()
+    }
+
     Component {
         id: imageview
         MouseArea {
             anchors.fill: parent
             propagateComposedEvents: true
-            onWheel: function(wheel){
+            onWheel: (wheel) => {
                 if(stack.busy) return;
                 if(wheel.angleDelta.y < 0) {
                     pushmedia()
@@ -133,22 +144,9 @@ FluContentPage {
                 fillMode: Image.PreserveAspectFit
                 Component.onCompleted: {
                     source = ActivityReader.getMediaPath((index-1)%mediasize)
-                    console.log("construct image!")
                 }
             }
             focus: true
-        }
-    }
-    Keys.onPressed: function(event) {
-        console.log("press key!")
-        if(stack.busy) return;
-        switch(event.key) {
-        case Qt.Key_Right :
-            pushmedia()
-            break
-        case Qt.Key_Left :
-            popmedia()
-            break
         }
     }
     Component {
@@ -175,9 +173,16 @@ FluContentPage {
                     vediosource = ActivityReader.getMediaPath((index-1)%mediasize)
                     reset()
                 }
-                Component.onDestruction: console.log("1destruction!")
             }
-            Component.onDestruction: console.log("2destruction!")
+            Action {
+                shortcut: "space"
+                onTriggered: {
+                    if(player.isplaying())
+                        player.pause()
+                    else
+                        player.start()
+                }
+            }
         }
     }
     Component.onCompleted: {
@@ -188,6 +193,7 @@ FluContentPage {
     }
 
     function pushmedia(){
+        if(stack.busy) return;
         stack.pop()
         index++
         var url = ActivityReader.getMediaPath((index-1)%mediasize)
@@ -200,6 +206,7 @@ FluContentPage {
     }
 
     function popmedia(){
+        if(stack.busy) return;
         if(index < 2) {
             showWarning(qsTr("已经到顶端了噢~"))
             return
