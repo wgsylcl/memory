@@ -8,6 +8,7 @@
 #include <QSharedPointer>
 #include <QQueue>
 #include <QThread>
+#include <QThreadPool>
 #include <QMutex>
 #if QT_VERSION < QT_VERSION_CHECK(6,0,0)
 #include <QAbstractVideoSurface>
@@ -65,6 +66,7 @@ protected:
     void timerEvent(QTimerEvent *event) override;
 
 private:
+    QThreadPool *localthreadpool;
     void loadSource(bool autoPlay,qint64 seek = 0);
     QSharedPointer<QVideoFrame> getVideoFrame();
     QSharedPointer<QAudioFrame> getAudioFrame();

@@ -56,8 +56,9 @@ void FluentPlayer::setVideoSurface(QAbstractVideoSurface *surface){
 #endif
 
 FluentPlayer::FluentPlayer(QObject *parent)
-    : QObject{parent}
+    : QObject{parent},localthreadpool(nullptr)
 {
+    localthreadpool = new QThreadPool();
     position(0);
     duration(0);
     volume(1);
@@ -93,14 +94,13 @@ FluentPlayer::FluentPlayer(QObject *parent)
         updateVideoFrame(frame);
     });
     startTimer(1000);
-    qDebug() << "construct player!" << this;
 }
 
 FluentPlayer::~FluentPlayer(){
     stop();
     cleanVideoFrame();
     cleanAudioFrame();
-    qDebug() << "disconstruct player!";
+    localthreadpool->deleteLater();
 }
 
 void FluentPlayer::timerEvent(QTimerEvent *event){
@@ -189,16 +189,16 @@ void FluentPlayer::startDeocde(qint64 seek){
     m_clockMilliseconds = 0;
 
     m_threadCount+=1;
-    QThreadPool::globalInstance()->start([this,seek](){doInWorkVideoDecode(seek);});
+    localthreadpool->start([this,seek](){doInWorkVideoDecode(seek);});
 
     m_threadCount+=1;
-    QThreadPool::globalInstance()->start([this,seek](){doInWorkAudioDecode(seek);});
+    localthreadpool->start([this,seek](){doInWorkAudioDecode(seek);});
 
     m_threadCount+=1;
-    QThreadPool::globalInstance()->start([this](){doInWorkVideoRender();});
+    localthreadpool->start([this](){doInWorkVideoRender();});
 
     m_threadCount+=1;
-    QThreadPool::globalInstance()->start([this](){doInWorkAudioRender();});
+    localthreadpool->start([this](){doInWorkAudioRender();});
 }
 
 void FluentPlayer::doInWorkVideoRender(){

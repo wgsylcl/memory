@@ -109,19 +109,10 @@ FluContentPage {
         }
     }
 
-    Action {
-        shortcut: "Down"
-        onTriggered: pushmedia()
-    }
-
-    Action {
-        shortcut: "Up"
-        onTriggered: popmedia()
-    }
-
     Component {
         id: imageview
         MouseArea {
+            anchors.margins: 18
             anchors.fill: parent
             propagateComposedEvents: true
             onWheel: (wheel) => {
@@ -136,12 +127,22 @@ FluContentPage {
             FluImage {
                 z: 0
                 source: ""
-                width: root.width
+                width: parent.width
                 height: parent.height
                 fillMode: Image.PreserveAspectFit
                 Component.onCompleted: {
                     source = ActivityReader.getMediaPath((index-1)%mediasize)
                 }
+            }
+
+            Action {
+                shortcut: "Down"
+                onTriggered: pushmedia()
+            }
+
+            Action {
+                shortcut: "Up"
+                onTriggered: popmedia()
             }
             focus: true
         }
@@ -149,9 +150,10 @@ FluContentPage {
     Component {
         id: videoview
         MouseArea {
+            anchors.margins: 18
             anchors.fill: parent
             propagateComposedEvents: true
-            onWheel: function(wheel){
+            onWheel: (wheel) => {
                 if(stack.busy) return;
                 if(wheel.angleDelta.y < 0) {
                     player.pause()
@@ -162,22 +164,42 @@ FluContentPage {
                     popmedia()
                 }
             }
+
             FluMediaPlayer {
                 id: player
-                width: root.width
+                width: parent.width
                 height: parent.height
                 Component.onCompleted: {
                     vediosource = ActivityReader.getMediaPath((index-1)%mediasize)
                     reset()
                 }
             }
+
             Action {
                 shortcut: "space"
                 onTriggered: {
-                    if(player.isplaying())
+                    if(player.isplaying)
                         player.pause()
                     else
                         player.start()
+                }
+            }
+
+            Action {
+                shortcut: "Down"
+                onTriggered: {
+                    if(stack.busy) return;
+                    player.pause()
+                    pushmedia()
+                }
+            }
+
+            Action {
+                shortcut: "Up"
+                onTriggered: {
+                    if(stack.busy) return;
+                    player.pause()
+                    popmedia()
                 }
             }
         }
