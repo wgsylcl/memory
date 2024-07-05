@@ -36,9 +36,6 @@ FluContentPage {
             onCurrentIndexChanged: {
                 currentactivityname = activitynames[currentIndex]
                 mediasize = ActivityReader.readAllMedia(currentactivityname)
-                for(var i=0;i<mediasize;i++) {
-                    console.log(ActivityReader.getMediaPath(i))
-                }
 
                 stack.clear()
 
