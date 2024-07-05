@@ -400,37 +400,42 @@ text:%3</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="qml/main.qml" line="191"/>
+        <location filename="qml/main.qml" line="183"/>
+        <source>崩溃测试</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="qml/main.qml" line="196"/>
         <source>需要验证</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="qml/main.qml" line="192"/>
+        <location filename="qml/main.qml" line="197"/>
         <source>输入 Developer 的密码以授权对数据库的更改</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="qml/main.qml" line="199"/>
+        <location filename="qml/main.qml" line="204"/>
         <source>验证</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="qml/main.qml" line="200"/>
+        <location filename="qml/main.qml" line="205"/>
         <source>取消</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="qml/main.qml" line="203"/>
+        <location filename="qml/main.qml" line="208"/>
         <source>验证成功!</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="qml/main.qml" line="207"/>
+        <location filename="qml/main.qml" line="212"/>
         <source>密码错误!</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="qml/main.qml" line="210"/>
+        <location filename="qml/main.qml" line="215"/>
         <source>您退出了验证</source>
         <translation type="unfinished"></translation>
     </message>
@@ -491,29 +496,6 @@ text:%3</source>
     <message>
         <location filename="qml/profilewindow.qml" line="168"/>
         <source>留言栏</source>
-        <translation type="unfinished"></translation>
-    </message>
-</context>
-<context>
-    <name>settingsPage</name>
-    <message>
-        <location filename="qml/settingsPage.qml" line="13"/>
-        <source>设置</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="qml/settingsPage.qml" line="26"/>
-        <source>数据库更新（暂未完成）</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="qml/settingsPage.qml" line="32"/>
-        <source>检查更新</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="qml/settingsPage.qml" line="43"/>
-        <source>关于</source>
         <translation type="unfinished"></translation>
     </message>
 </context>

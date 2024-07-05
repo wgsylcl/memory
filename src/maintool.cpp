@@ -3,10 +3,39 @@
 MainTool::MainTool(QObject *parent)
     : QObject{parent}
 {
+    QCommandLineOption crashop("crashmode");
+    QCommandLineOption crashfileop("crashfile");
+    crashfileop.setValueName("crashfilepath");
+    QCommandLineOption crashlogop("crashlog");
+    crashlogop.setValueName("crashlogpath");
+    QCommandLineParser parser;
+    parser.addOptions({crashop,crashfileop,crashlogop});
+    parser.process(*qApp);
+    crashmode = parser.isSet(crashop);
+    if(parser.isSet(crashfileop))
+        crashfilename = parser.value(crashfileop);
+    if(parser.isSet(crashlogop))
+        crashlogname = parser.value(crashlogop);
 }
 
 MainTool::~MainTool()
 {
+}
+
+Q_INVOKABLE bool MainTool::is_crashmode(void)
+{
+    return crashmode;
+}
+
+Q_INVOKABLE void MainTool::savecrashfile(void)
+{
+    memorybase::copyfile(runtimedir + "/dmp/" + crashfilename,memorybase::getsystemdownloadpath() + "/" + crashfilename);
+    memorybase::copyfile(runtimedir + "/logs/" + crashlogname,memorybase::getsystemdownloadpath() + "/" + crashlogname);
+}
+
+Q_INVOKABLE QUrl MainTool::getdownloadurl(void)
+{
+    return memorybase::toUrl(memorybase::getsystemdownloadpath());
 }
 
 Q_INVOKABLE QString MainTool::getCurrentApplicationPath(void)
@@ -73,6 +102,28 @@ Q_INVOKABLE void MainTool::creatdir(QString dir)
 Q_INVOKABLE void MainTool::restartinitialize(void)
 {
     emit requestrestartinitialize();
+}
+
+Q_INVOKABLE void MainTool::testcrash(void)
+{
+    int *p = nullptr;
+    *p = 18;
+}
+
+Q_INVOKABLE void MainTool::restartapplication()
+{
+    QProcess::startDetached(QCoreApplication::applicationFilePath());
+}
+
+Q_INVOKABLE void MainTool::cleanlog()
+{
+    QStringList logs = memorybase::getfilenamelist(runtimedir + "/logs");
+    for(QString log : logs)
+        if(log != database->logfilename)
+            QFile(runtimedir + "/logs/" + log).remove();
+    QStringList dumps = memorybase::getfilenamelist(runtimedir + "/dmp");
+    for(QString dump : dumps)
+        QFile(runtimedir + "/dmp/" + dump).remove();
 }
 
 void MainTool::dealinitializefail()

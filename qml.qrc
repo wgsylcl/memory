@@ -31,5 +31,6 @@
         <file>qml/checkuploadwindow.qml</file>
         <file>qml/newactivitywindow.qml</file>
         <file>res/erroregg.png</file>
+        <file>qml/crashwindow.qml</file>
     </qresource>
 </RCC>

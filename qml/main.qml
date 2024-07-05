@@ -178,6 +178,11 @@ FluWindow {
                     title: qsTr("任务面板")
                     onTap: navigationview.push(url)
                 }
+                FluPaneItem {
+                    visible: false
+                    title: qsTr("崩溃测试")
+                    onTap: MainTool.testcrash()
+                }
             }
 
             Component.onCompleted: {

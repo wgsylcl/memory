@@ -25,6 +25,7 @@ public:
     void syncactivityversion(QString activityname);
     void removelocalactivityversionbyname(QString name);
     QUrl generaterequesturl(QString reponame, QString filepath);
+    QString logfilename;
 signals:
 
 protected:

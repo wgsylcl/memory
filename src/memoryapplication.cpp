@@ -6,7 +6,7 @@ MemoryApplication::MemoryApplication(int &argc, char *argv[])
       activityhelper(new ActivityHelper()), maintool(new MainTool()), imageprovider(new ImageProvider()),
       m_database(new DataBase()), filelocker(runtimedir + "/filelock"), m_downloadmanager(new DownloadManager()),
       profilepictureupdater(new ProfilePictureUpdater()), activityupdater(new ActivityUpdater()), uploader(new Uploader()),
-      uploadpreviewimageprovider(new UploadPreviewImageProvider())
+      uploadpreviewimageprovider(new UploadPreviewImageProvider()), databaseinitializer(nullptr), databaseinitializethread(nullptr)
 {
 #if (QT_VERSION < QT_VERSION_CHECK(6, 0, 0))
     QGuiApplication::setAttribute(Qt::AA_EnableHighDpiScaling);
@@ -18,10 +18,10 @@ MemoryApplication::MemoryApplication(int &argc, char *argv[])
     setOrganizationName("wgsylcl");
     setApplicationName("memory");
     checksingle();
+    setupfiles();
     QObject::connect(qApp, &QCoreApplication::aboutToQuit, this, &MemoryApplication::releseresources);
     QObject::connect(maintool,&MainTool::requestrestartinitialize,this,&MemoryApplication::startinitialize);
     threadpool->setExpiryTimeout(-1);
-    setupfiles();
     setuptranslator();
     registermodules();
     setupqmlengine();
@@ -101,6 +101,8 @@ void MemoryApplication::setupqmlengine()
 
 void MemoryApplication::startinitialize()
 {
+    if(maintool->is_crashmode())
+        return;
     databaseinitializethread = new QThread();
     databaseinitializer = new DataBaseInitializer();
     databaseinitializer->moveToThread(databaseinitializethread);
@@ -122,6 +124,8 @@ void MemoryApplication::setupfiles()
 
 void MemoryApplication::checksingle()
 {
+    if(maintool->is_crashmode())
+        return;
     if (!filelocker.tryLock(1000))
         ::exit(0);
 }

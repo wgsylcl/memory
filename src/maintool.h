@@ -1,7 +1,9 @@
 #ifndef MAINTOOL_H
 #define MAINTOOL_H
 
-#include "base.h"
+#include "database.h"
+#include <QCommandLineOption>
+#include <QCommandLineParser>
 
 class MainTool : public QObject
 {
@@ -9,6 +11,9 @@ class MainTool : public QObject
 public:
     explicit MainTool(QObject *parent = nullptr);
     ~MainTool();
+    Q_INVOKABLE bool is_crashmode(void);
+    Q_INVOKABLE void savecrashfile(void);
+    Q_INVOKABLE QUrl getdownloadurl(void);
     Q_INVOKABLE QString getCurrentApplicationPath(void);
     Q_INVOKABLE bool isvideo(QUrl);
     Q_INVOKABLE QUrl toLocalMediaUrl(QUrl);
@@ -22,6 +27,9 @@ public:
     Q_INVOKABLE void removefile(QString);
     Q_INVOKABLE void creatdir(QString);
     Q_INVOKABLE void restartinitialize(void);
+    Q_INVOKABLE void testcrash(void);
+    Q_INVOKABLE void restartapplication();
+    Q_INVOKABLE void cleanlog();
 public slots:
     void dealinitializefinish();
     void dealinitializefail();
@@ -30,6 +38,9 @@ signals:
     void initializefailed();
     void requestrestartinitialize();
 private:
+    bool crashmode;
+    QString crashfilename,crashlogname;
+
 };
 
 #endif // MAINTOOL_H

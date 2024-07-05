@@ -21,8 +21,12 @@ FluLauncher {
             "/addactivitypicture":"qrc:/qml/addactivitypicturewindow.qml",
             "/addteacherpetphrase":"qrc:/qml/addteacherpetphrasewindow.qml",
             "/checkupload":"qrc:/qml/checkuploadwindow.qml",
-            "/newactivity":"qrc:/qml/newactivitywindow.qml"
+            "/newactivity":"qrc:/qml/newactivitywindow.qml",
+            "/crash":"qrc:/qml/crashwindow.qml"
         }
-        FluRouter.navigate("/")
+        if(MainTool.is_crashmode())
+            FluRouter.navigate("/crash")
+        else
+            FluRouter.navigate("/")
     }
 }

@@ -17,7 +17,8 @@ void logmessagehander(QtMsgType type, const QMessageLogContext &context, const Q
         QDir logdir(runtimedir + "/logs");
         if (!logdir.exists())
             logdir.mkpath(runtimedir + "/logs");
-        logfile = new QFile(runtimedir + "/logs/" + QDateTime::currentDateTime().toString("yyyyMMdd_hhmmss") + "v" + VERSION + ".log");
+        database->logfilename = QDateTime::currentDateTime().toString("yyyyMMdd_hhmmss") + "_v" + VERSION + ".log";
+        logfile = new QFile(runtimedir + "/logs/" + database->logfilename);
         logfile -> open(QIODevice::WriteOnly | QIODevice::Text);
         QObject::connect(qApp,&QCoreApplication::aboutToQuit,[&](){
             if(logfile)
@@ -39,6 +40,7 @@ int main(int argc, char *argv[])
     MemoryApplication app(argc, argv);
 
     qInstallMessageHandler(logmessagehander);
+
     qDebug() << "Hello memory!" ;
     qDebug() << "Run at " << QDateTime::currentDateTime().toString("yyyy-MM-dd hh-mm-ss") << "!";
 
