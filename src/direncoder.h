@@ -1,7 +1,6 @@
 #ifndef DIRENCODER_H
 #define DIRENCODER_H
 
-#include <QObject>
 #include "encodethread.h"
 
 class Direncoder : public QObject

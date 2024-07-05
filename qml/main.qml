@@ -102,6 +102,7 @@ FluWindow {
 
         FluNavigationView {
             z: 1
+            buttonBack.visible: false
             anchors.fill: parent
             pageMode: FluNavigationViewType.NoStack
             displayMode: FluNavigationViewType.Auto
@@ -173,13 +174,6 @@ FluWindow {
                 }
                 FluPaneItem {
                     visible: false
-                    icon: FluentIcons.TaskView
-                    url: "qrc:/qml/taskpage.qml"
-                    title: qsTr("任务面板")
-                    onTap: navigationview.push(url)
-                }
-                FluPaneItem {
-                    visible: false
                     title: qsTr("崩溃测试")
                     onTap: MainTool.testcrash()
                 }
@@ -231,11 +225,11 @@ FluWindow {
             }
         }
     }
+
     Connections {
         target: MainTool
         function onInitializefailed() {
             mainstatuslayout.showErrorView()
         }
     }
-
 }

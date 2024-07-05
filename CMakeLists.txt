@@ -67,8 +67,6 @@ set(PROJECT_SOURCES
     src/base.h src/base.cpp
     src/encodethread.h src/encodethread.cpp
     src/direncoder.h src/direncoder.cpp
-    src/tasklogmanager.h src/tasklogmanager.cpp
-    src/taskloghelper.h src/taskloghelper.cpp
     src/direncodemanager.h src/direncodemanager.cpp
     src/database.h src/database.cpp
     src/memoryapplication.h src/memoryapplication.cpp

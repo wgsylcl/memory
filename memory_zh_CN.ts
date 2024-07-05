@@ -2,20 +2,6 @@
 <!DOCTYPE TS>
 <TS version="2.1" language="zh_CN">
 <context>
-    <name>EncodeThread</name>
-    <message>
-        <location filename="src/encodethread.cpp" line="15"/>
-        <source>开始配置 %1 ……</source>
-        <oldsource>开始加密 %1 ……</oldsource>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="src/encodethread.cpp" line="21"/>
-        <source>%1 配置完成！</source>
-        <translation type="unfinished"></translation>
-    </message>
-</context>
-<context>
     <name>StudentReader</name>
     <message>
         <location filename="src/studentreader.cpp" line="31"/>
@@ -343,99 +329,99 @@ text:%3</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="qml/main.qml" line="114"/>
+        <location filename="qml/main.qml" line="115"/>
         <source>主界面</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="qml/main.qml" line="120"/>
+        <location filename="qml/main.qml" line="121"/>
         <source>我的老师们</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="qml/main.qml" line="126"/>
+        <location filename="qml/main.qml" line="127"/>
         <source>我和我的同学</source>
         <oldsource>同学信息</oldsource>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="qml/main.qml" line="130"/>
+        <location filename="qml/main.qml" line="131"/>
         <source>回忆</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="qml/main.qml" line="136"/>
+        <location filename="qml/main.qml" line="137"/>
         <source>我们的班史</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="qml/main.qml" line="143"/>
+        <location filename="qml/main.qml" line="144"/>
         <source>数据库管理</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="qml/main.qml" line="146"/>
+        <location filename="qml/main.qml" line="147"/>
         <source>同步数据库</source>
         <oldsource>数据库同步</oldsource>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="qml/main.qml" line="152"/>
+        <location filename="qml/main.qml" line="153"/>
         <source>上传图文</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="qml/main.qml" line="158"/>
+        <location filename="qml/main.qml" line="159"/>
         <source>更改数据库</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="qml/main.qml" line="171"/>
+        <location filename="qml/main.qml" line="172"/>
         <source>设置和关于</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="qml/main.qml" line="178"/>
+        <location filename="qml/main.qml" line="179"/>
         <source>任务面板</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="qml/main.qml" line="183"/>
+        <location filename="qml/main.qml" line="184"/>
         <source>崩溃测试</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="qml/main.qml" line="196"/>
+        <location filename="qml/main.qml" line="197"/>
         <source>需要验证</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="qml/main.qml" line="197"/>
+        <location filename="qml/main.qml" line="198"/>
         <source>输入 Developer 的密码以授权对数据库的更改</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="qml/main.qml" line="204"/>
+        <location filename="qml/main.qml" line="205"/>
         <source>验证</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="qml/main.qml" line="205"/>
+        <location filename="qml/main.qml" line="206"/>
         <source>取消</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="qml/main.qml" line="208"/>
+        <location filename="qml/main.qml" line="209"/>
         <source>验证成功!</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="qml/main.qml" line="212"/>
+        <location filename="qml/main.qml" line="213"/>
         <source>密码错误!</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="qml/main.qml" line="215"/>
+        <location filename="qml/main.qml" line="216"/>
         <source>您退出了验证</source>
         <translation type="unfinished"></translation>
     </message>

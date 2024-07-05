@@ -1,8 +1,8 @@
 #include "memoryapplication.h"
 
 MemoryApplication::MemoryApplication(int &argc, char *argv[])
-    : QGuiApplication{argc, argv}, uiLanguages(QLocale::system().uiLanguages()),
-      tasklogmanager(new TasklogManager()), engine(new QQmlApplicationEngine()),
+    : QGuiApplication{argc, argv},
+      uiLanguages(QLocale::system().uiLanguages()), engine(new QQmlApplicationEngine()),
       activityhelper(new ActivityHelper()), maintool(new MainTool()), imageprovider(new ImageProvider()),
       m_database(new DataBase()), filelocker(runtimedir + "/filelock"), m_downloadmanager(new DownloadManager()),
       profilepictureupdater(new ProfilePictureUpdater()), activityupdater(new ActivityUpdater()), uploader(new Uploader()),
@@ -47,7 +47,6 @@ void MemoryApplication::releseresources()
     database->deleteLater();
     downloadmanager->deleteLater();
     maintool->deleteLater();
-    tasklogmanager->deleteLater();
     profilepictureupdater->deleteLater();
     activityupdater->deleteLater();
     uploader->deleteLater();
@@ -73,7 +72,6 @@ void MemoryApplication::registermodules()
     qmlRegisterType<TeacherFileReader>("teacherfilehelper", 1, 0, "TeacherFileReader");
     qmlRegisterType<FluentPlayer>("mediahelper", 1, 0, "MediaPlayerItem");
     qmlRegisterType<Direncodemanager>("codehelper", 1, 0, "Direncoder");
-    qmlRegisterType<TasklogHelper>("taskloghelper", 1, 0, "TasklogHelper");
     qmlRegisterType<DataManagerHelper>("datamanagehelper", 1, 0, "DataManageHelper");
     qmlRegisterType<DataUpdateHelper>("dataupdatehelper", 1, 0, "DataUpdateHelper");
 }

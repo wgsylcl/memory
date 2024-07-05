@@ -12,13 +12,11 @@ void EncodeThread::run()
     }
     QFileInfo fileinfo(file);
     QString filename = fileinfo.fileName();
-    TasklogManager::Instance() -> addlog(tr("开始配置 %1 ……").arg(filename));
     QByteArray encodedata = file.readAll();
     file.close();
     if(encodedata.size() > chunkSize)
         this -> writemultifile(encodedata);
     else appendfilelist(filename);
-    TasklogManager::Instance() -> addlog(tr("%1 配置完成！").arg(filename));
 }
 
 void EncodeThread::writemultifile(QByteArray &encodedata)

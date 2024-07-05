@@ -17,7 +17,6 @@
 #include "FluentPlayer.h"
 #include "imageprovider.h"
 #include "direncodemanager.h"
-#include "taskloghelper.h"
 #include "databaseinitializer.h"
 #include "downloadmanager.h"
 #include "datamanagerhelper.h"
@@ -41,7 +40,6 @@ private:
     QQmlApplicationEngine *engine;
     QTranslator translator;
     const QStringList uiLanguages;
-    TasklogManager *tasklogmanager;
     ImageProvider *imageprovider;
     MainTool *maintool;
     ActivityHelper *activityhelper;

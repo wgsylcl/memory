@@ -1,8 +1,6 @@
 #ifndef ENCODETHREAD_H
 #define ENCODETHREAD_H
 
-#include <QObject>
-#include "tasklogmanager.h"
 #include "base.h"
 
 class EncodeThread : public QObject , public QRunnable

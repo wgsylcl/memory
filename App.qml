@@ -29,4 +29,5 @@ FluLauncher {
         else
             FluRouter.navigate("/")
     }
+
 }
