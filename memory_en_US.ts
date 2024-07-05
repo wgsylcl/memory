@@ -22,27 +22,27 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="qml/activitypage.qml" line="27"/>
+        <location filename="qml/activitypage.qml" line="28"/>
         <source>选择要查看的活动</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="qml/activitypage.qml" line="54"/>
+        <location filename="qml/activitypage.qml" line="55"/>
         <source>上一张</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="qml/activitypage.qml" line="60"/>
+        <location filename="qml/activitypage.qml" line="61"/>
         <source>下一张</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="qml/activitypage.qml" line="67"/>
+        <location filename="qml/activitypage.qml" line="68"/>
         <source>给活动添加图片/视频</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="qml/activitypage.qml" line="210"/>
+        <location filename="qml/activitypage.qml" line="219"/>
         <source>已经到顶端了噢~</source>
         <translation type="unfinished"></translation>
     </message>

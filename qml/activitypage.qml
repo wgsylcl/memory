@@ -6,10 +6,11 @@ import FluentUI 1.0
 FluContentPage {
     title: qsTr("回忆")
     property var activitynames: []
-    // property var history: []
     property int index: 0
     property int mediasize: 0
     property string currentactivityname: ""
+
+    signal mediachanged
 
     id: root
 
@@ -89,7 +90,6 @@ FluContentPage {
             bottom: parent.bottom
         }
 
-
         pushEnter: Transition {
             // 定义淡入效果
             NumberAnimation { property: "opacity"; from: 0.0; to: 1.0; duration: 50 }
@@ -109,6 +109,16 @@ FluContentPage {
         }
     }
 
+    Action {
+        shortcut: "Down"
+        onTriggered: pushmedia()
+    }
+
+    Action {
+        shortcut: "Up"
+        onTriggered: popmedia()
+    }
+
     Component {
         id: imageview
         MouseArea {
@@ -116,7 +126,6 @@ FluContentPage {
             anchors.fill: parent
             propagateComposedEvents: true
             onWheel: (wheel) => {
-                if(stack.busy) return;
                 if(wheel.angleDelta.y < 0) {
                     pushmedia()
                 }
@@ -124,6 +133,7 @@ FluContentPage {
                     popmedia()
                 }
             }
+
             FluImage {
                 z: 0
                 source: ""
@@ -135,15 +145,6 @@ FluContentPage {
                 }
             }
 
-            Action {
-                shortcut: "Down"
-                onTriggered: pushmedia()
-            }
-
-            Action {
-                shortcut: "Up"
-                onTriggered: popmedia()
-            }
             focus: true
         }
     }
@@ -154,13 +155,10 @@ FluContentPage {
             anchors.fill: parent
             propagateComposedEvents: true
             onWheel: (wheel) => {
-                if(stack.busy) return;
                 if(wheel.angleDelta.y < 0) {
-                    player.pause()
                     pushmedia()
                 }
                 else {
-                    player.pause()
                     popmedia()
                 }
             }
@@ -172,6 +170,12 @@ FluContentPage {
                 Component.onCompleted: {
                     vediosource = ActivityReader.getMediaPath((index-1)%mediasize)
                     reset()
+                }
+                Connections {
+                    target: root
+                    function onMediachanged() {
+                        pause()
+                    }
                 }
             }
 
@@ -185,23 +189,6 @@ FluContentPage {
                 }
             }
 
-            Action {
-                shortcut: "Down"
-                onTriggered: {
-                    if(stack.busy) return;
-                    player.pause()
-                    pushmedia()
-                }
-            }
-
-            Action {
-                shortcut: "Up"
-                onTriggered: {
-                    if(stack.busy) return;
-                    player.pause()
-                    popmedia()
-                }
-            }
         }
     }
     Component.onCompleted: {
@@ -213,6 +200,7 @@ FluContentPage {
 
     function pushmedia(){
         if(stack.busy) return;
+        mediachanged()
         stack.pop()
         index++
         var url = ActivityReader.getMediaPath((index-1)%mediasize)
@@ -226,6 +214,7 @@ FluContentPage {
 
     function popmedia(){
         if(stack.busy) return;
+        mediachanged()
         if(index < 2) {
             showWarning(qsTr("已经到顶端了噢~"))
             return
