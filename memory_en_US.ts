@@ -42,7 +42,7 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="qml/activitypage.qml" line="230"/>
+        <location filename="qml/activitypage.qml" line="210"/>
         <source>已经到顶端了噢~</source>
         <translation type="unfinished"></translation>
     </message>
