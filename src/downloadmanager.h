@@ -2,9 +2,6 @@
 #define DOWNLOADMANAGER_H
 
 #include <QQueue>
-#include <QList>
-#include <QMutex>
-#include <QMutexLocker>
 #include "downloader.h"
 #include "database.h"
 
@@ -14,19 +11,19 @@ class DownloadManager : public QObject
 public:
     explicit DownloadManager(QObject *parent = nullptr);
     ~DownloadManager();
-    void adddownloader(Downloader* newdownloader);
-    static DownloadManager* instance();
+    void adddownloader(Downloader *newdownloader);
+    static DownloadManager *instance();
 signals:
 
 public slots:
-    void downloadfinish(Downloader* from);
+    void downloadfinish(Downloader *from);
 
 private:
-    QQueue<Downloader*> waitingdownloaders;
-    QList<Downloader*> runningdownloaders;
+    QQueue<Downloader *> waitingdownloaders;
+    QList<Downloader *> runningdownloaders;
     const int maxrunningdownloads;
     QMutex lock;
-    static DownloadManager* _instance;
+    static DownloadManager *_instance;
 };
 
 #endif // DOWNLOADMANAGER_H

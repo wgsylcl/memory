@@ -7,7 +7,7 @@ class FilelistReader : public QObject
 {
     Q_OBJECT
 public:
-    explicit FilelistReader(QString reponame,QObject *parent = nullptr);
+    explicit FilelistReader(QString reponame, QObject *parent = nullptr);
     void startreadfilelist();
 
 public slots:
@@ -19,7 +19,7 @@ signals:
     void receivefilelistfailed();
 
 private:
-    QString reponame,savepath;
+    QString reponame, savepath;
 };
 
 #endif // FILELISTREADER_H

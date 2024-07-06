@@ -1,6 +1,7 @@
-import QtQuick 2.15
-import QtQuick.Window 2.15
-import FluentUI 1.0
+import QtQuick
+import QtQuick.Window
+import QtQuick.Controls
+import FluentUI
 
 FluWindow {
 
@@ -26,38 +27,79 @@ FluWindow {
         onWheel:
             (wheel) => {
                 if(wheel.angleDelta.y > 0) {
-                    scale *= 1.1
+                    scaleup()
                 }
                 else {
-                    scale = Math.max(0.001,scale/1.1)
+                    scaledown()
                 }
-                mainimage.x -= (picwidth * scale - mainimage.width)/2
-                mainimage.y -= (picheight * scale - mainimage.height)/2
-                mainimage.width = picwidth * scale
-                mainimage.height = picheight * scale
             }
 
         FluImage {
             id: mainimage
             x: 600.00
             y: 400.00
+            scale: rootwindow.scale
+            cache: true
+            smooth: true
+
             onStatusChanged: {
                 if(status === Image.Ready) {
                     picwidth = mainimage.width
                     picheight = mainimage.height
-                    while(picwidth*scale >= rootwindow.width || picheight*scale >= rootwindow.height)
+                    while(picwidth*scale >= rootwindow.width - 18 || picheight*scale >= rootwindow.height - 18)
                         scale /= 1.1
-                    scale = scale
-                    mainimage.width *= scale
-                    mainimage.height *= scale
                     x -= mainimage.width/2
                     y -= mainimage.height/2
                 }
             }
-
         }
     }
 
-    // Component.onCompleted: rootwindow.showMaximized()
+    Action {
+        shortcut: "Ctrl+="
+        onTriggered: scaleup()
+    }
 
+    Action {
+        shortcut: "Ctrl+-"
+        onTriggered: scaledown()
+    }
+
+    Action {
+        shortcut: "Up"
+        onTriggered: mainimage.y -= 18
+    }
+
+    Action {
+        shortcut: "Down"
+        onTriggered: mainimage.y += 18
+    }
+
+    Action {
+        shortcut: "Left"
+        onTriggered: mainimage.x -= 18
+    }
+
+    Action {
+        shortcut: "Right"
+        onTriggered: mainimage.x += 18
+    }
+
+    function scaleup() {
+        scale *= 1.1
+        mainimage.x -= (picwidth * scale - mainimage.width)/2
+        mainimage.y -= (picheight * scale - mainimage.height)/2
+        mainimage.width = picwidth * scale
+        mainimage.height = picheight * scale
+    }
+    function scaledown() {
+        scale = getmax(0.1,scale/1.1)
+        mainimage.x -= (picwidth * scale - mainimage.width)/2
+        mainimage.y -= (picheight * scale - mainimage.height)/2
+        mainimage.width = picwidth * scale
+        mainimage.height = picheight * scale
+    }
+    function getmax(a,b) {
+        return a > b ? a : b
+    }
 }

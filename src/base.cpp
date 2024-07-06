@@ -9,7 +9,7 @@ bool memorybase::isvideo(QUrl url)
 bool memorybase::ismedia(QUrl url)
 {
     QString suffix = memorybase::getfilesuffix(url);
-    const QStringList suffixbase = {"mp4","mkv","jpg","jpeg","png","svg"};
+    const QStringList suffixbase = {"mp4", "mkv", "jpg", "jpeg", "png", "svg"};
     return suffixbase.contains(suffix);
 }
 
@@ -83,7 +83,8 @@ void memorybase::copyfile(QString from, QString to)
 {
     QFileInfo fileinfo(to);
     QDir dir = fileinfo.absoluteDir();
-    if(!dir.exists()) dir.mkpath(dir.absolutePath());
+    if (!dir.exists())
+        dir.mkpath(dir.absolutePath());
     QFile infile(from), outfile(to);
     infile.open(QIODevice::ReadOnly);
     outfile.open(QIODevice::WriteOnly);

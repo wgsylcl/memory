@@ -1,30 +1,34 @@
 #include "encodethread.h"
 
-EncodeThread::EncodeThread(QString filepath,QString filelistpath,QString ignorepath,QMutex &appendfilelistlock,QMutex &appendignorefilelock,QObject *parent)
-    : QObject{parent},filelistpath(filelistpath),ignorepath(ignorepath),filepath(filepath),appendfilelistlock(appendfilelistlock),appendignorefilelock(appendignorefilelock)
-{}
+EncodeThread::EncodeThread(QString filepath, QString filelistpath, QString ignorepath, QMutex &appendfilelistlock, QMutex &appendignorefilelock, QObject *parent)
+    : QObject{parent}, filelistpath(filelistpath), ignorepath(ignorepath), filepath(filepath), appendfilelistlock(appendfilelistlock), appendignorefilelock(appendignorefilelock)
+{
+}
 
 void EncodeThread::run()
 {
     QFile file(filepath);
-    if(!file.open(QIODevice::ReadOnly)) {
+    if (!file.open(QIODevice::ReadOnly))
+    {
         return;
     }
     QFileInfo fileinfo(file);
     QString filename = fileinfo.fileName();
     QByteArray encodedata = file.readAll();
     file.close();
-    if(encodedata.size() > chunkSize)
-        this -> writemultifile(encodedata);
-    else appendfilelist(filename);
+    if (encodedata.size() > chunkSize)
+        this->writemultifile(encodedata);
+    else
+        appendfilelist(filename);
 }
 
 void EncodeThread::writemultifile(QByteArray &encodedata)
 {
     int index = 0;
-    for(qint64 i=0 ; i < encodedata.size() ; i += chunkSize) {
+    for (qint64 i = 0; i < encodedata.size(); i += chunkSize)
+    {
         qint64 size = qMin(chunkSize, encodedata.size() - i);
-        QByteArray chunk = encodedata.mid(i,size);
+        QByteArray chunk = encodedata.mid(i, size);
         QFile outf(filepath + "." + QString::fromStdString(std::to_string(++index)));
         outf.open(QIODevice::WriteOnly);
         outf.write(chunk);

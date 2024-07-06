@@ -1,6 +1,6 @@
-import QtQuick 2.15
-import FluentUI 1.0
-import QtQuick.Controls 2.15
+import QtQuick
+import FluentUI
+import QtQuick.Controls
 import QtQuick.Layouts
 
 FluContentPage {
@@ -53,15 +53,15 @@ FluContentPage {
     function gettaskexpanderhreadertext(index) {
         let rets = ""
         const retbase = [
-                    qsTr("给%1留言").arg(uploader.getsendto(index)),
-                    qsTr("给%1留言").arg(uploader.getsendto(index)),
-                    qsTr("给%1添加图片").arg(uploader.getsendto(index)),
-                    qsTr("给%1添加图片").arg(uploader.getsendto(index)),
-                    qsTr("添加%1的口头禅").arg(uploader.getsendto(index)),
-                    qsTr("增添班史"),
-                    qsTr("给活动\"%1\"添加图片").arg(uploader.getsendto(index)),
-                    qsTr("修改%1的自我介绍").arg(uploader.getsendto(index)),
-                    qsTr("修改%1的生日").arg(uploader.getsendto(index))
+                          qsTr("给%1留言").arg(uploader.getsendto(index)),
+                          qsTr("给%1留言").arg(uploader.getsendto(index)),
+                          qsTr("给%1添加图片").arg(uploader.getsendto(index)),
+                          qsTr("给%1添加图片").arg(uploader.getsendto(index)),
+                          qsTr("添加%1的口头禅").arg(uploader.getsendto(index)),
+                          qsTr("增添班史"),
+                          qsTr("给活动\"%1\"添加图片").arg(uploader.getsendto(index)),
+                          qsTr("修改%1的自我介绍").arg(uploader.getsendto(index)),
+                          qsTr("修改%1的生日").arg(uploader.getsendto(index))
                       ]
         return retbase[uploader.gettasktype(index)]
     }
@@ -77,16 +77,16 @@ FluContentPage {
 
     function gettasktext(index) {
         const retbase = [
-                qsTr("%1:%2").arg(uploader.getsender(index)).arg(uploader.gettext(index)),
-                qsTr("%1:%2").arg(uploader.getsender(index)).arg(uploader.gettext(index)),
-                "",
-                "",
-                qsTr("\"%1\"").arg(uploader.gettext(index)),
-                qsTr("%1:%2").arg(uploader.getsender(index)).arg(uploader.gettext(index)),
-                "",
-                qsTr("%1").arg(uploader.gettext(index)),
-                qsTr("%1的生日是：%2").arg(uploader.getsendto(index)).arg(uploader.gettext(index))
-                ]
+                          qsTr("%1:%2").arg(uploader.getsender(index)).arg(uploader.gettext(index)),
+                          qsTr("%1:%2").arg(uploader.getsender(index)).arg(uploader.gettext(index)),
+                          "",
+                          "",
+                          qsTr("\"%1\"").arg(uploader.gettext(index)),
+                          qsTr("%1:%2").arg(uploader.getsender(index)).arg(uploader.gettext(index)),
+                          "",
+                          qsTr("%1").arg(uploader.gettext(index)),
+                          qsTr("%1的生日是：%2").arg(uploader.getsendto(index)).arg(uploader.gettext(index))
+                      ]
         return retbase[uploader.gettasktype(index)]
     }
 
@@ -163,7 +163,7 @@ FluContentPage {
                         visible: isimagetask(taskid)
                         id: taskcarousel
                         delegate: Component {
-                            Image {
+                            FluImage {
                                 id: taskpicture
                                 z: 1
                                 anchors.fill: parent
@@ -172,6 +172,9 @@ FluContentPage {
                                 width: parent.parent.width
                                 fillMode:Image.PreserveAspectFit
                                 anchors.margins: 10
+                                cache: true
+                                smooth: true
+
                                 MouseArea {
                                     anchors.fill: parent
                                     onDoubleClicked: {

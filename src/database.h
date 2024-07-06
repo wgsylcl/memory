@@ -9,10 +9,10 @@ class DataBase : public QObject
 public:
     explicit DataBase(QObject *parent = nullptr);
     ~DataBase();
-    static DataBase* instance();
+    static DataBase *instance();
     QStringList getAllLocalActivitieNames();
     QStringList getAllRemoteActivitieNames();
-    memorybase::Activity& getactivity(QString activityname);
+    memorybase::Activity &getactivity(QString activityname);
     friend class DataBaseInitializer;
     QString getlocalprofilepictureversion(void);
     QString getremoteprofilepictureversion(void);
@@ -38,11 +38,11 @@ private:
     QString remoteprofileversion;
     QString profilereponame;
     QString latestapplicationversion;
-    QMap<QString,QString> localactivityversions;
+    QMap<QString, QString> localactivityversions;
     QJsonObject jsonroot;
     QJsonObject remoteroot;
-    QMap<QString,QString> usernames,usertokens;
-    static DataBase* _instance;
+    QMap<QString, QString> usernames, usertokens;
+    static DataBase *_instance;
     void saveinfo();
 };
 

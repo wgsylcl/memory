@@ -1,42 +1,90 @@
-import QtQuick 2.15
-import FluentUI 1.0
-import QtQuick.Layouts 1.15
+import QtQuick
+import FluentUI
+import QtQuick.Layouts
 import QtQuick.Controls
-import teacherfilehelper 1.0
+import teacherfilehelper
 
 FluContentPage {
     id: root
     title: qsTr("我的老师们")
-    FluText {
-        text: qsTr("您的教诲如同明灯，照亮我们前行的道路，感谢您陪伴我们度过这段美好的求学时光，愿您在新的旅程中，继续发光发热，教学事业蒸蒸日上，身体健康，生活幸福美满。")
-        wrapMode: Text.WordWrap
-        id: text1
-    }
 
-    ListView {
-        id: teacherlistview
-        Layout.fillWidth: true
-        Layout.preferredWidth: parent.width
-        spacing: 10
-        anchors {
-            top: text1.bottom
-            topMargin: 5
-            left: parent.left
-            right: parent.right
-            bottom: parent.bottom
-        }
-        model: ListModel {
-            Component.onCompleted: {
-                for(var i=0;i<12;i++)
-                    append({})
+    FluStatusLayout {
+        anchors.fill: parent
+        errorItem: com_loaderror
+        statusMode: MainTool.haveprofilepicture() ? FluStatusLayoutType.Success : FluStatusLayoutType.Error
+
+        Component {
+            id:com_loaderror
+            FluFrame {
+                padding: 0
+                border.width: 0
+                radius: 0
+                color: Qt.rgba(0,0,0,0)
+                ColumnLayout{
+                    anchors.centerIn: parent
+                    spacing: 20
+
+                    FluImage {
+                        visible: true
+                        source: "qrc:/res/erroregg.png"
+                        Layout.fillHeight: true
+                        fillMode: Image.PreserveAspectFit
+                        Layout.preferredHeight: 120
+                    }
+
+                    FluText {
+                        text: "啊噢……"
+                        font: FluTextStyle.BodyStrong
+                        Layout.alignment: Qt.AlignHCenter
+                    }
+
+                    FluText {
+                        text: "貌似图文数据库还没下载~"
+                        font: FluTextStyle.BodyStrong
+                        Layout.alignment: Qt.AlignHCenter
+                    }
+
+                    FluText {
+                        text: "点击导航栏中的\"数据库管理 -> 数据库更新\"下载图文数据库后再来看看吧！"
+                        font: FluTextStyle.BodyStrong
+                        Layout.alignment: Qt.AlignHCenter
+                    }
+                }
             }
         }
-        delegate: teachercard
-        clip: true
-    }
 
-    TeacherFileReader {
-        id: reader
+        FluText {
+            text: qsTr("您的教诲如同明灯，照亮我们前行的道路，感谢您陪伴我们度过这段美好的求学时光，愿您在新的旅程中，继续发光发热，教学事业蒸蒸日上，身体健康，生活幸福美满。")
+            wrapMode: Text.WordWrap
+            id: text1
+        }
+
+        ListView {
+            id: teacherlistview
+            Layout.fillWidth: true
+            Layout.preferredWidth: parent.width
+            spacing: 10
+            anchors {
+                top: text1.bottom
+                topMargin: 5
+                left: parent.left
+                right: parent.right
+                bottom: parent.bottom
+            }
+            model: ListModel {
+                Component.onCompleted: {
+                    for(var i=0;i<12;i++)
+                        append({})
+                }
+            }
+            delegate: teachercard
+            clip: true
+        }
+
+        TeacherFileReader {
+            id: reader
+        }
+
     }
 
 
@@ -126,11 +174,14 @@ FluContentPage {
                         width: parent.width
                         fillMode:Image.PreserveAspectFit
                         anchors.margins: 10
+                        cache: true
+                        smooth: true
+
                         MouseArea {
                             anchors.fill: parent
                             onDoubleClicked: {
-                                if(MainTool.isvideo(MainTool.toLocalMediaUrl(parent.source))) FluRouter.navigate("/playvideo",{videourl:MainTool.toLocalMediaUrl(parent.source)})
-                                else FluRouter.navigate("/viewpicture",{pictureurl:MainTool.toLocalMediaUrl(parent.source)})
+                                if(MainTool.isvideo(parent.source)) FluRouter.navigate("/playvideo",{videourl:MainTool.toLocalMediaUrl(parent.source)})
+                                else FluRouter.navigate("/viewpicture",{pictureurl:parent.source})
                             }
                         }
                     }
@@ -152,10 +203,13 @@ FluContentPage {
                                 width: parent.parent.width
                                 fillMode: Image.PreserveAspectFit
                                 anchors.margins: 10
+                                cache: true
+                                smooth: true
+
                                 MouseArea {
                                     anchors.fill: parent
                                     onDoubleClicked: {
-                                        if(MainTool.isvideo(MainTool.toLocalMediaUrl(parent.source))) FluRouter.navigate("/playvideo",{videourl:MainTool.toLocalMediaUrl(parent.source)})
+                                        if(MainTool.isvideo(parent.source)) FluRouter.navigate("/playvideo",{videourl:MainTool.toLocalMediaUrl(parent.source)})
                                         else FluRouter.navigate("/viewpicture",{pictureurl:MainTool.toLocalMediaUrl(parent.source)})
                                     }
                                 }

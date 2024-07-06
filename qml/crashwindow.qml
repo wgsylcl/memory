@@ -1,4 +1,4 @@
-import QtQuick 2.15
+import QtQuick
 import QtQuick.Layouts
 import FluentUI
 
@@ -13,6 +13,7 @@ FluWindow {
         FluImage {
             visible: true
             source: "qrc:/res/erroregg.png"
+
             Layout.fillHeight: true
             fillMode: Image.PreserveAspectFit
             Layout.preferredHeight: 120

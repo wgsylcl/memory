@@ -1,9 +1,9 @@
-import QtQuick 2.15
+import QtQuick
 import QtQuick.Layouts
-import FluentUI 1.0
-import Qt.labs.platform 1.1
-import codehelper 1.0
-import dataupdatehelper 1.0
+import FluentUI
+import Qt.labs.platform
+import codehelper
+import dataupdatehelper
 
 FluContentPage {
     id: root

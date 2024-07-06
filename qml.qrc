@@ -14,12 +14,10 @@
         <file>res/play.png</file>
         <file>qml/activitypage.qml</file>
         <file>qml/FluMediaPlayer.qml</file>
-        <file>qml/Qt5FluMediaPlayer.qml</file>
         <file>qml/videoplaywindow.qml</file>
         <file>qml/datamanagepage.qml</file>
         <file>qml/dataupdatepage.qml</file>
         <file>qml/dataprovidepage.qml</file>
-        <file>qml/taskpage.qml</file>
         <file>res/groupphoto.jpg</file>
         <file>qml/timelinePage.qml</file>
         <file>qml/addpicturedialog.qml</file>
@@ -32,5 +30,6 @@
         <file>qml/newactivitywindow.qml</file>
         <file>res/erroregg.png</file>
         <file>qml/crashwindow.qml</file>
+        <file>qml/MTableView.qml</file>
     </qresource>
 </RCC>

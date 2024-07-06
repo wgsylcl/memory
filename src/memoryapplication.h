@@ -30,7 +30,7 @@ class MemoryApplication : public QGuiApplication
 {
     Q_OBJECT
 public:
-    explicit MemoryApplication(int &argc,char *argv[]);
+    explicit MemoryApplication(int &argc, char *argv[]);
     ~MemoryApplication();
 public slots:
     void startinitialize();

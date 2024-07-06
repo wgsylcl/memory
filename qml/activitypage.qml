@@ -1,7 +1,7 @@
-import QtQuick 2.15
+import QtQuick
 import QtQuick.Controls
 import QtQuick.Layouts
-import FluentUI 1.0
+import FluentUI
 
 FluContentPage {
     title: qsTr("回忆")
@@ -38,6 +38,7 @@ FluContentPage {
                 currentactivityname = activitynames[currentIndex]
                 mediasize = ActivityReader.readAllMedia(currentactivityname)
 
+                mediachanged()
                 stack.clear()
 
                 index = 1
@@ -92,7 +93,7 @@ FluContentPage {
 
         pushEnter: Transition {
             // 定义淡入效果
-            NumberAnimation { property: "opacity"; from: 0.0; to: 1.0; duration: 50 }
+            NumberAnimation { property: "opacity"; from: 0.0; to:1.0; duration: 50 }
         }
 
         pushExit: Transition {
@@ -101,7 +102,7 @@ FluContentPage {
 
         popEnter: Transition {
             // 定义淡入效果
-            NumberAnimation { property: "opacity"; from: 0.0; to: 1.0; duration: 50 }
+            NumberAnimation { property: "opacity"; from: 0.0; to:1.0; duration: 50 }
         }
 
         popExit: Transition {
@@ -126,20 +127,23 @@ FluContentPage {
             anchors.fill: parent
             propagateComposedEvents: true
             onWheel: (wheel) => {
-                if(wheel.angleDelta.y < 0) {
-                    pushmedia()
-                }
-                else {
-                    popmedia()
-                }
-            }
+                         if(wheel.angleDelta.y < 0) {
+                             pushmedia()
+                         }
+                         else {
+                             popmedia()
+                         }
+                     }
+            onDoubleClicked: FluRouter.navigate("/viewpicture",{pictureurl:image.source})
 
             FluImage {
+                id: image
                 z: 0
-                source: ""
                 width: parent.width
                 height: parent.height
                 fillMode: Image.PreserveAspectFit
+                cache: true
+                smooth: true
                 Component.onCompleted: {
                     source = ActivityReader.getMediaPath((index-1)%mediasize)
                 }
@@ -155,13 +159,13 @@ FluContentPage {
             anchors.fill: parent
             propagateComposedEvents: true
             onWheel: (wheel) => {
-                if(wheel.angleDelta.y < 0) {
-                    pushmedia()
-                }
-                else {
-                    popmedia()
-                }
-            }
+                         if(wheel.angleDelta.y < 0) {
+                             pushmedia()
+                         }
+                         else {
+                             popmedia()
+                         }
+                     }
 
             FluMediaPlayer {
                 id: player
@@ -171,6 +175,7 @@ FluContentPage {
                     vediosource = ActivityReader.getMediaPath((index-1)%mediasize)
                     reset()
                 }
+
                 Connections {
                     target: root
                     function onMediachanged() {

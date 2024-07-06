@@ -5,7 +5,8 @@
 #include <QQuickImageProvider>
 #include "base.h"
 
-extern "C" {
+extern "C"
+{
 #include "libavcodec/avcodec.h"
 #include "libavdevice/avdevice.h"
 #include "libswresample/swresample.h"
@@ -22,8 +23,9 @@ signals:
 
 private:
     QImage playimg;
-    void loadimage(QUrl,QImage&);
-    void loadvideo(QUrl,QImage&);
+    void loadimage(QUrl, QImage &);
+    void loadvideo(QUrl, QImage &);
+    void addwatermark(QString, QImage &);
 };
 
 #endif // UPLOADPREVIEWIMAGEPROVIDER_H

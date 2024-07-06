@@ -124,12 +124,6 @@ target_link_libraries(${PROJECT_NAME} PRIVATE
     avfilter
 )
 
-add_custom_command(TARGET ${PROJECT_NAME} POST_BUILD
-        COMMAND ${CMAKE_COMMAND} -E copy_directory
-        ${CMAKE_SOURCE_DIR}/data
-        ${APPLICATION_DIR_PATH}/data
-    )
-
 if(WIN32)
     file(GLOB_RECURSE DLL_FILES ${3RDPARTY_PATH}/ffmpeg/bin/*.dll ${3RDPARTY_PATH}/ffmpeg/bin/*.exe)
     add_custom_command(TARGET ${PROJECT_NAME} POST_BUILD

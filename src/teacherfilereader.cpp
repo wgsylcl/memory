@@ -44,7 +44,8 @@ Q_INVOKABLE void TeacherFileReader::readdata(int key)
     name = teacher.value("name").toString();
     subject = teacher.value("subject").toString();
     QString jsign = teacher.value("sign").toString();
-    if(jsign.isEmpty()) jsign = "nopicture.png";
+    if (jsign.isEmpty())
+        jsign = "nopicture.png";
     sign = QUrl(QString("image://provider/") + jsign);
     return;
 }

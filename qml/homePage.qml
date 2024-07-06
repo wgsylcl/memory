@@ -1,7 +1,8 @@
-import QtQuick 2.15
-import QtQuick.Layouts 1.15
-import QtQuick.Window 2.15
-import FluentUI 1.0
+import QtQuick
+import QtQuick.Layouts
+import QtQuick.Window
+import FluentUI
+import QtQuick.Controls
 
 FluContentPage {
     title: qsTr("毕业留念")
@@ -27,6 +28,9 @@ FluContentPage {
             top: frame.bottom
         }
         fillMode: Image.PreserveAspectFit
+        cache: true
+        smooth: true
+
         MouseArea {
             anchors.fill: parent
             onDoubleClicked: FluRouter.navigate("/viewpicture",{pictureurl:"qrc:/res/groupphoto.jpg"})

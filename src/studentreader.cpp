@@ -3,7 +3,6 @@
 StudentReader::StudentReader(QObject *parent)
     : QObject{parent}, file(runtimedir + "/data/students/student.json")
 {
-
 }
 
 Q_INVOKABLE QStringList StudentReader::readdata(void)
@@ -30,25 +29,25 @@ Q_INVOKABLE QStringList StudentReader::readdata(void)
         map.insert("name", name);
         map.insert("birthday", birthday.isEmpty() ? tr("ta还没提供生日噢~") : birthday);
         map.insert("profile", profile.isEmpty() ? tr("ta还没来个简单的自我介绍噢~") : profile);
-        map.insert("sign",QUrl(QString("image://provider/") + (sign.isEmpty() ? "nopicture.png" : sign)));
-        datas.insert(name,map);
+        map.insert("sign", QUrl(QString("image://provider/") + (sign.isEmpty() ? "nopicture.png" : sign)));
+        datas.insert(name, map);
         ret.append(name);
         // deal with pictures:
         QList<QUrl> picurls;
         QJsonArray jpicarr = studata.value("picture").toArray();
-        for(int j=0;j<jpicarr.count();j++)
+        for (int j = 0; j < jpicarr.count(); j++)
             picurls.append("image://provider/" + jpicarr.at(j).toString());
-        if(picurls.isEmpty())
+        if (picurls.isEmpty())
             picurls.append(QUrl("image://provider/nopicture.png"));
-        picpaths.insert(name,picurls);
+        picpaths.insert(name, picurls);
         // deal with reviews:
         QStringList review;
         QJsonArray jreviewarr = studata.value("review").toArray();
-        for(int j=0;j<jreviewarr.count();j++)
+        for (int j = 0; j < jreviewarr.count(); j++)
             review.append(jreviewarr.at(j).toString());
-        if(review.isEmpty())
+        if (review.isEmpty())
             review.append("还没有人给ta留言哦~");
-        reviews.insert(name,review);
+        reviews.insert(name, review);
     }
     return ret;
 }

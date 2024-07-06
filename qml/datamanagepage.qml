@@ -1,8 +1,8 @@
-import QtQuick 2.15
+import QtQuick
 import QtQuick.Layouts
 import QtQuick.Controls
-import FluentUI 1.0
-import datamanagehelper 1.0
+import FluentUI
+import datamanagehelper
 
 FluContentPage {
     id: root
@@ -84,8 +84,8 @@ FluContentPage {
             remoteactivities = datamanagehelper.getallactivitiynames()
             for(var i=0;i<remoteactivities.length;i++) {
                 activitylistmodel.append({name:remoteactivities[i],
-                                          localversion:datamanagehelper.getlocalactivityversionbyname(remoteactivities[i]),
-                                          remoteversion:datamanagehelper.getremoteactivityversionbyname(remoteactivities[i])})
+                                             localversion:datamanagehelper.getlocalactivityversionbyname(remoteactivities[i]),
+                                             remoteversion:datamanagehelper.getremoteactivityversionbyname(remoteactivities[i])})
             }
         }
     }
@@ -136,8 +136,8 @@ FluContentPage {
                     Layout.preferredWidth: 100
                     Layout.fillWidth: true
                     text: datamanagehelper.getlocalactivityversionbyname(name) === "0.0.0" ?
-                          "还未下载这个数据库到本地噢" :
-                          "本地数据库版本：" + datamanagehelper.getlocalactivityversionbyname(name)
+                              "还未下载这个数据库到本地噢" :
+                              "本地数据库版本：" + datamanagehelper.getlocalactivityversionbyname(name)
                     Layout.alignment: Qt.AlignHCenter
                 }
                 FluText {

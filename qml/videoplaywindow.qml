@@ -1,5 +1,6 @@
-import QtQuick 2.15
-import FluentUI 1.0
+import QtQuick
+import QtQuick.Controls
+import FluentUI
 
 FluWindow {
     id: window
@@ -20,4 +21,13 @@ FluWindow {
         height: window.height
     }
     Component.onCompleted: player.reset()
+    Action {
+        shortcut: " "
+        onTriggered: {
+            if(player.isplaying)
+                player.pause()
+            else
+                player.start()
+        }
+    }
 }

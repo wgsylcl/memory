@@ -71,17 +71,17 @@ void DataBaseInitializer::parsepictures()
 void DataBaseInitializer::parsedatabaseinfo()
 {
     QJsonArray databaseinfos = database->remoteroot.value("users").toArray();
-    for(int i=0;i<databaseinfos.count();i++)
+    for (int i = 0; i < databaseinfos.count(); i++)
     {
         QJsonObject databaseinfo = databaseinfos.at(i).toObject();
         QString username = databaseinfo.value("name").toString();
         QString token = databaseinfo.value("access_token").toString();
-        database -> usertokens.insert(username,token);
+        database->usertokens.insert(username, token);
         QJsonArray reponames = databaseinfo.value("reponames").toArray();
-        for(int j=0;j<reponames.count();j++)
+        for (int j = 0; j < reponames.count(); j++)
         {
             QString reponame = reponames.at(j).toString();
-            database -> usernames.insert(reponame,username);
+            database->usernames.insert(reponame, username);
         }
     }
 }

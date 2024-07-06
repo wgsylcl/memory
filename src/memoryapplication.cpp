@@ -20,7 +20,7 @@ MemoryApplication::MemoryApplication(int &argc, char *argv[])
     checksingle();
     setupfiles();
     QObject::connect(qApp, &QCoreApplication::aboutToQuit, this, &MemoryApplication::releseresources);
-    QObject::connect(maintool,&MainTool::requestrestartinitialize,this,&MemoryApplication::startinitialize);
+    QObject::connect(maintool, &MainTool::requestrestartinitialize, this, &MemoryApplication::startinitialize);
     threadpool->setExpiryTimeout(-1);
     setuptranslator();
     registermodules();
@@ -99,17 +99,19 @@ void MemoryApplication::setupqmlengine()
 
 void MemoryApplication::startinitialize()
 {
-    if(maintool->is_crashmode())
+    if (maintool->is_crashmode())
         return;
     databaseinitializethread = new QThread();
     databaseinitializer = new DataBaseInitializer();
     databaseinitializer->moveToThread(databaseinitializethread);
     QObject::connect(databaseinitializethread, &QThread::started, databaseinitializer, &DataBaseInitializer::initialize);
     QObject::connect(databaseinitializethread, &QThread::finished, databaseinitializethread, &QObject::deleteLater);
-    QObject::connect(databaseinitializer,&DataBaseInitializer::initializefinished,maintool,&MainTool::dealinitializefinish);
-    QObject::connect(databaseinitializer,&DataBaseInitializer::initializefailed,maintool,&MainTool::dealinitializefail);
-    QObject::connect(databaseinitializer,&DataBaseInitializer::initializefinished,[this](void){this->databaseinitializer->deleteLater();this->databaseinitializer = nullptr,this->databaseinitializethread = nullptr;});
-    QObject::connect(databaseinitializer,&DataBaseInitializer::initializefailed,[this](void){this->databaseinitializer->deleteLater();this->databaseinitializer = nullptr,this->databaseinitializethread = nullptr;});
+    QObject::connect(databaseinitializer, &DataBaseInitializer::initializefinished, maintool, &MainTool::dealinitializefinish);
+    QObject::connect(databaseinitializer, &DataBaseInitializer::initializefailed, maintool, &MainTool::dealinitializefail);
+    QObject::connect(databaseinitializer, &DataBaseInitializer::initializefinished, [this](void)
+                     {this->databaseinitializer->deleteLater();this->databaseinitializer = nullptr,this->databaseinitializethread = nullptr; });
+    QObject::connect(databaseinitializer, &DataBaseInitializer::initializefailed, [this](void)
+                     {this->databaseinitializer->deleteLater();this->databaseinitializer = nullptr,this->databaseinitializethread = nullptr; });
     databaseinitializethread->start();
 }
 
@@ -117,7 +119,8 @@ void MemoryApplication::setupfiles()
 {
     const QString dumpDirPath = runtimedir + "/dmp";
     const QDir dumpDir(dumpDirPath);
-    if (!dumpDir.exists()) {
+    if (!dumpDir.exists())
+    {
         dumpDir.mkpath(dumpDirPath);
     }
     QDir cachedir(runtimedir + "/cache");
@@ -127,7 +130,7 @@ void MemoryApplication::setupfiles()
 
 void MemoryApplication::checksingle()
 {
-    if(maintool->is_crashmode())
+    if (maintool->is_crashmode())
         return;
     if (!filelocker.tryLock(1000))
         ::exit(0);

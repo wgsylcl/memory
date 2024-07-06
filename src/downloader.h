@@ -11,13 +11,13 @@ class Downloader : public QObject
 {
     Q_OBJECT
 public:
-    explicit Downloader(QUrl downloadurl,QString savepath);
+    explicit Downloader(QUrl downloadurl, QString savepath);
     ~Downloader();
     void startdownload();
 
 signals:
-    void downloadfinished(Downloader* from);
-    void downloadfailed(Downloader* from);
+    void downloadfinished(Downloader *from);
+    void downloadfailed(Downloader *from);
 
 public slots:
     void receivedata();

@@ -7,7 +7,7 @@ class Direncoder : public QObject
 {
     Q_OBJECT
 public:
-    explicit Direncoder(QString path,QObject *parent = nullptr);
+    explicit Direncoder(QString path, QObject *parent = nullptr);
 public slots:
     void encodedir(QString path);
     void startencodedir();

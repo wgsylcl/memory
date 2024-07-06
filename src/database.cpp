@@ -10,7 +10,6 @@ DataBase::DataBase(QObject *parent)
 
 DataBase::~DataBase()
 {
-
 }
 
 DataBase *DataBase::instance()
@@ -21,7 +20,7 @@ DataBase *DataBase::instance()
 QStringList DataBase::getAllLocalActivitieNames()
 {
     QStringList ret;
-    for(auto it = localactivityversions.begin();it != localactivityversions.end();it++)
+    for (auto it = localactivityversions.begin(); it != localactivityversions.end(); it++)
         ret.append(it.key());
     return ret;
 }
@@ -29,7 +28,7 @@ QStringList DataBase::getAllLocalActivitieNames()
 QStringList DataBase::getAllRemoteActivitieNames()
 {
     QStringList ret;
-    for(auto it = activities.begin();it != activities.end();it++)
+    for (auto it = activities.begin(); it != activities.end(); it++)
         ret.append(it.key());
     return ret;
 }
@@ -86,7 +85,7 @@ void DataBase::syncactivityversion(QString activityname)
 {
     localactivityversions[activityname] = (activities[activityname].localversion = activities[activityname].remoteversion);
     QJsonArray jactivities;
-    for(auto it = localactivityversions.begin();it != localactivityversions.end();it++)
+    for (auto it = localactivityversions.begin(); it != localactivityversions.end(); it++)
     {
         QJsonObject localactivity;
         localactivity["name"] = it.key();
@@ -102,7 +101,7 @@ void DataBase::removelocalactivityversionbyname(QString name)
     activities[name].localversion = "0.0.0";
     localactivityversions.remove(name);
     QJsonArray jactivities;
-    for(auto it = localactivityversions.begin();it != localactivityversions.end();it++)
+    for (auto it = localactivityversions.begin(); it != localactivityversions.end(); it++)
     {
         QJsonObject localactivity;
         localactivity["name"] = it.key();
@@ -115,7 +114,7 @@ void DataBase::removelocalactivityversionbyname(QString name)
 
 QUrl DataBase::generaterequesturl(QString reponame, QString filepath)
 {
-    return QUrl(QString("https://gitee.com/api/v5/repos/%1/%2/raw/%3?access_token=%4").arg(usernames[reponame],reponame,filepath,usertokens[usernames[reponame]]));
+    return QUrl(QString("https://gitee.com/api/v5/repos/%1/%2/raw/%3?access_token=%4").arg(usernames[reponame], reponame, filepath, usertokens[usernames[reponame]]));
 }
 
 QString DataBase::getlatestapplicationversion()

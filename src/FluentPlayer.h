@@ -10,7 +10,7 @@
 #include <QThread>
 #include <QThreadPool>
 #include <QMutex>
-#if QT_VERSION < QT_VERSION_CHECK(6,0,0)
+#if QT_VERSION < QT_VERSION_CHECK(6, 0, 0)
 #include <QAbstractVideoSurface>
 #include <QVideoSurfaceFormat>
 #else
@@ -19,18 +19,22 @@
 
 #include "stdafx.h"
 
-extern "C" {
+extern "C"
+{
 #include "libavcodec/avcodec.h"
 #include "libavdevice/avdevice.h"
 #include "libswresample/swresample.h"
 #include "libavfilter/avfilter.h"
 }
 
-class QAudioFrame{
+class QAudioFrame
+{
 public:
     QAudioFrame(){};
-    ~QAudioFrame(){
-        if(pcm){
+    ~QAudioFrame()
+    {
+        if (pcm)
+        {
             av_free(pcm);
             pcm = nullptr;
         }
@@ -44,17 +48,17 @@ public:
 class FluentPlayer : public QObject
 {
     Q_OBJECT
-#if QT_VERSION < QT_VERSION_CHECK(6,0,0)
+#if QT_VERSION < QT_VERSION_CHECK(6, 0, 0)
     Q_PROPERTY(QAbstractVideoSurface *videoSurface READ videoSurface WRITE setVideoSurface CONSTANT)
 #else
-    Q_PROPERTY_AUTO(QObject*,videoOutput)
+    Q_PROPERTY_AUTO(QObject *, videoOutput)
 #endif
-    Q_PROPERTY_AUTO(QUrl,source)
-    Q_PROPERTY_AUTO(qreal,volume)
-    Q_PROPERTY_AUTO(double,speed)
-    Q_PROPERTY_READONLY_AUTO(double,duration)
-    Q_PROPERTY_READONLY_AUTO(double,position)
-    Q_PROPERTY_READONLY_AUTO(bool,playing)
+    Q_PROPERTY_AUTO(QUrl, source)
+    Q_PROPERTY_AUTO(qreal, volume)
+    Q_PROPERTY_AUTO(double, speed)
+    Q_PROPERTY_READONLY_AUTO(double, duration)
+    Q_PROPERTY_READONLY_AUTO(double, position)
+    Q_PROPERTY_READONLY_AUTO(bool, playing)
 public:
     explicit FluentPlayer(QObject *parent = nullptr);
     ~FluentPlayer();
@@ -62,12 +66,13 @@ public:
     Q_INVOKABLE void stop();
     Q_INVOKABLE void pause();
     Q_INVOKABLE void seek(qint64 seek);
+
 protected:
     void timerEvent(QTimerEvent *event) override;
 
 private:
     QThreadPool *localthreadpool;
-    void loadSource(bool autoPlay,qint64 seek = 0);
+    void loadSource(bool autoPlay, qint64 seek = 0);
     QSharedPointer<QVideoFrame> getVideoFrame();
     QSharedPointer<QAudioFrame> getAudioFrame();
     void cleanVideoFrame();
@@ -81,19 +86,19 @@ private:
     void doInWorkVideoDecode(qint64 seek);
     void doInWorkAudioDecode(qint64 seek);
     void updateVideoFrame(QSharedPointer<QVideoFrame> frame);
-    void updateVideoFrame(const QVideoFrame& frame);
+    void updateVideoFrame(const QVideoFrame &frame);
     QString getUrl();
     void checkThreadCompleted();
     Q_SIGNAL void firstVideoFrameCompeletd(QVideoFrame frame);
-#if QT_VERSION < QT_VERSION_CHECK(6,0,0)
-    QAbstractVideoSurface* videoSurface();
+#if QT_VERSION < QT_VERSION_CHECK(6, 0, 0)
+    QAbstractVideoSurface *videoSurface();
     Q_SIGNAL void sendVideoFrame(QVideoFrame frame);
     void setVideoSurface(QAbstractVideoSurface *surface);
 #endif
 private:
     QQueue<QSharedPointer<QVideoFrame>> m_videoFrameCache;
     QQueue<QSharedPointer<QAudioFrame>> m_audioFrameCache;
-#if QT_VERSION < QT_VERSION_CHECK(6,0,0)
+#if QT_VERSION < QT_VERSION_CHECK(6, 0, 0)
     QAbstractVideoSurface *m_videoSink = nullptr;
     QVideoSurfaceFormat m_format;
 #else

@@ -1,7 +1,7 @@
-import QtQuick 2.15
-import QtQuick.Window 2.15
+import QtQuick
+import QtQuick.Window
 import QtQuick.Layouts
-import FluentUI 1.0
+import FluentUI
 
 FluWindow {
     width: 668*2
@@ -71,6 +71,7 @@ FluWindow {
                     FluImage {
                         visible: true
                         source: "qrc:/res/erroregg.png"
+
                         Layout.fillHeight: true
                         fillMode: Image.PreserveAspectFit
                         Layout.preferredHeight: 120
@@ -140,6 +141,7 @@ FluWindow {
                     onTap: navigationview.push(url)
                 }
                 FluPaneItemExpander {
+                    id: databaseexpander
                     icon: FluentIcons.FolderOpen
                     title: qsTr("数据库管理")
                     FluPaneItem {

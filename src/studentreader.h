@@ -16,9 +16,9 @@ signals:
 
 private:
     QFile file;
-    QMap<QString,QVariantMap> datas;
-    QMap<QString,QList<QUrl>> picpaths;
-    QMap<QString,QStringList> reviews;
+    QMap<QString, QVariantMap> datas;
+    QMap<QString, QList<QUrl>> picpaths;
+    QMap<QString, QStringList> reviews;
 };
 
 #endif // STUDENTREADER_H

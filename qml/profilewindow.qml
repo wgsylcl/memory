@@ -1,8 +1,8 @@
-import QtQuick 2.15
-import QtQuick.Layouts 1.15
-import QtQuick.Controls 2.15
+import QtQuick
+import QtQuick.Layouts
+import QtQuick.Controls
 import Qt.labs.platform
-import FluentUI 1.0
+import FluentUI
 
 FluWindow {
     id: window
@@ -12,7 +12,6 @@ FluWindow {
     launchMode: FluWindowType.Standard
     property string name: ""
     property int id: 0
-    property int key: 0
     property var addfiles: []
     property string newprofile: ""
     property string sender: ""
@@ -24,7 +23,6 @@ FluWindow {
         (argument)=>{
             window.name = argument.name
             window.id = Number(argument.id)
-            window.key = argument.key
             selfintroduction.text = argument.profile
             signimage.source = argument.sign
             picpaths = argument.picpaths
@@ -122,11 +120,13 @@ FluWindow {
                     width: parent.width
                     fillMode:Image.PreserveAspectFit
                     anchors.margins: 10
+                    cache: true
+                    smooth: true
                     MouseArea {
                         anchors.fill: parent
                         onDoubleClicked: {
-                            if(MainTool.isvideo(MainTool.toLocalMediaUrl(parent.source))) FluRouter.navigate("/playvideo",{videourl:MainTool.toLocalMediaUrl(parent.source)})
-                            else FluRouter.navigate("/viewpicture",{pictureurl:MainTool.toLocalMediaUrl(parent.source)})
+                            if(MainTool.isvideo(parent.source)) FluRouter.navigate("/playvideo",{videourl:MainTool.toLocalMediaUrl(parent.source)})
+                            else FluRouter.navigate("/viewpicture",{pictureurl:parent.source})
                         }
                     }
                 }
@@ -148,10 +148,13 @@ FluWindow {
                             width: parent.parent.width
                             fillMode:Image.PreserveAspectFit
                             anchors.margins: 10
+                            cache: true
+                            smooth: true
+
                             MouseArea {
                                 anchors.fill: parent
                                 onDoubleClicked: {
-                                    if(MainTool.isvideo(MainTool.toLocalMediaUrl(parent.source))) FluRouter.navigate("/playvideo",{videourl:MainTool.toLocalMediaUrl(parent.source)})
+                                    if(MainTool.isvideo(parent.source)) FluRouter.navigate("/playvideo",{videourl:MainTool.toLocalMediaUrl(parent.source)})
                                     else FluRouter.navigate("/viewpicture",{pictureurl:MainTool.toLocalMediaUrl(parent.source)})
                                 }
                             }

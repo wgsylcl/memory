@@ -33,7 +33,8 @@ void ActivityUpdater::startupdate(QString activityname)
 
 void ActivityUpdater::updaterepo(const QString activityname, const QString reponame, const QStringList filelist, const int idx)
 {
-    if(updatefail[activityname][idx]) return;
+    if (updatefail[activityname][idx])
+        return;
     if (idx < nidx[activityname])
         return;
     const QString activitypath = runtimedir + "/data/activities/" + activityname;
@@ -48,9 +49,9 @@ void ActivityUpdater::updaterepo(const QString activityname, const QString repon
             {
                 BigFileDownloader *bigfiledownloader = new BigFileDownloader(reponame, filename, activitypath + "/" + filename);
                 QObject::connect(bigfiledownloader, &BigFileDownloader::downloadfinished, [activityname, idx, this]()
-                                 { this->dealdownloadfinished(activityname,idx); });
+                                 { this->dealdownloadfinished(activityname, idx); });
                 QObject::connect(bigfiledownloader, &BigFileDownloader::downloadfailed, [activityname, idx, this]()
-                                 { this->dealdownloadfailed(activityname,idx); });
+                                 { this->dealdownloadfailed(activityname, idx); });
                 taskcount[activityname][idx]++;
                 bigfiledownloader->startdownload();
             }
@@ -59,9 +60,9 @@ void ActivityUpdater::updaterepo(const QString activityname, const QString repon
         {
             Downloader *downloader = new Downloader(database->generaterequesturl(reponame, filename), activitypath + "/" + filename);
             QObject::connect(downloader, &Downloader::downloadfinished, [activityname, idx, this]()
-                             { this->dealdownloadfinished(activityname,idx); });
+                             { this->dealdownloadfinished(activityname, idx); });
             QObject::connect(downloader, &Downloader::downloadfailed, [activityname, idx, this]()
-                             { this->dealdownloadfailed(activityname,idx); });
+                             { this->dealdownloadfailed(activityname, idx); });
             taskcount[activityname][idx]++;
             downloadmanager->adddownloader(downloader);
         }
@@ -75,19 +76,27 @@ void ActivityUpdater::updaterepo(const QString activityname, const QString repon
     emit updatefinished(activityname);
 }
 
-void ActivityUpdater::dealdownloadfinished(QString activityname,int idx)
+void ActivityUpdater::dealdownloadfinished(QString activityname, int idx)
 {
-    if(updatefail[activityname][idx]) return;
-    if(--taskcount[activityname][idx]) return;
-    if(idx < nidx[activityname]) return;
+    if (updatefail[activityname][idx])
+        return;
+    if (--taskcount[activityname][idx])
+        return;
+    if (idx < nidx[activityname])
+        return;
     database->syncactivityversion(activityname);
     updatinglist.remove(activityname);
     emit updatefinished(activityname);
 }
 
-void ActivityUpdater::dealdownloadfailed(QString activityname,int idx)
+void ActivityUpdater::dealdownloadfailed(QString activityname, int idx)
 {
-    if(idx < nidx[activityname]) return;
+    if (updatefail[activityname][idx])
+        return;
+    if (--taskcount[activityname][idx])
+        return;
+    if (idx < nidx[activityname])
+        return;
     updatefail[activityname][idx] = true;
     updatinglist.remove(activityname);
     emit updatefailed(activityname);

@@ -7,7 +7,7 @@ class BigFileDownloader : public QObject
 {
     Q_OBJECT
 public:
-    explicit BigFileDownloader(QString reponame,QString filename,QString savepath,QObject *parent = nullptr);
+    explicit BigFileDownloader(QString reponame, QString filename, QString savepath, QObject *parent = nullptr);
     void startdownload();
     void mergefile();
 public slots:
@@ -17,10 +17,11 @@ public slots:
 signals:
     void downloadfinished();
     void downloadfailed();
+
 private:
-    QString reponame,filename,savepath;
+    QString reponame, filename, savepath;
     QMutex lock;
-    int filecount,finishedcount;
+    int filecount, finishedcount;
     bool downloadfail;
 };
 

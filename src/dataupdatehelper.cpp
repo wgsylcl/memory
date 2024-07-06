@@ -311,7 +311,8 @@ void DataUpdateHelper::writefile(QString path, QByteArray data)
 {
     QFileInfo fileinfo(path);
     QDir dir = fileinfo.absoluteDir();
-    if(!dir.exists()) dir.mkpath(dir.absolutePath());
+    if (!dir.exists())
+        dir.mkpath(dir.absolutePath());
     QFile datafile(path);
     datafile.open(QIODevice::WriteOnly);
     datafile.write(data);

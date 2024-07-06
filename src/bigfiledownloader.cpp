@@ -16,7 +16,8 @@ void BigFileDownloader::startdownload()
 
 void BigFileDownloader::mergefile()
 {
-    if(downloadfail) return;
+    if (downloadfail)
+        return;
     QSaveFile bigfile(savepath);
     bigfile.open(QIODevice::WriteOnly);
     for (int i = 1; i <= filecount; i++)
@@ -33,7 +34,8 @@ void BigFileDownloader::mergefile()
 
 void BigFileDownloader::receivepartfile()
 {
-    if(downloadfail) return;
+    if (downloadfail)
+        return;
     QMutexLocker locker(&lock);
     if ((++finishedcount) == filecount)
         mergefile();
@@ -41,7 +43,8 @@ void BigFileDownloader::receivepartfile()
 
 void BigFileDownloader::receivefailed()
 {
-    if(downloadfail) return;
+    if (downloadfail)
+        return;
     QMutexLocker locker(&lock);
     downloadfail = true;
     emit downloadfailed();
@@ -49,7 +52,8 @@ void BigFileDownloader::receivefailed()
 
 void BigFileDownloader::receiveheadfile()
 {
-    if(downloadfail) return;
+    if (downloadfail)
+        return;
     QFile headfile(runtimedir + "/cache/" + filename + ".0");
     headfile.open(QIODevice::ReadOnly | QIODevice::Text);
     QTextStream qin(&headfile);

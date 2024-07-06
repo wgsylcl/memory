@@ -9,12 +9,12 @@ MainTool::MainTool(QObject *parent)
     QCommandLineOption crashlogop("crashlog");
     crashlogop.setValueName("crashlogpath");
     QCommandLineParser parser;
-    parser.addOptions({crashop,crashfileop,crashlogop});
+    parser.addOptions({crashop, crashfileop, crashlogop});
     parser.process(*qApp);
     crashmode = parser.isSet(crashop);
-    if(parser.isSet(crashfileop))
+    if (parser.isSet(crashfileop))
         crashfilename = parser.value(crashfileop);
-    if(parser.isSet(crashlogop))
+    if (parser.isSet(crashlogop))
         crashlogname = parser.value(crashlogop);
 }
 
@@ -29,18 +29,13 @@ Q_INVOKABLE bool MainTool::is_crashmode(void)
 
 Q_INVOKABLE void MainTool::savecrashfile(void)
 {
-    memorybase::copyfile(runtimedir + "/dmp/" + crashfilename,memorybase::getsystemdownloadpath() + "/" + crashfilename);
-    memorybase::copyfile(runtimedir + "/logs/" + crashlogname,memorybase::getsystemdownloadpath() + "/" + crashlogname);
+    memorybase::copyfile(runtimedir + "/dmp/" + crashfilename, memorybase::getsystemdownloadpath() + "/" + crashfilename);
+    memorybase::copyfile(runtimedir + "/logs/" + crashlogname, memorybase::getsystemdownloadpath() + "/" + crashlogname);
 }
 
 Q_INVOKABLE QUrl MainTool::getdownloadurl(void)
 {
     return memorybase::toUrl(memorybase::getsystemdownloadpath());
-}
-
-Q_INVOKABLE QString MainTool::getCurrentApplicationPath(void)
-{
-    return QCoreApplication::applicationFilePath();
 }
 
 Q_INVOKABLE bool MainTool::isvideo(QUrl url)
@@ -118,11 +113,11 @@ Q_INVOKABLE void MainTool::restartapplication()
 Q_INVOKABLE void MainTool::cleanlog()
 {
     QStringList logs = memorybase::getfilenamelist(runtimedir + "/logs");
-    for(QString log : logs)
-        if(log != database->logfilename)
+    for (QString log : logs)
+        if (log != database->logfilename)
             QFile(runtimedir + "/logs/" + log).remove();
     QStringList dumps = memorybase::getfilenamelist(runtimedir + "/dmp");
-    for(QString dump : dumps)
+    for (QString dump : dumps)
         QFile(runtimedir + "/dmp/" + dump).remove();
 }
 
@@ -134,6 +129,11 @@ Q_INVOKABLE QString MainTool::getlatestapplicationversion()
 Q_INVOKABLE QString MainTool::getlocalapplicationversion()
 {
     return VERSION;
+}
+
+Q_INVOKABLE bool MainTool::haveprofilepicture()
+{
+    return database->getlocalprofilepictureversion() != "0.0.0";
 }
 
 void MainTool::dealinitializefail()

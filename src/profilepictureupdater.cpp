@@ -45,11 +45,15 @@ void ProfilePictureUpdater::updateprofile(QStringList filelist, int idx)
 {
     if (idx < nidx)
         return;
+    if (updatefail[idx])
+        return;
     for (QString filename : filelist)
     {
         Downloader *downloader = new Downloader(database->generaterequesturl(database->getprofilereponame(), filename), runtimedir + "/data/students/" + filename);
-        QObject::connect(downloader, &Downloader::downloadfinished, [idx,this](){this->dealdownloadfinished(idx);});
-        QObject::connect(downloader, &Downloader::downloadfailed, [idx,this](){this->dealdownloadfailed(idx);});
+        QObject::connect(downloader, &Downloader::downloadfinished, [idx, this]()
+                         { this->dealdownloadfinished(idx); });
+        QObject::connect(downloader, &Downloader::downloadfailed, [idx, this]()
+                         { this->dealdownloadfailed(idx); });
         downloadmanager->adddownloader(downloader);
         taskcount[idx]++;
     }
@@ -58,6 +62,8 @@ void ProfilePictureUpdater::updateprofile(QStringList filelist, int idx)
 void ProfilePictureUpdater::updatepicture(QString reponame, const QStringList filelist, int idx)
 {
     if (idx < nidx)
+        return;
+    if (updatefail[idx])
         return;
     const static QStringList localfilelist = memorybase::getfilenamelist(runtimedir + "/data/pictures");
     for (QString filename : filelist)
@@ -70,8 +76,10 @@ void ProfilePictureUpdater::updatepicture(QString reponame, const QStringList fi
             {
                 BigFileDownloader *bigfiledownloader = new BigFileDownloader(reponame, filename, runtimedir + "/data/pictures/" + filename);
                 QObject::connect(bigfiledownloader, &BigFileDownloader::downloadfinished, bigfiledownloader, &QObject::deleteLater);
-                QObject::connect(bigfiledownloader, &BigFileDownloader::downloadfinished, [idx,this](){this->dealdownloadfinished(idx);});
-                QObject::connect(bigfiledownloader, &BigFileDownloader::downloadfailed, [idx,this](){this->dealdownloadfailed(idx);});
+                QObject::connect(bigfiledownloader, &BigFileDownloader::downloadfinished, [idx, this]()
+                                 { this->dealdownloadfinished(idx); });
+                QObject::connect(bigfiledownloader, &BigFileDownloader::downloadfailed, [idx, this]()
+                                 { this->dealdownloadfailed(idx); });
                 bigfiledownloader->startdownload();
                 taskcount[idx]++;
             }
@@ -79,8 +87,10 @@ void ProfilePictureUpdater::updatepicture(QString reponame, const QStringList fi
         else if (!localfilelist.contains(filename))
         {
             Downloader *downloader = new Downloader(database->generaterequesturl(reponame, filename), runtimedir + "/data/pictures/" + filename);
-            QObject::connect(downloader, &Downloader::downloadfinished, [idx,this](){this->dealdownloadfinished(idx);});
-            QObject::connect(downloader, &Downloader::downloadfailed, [idx,this](){this->dealdownloadfailed(idx);});
+            QObject::connect(downloader, &Downloader::downloadfinished, [idx, this]()
+                             { this->dealdownloadfinished(idx); });
+            QObject::connect(downloader, &Downloader::downloadfailed, [idx, this]()
+                             { this->dealdownloadfailed(idx); });
             downloadmanager->adddownloader(downloader);
             taskcount[idx]++;
         }
@@ -90,6 +100,8 @@ void ProfilePictureUpdater::updatepicture(QString reponame, const QStringList fi
 void ProfilePictureUpdater::dealdownloadfinished(int idx)
 {
     if (idx < nidx)
+        return;
+    if (updatefail[idx])
         return;
     if (--taskcount[idx])
         return;
@@ -103,6 +115,8 @@ void ProfilePictureUpdater::dealdownloadfailed(int idx)
     if (idx < nidx)
         return;
     if (updatefail[idx])
+        return;
+    if (--taskcount[idx])
         return;
     updating = false;
     updatefail[idx] = true;

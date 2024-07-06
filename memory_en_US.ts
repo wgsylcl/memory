@@ -4,12 +4,12 @@
 <context>
     <name>StudentReader</name>
     <message>
-        <location filename="src/studentreader.cpp" line="31"/>
+        <location filename="src/studentreader.cpp" line="30"/>
         <source>ta还没提供生日噢~</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="src/studentreader.cpp" line="32"/>
+        <location filename="src/studentreader.cpp" line="31"/>
         <source>ta还没来个简单的自我介绍噢~</source>
         <translation type="unfinished"></translation>
     </message>
@@ -27,22 +27,22 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="qml/activitypage.qml" line="55"/>
+        <location filename="qml/activitypage.qml" line="56"/>
         <source>上一张</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="qml/activitypage.qml" line="61"/>
+        <location filename="qml/activitypage.qml" line="62"/>
         <source>下一张</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="qml/activitypage.qml" line="68"/>
+        <location filename="qml/activitypage.qml" line="69"/>
         <source>给活动添加图片/视频</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="qml/activitypage.qml" line="219"/>
+        <location filename="qml/activitypage.qml" line="224"/>
         <source>已经到顶端了噢~</source>
         <translation type="unfinished"></translation>
     </message>
@@ -273,13 +273,13 @@ text:%3</source>
 <context>
     <name>homePage</name>
     <message>
-        <location filename="qml/homePage.qml" line="7"/>
+        <location filename="qml/homePage.qml" line="8"/>
         <source>毕业留念</source>
         <oldsource>班级信息</oldsource>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="qml/homePage.qml" line="15"/>
+        <location filename="qml/homePage.qml" line="16"/>
         <source>我来自武钢实验学校，2021年入学，成为了光荣的14班的一员，在这里，我先后与46名小伙伴一起学习、交流、成长。三年的成长后，我将从这里再度起航！</source>
         <oldsource>我来自武钢实验学校，2021年入学，成为了光荣的14班的一员，在这里，我先后与46名小伙伴一起学习、交流、成长，三年的成长后，我将从这里再度起航！</oldsource>
         <translation type="unfinished"></translation>
@@ -313,94 +313,94 @@ text:%3</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="qml/main.qml" line="115"/>
+        <location filename="qml/main.qml" line="116"/>
         <source>主界面</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="qml/main.qml" line="121"/>
+        <location filename="qml/main.qml" line="122"/>
         <source>我的老师们</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="qml/main.qml" line="127"/>
+        <location filename="qml/main.qml" line="128"/>
         <source>我和我的同学</source>
         <oldsource>同学信息</oldsource>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="qml/main.qml" line="131"/>
+        <location filename="qml/main.qml" line="132"/>
         <source>回忆</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="qml/main.qml" line="137"/>
+        <location filename="qml/main.qml" line="138"/>
         <source>我们的班史</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="qml/main.qml" line="144"/>
+        <location filename="qml/main.qml" line="146"/>
         <source>数据库管理</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="qml/main.qml" line="147"/>
+        <location filename="qml/main.qml" line="149"/>
         <source>同步数据库</source>
         <oldsource>数据库同步</oldsource>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="qml/main.qml" line="153"/>
+        <location filename="qml/main.qml" line="155"/>
         <source>上传图文</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="qml/main.qml" line="159"/>
+        <location filename="qml/main.qml" line="161"/>
         <source>更改数据库</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="qml/main.qml" line="172"/>
+        <location filename="qml/main.qml" line="174"/>
         <source>设置和关于</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="qml/main.qml" line="177"/>
+        <location filename="qml/main.qml" line="179"/>
         <source>崩溃测试</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="qml/main.qml" line="190"/>
+        <location filename="qml/main.qml" line="192"/>
         <source>需要验证</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="qml/main.qml" line="191"/>
+        <location filename="qml/main.qml" line="193"/>
         <source>输入 Developer 的密码以授权对数据库的更改</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="qml/main.qml" line="198"/>
+        <location filename="qml/main.qml" line="200"/>
         <source>验证</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="qml/main.qml" line="199"/>
+        <location filename="qml/main.qml" line="201"/>
         <source>取消</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="qml/main.qml" line="202"/>
+        <location filename="qml/main.qml" line="204"/>
         <source>验证成功!</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="qml/main.qml" line="206"/>
+        <location filename="qml/main.qml" line="208"/>
         <source>密码错误!</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="qml/main.qml" line="209"/>
+        <location filename="qml/main.qml" line="211"/>
         <source>您退出了验证</source>
         <translation type="unfinished"></translation>
     </message>
@@ -416,7 +416,7 @@ text:%3</source>
 <context>
     <name>pictureviewwindow</name>
     <message>
-        <location filename="qml/pictureviewwindow.qml" line="10"/>
+        <location filename="qml/pictureviewwindow.qml" line="11"/>
         <source>查看图片</source>
         <translation type="unfinished"></translation>
     </message>
@@ -429,7 +429,7 @@ text:%3</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="qml/profilewindow.qml" line="100"/>
+        <location filename="qml/profilewindow.qml" line="98"/>
         <source>修改自我介绍</source>
         <translation type="unfinished"></translation>
     </message>
@@ -439,17 +439,17 @@ text:%3</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="qml/profilewindow.qml" line="104"/>
+        <location filename="qml/profilewindow.qml" line="102"/>
         <source>给ta留言</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="qml/profilewindow.qml" line="108"/>
+        <location filename="qml/profilewindow.qml" line="106"/>
         <source>添加ta的一刻</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="qml/profilewindow.qml" line="114"/>
+        <location filename="qml/profilewindow.qml" line="112"/>
         <source>ta的亲笔签名</source>
         <translation type="unfinished"></translation>
     </message>
@@ -459,7 +459,7 @@ text:%3</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="qml/profilewindow.qml" line="168"/>
+        <location filename="qml/profilewindow.qml" line="171"/>
         <source>留言栏</source>
         <translation type="unfinished"></translation>
     </message>
@@ -473,48 +473,40 @@ text:%3</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="qml/studentPage.qml" line="14"/>
+        <location filename="qml/studentPage.qml" line="61"/>
         <source>三年同窗，共沐一片阳光；一千个白昼，谱写了多少友谊的篇章？愿逝去的岁月，都化作美好的回忆，永留在心房。</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="qml/studentPage.qml" line="29"/>
+        <location filename="qml/studentPage.qml" line="77"/>
         <source>学号</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="qml/studentPage.qml" line="34"/>
+        <location filename="qml/studentPage.qml" line="82"/>
         <source>名字</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="qml/studentPage.qml" line="39"/>
+        <location filename="qml/studentPage.qml" line="87"/>
         <source>生日</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="qml/studentPage.qml" line="44"/>
+        <location filename="qml/studentPage.qml" line="92"/>
         <source>操作</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="qml/studentPage.qml" line="49"/>
+        <location filename="qml/studentPage.qml" line="97"/>
         <source>自我介绍</source>
         <oldsource>简介</oldsource>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="qml/studentPage.qml" line="61"/>
+        <location filename="qml/studentPage.qml" line="141"/>
         <source>看看ta的资料卡片</source>
         <oldsource>看看他的资料卡片</oldsource>
-        <translation type="unfinished"></translation>
-    </message>
-</context>
-<context>
-    <name>taskpage</name>
-    <message>
-        <location filename="qml/taskpage.qml" line="8"/>
-        <source>任务面板</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -526,33 +518,33 @@ text:%3</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="qml/teacherPage.qml" line="11"/>
+        <location filename="qml/teacherPage.qml" line="57"/>
         <source>您的教诲如同明灯，照亮我们前行的道路，感谢您陪伴我们度过这段美好的求学时光，愿您在新的旅程中，继续发光发热，教学事业蒸蒸日上，身体健康，生活幸福美满。</source>
         <oldsource>亲爱的老师，您的教诲如同明灯，照亮我们前行的道路，感谢您陪伴我们度过这段美好的求学时光。在毕业之际，我想对您表达最真挚的祝福。愿您在新的旅程中，继续发光发热，教学事业蒸蒸日上，身体健康，生活幸福美满。</oldsource>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="qml/teacherPage.qml" line="117"/>
+        <location filename="qml/teacherPage.qml" line="165"/>
         <source>ta的亲笔签名</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="qml/teacherPage.qml" line="140"/>
+        <location filename="qml/teacherPage.qml" line="191"/>
         <source>有关ta的一刻</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="qml/teacherPage.qml" line="173"/>
+        <location filename="qml/teacherPage.qml" line="227"/>
         <source>留言栏</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="qml/teacherPage.qml" line="200"/>
+        <location filename="qml/teacherPage.qml" line="254"/>
         <source>我的%1老师 —— %2</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="qml/teacherPage.qml" line="204"/>
+        <location filename="qml/teacherPage.qml" line="258"/>
         <source>&quot;%1&quot;
 </source>
         <translation type="unfinished"></translation>
@@ -561,7 +553,7 @@ text:%3</source>
 <context>
     <name>timelinePage</name>
     <message>
-        <location filename="qml/timelinePage.qml" line="7"/>
+        <location filename="qml/timelinePage.qml" line="8"/>
         <source>我们的班史</source>
         <translation type="unfinished"></translation>
     </message>

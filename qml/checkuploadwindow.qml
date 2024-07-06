@@ -1,8 +1,8 @@
-import QtQuick 2.15
+import QtQuick
 import QtQuick.Layouts
 import QtQuick.Controls
 import FluentUI
-import dataupdatehelper 1.0
+import dataupdatehelper
 
 FluWindow {
     id: window
@@ -147,11 +147,11 @@ FluWindow {
                                     for(var i=0;i<taskneednewactivity.length;i++) {
                                         var actname = taskneednewactivity[i]
                                         if(actname !== taskid)
-                                            ntaskneednewactivity.push(actname)
+                                        ntaskneednewactivity.push(actname)
                                     }
                                     taskneednewactivity = ntaskneednewactivity
                                     if(!taskneednewactivity.length)
-                                        acceptbutton.enabled = true
+                                    acceptbutton.enabled = true
                                     sender = data.activityname
                                     sendto = data.activityname
                                     dataupdatehelper.resetactivitytask(taskid,data.activityname,data.activitypath)
@@ -200,7 +200,7 @@ FluWindow {
                         visible: !(type !== 2 && type !== 3 && type !== 6)
                         id: taskcarousel
                         delegate: Component {
-                            Image {
+                            FluImage {
                                 id: taskpicture
                                 z: 1
                                 anchors.fill: parent
@@ -209,6 +209,7 @@ FluWindow {
                                 width: parent.parent.width
                                 fillMode:Image.PreserveAspectFit
                                 anchors.margins: 10
+
                                 MouseArea {
                                     anchors.fill: parent
                                     onDoubleClicked: {

@@ -10,6 +10,7 @@ FluContentPage {
     id: window
     property alias vediosource: player.source
     property alias isplaying: player.playing
+    animationEnabled: false
     QtObject{
         id:d
         property bool flag: true
@@ -307,22 +308,22 @@ FluContentPage {
                 }
             }
         }
-    }/*
-    FluMenu{
-        id:menu_effect
-        width: 68
-        visible: false
-        property int currIndex: 0
-        Repeater{
-            model: model_effect
-            FluMenuItem{
-                text: model.text
-                onClicked: {
-                    menu_effect.currIndex = index
-                }
-            }
-        }
-    }*/
+    }
+    // FluMenu{
+    //     id:menu_effect
+    //     width: 68
+    //     visible: false
+    //     property int currIndex: 0
+    //     Repeater{
+    //         model: model_effect
+    //         FluMenuItem{
+    //             text: model.text
+    //             onClicked: {
+    //                 menu_effect.currIndex = index
+    //             }
+    //         }
+    //     }
+    // }
     function hideControlLayout(){
         if(menu_speed.visible){
             return

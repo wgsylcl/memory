@@ -2,7 +2,8 @@
 
 DataManagerHelper::DataManagerHelper(QObject *parent)
     : QObject{parent}
-{}
+{
+}
 
 Q_INVOKABLE QString DataManagerHelper::getlocalprofilepictureversion(void)
 {
@@ -38,12 +39,12 @@ Q_INVOKABLE QStringList DataManagerHelper::getallactivitiynames(void)
 
 Q_INVOKABLE void DataManagerHelper::startsyncprofilepicture(void)
 {
-    ProfilePictureUpdater::instance() -> run();
+    ProfilePictureUpdater::instance()->run();
 }
 
 Q_INVOKABLE void DataManagerHelper::startsyncactivity(QString activityname)
 {
-    ActivityUpdater::instance() -> startupdate(activityname);
+    ActivityUpdater::instance()->startupdate(activityname);
 }
 
 Q_INVOKABLE QString DataManagerHelper::getactivitysize(QString activityname)
