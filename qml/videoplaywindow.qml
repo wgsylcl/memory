@@ -9,25 +9,15 @@ FluWindow {
     minimumWidth: 500
     minimumHeight: 400
     title:"播放视频"
-    fitsAppBarWindows: visibility === Window.FullScreen ? true : false
     launchMode: FluWindowType.SingleInstance
     onInitArgument:
         (argument)=>{
-            player.vediosource = argument.videourl
+            player.source = argument.videourl
+            player.play()
         }
-    FluMediaPlayer {
+    MMediaPlayer {
         id: player
         width: window.width
         height: window.height
-    }
-    Component.onCompleted: player.reset()
-    Action {
-        shortcut: " "
-        onTriggered: {
-            if(player.isplaying)
-                player.pause()
-            else
-                player.start()
-        }
     }
 }

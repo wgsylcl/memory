@@ -144,9 +144,10 @@ FluContentPage {
                 fillMode: Image.PreserveAspectFit
                 cache: true
                 smooth: true
-                Component.onCompleted: {
-                    source = ActivityReader.getMediaPath((index-1)%mediasize)
-                }
+                source: ActivityReader.getMediaPath((index-1)%mediasize)
+                // Component.onCompleted: {
+                //     source = ActivityReader.getMediaPath((index-1)%mediasize)
+                // }
             }
 
             focus: true
@@ -167,13 +168,13 @@ FluContentPage {
                          }
                      }
 
-            FluMediaPlayer {
+            MMediaPlayer {
                 id: player
                 width: parent.width
                 height: parent.height
+                source: ActivityReader.getMediaPath((index-1)%mediasize)
                 Component.onCompleted: {
-                    vediosource = ActivityReader.getMediaPath((index-1)%mediasize)
-                    reset()
+                    play()
                 }
 
                 Connections {
@@ -183,17 +184,6 @@ FluContentPage {
                     }
                 }
             }
-
-            Action {
-                shortcut: "space"
-                onTriggered: {
-                    if(player.isplaying)
-                        player.pause()
-                    else
-                        player.start()
-                }
-            }
-
         }
     }
     Component.onCompleted: {

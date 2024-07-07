@@ -22,37 +22,24 @@ Q_INVOKABLE QStringList ActivityHelper::getAllRemoteActivities(void)
 Q_INVOKABLE int ActivityHelper::readAllMedia(QString activityname)
 {
     memorybase::Activity activity = DataBase::instance()->getactivity(activityname);
-    QDir dirc(getfullpath(activity));
-    QFileInfoList fileinfos = dirc.entryInfoList(QDir::Files);
+    QFileInfoList fileinfos = memorybase::getfileinfolist(getfullpath(activity));
     mediapaths.clear();
-    QList<QUrl> videopaths, imagepaths;
     for (QFileInfo fileinfo : fileinfos)
+        if (memorybase::ismedia(fileinfo.absoluteFilePath()))
+            mediapaths.push_back(fileinfo.absoluteFilePath());
+    for (int t = 0; t < 18380; t++)
     {
-        QString suffix = fileinfo.suffix().toLower();
-        if (suffix == "mp4" || suffix == "mkv")
-            videopaths.push_back("file:" + fileinfo.absoluteFilePath());
-        else
-            imagepaths.push_back("file:" + fileinfo.absoluteFilePath());
+        static QRandomGenerator *generator = QRandomGenerator::global();
+        int i = generator->bounded(0, mediapaths.size() - 1);
+        int j = generator->bounded(0, mediapaths.size() - 1);
+        memorybase::swap(mediapaths[i], mediapaths[j]);
     }
-    std::default_random_engine rng(static_cast<unsigned int>(std::time(nullptr)));
-    std::shuffle(videopaths.begin(), videopaths.end(), rng);
-    std::shuffle(imagepaths.begin(), imagepaths.end(), rng);
-    int videoindex = 0, imageindex = 0, videosize = videopaths.size(), imagesize = imagepaths.size();
-    int rate = qMax(imagesize / qMax(videosize, 1), 1);
-    while (videoindex < videosize)
-    {
-        mediapaths.push_back(videopaths.at(videoindex++));
-        for (int i = 0; i < rate; i++)
-            mediapaths.push_back(imagepaths.at((imageindex++) % imagesize));
-    }
-    while (imageindex < imagesize)
-        mediapaths.push_back(imagepaths.at(imageindex++));
     return mediapaths.size();
 }
 
 Q_INVOKABLE QUrl ActivityHelper::getMediaPath(int index)
 {
-    return mediapaths.at(index % mediapaths.size());
+    return memorybase::toUrl(mediapaths.at(index % mediapaths.size()));
 }
 
 QString ActivityHelper::getfullpath(memorybase::Activity activity)

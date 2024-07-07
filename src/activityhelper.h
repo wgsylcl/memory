@@ -18,7 +18,7 @@ public:
 signals:
 
 private:
-    QList<QUrl> mediapaths;
+    QStringList mediapaths;
     QString getfullpath(memorybase::Activity activity);
 };
 

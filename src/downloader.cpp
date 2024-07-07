@@ -41,6 +41,7 @@ void Downloader::downloadfinish()
     }
     else
     {
+        savefile.cancelWriting();
         qDebug() << "Network error occurred:" << reply->errorString();
         emit downloadfailed(this);
     }

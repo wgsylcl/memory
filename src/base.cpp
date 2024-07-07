@@ -3,13 +3,28 @@
 bool memorybase::isvideo(QUrl url)
 {
     QString suffix = memorybase::getfilesuffix(url);
-    return suffix == "mp4" || suffix == "mkv";
+    const QStringList suffixbase = {"mp4", "mkv", "wav"};
+    return suffixbase.contains(suffix);
 }
 
 bool memorybase::ismedia(QUrl url)
 {
     QString suffix = memorybase::getfilesuffix(url);
-    const QStringList suffixbase = {"mp4", "mkv", "jpg", "jpeg", "png", "svg"};
+    const QStringList suffixbase = {"mp4", "mkv", "jpg", "jpeg", "png", "svg", "wav"};
+    return suffixbase.contains(suffix);
+}
+
+bool memorybase::isvideo(QString filepath)
+{
+    QString suffix = memorybase::getfilesuffix(filepath);
+    const QStringList suffixbase = {"mp4", "mkv", "wav"};
+    return suffixbase.contains(suffix);
+}
+
+bool memorybase::ismedia(QString filepath)
+{
+    QString suffix = memorybase::getfilesuffix(filepath);
+    const QStringList suffixbase = {"mp4", "mkv", "jpg", "jpeg", "png", "svg", "wav"};
     return suffixbase.contains(suffix);
 }
 

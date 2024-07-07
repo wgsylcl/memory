@@ -70,7 +70,6 @@ void MemoryApplication::registermodules()
     qmlRegisterType<TimelineReader>("timelinehelper", 1, 0, "TimelineReader");
     qmlRegisterType<StudentReader>("studenthelper", 1, 0, "StudentReader");
     qmlRegisterType<TeacherFileReader>("teacherfilehelper", 1, 0, "TeacherFileReader");
-    qmlRegisterType<FluentPlayer>("mediahelper", 1, 0, "MediaPlayerItem");
     qmlRegisterType<Direncodemanager>("codehelper", 1, 0, "Direncoder");
     qmlRegisterType<DataManagerHelper>("datamanagehelper", 1, 0, "DataManageHelper");
     qmlRegisterType<DataUpdateHelper>("dataupdatehelper", 1, 0, "DataUpdateHelper");

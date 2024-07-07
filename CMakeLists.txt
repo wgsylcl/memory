@@ -61,8 +61,6 @@ set(PROJECT_SOURCES
     src/teacherfilereader.h src/teacherfilereader.cpp
     src/maintool.h src/maintool.cpp
     src/activityhelper.h src/activityhelper.cpp
-    src/FluentPlayer.h src/FluentPlayer.cpp
-    src/stdafx.h
     src/imageprovider.h src/imageprovider.cpp
     src/base.h src/base.cpp
     src/encodethread.h src/encodethread.cpp
@@ -125,7 +123,7 @@ target_link_libraries(${PROJECT_NAME} PRIVATE
 )
 
 if(WIN32)
-    file(GLOB_RECURSE DLL_FILES ${3RDPARTY_PATH}/ffmpeg/bin/*.dll ${3RDPARTY_PATH}/ffmpeg/bin/*.exe)
+    file(GLOB_RECURSE DLL_FILES ${3RDPARTY_PATH}/ffmpeg/bin/*.dll)
     add_custom_command(TARGET ${PROJECT_NAME} POST_BUILD
         COMMAND ${CMAKE_COMMAND} -E copy
         ${DLL_FILES}
@@ -201,4 +199,9 @@ endif()
 add_custom_target(RELOAD_DATABASE
     COMMAND ${CMAKE_COMMAND} -E remove_directory ${APPLICATION_DIR_PATH}/data
     COMMAND ${CMAKE_COMMAND} -E copy_directory ${CMAKE_SOURCE_DIR}/data ${APPLICATION_DIR_PATH}/data
+    )
+
+add_custom_target(CLEANALL
+    COMMAND cmake --build ./ --config ${CMAKE_BUILD_TYPE} --target clean --
+    COMMAND ${CMAKE_COMMAND} -E remove_directory ${CMAKE_SOURCE_DIR}/bin
     )

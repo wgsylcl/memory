@@ -37,8 +37,12 @@ const qint64 chunkSize = 99 * 1024 * 1024;
 
 namespace memorybase
 {
+    template <class T>
+    void swap(T &a, T &b);
     bool isvideo(QUrl);
     bool ismedia(QUrl);
+    bool isvideo(QString);
+    bool ismedia(QString);
     QUrl toLocalMediaUrl(QUrl);
     QUrl toLocalMediaUrl(QString);
     bool fileexist(QString);
@@ -68,6 +72,14 @@ namespace memorybase
         QStringList reponame;
     };
     using Activities = QMap<QString, memorybase::Activity>;
+
+    template <class T>
+    void swap(T &a, T &b)
+    {
+        T temp = a;
+        a = b;
+        b = temp;
+    }
 
 }
 

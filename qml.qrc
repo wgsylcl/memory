@@ -13,7 +13,6 @@
         <file>res/door.png</file>
         <file>res/play.png</file>
         <file>qml/activitypage.qml</file>
-        <file>qml/FluMediaPlayer.qml</file>
         <file>qml/videoplaywindow.qml</file>
         <file>qml/datamanagepage.qml</file>
         <file>qml/dataupdatepage.qml</file>
@@ -31,5 +30,6 @@
         <file>res/erroregg.png</file>
         <file>qml/crashwindow.qml</file>
         <file>qml/MTableView.qml</file>
+        <file>qml/MMediaPlayer.qml</file>
     </qresource>
 </RCC>

@@ -13,11 +13,41 @@ FluWindow {
     property real scale: 1.00
     property real picwidth: 0.00
     property real picheight: 0.00
+    property int intscale: scale*100
 
     onInitArgument:
         (argument)=>{
             mainimage.source = argument.pictureurl
         }
+
+    Timer {
+        id: showscaletimer
+        interval: 1800
+        onTriggered: showscaleframe.opacity = 0
+    }
+
+    FluFrame {
+        id: showscaleframe
+        opacity: 0
+        padding: 8
+        z: 18
+        anchors {
+            horizontalCenter: parent.horizontalCenter
+            bottom: parent.bottom
+            bottomMargin: 18
+        }
+
+        FluText {
+            anchors.centerIn: parent
+            text: intscale + "%"
+        }
+
+        Behavior on opacity {
+            SequentialAnimation {
+                NumberAnimation { duration: 83 }
+            }
+        }
+    }
 
     MouseArea {
         anchors.fill: parent
@@ -50,6 +80,9 @@ FluWindow {
                         scale /= 1.1
                     x -= mainimage.width/2
                     y -= mainimage.height/2
+                    if(intscale === 100) return
+                    showscaleframe.opacity = 0.8
+                    showscaletimer.restart()
                 }
             }
         }
@@ -86,11 +119,13 @@ FluWindow {
     }
 
     function scaleup() {
-        scale *= 1.1
+        scale = getmin(10,scale*1.1)
         mainimage.x -= (picwidth * scale - mainimage.width)/2
         mainimage.y -= (picheight * scale - mainimage.height)/2
         mainimage.width = picwidth * scale
         mainimage.height = picheight * scale
+        showscaleframe.opacity = 0.8
+        showscaletimer.restart()
     }
     function scaledown() {
         scale = getmax(0.1,scale/1.1)
@@ -98,8 +133,13 @@ FluWindow {
         mainimage.y -= (picheight * scale - mainimage.height)/2
         mainimage.width = picwidth * scale
         mainimage.height = picheight * scale
+        showscaleframe.opacity = 0.8
+        showscaletimer.restart()
     }
     function getmax(a,b) {
         return a > b ? a : b
+    }
+    function getmin(a,b) {
+        return a < b ? a : b
     }
 }

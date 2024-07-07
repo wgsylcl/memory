@@ -14,7 +14,6 @@
 #include "teacherfilereader.h"
 #include "maintool.h"
 #include "activityhelper.h"
-#include "FluentPlayer.h"
 #include "imageprovider.h"
 #include "direncodemanager.h"
 #include "databaseinitializer.h"
