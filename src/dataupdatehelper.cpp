@@ -1,6 +1,7 @@
 #include "dataupdatehelper.h"
 
 QStringList DataUpdateHelper::virtualactivities;
+Packer *DataUpdateHelper::packer = nullptr;
 
 DataUpdateHelper::DataUpdateHelper(QObject *parent)
     : QObject{parent}
@@ -131,6 +132,47 @@ Q_INVOKABLE QStringList DataUpdateHelper::getpaths(QString taskid)
     for (QString path : tasks[taskid].paths)
         paths.append("image://uploadpreviewimageprovider/cache/" + uploadfilebasename + "/" + path);
     return paths;
+}
+
+Q_INVOKABLE void DataUpdateHelper::removepicture(QString taskid, QUrl picurl)
+{
+    QString filename = picurl.fileName();
+    tasks[taskid].paths.removeOne(filename);
+    memorybase::removefile(uploaddir + "/" + filename);
+}
+
+Q_INVOKABLE void DataUpdateHelper::save_and_pack()
+{
+    QJsonArray jtasksarray;
+    for (UploadTask task : tasks)
+    {
+        QJsonObject jtask;
+        jtask["tasktype"] = task.type;
+        jtask["sender"] = task.sender;
+        jtask["sendto"] = task.sendto;
+        jtask["text"] = task.text;
+        QJsonArray jpaths;
+        for (QString path : task.paths)
+            jpaths.append(path);
+        jtask["paths"] = jpaths;
+        jtasksarray.append(jtask);
+    }
+    QJsonObject root;
+    root["tasks"] = jtasksarray;
+    QJsonDocument jdoc;
+    jdoc.setObject(root);
+    QFile taskfile(uploaddir + "/task.json");
+    taskfile.open(QIODevice::WriteOnly);
+    taskfile.write(jdoc.toJson());
+    taskfile.close();
+    packer = new Packer(uploaddir,memorybase::getsystemdownloadpath() + "/" + uploadfilebasename + ".muf");
+    packer->start();
+    packer = nullptr;
+}
+
+Q_INVOKABLE QUrl DataUpdateHelper::getlocalmediaurl(QUrl url)
+{
+    return memorybase::toUrl(uploaddir + "/" + url.fileName());
 }
 
 void DataUpdateHelper::unpackuploadfile(QString infile, QString outfiledir)

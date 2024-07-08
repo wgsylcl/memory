@@ -15,6 +15,7 @@ public:
     Q_INVOKABLE QString getterms(void);
     Q_INVOKABLE QString getpreviews(void);
     Q_INVOKABLE bool is_crashmode(void);
+    Q_INVOKABLE bool is_maintaining(void);
     Q_INVOKABLE void savecrashfile(void);
     Q_INVOKABLE QUrl getdownloadurl(void);
     Q_INVOKABLE bool isvideo(QUrl url);

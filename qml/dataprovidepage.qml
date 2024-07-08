@@ -55,11 +55,11 @@ FluContentPage {
         const retbase = [
                           qsTr("给%1留言").arg(uploader.getsendto(index)),
                           qsTr("给%1留言").arg(uploader.getsendto(index)),
-                          qsTr("给%1添加图片").arg(uploader.getsendto(index)),
-                          qsTr("给%1添加图片").arg(uploader.getsendto(index)),
+                          qsTr("给%1添加ta的一刻").arg(uploader.getsendto(index)),
+                          qsTr("给%1添加ta的一刻").arg(uploader.getsendto(index)),
                           qsTr("添加%1的口头禅").arg(uploader.getsendto(index)),
                           qsTr("增添班史"),
-                          qsTr("给活动\"%1\"添加图片").arg(uploader.getsendto(index)),
+                          qsTr("给活动\"%1\"添加图片/视频").arg(uploader.getsendto(index)),
                           qsTr("修改%1的自我介绍").arg(uploader.getsendto(index)),
                           qsTr("修改%1的生日").arg(uploader.getsendto(index))
                       ]
@@ -177,16 +177,47 @@ FluContentPage {
 
                                 MouseArea {
                                     anchors.fill: parent
-                                    onDoubleClicked: {
-                                        if(MainTool.isvideo(MainTool.toLocalMediaUrl(parent.source))) FluRouter.navigate("/playvideo",{videourl:parent.source})
-                                        else FluRouter.navigate("/viewpicture",{pictureurl:parent.source})
-                                    }
+                                    acceptedButtons: Qt.LeftButton | Qt.RightButton
+                                    onDoubleClicked:
+                                        (mouse) => {
+                                            if(mouse.button === Qt.RightButton) return
+                                            if(MainTool.isvideo(MainTool.toLocalMediaUrl(parent.source))) FluRouter.navigate("/playvideo",{videourl:uploader.getlocalmediaurl(parent.source)})
+                                            else FluRouter.navigate("/viewpicture",{pictureurl:parent.source})
+                                        }
+                                    onClicked:
+                                        (mouse) => {
+                                            if(mouse.button === Qt.LeftButton) return
+                                            d.deleteitem = parent.source
+                                            rightbuttonmenu.popup()
+                                        }
                                 }
                             }
                         }
                         model: gettaskimagedata(taskid)
                         Layout.topMargin: 20
                         Layout.leftMargin: 5
+                    }
+
+                    QtObject {
+                        id: d
+                        property string deleteitem
+                    }
+
+                    FluMenu {
+                        id: rightbuttonmenu
+                        FluMenuItem {
+                            text: "删除此图片/视频"
+                            onClicked: {
+                                uploader.removepicture(taskid,d.deleteitem)
+                                taskcarousel.model = gettaskimagedata(taskid)
+                                if(!taskcarousel.model.length) {
+                                    taskmodel.remove(index)
+                                    uploader.removetask(taskid)
+                                    havetask = uploader.gettaskcount() > 0
+                                    showWarning("图片/视频已经清空，自动删除该任务！")
+                                }
+                            }
+                        }
                     }
                 }
             }

@@ -2,6 +2,7 @@ import QtQuick
 import QtQuick.Window
 import QtQuick.Layouts
 import FluentUI
+import Qt.labs.settings
 
 FluWindow {
     width: 668*2
@@ -9,7 +10,11 @@ FluWindow {
     minimumWidth: 668
     minimumHeight: 373
     title: qsTr("毕业留念")
-    property bool isdeveloper: false
+    Settings {
+        id: settings
+        property bool isdeveloper: false
+    }
+    property alias isdeveloper: settings.isdeveloper
     property string inputpassword: ""
     property string tip: ""
 

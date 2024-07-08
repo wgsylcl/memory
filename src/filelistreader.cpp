@@ -1,13 +1,13 @@
 #include "filelistreader.h"
 
 FilelistReader::FilelistReader(QString reponame, QObject *parent)
-    : QObject{parent}, reponame(reponame), savepath(runtimedir + "/cache/" + reponame + "_filelist.txt")
+    : QObject{parent}, reponame(reponame), savepath(runtimedir + "/cache/" + reponame + "_filelist.json")
 {
 }
 
 void FilelistReader::startreadfilelist()
 {
-    Downloader *downloader = new Downloader(database->generaterequesturl(reponame, "filelist.txt"), savepath);
+    Downloader *downloader = new Downloader(database->generatefilelistrequesturl(reponame), savepath);
     QObject::connect(downloader, &Downloader::downloadfinished, this, &FilelistReader::receivefilelist);
     QObject::connect(downloader, &Downloader::downloadfailed, this, &FilelistReader::receivefail);
     downloadmanager->adddownloader(downloader);
@@ -22,11 +22,15 @@ void FilelistReader::receivefilelist(void)
 {
     QFile filelist(savepath);
     filelist.open(QIODevice::ReadOnly | QIODevice::Text);
-    QTextStream qin(&filelist);
-    QStringList files;
-    while (!qin.atEnd())
-        files.append(qin.readLine());
+    QJsonArray jarr = QJsonDocument::fromJson(filelist.readAll()).array();
     filelist.close();
     filelist.remove();
+    QStringList files;
+    for(int i=0;i<jarr.count();i++)
+    {
+        QString filename(jarr.at(i).toObject().value("path").toString());
+        if(memorybase::getfilesuffix(filename) == "json" || memorybase::getfilesuffix(filename) == "0" || memorybase::ismedia(filename))
+            files.append(filename);
+    }
     emit receivefilelistfinished(files);
 }

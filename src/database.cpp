@@ -117,6 +117,11 @@ QUrl DataBase::generaterequesturl(QString reponame, QString filepath)
     return QUrl(QString("https://gitee.com/api/v5/repos/%1/%2/raw/%3?access_token=%4").arg(usernames[reponame], reponame, filepath, usertokens[usernames[reponame]]));
 }
 
+QUrl DataBase::generatefilelistrequesturl(QString reponame)
+{
+    return QUrl(QString("https://gitee.com/api/v5/repos/%1/%2/contents?access_token=%4").arg(usernames[reponame], reponame, usertokens[usernames[reponame]]));
+}
+
 QString DataBase::getlatestapplicationversion()
 {
     return latestapplicationversion;
@@ -133,6 +138,11 @@ QStringList DataBase::gettips()
         memorybase::swap(tips[i], tips[j]);
     }
     return tips;
+}
+
+bool DataBase::is_maintaining()
+{
+    return maintaining;
 }
 
 void DataBase::saveinfo()

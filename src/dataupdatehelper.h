@@ -2,6 +2,7 @@
 #define DATAUPDATEHELPER_H
 
 #include "database.h"
+#include "packer.h"
 #include <QVariantMap>
 
 class DataUpdateHelper : public QObject
@@ -20,6 +21,9 @@ public:
     Q_INVOKABLE void resetactivitytask(QString taskid, QString newactivityname, QString newactivitypath);
     Q_INVOKABLE void acceptalltask();
     Q_INVOKABLE QStringList getpaths(QString taskid);
+    Q_INVOKABLE void removepicture(QString taskid, QUrl picurl);
+    Q_INVOKABLE void save_and_pack();
+    Q_INVOKABLE QUrl getlocalmediaurl(QUrl url);
 signals:
 
 private:
@@ -28,6 +32,7 @@ private:
     QMap<QString, UploadTask> tasks;
     void unpackuploadfile(QString infile, QString outfile);
     static QStringList virtualactivities;
+    static Packer *packer;
     void acceptteacherreview(QString sender, QString sendto, QString text);
     void acceptteacherpicture(QString name, QStringList paths);
     void acceptteacherpetphrase(QString name, QString text);

@@ -12,28 +12,17 @@ void Direncoder::startencodedir()
 
 void Direncoder::encodedir(QString path)
 {
-    static QMutex appendfilelistlock, appendignorefilelock;
-    QFile listfile(path + "/filelist.txt");
-    listfile.open(QIODevice::WriteOnly | QIODevice::Text);
-    QTextStream fout(&listfile);
-    fout << "";
-    listfile.close();
-    QFile ignorefile(path + "/.gitignore");
-    ignorefile.open(QIODevice::WriteOnly | QIODevice::Text);
-    QTextStream tout(&ignorefile);
-    tout << "";
-    ignorefile.close();
     QDir dir(path);
     QFileInfoList files = dir.entryInfoList(QDir::Files);
     QFileInfoList subdirs = dir.entryInfoList(QDir::Dirs | QDir::NoDotAndDotDot);
-    static QStringList passstffixs{"txt", "gitignore", "0", "1", "2", "3", "4", "5", "6", "7", "8", "9"};
+    static QStringList passstffixs{"0", "1", "2", "3", "4", "5", "6", "7", "8", "9"};
     for (QFileInfo file : files)
     {
         QString filepath = file.absoluteFilePath();
         QString suffix = memorybase::getfilesuffix(filepath);
         if (passstffixs.contains(suffix))
             continue;
-        EncodeThread *encoder = new EncodeThread(filepath, path + "/filelist.txt", path + "/.gitignore", appendfilelistlock, appendignorefilelock);
+        EncodeThread *encoder = new EncodeThread(filepath);
         threadpool->start(encoder);
     }
     for (QFileInfo subdir : subdirs)

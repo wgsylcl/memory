@@ -59,6 +59,11 @@ Q_INVOKABLE bool MainTool::is_crashmode(void)
     return crashmode;
 }
 
+Q_INVOKABLE bool MainTool::is_maintaining(void)
+{
+    return database->is_maintaining();
+}
+
 Q_INVOKABLE void MainTool::savecrashfile(void)
 {
     memorybase::copyfile(runtimedir + "/dmp/" + crashfilename, memorybase::getsystemdownloadpath() + "/" + crashfilename);

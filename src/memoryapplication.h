@@ -24,6 +24,9 @@
 #include "uploader.h"
 #include "uploadpreviewimageprovider.h"
 #include "dataupdatehelper.h"
+#ifdef Q_OS_WIN
+#include <windows.h>
+#endif
 
 class MemoryApplication : public QGuiApplication
 {

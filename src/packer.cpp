@@ -9,6 +9,7 @@ Packer::Packer(QString packdir, QString savepath, QObject *parent)
 
 void Packer::run()
 {
+    QObject::connect(this,&QThread::finished,this,&QObject::deleteLater);
     zipwriter = new QZipWriter(savepath);
     zipwriter->setCompressionPolicy(QZipWriter::AutoCompress);
     QFileInfoList fileinfos = memorybase::getfileinfolist(packdir);
@@ -22,5 +23,4 @@ void Packer::run()
     delete zipwriter;
     zipwriter = nullptr;
     emit packupfinished();
-    this->deleteLater();
 }

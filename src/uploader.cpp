@@ -259,3 +259,15 @@ Q_INVOKABLE QString Uploader::getlastsender()
 {
     return lastsender;
 }
+
+Q_INVOKABLE void Uploader::removepicture(QString taskid, QUrl url)
+{
+    QString filename = url.fileName();
+    tasks[taskid].paths.removeOne(filename);
+    memorybase::removefile(runtimedir + "/upload/" + filename);
+}
+
+Q_INVOKABLE QUrl Uploader::getlocalmediaurl(QUrl url)
+{
+    return memorybase::toUrl(runtimedir + "/upload/" + url.fileName());
+}

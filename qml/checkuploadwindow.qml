@@ -80,6 +80,17 @@ FluWindow {
                     window.close()
             }
         }
+        FluButton {
+            id: resavebutton
+            text: "保存至下载文件夹"
+            onClicked: {
+                dataupdatehelper.save_and_pack()
+                if(taskstack.length)
+                    FluRouter.navigate("/checkupload",{taskstack:taskstack})
+                else
+                    window.close()
+            }
+        }
     }
 
     ListModel {
@@ -89,7 +100,7 @@ FluWindow {
     Component {
         id: taskcard
         FluContentPage {
-            property var typeset: ["留言","留言","添加图片","添加图片","添加口头禅","添加班史","添加图片","修改自我介绍","修改生日"]
+            property var typeset: ["留言","留言","添加ta的一刻","添加ta的一刻","添加口头禅","添加班史","添加图片/视频","修改自我介绍","修改生日"]
             ColumnLayout {
                 spacing: 0
                 Layout.preferredWidth: 500
@@ -212,9 +223,53 @@ FluWindow {
 
                                 MouseArea {
                                     anchors.fill: parent
-                                    onDoubleClicked: {
-                                        if(MainTool.isvideo(MainTool.toLocalMediaUrl(parent.source))) FluRouter.navigate("/playvideo",{videourl:parent.source})
-                                        else FluRouter.navigate("/viewpicture",{pictureurl:parent.source})
+                                    acceptedButtons: Qt.LeftButton | Qt.RightButton
+                                    onDoubleClicked:
+                                        (mouse) => {
+                                            if(mouse.button === Qt.RightButton) return
+                                            if(MainTool.isvideo(MainTool.toLocalMediaUrl(parent.source))) FluRouter.navigate("/playvideo",{videourl:dataupdatehelper.getlocalmediaurl(parent.source)})
+                                            else FluRouter.navigate("/viewpicture",{pictureurl:parent.source})
+                                        }
+                                    onClicked:
+                                        (mouse) => {
+                                            if(mouse.button === Qt.LeftButton) return
+                                            d.deleteitem = taskpicture.source
+                                            rightbuttonmenu.popup()
+                                        }
+                                }
+                            }
+                        }
+
+                        QtObject {
+                            id: d
+                            property string deleteitem
+                        }
+
+                        FluMenu {
+                            id: rightbuttonmenu
+                            FluMenuItem {
+                                text: "删除此图片/视频"
+                                onClicked: {
+                                    dataupdatehelper.removepicture(taskid,d.deleteitem)
+                                    var datas = []
+                                    var paths = dataupdatehelper.getpaths(taskid)
+                                    for(var i=0;i<paths.length;i++) {
+                                        datas.push({url:paths[i]})
+                                    }
+                                    taskcarousel.model = datas
+                                    if(!datas.length) {
+                                        taskmodel.remove(index)
+                                        dataupdatehelper.removetask(taskid)
+                                        var ntaskneednewactivity = []
+                                        for(var j=0;j<taskneednewactivity.length;j++) {
+                                            var actname = taskneednewactivity[j]
+                                            if(actname !== taskid)
+                                                ntaskneednewactivity.push(actname)
+                                        }
+                                        taskneednewactivity = ntaskneednewactivity
+                                        if(!taskneednewactivity.length)
+                                            acceptbutton.enabled = true
+                                        showWarning("图片/视频已经清空，自动删除该任务！")
                                     }
                                 }
                             }

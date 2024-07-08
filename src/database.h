@@ -25,9 +25,11 @@ public:
     void syncactivityversion(QString activityname);
     void removelocalactivityversionbyname(QString name);
     QUrl generaterequesturl(QString reponame, QString filepath);
+    QUrl generatefilelistrequesturl(QString reponame);
     QString getlatestapplicationversion();
     QStringList gettips();
     QString logfilename;
+    bool is_maintaining();
 signals:
 
 private:
@@ -44,6 +46,7 @@ private:
     QJsonObject remoteroot;
     QMap<QString, QString> usernames, usertokens;
     QStringList tips;
+    bool maintaining;
     static DataBase *_instance;
     void saveinfo();
 };

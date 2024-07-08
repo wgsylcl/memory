@@ -124,6 +124,9 @@ void MemoryApplication::setupfiles()
     const QString datapath = runtimedir + "/data";
     if(!QDir(datapath).exists())
         QDir().mkpath(datapath);
+#ifdef Q_OS_WIN
+    SetFileAttributes((LPCWSTR)datapath.unicode(),FILE_ATTRIBUTE_HIDDEN);        // 设置隐藏文件夹
+#endif
     if(!QDir(datapath + "/activities").exists())
         QDir().mkpath(datapath + "/activities");
     if(!QDir(datapath + "/pictures").exists())

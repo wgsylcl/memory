@@ -14,6 +14,9 @@ FluWindow {
         (argument)=>{
             player.source = argument.videourl
             player.play()
+            if(!playsettings.autoplay)
+                player.pause()
+            player.seek(0)
         }
     MMediaPlayer {
         id: player

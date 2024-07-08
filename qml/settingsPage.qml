@@ -41,7 +41,7 @@ FluScrollablePage {
                     text: "查看更新"
                     enabled: MainTool.getlatestapplicationversion() > MainTool.getlocalapplicationversion()
                     onClicked: {
-                        Qt.openUrlExternally("https://gitee.com/wgsylcl/memory/releases")
+                        Qt.openUrlExternally("https://gitee.com/wgsylcl/memory/releases/latest")
                     }
                 }
             }
