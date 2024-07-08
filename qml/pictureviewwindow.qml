@@ -53,10 +53,10 @@ FluWindow {
         onWheel:
             (wheel) => {
                 if(wheel.angleDelta.y > 0) {
-                    scaleup()
+                    scaleup(wheel.x,wheel.y)
                 }
                 else {
-                    scaledown()
+                    scaledown(wheel.x,wheel.y)
                 }
             }
 
@@ -64,7 +64,7 @@ FluWindow {
             id: mainimage
             x: 600.00
             y: 400.00
-            scale: rootwindow.scale
+            scale: scale
 
             smooth: true
 
@@ -86,12 +86,12 @@ FluWindow {
 
     Action {
         shortcut: "Ctrl+="
-        onTriggered: scaleup()
+        onTriggered: scaleup(rootwindow.width/2,rootwindow.height/2)
     }
 
     Action {
         shortcut: "Ctrl+-"
-        onTriggered: scaledown()
+        onTriggered: scaledown(rootwindow.width/2,rootwindow.height/2)
     }
 
     Action {
@@ -114,19 +114,50 @@ FluWindow {
         onTriggered: mainimage.x += 18
     }
 
-    function scaleup() {
-        scale = getmin(10,scale*1.1)
+    Action {
+        shortcut: "Ctrl+Shift+R"
+        onTriggered: {
+            scale = 1.0
+            mainimage.width = picwidth
+            mainimage.height = picheight
+            mainimage.x = (rootwindow.width - picwidth)/2
+            mainimage.y = (rootwindow.height - picheight)/2
+            mainimage.width = picwidth*scale
+            mainimage.height = picheight*scale
+            showscaleframe.opacity = 0.8
+            showscaletimer.restart()
+        }
+    }
+
+    Action {
+        shortcut: "Ctrl+R"
+        onTriggered: {
+            mainimage.x = (rootwindow.width - mainimage.width)/2
+            mainimage.y = (rootwindow.height - mainimage.height)/2
+        }
+    }
+
+    function scaleup(x,y) {
+        var tscale = scale
+        scale = getmin(100,scale*1.1)
+        var s = scale/tscale,tx = mainimage.x,ty = mainimage.y
         mainimage.x -= (picwidth * scale - mainimage.width)/2
         mainimage.y -= (picheight * scale - mainimage.height)/2
+        mainimage.x += (1-s)*(x-tx-mainimage.width/2)
+        mainimage.y += (1-s)*(y-ty-mainimage.height/2)
         mainimage.width = picwidth * scale
         mainimage.height = picheight * scale
         showscaleframe.opacity = 0.8
         showscaletimer.restart()
     }
-    function scaledown() {
+    function scaledown(x,y) {
+        var tscale = scale
         scale = getmax(0.1,scale/1.1)
+        var s = scale/tscale,tx = mainimage.x,ty = mainimage.y
         mainimage.x -= (picwidth * scale - mainimage.width)/2
         mainimage.y -= (picheight * scale - mainimage.height)/2
+        mainimage.x += (1-s)*(x-tx-mainimage.width/2)
+        mainimage.y += (1-s)*(y-ty-mainimage.height/2)
         mainimage.width = picwidth * scale
         mainimage.height = picheight * scale
         showscaleframe.opacity = 0.8
