@@ -21,7 +21,7 @@ void UploadPreviewImageProvider::loadimage(QUrl url, QImage &image)
 {
     image.load(url.toLocalFile());
     if (url.toString().indexOf(".sign") != -1)
-        addwatermark("不用于商业用途", image);
+        addwatermark("不可用于商业用途", image);
 }
 
 void UploadPreviewImageProvider::loadvideo(QUrl url, QImage &image)
@@ -137,7 +137,7 @@ void UploadPreviewImageProvider::loadvideo(QUrl url, QImage &image)
 
 void UploadPreviewImageProvider::addwatermark(QString text, QImage &image)
 {
-    QFont font("微软雅黑", 18);        // 你可以设置任何你喜欢的字体和大小
+    QFont font("微软雅黑", 18);       // 你可以设置任何你喜欢的字体和大小
     QColor watermarkColor(Qt::white); // 水印颜色
     watermarkColor.setAlpha(118);     // 设置透明度，范围从0（完全透明）到255（完全不透明）
     font.setBold(true);

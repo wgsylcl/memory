@@ -10,7 +10,6 @@ FluWindow {
     minimumWidth: 500
     minimumHeight: 400
     title:"播放视频"
-    launchMode: FluWindowType.SingleInstance
     onInitArgument:
         (argument)=>{
             player.source = argument.videourl
