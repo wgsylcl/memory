@@ -37,6 +37,9 @@ void logmessagehander(QtMsgType type, const QMessageLogContext &context, const Q
 
 int main(int argc, char *argv[])
 {
+    QCoreApplication::setOrganizationName("wgsylcl");
+    QCoreApplication::setApplicationName("memory");
+
     MemoryApplication app(argc, argv);
 
     qInstallMessageHandler(logmessagehander);

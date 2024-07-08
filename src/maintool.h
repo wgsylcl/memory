@@ -11,6 +11,7 @@ class MainTool : public QObject
 public:
     explicit MainTool(QObject *parent = nullptr);
     ~MainTool();
+    Q_INVOKABLE QString gettip(void);
     Q_INVOKABLE bool is_crashmode(void);
     Q_INVOKABLE void savecrashfile(void);
     Q_INVOKABLE QUrl getdownloadurl(void);

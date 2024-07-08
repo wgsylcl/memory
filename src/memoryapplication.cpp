@@ -15,8 +15,6 @@ MemoryApplication::MemoryApplication(int &argc, char *argv[])
 #if (QT_VERSION >= QT_VERSION_CHECK(5, 14, 0))
     QGuiApplication::setHighDpiScaleFactorRoundingPolicy(Qt::HighDpiScaleFactorRoundingPolicy::PassThrough);
 #endif
-    setOrganizationName("wgsylcl");
-    setApplicationName("memory");
     checksingle();
     setupfiles();
     QObject::connect(qApp, &QCoreApplication::aboutToQuit, this, &MemoryApplication::releseresources);

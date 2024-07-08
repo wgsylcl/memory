@@ -2,10 +2,17 @@ import QtQuick
 import FluentUI
 import QtQuick.Layouts
 import QtQuick.Window
+import Qt.labs.settings
 
 FluScrollablePage {
     id: root
     title: "设置和关于"
+
+    Settings {
+        id: settings
+        property alias autoplay: autoplayswitch.checked
+    }
+
     FluGroupBox {
         title: "设置"
         ColumnLayout {
@@ -37,6 +44,11 @@ FluScrollablePage {
                         Qt.openUrlExternally("https://gitee.com/wgsylcl/memory/releases")
                     }
                 }
+            }
+            FluToggleSwitch {
+                id: autoplayswitch
+                text: "自动播放视频"
+                textRight: false
             }
         }
 

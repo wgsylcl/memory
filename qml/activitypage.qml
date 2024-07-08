@@ -2,6 +2,7 @@ import QtQuick
 import QtQuick.Controls
 import QtQuick.Layouts
 import FluentUI
+import Qt.labs.settings
 
 FluContentPage {
     title: qsTr("回忆")
@@ -145,13 +146,15 @@ FluContentPage {
                 cache: true
                 smooth: true
                 source: ActivityReader.getMediaPath((index-1)%mediasize)
-                // Component.onCompleted: {
-                //     source = ActivityReader.getMediaPath((index-1)%mediasize)
-                // }
             }
 
             focus: true
         }
+    }
+    Settings {
+        id: playsettings
+        property bool loopplay: true
+        property bool autoplay: true
     }
     Component {
         id: videoview
@@ -173,14 +176,13 @@ FluContentPage {
                 width: parent.width
                 height: parent.height
                 source: ActivityReader.getMediaPath((index-1)%mediasize)
-                Component.onCompleted: {
-                    play()
-                }
+                loopplay: playsettings.loopplay
+                autoplay: playsettings.autoplay
 
                 Connections {
                     target: root
                     function onMediachanged() {
-                        pause()
+                        player.pause()
                     }
                 }
             }

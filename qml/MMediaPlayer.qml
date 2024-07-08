@@ -3,18 +3,16 @@ import QtMultimedia
 import QtQuick.Controls
 import QtQuick.Layouts
 import FluentUI
-import Qt.labs.settings
 
 FluContentPage {
     id: root
     animationEnabled: false
     property alias source: player.source
     property alias loopplay: loopswitch.checked
-
-    Settings {
-        property alias loopplay: root.loopplay
-    }
-
+    property bool autoplay: true
+    property alias position: player.position
+    property alias volume: d.currVolume
+    property alias speed: player.playbackRate
     QtObject{
         id:d
         property bool flag: true
@@ -62,14 +60,14 @@ FluContentPage {
         id: player
         audioOutput:
             AudioOutput {
-            id: audiooutput
-            volume: d.currVolume
-        }
+                id: audiooutput
+                volume: d.currVolume
+            }
         videoOutput: videooutput
         onPositionChanged:
             (position) => {
                 if(d.flag)
-                slider.value = position
+                    slider.value = position
             }
         onPlaybackStateChanged: {
             if(playbackState === MediaPlayer.StoppedState) {
@@ -105,12 +103,11 @@ FluContentPage {
             hidecontrol()
         }
         onPositionChanged:
-            (mouse) => {
+            (mouse)=> {
                 control.opacity = true
                 if(mouse.x > control.x && mouse.y > control.y && mouse.x <control.x + control.width && mouse.y<control.y + control.height){
                     showtimer.stop()
-                }
-                else{
+                }else{
                     showtimer.restart()
                 }
             }
@@ -124,7 +121,6 @@ FluContentPage {
                     }
                 }
             }
-
         FluFrame {
             id:control
             width: parent.width-30
@@ -285,16 +281,14 @@ FluContentPage {
     Action {
         shortcut: "left"
         onTriggered: {
-            if(d.flag)
-                player.setPosition(Math.max(0,player.position - 5000))
+            player.setPosition(Math.max(0,player.position - 5000))
         }
     }
 
     Action {
         shortcut: "right"
         onTriggered: {
-            if(d.flag)
-                player.setPosition(Math.min(player.duration,player.position + 5000))
+            player.setPosition(Math.min(player.duration,player.position + 5000))
         }
     }
 
@@ -307,6 +301,14 @@ FluContentPage {
                 player.play()
             }
         }
+    }
+
+    Component.onCompleted: {
+        player.play()
+        player.pause()
+        player.setPosition(0)
+        if(autoplay)
+            player.play()
     }
 
     function formatDuration(duration) {
@@ -323,7 +325,11 @@ FluContentPage {
 
     function hidecontrol() {
         if(!speedmenu.visible)
-            control.opacity = 0
+        control.opacity = 0
+    }
+
+    function seek(position) {
+        player.setPosition(position)
     }
 
     function play() {

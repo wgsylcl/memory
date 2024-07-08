@@ -11,6 +11,7 @@ FluWindow {
     title: qsTr("毕业留念")
     property bool isdeveloper: false
     property string inputpassword: ""
+    property string tip: ""
 
     FluImage {
         id: background
@@ -101,10 +102,41 @@ FluWindow {
             }
         }
 
+        FluRectangle {
+            z: 1
+            id: tiptext
+            color: FluColors.White
+            opacity: 0.5
+            height: 24
+            visible: tip.length
+            anchors {
+                left: parent.left
+                right: parent.right
+                bottom: parent.bottom
+            }
+            FluText {
+                anchors.centerIn: parent
+                text: tip
+            }
+            Timer {
+                id: changetiptimer
+                interval: 3800
+                onTriggered: {
+                    tip = MainTool.gettip()
+                    restart()
+                }
+            }
+        }
+
         FluNavigationView {
             z: 1
             buttonBack.visible: false
-            anchors.fill: parent
+            anchors {
+                top: parent.top
+                left: parent.left
+                right: parent.right
+                bottom: tiptext.top
+            }
             pageMode: FluNavigationViewType.NoStack
             displayMode: FluNavigationViewType.Auto
             id: navigationview
@@ -222,6 +254,8 @@ FluWindow {
         target: MainTool
         function onInitializefinished() {
             mainstatuslayout.showSuccessView()
+            tip = MainTool.gettip()
+            changetiptimer.start()
             if(MainTool.getlatestapplicationversion() > MainTool.getlocalapplicationversion()) {
                 showInfo("有新版本可用噢，请在\"设置和关于\"中查看！",0)
             }

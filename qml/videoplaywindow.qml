@@ -1,6 +1,7 @@
 import QtQuick
 import QtQuick.Controls
 import FluentUI
+import Qt.labs.settings
 
 FluWindow {
     id: window
@@ -19,5 +20,12 @@ FluWindow {
         id: player
         width: window.width
         height: window.height
+        loopplay: playsettings.loopplay
+        autoplay: playsettings.autoplay
+    }
+    Settings {
+        id: playsettings
+        property bool loopplay: true
+        property bool autoplay: true
     }
 }

@@ -17,6 +17,7 @@ void DataBaseInitializer::readremoteinfo()
     parseactivities();
     readlocalversion();
     parsedatabaseinfo();
+    parsetips();
     infofile.remove();
     emit initializefinished();
 }
@@ -84,6 +85,13 @@ void DataBaseInitializer::parsedatabaseinfo()
             database->usernames.insert(reponame, username);
         }
     }
+}
+
+void DataBaseInitializer::parsetips()
+{
+    QJsonArray tipinfos = database->remoteroot.value("tips").toArray();
+    for (int i = 0; i < tipinfos.count(); i++)
+        database->tips.append(tipinfos.at(i).toString());
 }
 
 void DataBaseInitializer::initialize()

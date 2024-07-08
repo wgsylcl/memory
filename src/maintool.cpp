@@ -22,6 +22,16 @@ MainTool::~MainTool()
 {
 }
 
+Q_INVOKABLE QString MainTool::gettip(void)
+{
+    static QStringList alltips;
+    if(alltips.empty()) alltips = database->gettips();
+    if(alltips.empty()) return "";
+    int idx = QRandomGenerator::global() -> bounded(1,alltips.size() - 1);
+    memorybase::swap(alltips[0],alltips[idx]);
+    return alltips[0];
+}
+
 Q_INVOKABLE bool MainTool::is_crashmode(void)
 {
     return crashmode;

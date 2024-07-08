@@ -17,32 +17,32 @@
 <context>
     <name>activitypage</name>
     <message>
-        <location filename="qml/activitypage.qml" line="7"/>
+        <location filename="qml/activitypage.qml" line="8"/>
         <source>回忆</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="qml/activitypage.qml" line="28"/>
+        <location filename="qml/activitypage.qml" line="29"/>
         <source>选择要查看的活动</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="qml/activitypage.qml" line="56"/>
+        <location filename="qml/activitypage.qml" line="57"/>
         <source>上一张</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="qml/activitypage.qml" line="62"/>
+        <location filename="qml/activitypage.qml" line="63"/>
         <source>下一张</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="qml/activitypage.qml" line="69"/>
+        <location filename="qml/activitypage.qml" line="70"/>
         <source>给活动添加图片/视频</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="qml/activitypage.qml" line="214"/>
+        <location filename="qml/activitypage.qml" line="216"/>
         <source>已经到顶端了噢~</source>
         <translation type="unfinished"></translation>
     </message>
@@ -309,114 +309,114 @@ text:%3</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="qml/main.qml" line="36"/>
+        <location filename="qml/main.qml" line="37"/>
         <source>图文数据库更新完成!</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="qml/main.qml" line="39"/>
+        <location filename="qml/main.qml" line="40"/>
         <source>网络异常，图文数据库更新失败!</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="qml/main.qml" line="46"/>
+        <location filename="qml/main.qml" line="47"/>
         <source>数据库%1更新成功!</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="qml/main.qml" line="49"/>
+        <location filename="qml/main.qml" line="50"/>
         <source>网络异常，数据库%1更新失败!</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="qml/main.qml" line="116"/>
+        <location filename="qml/main.qml" line="148"/>
         <source>主界面</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="qml/main.qml" line="122"/>
+        <location filename="qml/main.qml" line="154"/>
         <source>我的老师们</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="qml/main.qml" line="128"/>
+        <location filename="qml/main.qml" line="160"/>
         <source>我和我的同学</source>
         <oldsource>同学信息</oldsource>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="qml/main.qml" line="132"/>
+        <location filename="qml/main.qml" line="164"/>
         <source>回忆</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="qml/main.qml" line="138"/>
+        <location filename="qml/main.qml" line="170"/>
         <source>我们的班史</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="qml/main.qml" line="146"/>
+        <location filename="qml/main.qml" line="178"/>
         <source>数据库管理</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="qml/main.qml" line="149"/>
+        <location filename="qml/main.qml" line="181"/>
         <source>同步数据库</source>
         <oldsource>数据库同步</oldsource>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="qml/main.qml" line="155"/>
+        <location filename="qml/main.qml" line="187"/>
         <source>上传图文</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="qml/main.qml" line="161"/>
+        <location filename="qml/main.qml" line="193"/>
         <source>更改数据库</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="qml/main.qml" line="174"/>
+        <location filename="qml/main.qml" line="206"/>
         <source>设置和关于</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="qml/main.qml" line="179"/>
+        <location filename="qml/main.qml" line="211"/>
         <source>崩溃测试</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="qml/main.qml" line="192"/>
+        <location filename="qml/main.qml" line="224"/>
         <source>需要验证</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="qml/main.qml" line="193"/>
+        <location filename="qml/main.qml" line="225"/>
         <source>输入 Developer 的密码以授权对数据库的更改</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="qml/main.qml" line="200"/>
+        <location filename="qml/main.qml" line="232"/>
         <source>验证</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="qml/main.qml" line="201"/>
+        <location filename="qml/main.qml" line="233"/>
         <source>取消</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="qml/main.qml" line="204"/>
+        <location filename="qml/main.qml" line="236"/>
         <source>验证成功!</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="qml/main.qml" line="208"/>
+        <location filename="qml/main.qml" line="240"/>
         <source>密码错误!</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="qml/main.qml" line="211"/>
+        <location filename="qml/main.qml" line="243"/>
         <source>您退出了验证</source>
         <translation type="unfinished"></translation>
     </message>

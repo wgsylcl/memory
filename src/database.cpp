@@ -122,6 +122,19 @@ QString DataBase::getlatestapplicationversion()
     return latestapplicationversion;
 }
 
+QStringList DataBase::gettips()
+{
+    if(tips.empty()) return QStringList();
+    for (int t = 0; t < 18380; t++)
+    {
+        static QRandomGenerator *generator = QRandomGenerator::global();
+        int i = generator->bounded(0, tips.size() - 1);
+        int j = generator->bounded(0, tips.size() - 1);
+        memorybase::swap(tips[i], tips[j]);
+    }
+    return tips;
+}
+
 void DataBase::saveinfo()
 {
     QJsonDocument jdoc(jsonroot);

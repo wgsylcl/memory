@@ -29,13 +29,9 @@ FluWindow {
     FluFrame {
         id: showscaleframe
         opacity: 0
-        padding: 8
+        padding: 13
         z: 18
-        anchors {
-            horizontalCenter: parent.horizontalCenter
-            bottom: parent.bottom
-            bottomMargin: 18
-        }
+        anchors.centerIn: parent
 
         FluText {
             anchors.centerIn: parent
@@ -44,7 +40,7 @@ FluWindow {
 
         Behavior on opacity {
             SequentialAnimation {
-                NumberAnimation { duration: 83 }
+                NumberAnimation { duration: 88 }
             }
         }
     }

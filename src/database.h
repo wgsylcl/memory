@@ -26,6 +26,7 @@ public:
     void removelocalactivityversionbyname(QString name);
     QUrl generaterequesturl(QString reponame, QString filepath);
     QString getlatestapplicationversion();
+    QStringList gettips();
     QString logfilename;
 signals:
 
@@ -42,6 +43,7 @@ private:
     QJsonObject jsonroot;
     QJsonObject remoteroot;
     QMap<QString, QString> usernames, usertokens;
+    QStringList tips;
     static DataBase *_instance;
     void saveinfo();
 };
