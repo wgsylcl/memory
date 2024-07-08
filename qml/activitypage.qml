@@ -143,7 +143,7 @@ FluContentPage {
                 width: parent.width
                 height: parent.height
                 fillMode: Image.PreserveAspectFit
-                cache: true
+
                 smooth: true
                 source: ActivityReader.getMediaPath((index-1)%mediasize)
             }

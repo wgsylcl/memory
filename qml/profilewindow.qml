@@ -120,7 +120,7 @@ FluWindow {
                     width: parent.width
                     fillMode:Image.PreserveAspectFit
                     anchors.margins: 10
-                    cache: true
+
                     smooth: true
                     MouseArea {
                         anchors.fill: parent
@@ -148,7 +148,7 @@ FluWindow {
                             width: parent.parent.width
                             fillMode:Image.PreserveAspectFit
                             anchors.margins: 10
-                            cache: true
+
                             smooth: true
 
                             MouseArea {

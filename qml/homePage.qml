@@ -28,7 +28,7 @@ FluContentPage {
             top: frame.bottom
         }
         fillMode: Image.PreserveAspectFit
-        cache: true
+
         smooth: true
 
         MouseArea {

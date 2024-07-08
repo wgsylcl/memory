@@ -32,6 +32,28 @@ Q_INVOKABLE QString MainTool::gettip(void)
     return alltips[0];
 }
 
+Q_INVOKABLE QString MainTool::getterms(void)
+{
+    if(!terms.isEmpty())
+        return terms;
+    QFile file(":/text/terms.html");
+    file.open(QIODevice::ReadOnly | QIODevice::Text);
+    terms = file.readAll();
+    file.close();
+    return terms;
+}
+
+Q_INVOKABLE QString MainTool::getpreviews(void)
+{
+    if(!previews.isEmpty())
+        return previews;
+    QFile file(":/text/preview.html");
+    file.open(QIODevice::ReadOnly | QIODevice::Text);
+    previews = file.readAll();
+    file.close();
+    return previews;
+}
+
 Q_INVOKABLE bool MainTool::is_crashmode(void)
 {
     return crashmode;

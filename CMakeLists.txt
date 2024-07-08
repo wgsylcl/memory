@@ -1,6 +1,6 @@
 cmake_minimum_required(VERSION 3.20)
 
-project(memory VERSION 0.1 LANGUAGES CXX)
+project(memory VERSION 1.0.3 LANGUAGES CXX)
 
 set(CMAKE_AUTOMOC ON)
 set(CMAKE_AUTORCC ON)
@@ -16,7 +16,6 @@ if(APPLE)
 else()
     set(APPLICATION_DIR_PATH ${CMAKE_RUNTIME_OUTPUT_DIRECTORY})
 endif()
-
 
 include_directories(./src)
 
@@ -50,8 +49,8 @@ list(APPEND QRC_RESOURCES qml.qrc)
 set_property(SOURCE qml.qrc PROPERTY SKIP_AUTORCC ON)
 
 add_definitions(-DPASSWORD="$ENV{PASSWORD}")
-add_definitions(-DVERSION="1.0.0")
-add_definitions(-DINFOURL="$ENV{memorydata_info_url}")
+add_definitions(-DVERSION="${PROJECT_VERSION}")
+add_definitions(-DINFOURL="$ENV{memorydata_url}")
 
 set(PROJECT_SOURCES
     ${QRC_RESOURCES}
@@ -158,8 +157,7 @@ endif()
         add_custom_target(Script-DeployRelease
             COMMAND ${CMAKE_COMMAND} -E remove_directory ${CMAKE_SOURCE_DIR}/dist
             COMMAND ${CMAKE_COMMAND} -E copy_directory ${CMAKE_RUNTIME_OUTPUT_DIRECTORY} ${CMAKE_SOURCE_DIR}/dist
-            COMMAND ${CMAKE_COMMAND} -E copy_directory ${CMAKE_CURRENT_SOURCE_DIR}/data ${CMAKE_SOURCE_DIR}/dist
-            COMMAND ${QT_DEPLOY_QT} ${CMAKE_SOURCE_DIR}/dist/${PROJECT_NAME}.app -qmldir=${CMAKE_CURRENT_LIST_DIR}/qml -dmg
+            COMMAND ${QT_DEPLOY_QT} ${CMAKE_SOURCE_DIR}/dist/${PROJECT_NAME}.app --release -qmldir=${CMAKE_CURRENT_LIST_DIR}/qml -dmg
             COMMENT "MacOs Deploying Qt Dependencies After Build........."
             SOURCES ${CMAKE_CURRENT_SOURCE_DIR}/CMakeLists.txt
             WORKING_DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR}
@@ -170,8 +168,7 @@ endif()
         add_custom_target(Script-DeployRelease
             COMMAND ${CMAKE_COMMAND} -E remove_directory ${CMAKE_SOURCE_DIR}/dist
             COMMAND ${CMAKE_COMMAND} -E copy_directory ${CMAKE_RUNTIME_OUTPUT_DIRECTORY} ${CMAKE_SOURCE_DIR}/dist
-            COMMAND ${CMAKE_COMMAND} -E copy_directory ${CMAKE_CURRENT_SOURCE_DIR}/data ${CMAKE_SOURCE_DIR}/dist/data
-            COMMAND ${QT_DEPLOY_QT} ${CMAKE_SOURCE_DIR}/dist/${PROJECT_NAME}.exe -qmldir=${CMAKE_CURRENT_LIST_DIR}/qml
+            COMMAND ${QT_DEPLOY_QT} ${CMAKE_SOURCE_DIR}/dist/${PROJECT_NAME}.exe --release -qmldir=${CMAKE_CURRENT_LIST_DIR}/qml
             COMMENT "Windows Deploying Qt Dependencies After Build........."
             SOURCES ${CMAKE_CURRENT_SOURCE_DIR}/CMakeLists.txt
             WORKING_DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR}
@@ -196,12 +193,12 @@ endif()
         )
     endif()
 
-add_custom_target(RELOAD_DATABASE
-    COMMAND ${CMAKE_COMMAND} -E remove_directory ${APPLICATION_DIR_PATH}/data
-    COMMAND ${CMAKE_COMMAND} -E copy_directory ${CMAKE_SOURCE_DIR}/data ${APPLICATION_DIR_PATH}/data
-    )
-
 add_custom_target(CLEANALL
     COMMAND cmake --build ./ --config ${CMAKE_BUILD_TYPE} --target clean --
     COMMAND ${CMAKE_COMMAND} -E remove_directory ${CMAKE_SOURCE_DIR}/bin
     )
+
+configure_file(
+    ${CMAKE_SOURCE_DIR}/setupscript.iss.in
+    ${CMAKE_SOURCE_DIR}/installer/setupscript.iss
+)

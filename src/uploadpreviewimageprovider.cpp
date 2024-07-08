@@ -137,9 +137,12 @@ void UploadPreviewImageProvider::loadvideo(QUrl url, QImage &image)
 
 void UploadPreviewImageProvider::addwatermark(QString text, QImage &image)
 {
-    QFont font("微软雅黑", 4);        // 你可以设置任何你喜欢的字体和大小
+    QFont font("微软雅黑", 18);        // 你可以设置任何你喜欢的字体和大小
     QColor watermarkColor(Qt::white); // 水印颜色
-    watermarkColor.setAlpha(150);     // 设置透明度，范围从0（完全透明）到255（完全不透明）
+    watermarkColor.setAlpha(118);     // 设置透明度，范围从0（完全透明）到255（完全不透明）
+    font.setBold(true);
+
+    image = image.scaled(880, 880, Qt::KeepAspectRatio, Qt::SmoothTransformation);
 
     QPainter painter(&image);
     painter.setFont(font);
@@ -148,6 +151,7 @@ void UploadPreviewImageProvider::addwatermark(QString text, QImage &image)
 
     // 计算水印的大小
     QFontMetrics metrics(font);
+
     QRect textRect = metrics.boundingRect(text);
 
     // 计算水印位置（考虑旋转后的中心点）

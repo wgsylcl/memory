@@ -29,7 +29,7 @@ void DataBaseInitializer::dealinitializefail()
 
 void DataBaseInitializer::downloadremoteinfo()
 {
-    QUrl downloadurl(INFOURL);
+    QUrl downloadurl(QString(INFOURL) + "/info.json");
     Downloader *infodownloader = new Downloader(downloadurl, runtimedir + "/cache/info.json");
     QObject::connect(infodownloader, &Downloader::downloadfinished, this, &DataBaseInitializer::readremoteinfo);
     QObject::connect(infodownloader, &Downloader::downloadfailed, this, &DataBaseInitializer::dealinitializefail);

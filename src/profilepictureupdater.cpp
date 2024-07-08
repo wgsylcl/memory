@@ -66,6 +66,9 @@ void ProfilePictureUpdater::updatepicture(QString reponame, const QStringList fi
     if (updatefail[idx])
         return;
     const static QStringList localfilelist = memorybase::getfilenamelist(runtimedir + "/data/pictures");
+    for(QString localfile:localfilelist)
+        if(!filelist.contains(localfile) && !filelist.contains(localfile + ".0"))
+            QFile(runtimedir + "/data/pictures/" + localfile).remove();
     for (QString filename : filelist)
     {
         QFileInfo fileinfo(filename);

@@ -51,6 +51,32 @@ FluScrollablePage {
                 textRight: false
             }
         }
+    }
 
+    FluGroupBox {
+        title: "关于"
+        ColumnLayout {
+            spacing: 20
+            Layout.preferredWidth: 914
+            Layout.fillWidth: true
+            FluText {
+                width: 914
+                Layout.preferredWidth: 914
+                Layout.fillWidth: true
+                wrapMode: Text.WrapAnywhere
+                textFormat: Text.RichText
+                text: MainTool.getterms()
+                onLinkActivated: Qt.openUrlExternally(link)
+            }
+            FluText {
+                width: 914
+                Layout.preferredWidth: 914
+                Layout.fillWidth: true
+                wrapMode: Text.WrapAnywhere
+                textFormat: Text.RichText
+                text: MainTool.getpreviews()
+                onLinkActivated: Qt.openUrlExternally(link)
+            }
+        }
     }
 }

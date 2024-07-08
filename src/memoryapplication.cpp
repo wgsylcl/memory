@@ -117,12 +117,29 @@ void MemoryApplication::setupfiles()
     const QString dumpDirPath = runtimedir + "/dmp";
     const QDir dumpDir(dumpDirPath);
     if (!dumpDir.exists())
-    {
         dumpDir.mkpath(dumpDirPath);
-    }
-    QDir cachedir(runtimedir + "/cache");
+    const QDir cachedir(runtimedir + "/cache");
     if (!cachedir.exists())
         cachedir.mkpath(runtimedir + "/cache");
+    const QString datapath = runtimedir + "/data";
+    if(!QDir(datapath).exists())
+        QDir().mkpath(datapath);
+    if(!QDir(datapath + "/activities").exists())
+        QDir().mkpath(datapath + "/activities");
+    if(!QDir(datapath + "/pictures").exists())
+        QDir().mkpath(datapath + "/pictures");
+    if(!QDir(datapath + "/students").exists())
+        QDir().mkpath(datapath + "/students");
+    QFile versionfile(datapath + "/versions.json");
+    if(!versionfile.exists())
+    {
+        QFile defaultversionfile(":/res/defaultversions.json");
+        defaultversionfile.open(QIODevice::ReadOnly | QIODevice::Text);
+        versionfile.open(QIODevice::WriteOnly | QIODevice::Text);
+        versionfile.write(defaultversionfile.readAll());
+        defaultversionfile.close();
+        versionfile.close();
+    }
 }
 
 void MemoryApplication::checksingle()

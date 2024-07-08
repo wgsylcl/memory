@@ -65,7 +65,7 @@ FluWindow {
             x: 600.00
             y: 400.00
             scale: rootwindow.scale
-            cache: true
+
             smooth: true
 
             onStatusChanged: {

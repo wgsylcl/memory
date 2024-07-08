@@ -31,5 +31,8 @@
         <file>qml/crashwindow.qml</file>
         <file>qml/MTableView.qml</file>
         <file>qml/MMediaPlayer.qml</file>
+        <file>text/preview.html</file>
+        <file>text/terms.html</file>
+        <file>res/defaultversions.json</file>
     </qresource>
 </RCC>

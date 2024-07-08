@@ -39,6 +39,9 @@ void ActivityUpdater::updaterepo(const QString activityname, const QString repon
         return;
     const QString activitypath = runtimedir + "/data/activities/" + activityname;
     const QStringList localfilelist = memorybase::getfilenamelist(activitypath);
+    for(QString localfile:localfilelist)
+        if(!filelist.contains(localfile) && !filelist.contains(localfile + ".0"))
+            QFile(runtimedir + "/data/pictures/" + localfile).remove();
     for (QString filename : filelist)
     {
         QFileInfo fileinfo(filename);

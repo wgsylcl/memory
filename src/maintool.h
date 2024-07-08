@@ -12,6 +12,8 @@ public:
     explicit MainTool(QObject *parent = nullptr);
     ~MainTool();
     Q_INVOKABLE QString gettip(void);
+    Q_INVOKABLE QString getterms(void);
+    Q_INVOKABLE QString getpreviews(void);
     Q_INVOKABLE bool is_crashmode(void);
     Q_INVOKABLE void savecrashfile(void);
     Q_INVOKABLE QUrl getdownloadurl(void);
@@ -44,6 +46,7 @@ signals:
 private:
     bool crashmode;
     QString crashfilename, crashlogname;
+    QString terms,previews;
 };
 
 #endif // MAINTOOL_H

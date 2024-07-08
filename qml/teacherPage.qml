@@ -174,7 +174,7 @@ FluContentPage {
                         width: parent.width
                         fillMode:Image.PreserveAspectFit
                         anchors.margins: 10
-                        cache: true
+
                         smooth: true
 
                         MouseArea {
@@ -203,7 +203,7 @@ FluContentPage {
                                 width: parent.parent.width
                                 fillMode: Image.PreserveAspectFit
                                 anchors.margins: 10
-                                cache: true
+
                                 smooth: true
 
                                 MouseArea {
