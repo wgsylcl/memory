@@ -6,13 +6,13 @@ import datamanagehelper
 
 FluContentPage {
     id: root
-    title: qsTr("数据库同步")
+    title: "数据库同步"
 
     property var remoteactivities : []
 
     FluText {
         id: text2
-        text: qsTr("图文数据库更新")
+        text: "图文数据库更新"
         font: FluTextStyle.Subtitle
     }
 
@@ -96,7 +96,7 @@ FluContentPage {
         anchors {
             top: profilepictureupdateview.bottom
         }
-        text: qsTr("活动数据库更新")
+        text: "活动数据库更新"
         font: FluTextStyle.Subtitle
     }
 
@@ -156,7 +156,7 @@ FluContentPage {
                         loading: activityupdater.is_updating(name)
                         enabled: (!MainTool.is_maintaining()) && (!activityupdater.is_updating(name)) && datamanagehelper.getlocalactivityversionbyname(name) < datamanagehelper.getremoteactivityversionbyname(name)
                         onClicked: {
-                            showInfo(qsTr("开始更新数据库%1!").arg('"' + name + '"'))
+                            showInfo("开始更新数据库%1!".arg('"' + name + '"'))
                             datamanagehelper.startsyncactivity(name)
                             activitylocalversiontext.text = datamanagehelper.getlocalactivityversionbyname(name) === "0.0.0" ?
                                         "还未下载这个数据库到本地噢" :
@@ -168,10 +168,10 @@ FluContentPage {
                     }
                     FluButton {
                         id: activitydeletebotton
-                        text: qsTr("删除本地数据库")
+                        text: "删除本地数据库"
                         enabled: (!activityupdater.is_updating(name)) && datamanagehelper.getlocalactivityversionbyname(name) !== "0.0.0"
                         onClicked: {
-                            showInfo(qsTr("已删除数据库%1!").arg('"' + name + '"'))
+                            showInfo("已删除数据库%1!".arg('"' + name + '"'))
                             datamanagehelper.removelocalactivitybyname(name)
                             activitylocalversiontext.text = datamanagehelper.getlocalactivityversionbyname(name) === "0.0.0" ?
                                         "还未下载这个数据库到本地噢" :

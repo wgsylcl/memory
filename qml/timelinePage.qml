@@ -5,7 +5,7 @@ import timelinehelper
 import QtQuick.Controls
 
 FluContentPage {
-    title: qsTr("我们的班史")
+    title: "我们的班史"
 
     FluStatusLayout {
         anchors.fill: parent

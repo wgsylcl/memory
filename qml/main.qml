@@ -9,7 +9,7 @@ FluWindow {
     height: 373*2
     minimumWidth: 668
     minimumHeight: 373
-    title: qsTr("毕业留念")
+    title: "毕业留念"
     Settings {
         id: settings
         property bool isdeveloper: false
@@ -39,20 +39,20 @@ FluWindow {
     Connections {
         target: profilepictureupdater
         function onUpdatefinished() {
-            showSuccess(qsTr("图文数据库更新完成!"))
+            showSuccess("图文数据库更新完成!")
         }
         function onUpdatefailed() {
-            showError(qsTr("网络异常，图文数据库更新失败!"))
+            showError("网络异常，图文数据库更新失败!")
         }
     }
 
     Connections {
         target: activityupdater
         function onUpdatefinished(activityname) {
-            showSuccess(qsTr("数据库%1更新成功!").arg('"' + activityname + '"'))
+            showSuccess("数据库%1更新成功!".arg('"' + activityname + '"'))
         }
         function onUpdatefailed(activityname) {
-            showError(qsTr("网络异常，数据库%1更新失败!").arg('"' + activityname + '"'))
+            showError("网络异常，数据库%1更新失败!".arg('"' + activityname + '"'))
         }
     }
 
@@ -150,29 +150,29 @@ FluWindow {
                 FluPaneItem {
                     icon: FluentIcons.Home
                     url: "qrc:/qml/homePage.qml"
-                    title: qsTr("主界面")
+                    title: "主界面"
                     onTap: navigationview.push(url)
                 }
                 FluPaneItem {
                     icon: FluentIcons.GuestUser
                     url: "qrc:/qml/teacherPage.qml"
-                    title: qsTr("我的老师们")
+                    title: "我的老师们"
                     onTap: navigationview.push(url)
                 }
                 FluPaneItem {
                     icon: FluentIcons.PhoneBook
                     url: "qrc:/qml/studentPage.qml"
-                    title: qsTr("我和我的同学")
+                    title: "我和我的同学"
                     onTap: navigationview.push(url)
                 }
                 FluPaneItem{
-                    title: qsTr("回忆")
+                    title: "回忆"
                     icon: FluentIcons.Emoji
                     url: "qrc:/qml/activitypage.qml"
                     onTap: navigationview.push(url)
                 }
                 FluPaneItem{
-                    title: qsTr("我们的班史")
+                    title: "我们的班史"
                     icon: FluentIcons.History
                     url: "qrc:/qml/timelinePage.qml"
                     onTap: navigationview.push(url)
@@ -180,22 +180,22 @@ FluWindow {
                 FluPaneItemExpander {
                     id: databaseexpander
                     icon: FluentIcons.FolderOpen
-                    title: qsTr("数据库管理")
+                    title: "数据库管理"
                     FluPaneItem {
                         icon: FluentIcons.SyncFolder
-                        title: qsTr("同步数据库")
+                        title: "同步数据库"
                         url: "qrc:/qml/datamanagepage.qml"
                         onTap: navigationview.push(url)
                     }
                     FluPaneItem {
                         icon: FluentIcons.OpenFile
-                        title: qsTr("上传图文")
+                        title: "上传图文"
                         url: "qrc:/qml/dataprovidepage.qml"
                         onTap: navigationview.push(url)
                     }
                     FluPaneItem {
                         icon: isdeveloper ? FluentIcons.Unlock : FluentIcons.Lock
-                        title: qsTr("更改数据库")
+                        title: "更改数据库"
                         url: "qrc:/qml/dataupdatepage.qml"
                         onTap: {
                             if(!isdeveloper) passworddialog.open()
@@ -208,12 +208,12 @@ FluWindow {
                 FluPaneItem {
                     icon: FluentIcons.Settings
                     url: "qrc:/qml/settingsPage.qml"
-                    title: qsTr("设置和关于")
+                    title: "设置和关于"
                     onTap: navigationview.push(url)
                 }
                 FluPaneItem {
                     visible: false
-                    title: qsTr("崩溃测试")
+                    title: "崩溃测试"
                     onTap: MainTool.testcrash()
                 }
             }
@@ -226,26 +226,26 @@ FluWindow {
 
     FluContentDialog {
         id: passworddialog
-        title: qsTr("需要验证")
-        message: qsTr("输入 Developer 的密码以授权对数据库的更改")
+        title: "需要验证"
+        message: "输入 Developer 的密码以授权对数据库的更改"
         contentDelegate: Component {
             FluPasswordBox {
                 anchors.margins: 18
                 onTextChanged: inputpassword = text
             }
         }
-        positiveText: qsTr("验证")
-        negativeText: qsTr("取消")
+        positiveText: "验证"
+        negativeText: "取消"
         onPositiveClicked: {
             if(inputpassword === MainTool.getpassword()) {
-                showSuccess(qsTr("验证成功!"))
+                showSuccess("验证成功!")
                 isdeveloper = true
             }
             else {
-                showError(qsTr("密码错误!"))
+                showError("密码错误!")
             }
         }
-        onNegativeClicked: showWarning(qsTr("您退出了验证"))
+        onNegativeClicked: showWarning("您退出了验证")
     }
 
     Connections {

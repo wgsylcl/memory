@@ -6,7 +6,7 @@ import FluentUI
 
 FluWindow {
     id: window
-    title: qsTr("资料卡片")
+    title: "资料卡片"
     width: 500
     height: 600
     launchMode: FluWindowType.Standard
@@ -95,21 +95,21 @@ FluWindow {
             RowLayout {
                 spacing: 20
                 FluFilledButton {
-                    text: qsTr("修改自我介绍")
+                    text: "修改自我介绍"
                     onClicked: changeprofilewindow.launch({name:window.name})
                 }
                 FluFilledButton {
-                    text: qsTr("给ta留言")
+                    text: "给ta留言"
                     onClicked: addreviewwindow.launch({sendto:window.name})
                 }
                 FluFilledButton {
-                    text: qsTr("添加ta的一刻")
+                    text: "添加ta的一刻"
                     onClicked: addpicturewindow.launch({name:window.name})
                 }
             }
 
             FluExpander {
-                headerText: qsTr("ta的亲笔签名")
+                headerText: "ta的亲笔签名"
                 Layout.topMargin: 20
                 width: parent.width
                 FluImage {
@@ -133,7 +133,7 @@ FluWindow {
             }
 
             FluExpander {
-                headerText: qsTr("有关ta的一刻")
+                headerText: "有关ta的一刻"
                 Layout.topMargin: 20
                 width: parent.width
                 FluCarousel {
@@ -168,7 +168,7 @@ FluWindow {
             FluExpander{
                 Layout.topMargin: 20
                 width: parent.width
-                headerText: qsTr("留言栏")
+                headerText: "留言栏"
                 Item{
                     anchors.fill: parent
                     Flickable{

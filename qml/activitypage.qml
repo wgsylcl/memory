@@ -5,7 +5,7 @@ import FluentUI
 import Qt.labs.settings
 
 FluContentPage {
-    title: qsTr("回忆")
+    title: "回忆"
     property var activitynames: []
     property int index: 0
     property int mediasize: 0
@@ -26,7 +26,7 @@ FluContentPage {
         id: chooseactivityrow
 
         FluText {
-            text: qsTr("选择要查看的活动")
+            text: "选择要查看的活动"
             Layout.alignment: Qt.AlignHCenter
         }
 
@@ -54,20 +54,20 @@ FluContentPage {
         }
 
         FluButton {
-            text: qsTr("上一张")
+            text: "上一张"
             enabled: index > 1
             onClicked: popmedia()
         }
 
         FluFilledButton {
-            text: qsTr("下一张")
+            text: "下一张"
             enabled: index
             onClicked: pushmedia()
         }
 
         FluButton {
             Layout.leftMargin: 50
-            text: qsTr("给活动添加图片/视频")
+            text: "给活动添加图片/视频"
             onClicked: addactivitypicturewindow.launch({name:currentactivityname})
         }
     }
@@ -213,7 +213,7 @@ FluContentPage {
         if(stack.busy) return;
         mediachanged()
         if(index < 2) {
-            showWarning(qsTr("已经到顶端了噢~"))
+            showWarning("已经到顶端了噢~")
             return
         }
         stack.pop()

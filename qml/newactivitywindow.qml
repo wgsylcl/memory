@@ -7,7 +7,7 @@ FluWindow {
     id: window
     width: 600
     height: 400
-    title: qsTr("迁移")
+    title: "迁移"
     modality: Qt.ApplicationModal
     property string activitytitle: ""
     property alias factivityname: activitynamebox.text

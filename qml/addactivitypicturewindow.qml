@@ -9,9 +9,17 @@ FluWindow {
     height: 300
     modality: Qt.ApplicationModal
     launchMode: FluWindowType.SingleTask
-    title: qsTr("给活动添加图片/视频")
+    title: "给活动添加图片/视频"
     property string name: ""
     property var filepaths: []
+    property bool packing: uploader.is_packing()
+
+    Connections {
+        target: uploader
+        function onPackupfinished() {
+            packing = false
+        }
+    }
 
     onInitArgument:
         (argument) => {
@@ -83,6 +91,11 @@ FluWindow {
                 Layout.alignment: Qt.AlignHCenter
                 text: "提交图片/视频"
                 onClicked: {
+                    if(packing) {
+                        showWarning("打包中不要提交噢")
+                        return
+                    }
+
                     if(MainTool.is_empty(name)) {
                         showWarning("请填写一个活动！")
                         return

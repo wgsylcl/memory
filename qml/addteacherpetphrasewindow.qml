@@ -8,9 +8,17 @@ FluWindow {
     height: 300
     modality: Qt.ApplicationModal
     launchMode: FluWindowType.SingleTask
-    title: qsTr("留言")
+    title: "留言"
 
     property string name: ""
+    property bool packing: uploader.is_packing()
+
+    Connections {
+        target: uploader
+        function onPackupfinished() {
+            packing = false
+        }
+    }
 
     onInitArgument:
         (argument) => {
@@ -25,7 +33,7 @@ FluWindow {
             spacing: 20
             anchors.centerIn: parent
             FluText {
-                text: qsTr("给%1添加新的口头禅").arg(name)
+                text: "给%1添加新的口头禅".arg(name)
                 font: FluTextStyle.BodyStrong
             }
             FluMultilineTextBox {
@@ -38,6 +46,11 @@ FluWindow {
                 text: "提交"
                 Layout.alignment: Qt.AlignHCenter
                 onClicked: {
+                    if(packing) {
+                        showWarning("打包中不要提交噢")
+                        return
+                    }
+
                     if(MainTool.is_empty(petphrasetextbox.text)) {
                         showWarning("口头禅至少得有几个字吧！")
                         return

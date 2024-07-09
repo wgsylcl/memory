@@ -4,7 +4,6 @@
 #include "base.h"
 #include <QGuiApplication>
 #include <QQmlApplicationEngine>
-#include <QTranslator>
 #include <QtQml>
 #include <QDebug>
 #include <QLockFile>
@@ -41,7 +40,6 @@ signals:
 
 private:
     QQmlApplicationEngine *engine;
-    QTranslator translator;
     const QStringList uiLanguages;
     ImageProvider *imageprovider;
     MainTool *maintool;
@@ -57,7 +55,6 @@ private:
     UploadPreviewImageProvider *uploadpreviewimageprovider;
     CommandRunner *commandrunner;
     void checksingle();
-    void setuptranslator();
     void registermodules();
     void setupqmlengine();
     void setupfiles();

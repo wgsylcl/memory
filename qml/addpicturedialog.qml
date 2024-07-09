@@ -9,9 +9,17 @@ FluWindow {
     height: 300
     modality: Qt.ApplicationModal
     launchMode: FluWindowType.SingleTask
-    title: qsTr("添加ta的一刻")
+    title: "添加ta的一刻"
     property string name: ""
     property var filepaths: []
+    property bool packing: uploader.is_packing()
+
+    Connections {
+        target: uploader
+        function onPackupfinished() {
+            packing = false
+        }
+    }
 
     onInitArgument:
         (argument) => {
@@ -64,6 +72,11 @@ FluWindow {
                 Layout.alignment: Qt.AlignHCenter
                 text: "提交图片/视频"
                 onClicked: {
+                    if(packing) {
+                        showWarning("打包中不要提交噢")
+                        return
+                    }
+
                     if(!filepaths.length) {
                         showWarning("至少添加一个文件吧！")
                         return

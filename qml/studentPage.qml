@@ -7,7 +7,7 @@ import studenthelper
 
 FluContentPage {
     id: root
-    title: qsTr("我和我的同学们")
+    title: "我和我的同学们"
     property var datas: []
 
     FluStatusLayout {
@@ -58,7 +58,7 @@ FluContentPage {
 
         FluText {
             id: fronttext
-            text: qsTr("三年同窗，共沐一片阳光；一千个白昼，谱写了多少友谊的篇章？愿逝去的岁月，都化作美好的回忆，永留在心房。")
+            text: "三年同窗，共沐一片阳光；一千个白昼，谱写了多少友谊的篇章？愿逝去的岁月，都化作美好的回忆，永留在心房。"
         }
 
         MTableView {
@@ -74,27 +74,27 @@ FluContentPage {
             }
             columnSource: [
                 {
-                    title: qsTr("学号"),
+                    title: "学号",
                     width: 100,
                     dataIndex: "id"
                 },
                 {
-                    title: qsTr("名字"),
+                    title: "名字",
                     width: 100,
                     dataIndex: "name"
                 },
                 {
-                    title: qsTr("生日"),
+                    title: "生日",
                     width: 200,
                     dataIndex: "birthday"
                 },
                 {
-                    title: qsTr("操作"),
+                    title: "操作",
                     width: 200,
                     dataIndex: "action"
                 },
                 {
-                    title: qsTr("自我介绍"),
+                    title: "自我介绍",
                     width: 400,
                     dataIndex: "profile"
                 }
@@ -138,7 +138,7 @@ FluContentPage {
         Item {
             FluFilledButton {
                 anchors.centerIn: parent
-                text: qsTr("看看ta的资料卡片")
+                text: "看看ta的资料卡片"
                 onClicked: {
                     var stu = maintable.getRow(row)
                     FluRouter.navigate("/profile",{name:stu.namedata,id:stu.iddata,profile:stu.profiledata,sign:stu.sign,picpaths:stu.picpaths,reviews:stu.reviews})

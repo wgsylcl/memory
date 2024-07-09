@@ -6,7 +6,7 @@ import teacherfilehelper
 
 FluContentPage {
     id: root
-    title: qsTr("我的老师们")
+    title: "我的老师们"
 
     FluStatusLayout {
         anchors.fill: parent
@@ -54,7 +54,7 @@ FluContentPage {
         }
 
         FluText {
-            text: qsTr("您的教诲如同明灯，照亮我们前行的道路，感谢您陪伴我们度过这段美好的求学时光，愿您在新的旅程中，继续发光发热，教学事业蒸蒸日上，身体健康，生活幸福美满。")
+            text: "您的教诲如同明灯，照亮我们前行的道路，感谢您陪伴我们度过这段美好的求学时光，愿您在新的旅程中，继续发光发热，教学事业蒸蒸日上，身体健康，生活幸福美满。"
             wrapMode: Text.WordWrap
             id: text1
         }
@@ -162,7 +162,7 @@ FluContentPage {
                 }
 
                 FluExpander {
-                    headerText: qsTr("ta的亲笔签名")
+                    headerText: "ta的亲笔签名"
                     width: parent.width
                     Layout.fillWidth: true
                     Layout.preferredWidth: teacherlistview.width - 10
@@ -188,7 +188,7 @@ FluContentPage {
                 }
 
                 FluExpander {
-                    headerText: qsTr("有关ta的一刻")
+                    headerText: "有关ta的一刻"
                     width: parent.width
                     Layout.fillWidth: true
                     Layout.preferredWidth: teacherlistview.width - 10
@@ -224,7 +224,7 @@ FluContentPage {
                     width: parent.width
                     Layout.fillWidth: true
                     Layout.preferredWidth: teacherlistview.width - 10
-                    headerText: qsTr("留言栏")
+                    headerText: "留言栏"
                     Item{
                         anchors.fill: parent
                         Flickable{
@@ -251,11 +251,11 @@ FluContentPage {
                 reader.readdata(index)
                 signimage.source = reader.getsign()
                 name = reader.getname()
-                cardtitle.text = qsTr("我的%1老师 —— %2").arg(reader.getsubject()).arg(reader.getname())
+                cardtitle.text = "我的%1老师 —— %2".arg(reader.getsubject()).arg(reader.getname())
                 var petphrase = []
                 petphrase = reader.getpetphrase()
                 for(var k=0;k<petphrase.length;k++) {
-                    petphraseview.text += qsTr("\"%1\"\n").arg(petphrase[k])
+                    petphraseview.text += "\"%1\"\n".arg(petphrase[k])
                 }
                 var datas = []
                 var picpaths = []

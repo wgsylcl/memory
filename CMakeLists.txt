@@ -1,6 +1,6 @@
 cmake_minimum_required(VERSION 3.20)
 
-project(memory VERSION 1.0.0 LANGUAGES CXX)
+project(memory VERSION 1.0.1 LANGUAGES CXX)
 
 set(CMAKE_AUTOMOC ON)
 set(CMAKE_AUTORCC ON)
@@ -21,19 +21,6 @@ include_directories(./src)
 
 find_package(QT NAMES Qt6 Qt5 REQUIRED COMPONENTS Core Quick Svg Multimedia Network)
 find_package(Qt${QT_VERSION_MAJOR} REQUIRED COMPONENTS Core Quick Svg Multimedia Network)
-
-find_program(QT_LUPDATE NAMES lupdate)
-find_program(QT_LRELEASE NAMES lrelease)
-file(GLOB TS_FILE_PATHS ${CMAKE_CURRENT_LIST_DIR}/ *.ts)
-add_custom_target(Script-UpdateTranslations
-    COMMAND ${QT_LUPDATE} ${CMAKE_CURRENT_LIST_DIR} -ts ${PROJECT_NAME}_en_US.ts WORKING_DIRECTORY ${CMAKE_CURRENT_LIST_DIR}
-    COMMAND ${QT_LUPDATE} ${CMAKE_CURRENT_LIST_DIR} -ts ${PROJECT_NAME}_zh_CN.ts WORKING_DIRECTORY ${CMAKE_CURRENT_LIST_DIR}
-    COMMAND ${QT_LRELEASE} ${PROJECT_NAME}_en_US.ts WORKING_DIRECTORY ${CMAKE_CURRENT_LIST_DIR}
-    COMMAND ${QT_LRELEASE} ${PROJECT_NAME}_zh_CN.ts WORKING_DIRECTORY ${CMAKE_CURRENT_LIST_DIR}
-    COMMAND ${CMAKE_COMMAND} -E make_directory ${APPLICATION_DIR_PATH}/i18n
-    COMMAND ${CMAKE_COMMAND} -E copy ${PROJECT_NAME}_en_US.qm ${PROJECT_NAME}_zh_CN.qm ${APPLICATION_DIR_PATH}/i18n
-    SOURCES ${TS_FILE_PATHS}
-)
 
 if(WIN32)
     set(3RDPARTY_PATH ${CMAKE_SOURCE_DIR}/3rdparty/win32)
@@ -104,8 +91,6 @@ target_compile_definitions(${PROJECT_NAME}
 )
 
 target_include_directories(${PROJECT_NAME} PRIVATE ${Qt6Core_PRIVATE_INCLUDE_DIRS})
-
-add_dependencies(${PROJECT_NAME} Script-UpdateTranslations)
 
 target_link_libraries(${PROJECT_NAME} PRIVATE
     Qt${QT_VERSION_MAJOR}::Core

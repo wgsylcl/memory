@@ -20,7 +20,6 @@ MemoryApplication::MemoryApplication(int &argc, char *argv[])
     QObject::connect(qApp, &QCoreApplication::aboutToQuit, this, &MemoryApplication::releseresources);
     QObject::connect(maintool, &MainTool::requestrestartinitialize, this, &MemoryApplication::startinitialize);
     threadpool->setExpiryTimeout(-1);
-    setuptranslator();
     registermodules();
     setupqmlengine();
     startinitialize();
@@ -49,19 +48,6 @@ void MemoryApplication::releseresources()
     activityupdater->deleteLater();
     uploader->deleteLater();
     commandrunner->deleteLater();
-}
-
-void MemoryApplication::setuptranslator()
-{
-    for (const QString &locale : uiLanguages)
-    {
-        const QString baseName = "Template_" + QLocale(locale).name();
-        if (translator.load("./i18n/" + baseName))
-        {
-            installTranslator(&translator);
-            break;
-        }
-    }
 }
 
 void MemoryApplication::registermodules()

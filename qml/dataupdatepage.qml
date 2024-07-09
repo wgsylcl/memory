@@ -7,7 +7,7 @@ import dataupdatehelper
 
 FluContentPage {
     id: root
-    title: qsTr("更改数据库")
+    title: "更改数据库"
 
     property var uploadfilepaths: []
 
@@ -25,25 +25,25 @@ FluContentPage {
             RowLayout {
                 spacing: 50
                 FluText {
-                    text: qsTr("打开数据文件夹")
+                    text: "打开数据文件夹"
                     Layout.alignment: Qt.AlignHCenter
                 }
                 FluTextBox {
                     id: encodedirtextbox
                     width: 360
-                    placeholderText: qsTr("输入待加密的文件夹路径")
+                    placeholderText: "输入待加密的文件夹路径"
                 }
                 FluButton {
-                    text: qsTr("打开待加密的文件夹")
+                    text: "打开待加密的文件夹"
                     onPressed: {
                         openencodedirdialog.open()
                     }
                 }
                 FluFilledButton {
-                    text: qsTr("加密")
+                    text: "加密"
                     onClicked: {
                         if(!MainTool.direxist(encodedirtextbox.text)){
-                            showError(qsTr("文件夹路径不正确！"))
+                            showError("文件夹路径不正确！")
                             return
                         }
                         direncoder.encodedir(encodedirtextbox.text)
@@ -53,7 +53,7 @@ FluContentPage {
         }
         FolderDialog {
             id: openencodedirdialog
-            title: qsTr("打开待加密的文件夹")
+            title: "打开待加密的文件夹"
             onAccepted: encodedirtextbox.text = MainTool.topath(currentFolder)
         }
         FluText {

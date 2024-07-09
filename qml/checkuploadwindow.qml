@@ -8,7 +8,7 @@ FluWindow {
     id: window
     width: 800
     height: 600
-    title: qsTr("审核")
+    title: "审核"
     launchMode: FluWindowType.SingleInstance
 
     property var taskstack: []
@@ -16,6 +16,14 @@ FluWindow {
     property var taskids: []
     property var allactivitynames: []
     property var taskneednewactivity: []
+    property bool packing: uploader.is_packing()
+
+    Connections {
+        target: uploader
+        function onPackupfinished() {
+            packing = false
+        }
+    }
 
     DataUpdateHelper {
         id: dataupdatehelper
@@ -201,7 +209,7 @@ FluWindow {
                                 id:reviewtext
                                 width: scrollview.width
                                 wrapMode: Text.WrapAnywhere
-                                text: qsTr("sender:%1\nsendto:%2\ntext:%3").arg(sender).arg(sendto).arg(context)
+                                text: "sender:%1\nsendto:%2\ntext:%3".arg(sender).arg(sendto).arg(context)
                                 padding: 14
                             }
                         }

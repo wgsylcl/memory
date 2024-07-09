@@ -8,9 +8,17 @@ FluWindow {
     height: 300
     modality: Qt.ApplicationModal
     launchMode: FluWindowType.SingleTask
-    title: qsTr("留言")
+    title: "留言"
 
     property string sendto: ""
+    property bool packing: uploader.is_packing()
+
+    Connections {
+        target: uploader
+        function onPackupfinished() {
+            packing = false
+        }
+    }
 
     onInitArgument:
         (argument) => {
@@ -25,7 +33,7 @@ FluWindow {
             spacing: 20
             anchors.centerIn: parent
             FluText {
-                text: qsTr("给%1留言").arg(sendto)
+                text: "给%1留言".arg(sendto)
                 font: FluTextStyle.BodyStrong
             }
             RowLayout {
@@ -55,6 +63,11 @@ FluWindow {
                 text: "提交留言"
                 Layout.alignment: Qt.AlignHCenter
                 onClicked: {
+                    if(packing) {
+                        showWarning("打包中不要提交噢")
+                        return
+                    }
+
                     if(MainTool.is_empty(sendtextbox.text)) {
                         showWarning("至少留几个字吧！")
                         return

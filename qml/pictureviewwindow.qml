@@ -8,7 +8,7 @@ FluWindow {
     width: 1200.00
     height: 800.00
     id: rootwindow
-    title: qsTr("查看图片")
+    title: "查看图片"
 
     property real scale: 1.00
     property real picwidth: 0.00

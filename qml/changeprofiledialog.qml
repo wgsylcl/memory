@@ -8,9 +8,17 @@ FluWindow {
     height: 300
     launchMode: FluWindowType.SingleTask
     modality: Qt.ApplicationModal
-    title: qsTr("更改自我介绍")
+    title: "更改自我介绍"
 
     property string name: ""
+    property bool packing: uploader.is_packing()
+
+    Connections {
+        target: uploader
+        function onPackupfinished() {
+            packing = false
+        }
+    }
 
     onInitArgument:
         (argument) => {
@@ -26,12 +34,17 @@ FluWindow {
         }
         FluTextBox {
             id: profiletextbox
-            placeholderText: qsTr("新介绍（留空就没有了噢）")
+            placeholderText: "新介绍（留空就没有了噢）"
         }
         FluFilledButton {
-            text: qsTr("提交更改")
+            text: "提交更改"
             Layout.alignment: Qt.AlignHCenter
             onClicked: {
+                if(packing) {
+                    showWarning("打包中不要提交噢")
+                    return
+                }
+
                 setResult({newprofile:MainTool.trimmed(profiletextbox.text)})
                 window.close()
             }

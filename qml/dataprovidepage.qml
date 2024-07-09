@@ -5,7 +5,7 @@ import QtQuick.Layouts
 
 FluContentPage {
     id: root
-    title: qsTr("上传图文")
+    title: "上传图文"
 
     property bool packing: uploader.is_packing()
     property bool havetask: uploader.gettaskcount() > 0
@@ -23,6 +23,8 @@ FluContentPage {
             showInfo("开始打包!")
             packing = true
             uploader.packup()
+            havetask = false
+            taskmodel.clear()
         }
         anchors {
             top: parent.top
@@ -44,24 +46,22 @@ FluContentPage {
     Connections {
         target: uploader
         function onPackupfinished() {
-            havetask = false
             packing = false
-            taskmodel.clear()
         }
     }
 
     function gettaskexpanderhreadertext(index) {
         let rets = ""
         const retbase = [
-                          qsTr("给%1留言").arg(uploader.getsendto(index)),
-                          qsTr("给%1留言").arg(uploader.getsendto(index)),
-                          qsTr("给%1添加ta的一刻").arg(uploader.getsendto(index)),
-                          qsTr("给%1添加ta的一刻").arg(uploader.getsendto(index)),
-                          qsTr("添加%1的口头禅").arg(uploader.getsendto(index)),
-                          qsTr("增添班史"),
-                          qsTr("给活动\"%1\"添加图片/视频").arg(uploader.getsendto(index)),
-                          qsTr("修改%1的自我介绍").arg(uploader.getsendto(index)),
-                          qsTr("修改%1的生日").arg(uploader.getsendto(index))
+                          "给%1留言".arg(uploader.getsendto(index)),
+                          "给%1留言".arg(uploader.getsendto(index)),
+                          "给%1添加ta的一刻".arg(uploader.getsendto(index)),
+                          "给%1添加ta的一刻".arg(uploader.getsendto(index)),
+                          "添加%1的口头禅".arg(uploader.getsendto(index)),
+                          "增添班史",
+                          "给活动\"%1\"添加图片/视频".arg(uploader.getsendto(index)),
+                          "修改%1的自我介绍".arg(uploader.getsendto(index)),
+                          "修改%1的生日".arg(uploader.getsendto(index))
                       ]
         return retbase[uploader.gettasktype(index)]
     }
@@ -77,15 +77,15 @@ FluContentPage {
 
     function gettasktext(index) {
         const retbase = [
-                          qsTr("%1:%2").arg(uploader.getsender(index)).arg(uploader.gettext(index)),
-                          qsTr("%1:%2").arg(uploader.getsender(index)).arg(uploader.gettext(index)),
+                          "%1:%2".arg(uploader.getsender(index)).arg(uploader.gettext(index)),
+                          "%1:%2".arg(uploader.getsender(index)).arg(uploader.gettext(index)),
                           "",
                           "",
-                          qsTr("\"%1\"").arg(uploader.gettext(index)),
-                          qsTr("%1:%2").arg(uploader.getsender(index)).arg(uploader.gettext(index)),
+                          "\"%1\"".arg(uploader.gettext(index)),
+                          "%1:%2".arg(uploader.getsender(index)).arg(uploader.gettext(index)),
                           "",
-                          qsTr("%1").arg(uploader.gettext(index)),
-                          qsTr("%1的生日是：%2").arg(uploader.getsendto(index)).arg(uploader.gettext(index))
+                          "%1".arg(uploader.gettext(index)),
+                          "%1的生日是：%2".arg(uploader.getsendto(index)).arg(uploader.gettext(index))
                       ]
         return retbase[uploader.gettasktype(index)]
     }
