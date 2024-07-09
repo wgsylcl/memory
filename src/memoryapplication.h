@@ -24,6 +24,7 @@
 #include "uploader.h"
 #include "uploadpreviewimageprovider.h"
 #include "dataupdatehelper.h"
+#include "commandrunner.h"
 #ifdef Q_OS_WIN
 #include <windows.h>
 #endif
@@ -54,6 +55,7 @@ private:
     ActivityUpdater *activityupdater;
     Uploader *uploader;
     UploadPreviewImageProvider *uploadpreviewimageprovider;
+    CommandRunner *commandrunner;
     void checksingle();
     void setuptranslator();
     void registermodules();

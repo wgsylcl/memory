@@ -80,6 +80,7 @@ set(PROJECT_SOURCES
     src/uploadpreviewimageprovider.h src/uploadpreviewimageprovider.cpp
     src/app_dump.h
     src/dataupdatehelper.h src/dataupdatehelper.cpp
+    src/commandrunner.h src/commandrunner.cpp
 )
 
 if(WIN32)

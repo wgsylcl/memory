@@ -79,7 +79,7 @@ FluContentPage {
             id: repobox
             FluFrame {
                 property string reponame: repolistmodel.get(index).name
-                Layout.preferredWidth: 800
+                Layout.preferredWidth: root.width
                 Layout.fillWidth: true
                 Layout.preferredHeight: 25
                 Layout.fillHeight: true
@@ -88,13 +88,22 @@ FluContentPage {
                     spacing: 50
                     FluText {
                         Layout.alignment: Qt.AlignHCenter
-                        Layout.preferredWidth: 180
+                        Layout.preferredWidth: 100
                         Layout.fillWidth: true
                         text: reponame
                     }
                     FluTextBox {
+                        Layout.preferredWidth: 600
+                        Layout.fillWidth: true
                         text: dataupdatehelper.getrepopath(reponame)
                         onTextChanged: dataupdatehelper.setrepopath(reponame,text)
+                    }
+                    FluFilledButton {
+                        text: "在此处打开终端并运行git"
+                        onClicked: {
+                            var result = CommandRunner.rungitcode(dataupdatehelper.getrepopath(reponame))
+                            FluRouter.navigate("/showrunningresult",{result:result})
+                        }
                     }
                 }
 
@@ -107,7 +116,7 @@ FluContentPage {
             delegate: repobox
             spacing: 10
             clip: true
-            Layout.preferredWidth: 800
+            Layout.preferredWidth: root.width
             Layout.fillWidth: true
             Layout.preferredHeight: 400
             Layout.fillHeight: true

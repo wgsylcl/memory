@@ -5,7 +5,7 @@ MemoryApplication::MemoryApplication(int &argc, char *argv[])
       uiLanguages(QLocale::system().uiLanguages()), engine(new QQmlApplicationEngine()),
       activityhelper(new ActivityHelper()), maintool(new MainTool()), imageprovider(new ImageProvider()),
       m_database(new DataBase()), filelocker(runtimedir + "/filelock"), m_downloadmanager(new DownloadManager()),
-      profilepictureupdater(new ProfilePictureUpdater()), activityupdater(new ActivityUpdater()), uploader(new Uploader()),
+      profilepictureupdater(new ProfilePictureUpdater()), activityupdater(new ActivityUpdater()), uploader(new Uploader()), commandrunner(new CommandRunner()),
       uploadpreviewimageprovider(new UploadPreviewImageProvider()), databaseinitializer(nullptr), databaseinitializethread(nullptr)
 {
 #if (QT_VERSION < QT_VERSION_CHECK(6, 0, 0))
@@ -48,6 +48,7 @@ void MemoryApplication::releseresources()
     profilepictureupdater->deleteLater();
     activityupdater->deleteLater();
     uploader->deleteLater();
+    commandrunner->deleteLater();
 }
 
 void MemoryApplication::setuptranslator()
@@ -80,6 +81,7 @@ void MemoryApplication::setupqmlengine()
     engine->rootContext()->setContextProperty("ActivityReader", activityhelper);
     engine->rootContext()->setContextProperty("profilepictureupdater", profilepictureupdater);
     engine->rootContext()->setContextProperty("activityupdater", activityupdater);
+    engine->rootContext()->setContextProperty("CommandRunner", commandrunner);
     engine->addImageProvider("provider", imageprovider);
     engine->addImageProvider("uploadpreviewimageprovider", uploadpreviewimageprovider);
 
@@ -122,19 +124,19 @@ void MemoryApplication::setupfiles()
     if (!cachedir.exists())
         cachedir.mkpath(runtimedir + "/cache");
     const QString datapath = runtimedir + "/data";
-    if(!QDir(datapath).exists())
+    if (!QDir(datapath).exists())
         QDir().mkpath(datapath);
 #ifdef Q_OS_WIN
-    SetFileAttributes((LPCWSTR)datapath.unicode(),FILE_ATTRIBUTE_HIDDEN);        // 设置隐藏文件夹
+    SetFileAttributes((LPCWSTR)datapath.unicode(), FILE_ATTRIBUTE_HIDDEN); // 设置隐藏文件夹
 #endif
-    if(!QDir(datapath + "/activities").exists())
+    if (!QDir(datapath + "/activities").exists())
         QDir().mkpath(datapath + "/activities");
-    if(!QDir(datapath + "/pictures").exists())
+    if (!QDir(datapath + "/pictures").exists())
         QDir().mkpath(datapath + "/pictures");
-    if(!QDir(datapath + "/students").exists())
+    if (!QDir(datapath + "/students").exists())
         QDir().mkpath(datapath + "/students");
     QFile versionfile(datapath + "/versions.json");
-    if(!versionfile.exists())
+    if (!versionfile.exists())
     {
         QFile defaultversionfile(":/res/defaultversions.json");
         defaultversionfile.open(QIODevice::ReadOnly | QIODevice::Text);

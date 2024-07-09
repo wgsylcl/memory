@@ -22,7 +22,8 @@ FluLauncher {
             "/addteacherpetphrase":"qrc:/qml/addteacherpetphrasewindow.qml",
             "/checkupload":"qrc:/qml/checkuploadwindow.qml",
             "/newactivity":"qrc:/qml/newactivitywindow.qml",
-            "/crash":"qrc:/qml/crashwindow.qml"
+            "/crash":"qrc:/qml/crashwindow.qml",
+            "/showrunningresult":"qrc:/qml/showrunningresultwindow.qml"
         }
         if(MainTool.is_crashmode())
             FluRouter.navigate("/crash")
