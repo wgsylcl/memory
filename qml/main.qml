@@ -250,8 +250,9 @@ FluWindow {
 
     Connections {
         target: uploader
-        function onPackupfinished() {
+        function onPackupfinished(packfileurl) {
             showSuccess("打包完成!",0,"已保存配置文件至系统的下载文件夹，将此文件发送给lcl即可。")
+            Qt.openUrlExternally(packfileurl)
         }
     }
 

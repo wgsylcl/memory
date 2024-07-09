@@ -28,7 +28,7 @@ FluContentPage {
             FluText {
                 Layout.alignment: Qt.AlignHCenter
                 id: localprofilepictrueviewtext
-                text: "本地数据库版本：" + datamanagehelper.getlocalprofilepictureversion()
+                text: datamanagehelper.getlocalprofilepictureversion() !== "0.0.0" ? "本地数据库版本：" + datamanagehelper.getlocalprofilepictureversion() : "还未下载这个数据库到本地噢"
                 Connections {
                     target: profilepictureupdater
                     function onUpdatefinished()

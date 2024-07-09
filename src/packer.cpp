@@ -22,5 +22,5 @@ void Packer::run()
     }
     delete zipwriter;
     zipwriter = nullptr;
-    emit packupfinished();
+    emit packupfinished(memorybase::toUrl(savepath));
 }

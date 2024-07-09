@@ -10,7 +10,7 @@ public:
     explicit Packer(QString packdir, QString savepath, QObject *parent = nullptr);
     void run();
 signals:
-    void packupfinished();
+    void packupfinished(QUrl packfileurl);
 
 private:
     QString packdir;

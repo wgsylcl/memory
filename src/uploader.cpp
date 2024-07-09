@@ -228,10 +228,10 @@ Q_INVOKABLE void Uploader::packup()
 {
     savefile();
     packer = new Packer(runtimedir + "/upload", memorybase::getsystemdownloadpath() + "/upload_" + memorybase::generaterandomqstring() + ".muf");
-    QObject::connect(packer, &Packer::packupfinished, [this]()
+    QObject::connect(packer, &Packer::packupfinished, [this](QUrl packfileurl)
                      {
         this->packing = false;
-        emit packupfinished();
+        emit packupfinished(memorybase::toUrl(memorybase::getsystemdownloadpath()));
         QFileInfoList fileinfos = memorybase::getfileinfolist(runtimedir + "/upload");
         for(QFileInfo fileinfo:fileinfos)
         {

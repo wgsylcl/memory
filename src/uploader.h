@@ -38,7 +38,7 @@ public:
 public slots:
     void savefile();
 signals:
-    void packupfinished();
+    void packupfinished(QUrl packfileurl);
 
 private:
     Packer *packer;
