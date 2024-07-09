@@ -31,7 +31,7 @@ public:
     Q_INVOKABLE void removetask(QString id);
     Q_INVOKABLE bool is_packing();
     Q_INVOKABLE QString getlastsender();
-    Q_INVOKABLE void removepicture(QString taskid,QUrl url);
+    Q_INVOKABLE void removepicture(QString taskid, QUrl url);
     Q_INVOKABLE QUrl getlocalmediaurl(QUrl url);
     bool packing;
     QMap<QString, UploadTask> tasks;

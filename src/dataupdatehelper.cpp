@@ -165,7 +165,7 @@ Q_INVOKABLE void DataUpdateHelper::save_and_pack()
     taskfile.open(QIODevice::WriteOnly);
     taskfile.write(jdoc.toJson());
     taskfile.close();
-    packer = new Packer(uploaddir,memorybase::getsystemdownloadpath() + "/" + uploadfilebasename + ".muf");
+    packer = new Packer(uploaddir, memorybase::getsystemdownloadpath() + "/" + uploadfilebasename + ".muf");
     packer->start();
     packer = nullptr;
 }
