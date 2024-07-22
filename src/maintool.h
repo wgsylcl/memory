@@ -1,7 +1,7 @@
 #ifndef MAINTOOL_H
 #define MAINTOOL_H
 
-#include "database.h"
+#include "downloadmanager.h"
 #include <QCommandLineOption>
 #include <QCommandLineParser>
 
@@ -36,6 +36,8 @@ public:
     Q_INVOKABLE QString getlatestapplicationversion();
     Q_INVOKABLE QString getlocalapplicationversion();
     Q_INVOKABLE bool haveprofilepicture();
+    Q_INVOKABLE void downloadlatestapp();
+    Q_INVOKABLE bool is_downloadinglatestapp();
 public slots:
     void dealinitializefinish();
     void dealinitializefail();
@@ -43,9 +45,11 @@ signals:
     void initializefinished();
     void initializefailed();
     void requestrestartinitialize();
+    void downloadlatestappfinished();
+    void downloadlatestappfailed();
 
 private:
-    bool crashmode;
+    bool crashmode,isdownloadinglatestapp;
     QString crashfilename, crashlogname;
     QString terms,previews;
 };

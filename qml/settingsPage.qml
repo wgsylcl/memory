@@ -44,12 +44,36 @@ FluScrollablePage {
                         Qt.openUrlExternally("https://gitee.com/wgsylcl/memory/releases/latest")
                     }
                 }
+                FluLoadingButton {
+                    id: downloadlatestappbutton
+                    text: "下载安装程序"
+                    loading: MainTool.is_downloadinglatestapp()
+                    enabled: !loading && MainTool.getlatestapplicationversion() > MainTool.getlocalapplicationversion()
+                    onClicked: {
+                        MainTool.downloadlatestapp()
+                        showInfo("开始下载安装程序到本地！")
+                        downloadlatestappbutton.loading = MainTool.is_downloadinglatestapp()
+                        downloadlatestappbutton.enabled = !downloadlatestappbutton.loading && MainTool.getlatestapplicationversion() > MainTool.getlocalapplicationversion()
+                    }
+                }
             }
             FluToggleSwitch {
                 id: autoplayswitch
                 text: "自动播放视频"
                 textRight: false
             }
+        }
+    }
+
+    Connections {
+        target: MainTool
+        function onDownloadlatestappfinished() {
+            downloadlatestappbutton.loading = MainTool.is_downloadinglatestapp()
+            downloadlatestappbutton.enabled = !downloadlatestappbutton.loading && MainTool.getlatestapplicationversion() > MainTool.getlocalapplicationversion()
+        }
+        function onDownloadlatestappfailed() {
+            downloadlatestappbutton.loading = MainTool.is_downloadinglatestapp()
+            downloadlatestappbutton.enabled = !downloadlatestappbutton.loading && MainTool.getlatestapplicationversion() > MainTool.getlocalapplicationversion()
         }
     }
 
@@ -64,7 +88,7 @@ FluScrollablePage {
                 Layout.preferredWidth: 914
                 Layout.fillWidth: true
                 wrapMode: Text.WrapAnywhere
-                textFormat: Text.RichText
+                textFormat: Text.MarkdownText
                 text: MainTool.getterms()
                 onLinkActivated: Qt.openUrlExternally(link)
             }
@@ -73,7 +97,7 @@ FluScrollablePage {
                 Layout.preferredWidth: 914
                 Layout.fillWidth: true
                 wrapMode: Text.WrapAnywhere
-                textFormat: Text.RichText
+                textFormat: Text.MarkdownText
                 text: MainTool.getpreviews()
                 onLinkActivated: Qt.openUrlExternally(link)
             }

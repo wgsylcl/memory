@@ -1,6 +1,6 @@
 cmake_minimum_required(VERSION 3.20)
 
-project(memory VERSION 1.0.1 LANGUAGES CXX)
+project(memory VERSION 1.0.2 LANGUAGES CXX)
 
 set(CMAKE_AUTOMOC ON)
 set(CMAKE_AUTORCC ON)
@@ -35,7 +35,7 @@ qt_add_big_resources(QRC_RESOURCES qml.qrc)
 list(APPEND QRC_RESOURCES qml.qrc)
 set_property(SOURCE qml.qrc PROPERTY SKIP_AUTORCC ON)
 
-add_definitions(-DPASSWORD="$ENV{PASSWORD}")
+add_definitions(-DPASSWORD="${PASSWORD}")
 add_definitions(-DVERSION="${PROJECT_VERSION}")
 add_definitions(-DINFOURL="$ENV{memorydata_url}")
 
@@ -139,40 +139,40 @@ if(QT_VERSION_MAJOR EQUAL 6)
 endif()
 
     if (APPLE)
-        find_program(QT_DEPLOY_QT NAMES macdeployqt)
+    find_program(QT_DEPLOY_QT NAMES macdeployqt6)
         add_custom_target(Script-DeployRelease
             COMMAND ${CMAKE_COMMAND} -E remove_directory ${CMAKE_SOURCE_DIR}/dist
             COMMAND ${CMAKE_COMMAND} -E copy_directory ${CMAKE_RUNTIME_OUTPUT_DIRECTORY} ${CMAKE_SOURCE_DIR}/dist
-            COMMAND ${QT_DEPLOY_QT} ${CMAKE_SOURCE_DIR}/dist/${PROJECT_NAME}.app --release -qmldir=${CMAKE_CURRENT_LIST_DIR}/qml -dmg
-            COMMENT "MacOs Deploying Qt Dependencies After Build........."
-            SOURCES ${CMAKE_CURRENT_SOURCE_DIR}/CMakeLists.txt
-            WORKING_DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR}
-        )
-    endif()
-    if(WIN32)
-        find_program(QT_DEPLOY_QT NAMES windeployqt)
-        add_custom_target(Script-DeployRelease
-            COMMAND ${CMAKE_COMMAND} -E remove_directory ${CMAKE_SOURCE_DIR}/dist
-            COMMAND ${CMAKE_COMMAND} -E copy_directory ${CMAKE_RUNTIME_OUTPUT_DIRECTORY} ${CMAKE_SOURCE_DIR}/dist
-            COMMAND ${QT_DEPLOY_QT} ${CMAKE_SOURCE_DIR}/dist/${PROJECT_NAME}.exe --release -qmldir=${CMAKE_CURRENT_LIST_DIR}/qml
-            COMMENT "Windows Deploying Qt Dependencies After Build........."
-            SOURCES ${CMAKE_CURRENT_SOURCE_DIR}/CMakeLists.txt
-            WORKING_DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR}
-        )
-    endif()
-    if (APPLE)
-        find_program(QT_DEPLOY_QT NAMES macdeployqt)
-        add_custom_target(Script-DeployDebug
-            COMMAND ${QT_DEPLOY_QT} ${CMAKE_SOURCE_DIR}/bin/Debug/${PROJECT_NAME}.app -qmldir=${CMAKE_CURRENT_LIST_DIR} -dmg
+            COMMAND ${QT_DEPLOY_QT} ${CMAKE_SOURCE_DIR}/dist/${PROJECT_NAME}.app --no-translations --compiler-runtime --release -qmldir=${CMAKE_CURRENT_LIST_DIR}/qml -dmg
             COMMENT "MacOS Deploying Qt Dependencies After Build........."
             SOURCES ${CMAKE_CURRENT_SOURCE_DIR}/CMakeLists.txt
             WORKING_DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR}
         )
     endif()
     if(WIN32)
-        find_program(QT_DEPLOY_QT NAMES windeployqt)
+        find_program(QT_DEPLOY_QT NAMES windeployqt6)
+        add_custom_target(Script-DeployRelease
+            COMMAND ${CMAKE_COMMAND} -E remove_directory ${CMAKE_SOURCE_DIR}/dist
+            COMMAND ${CMAKE_COMMAND} -E copy_directory ${CMAKE_RUNTIME_OUTPUT_DIRECTORY} ${CMAKE_SOURCE_DIR}/dist
+            COMMAND ${QT_DEPLOY_QT} ${CMAKE_SOURCE_DIR}/dist/${PROJECT_NAME}.exe --no-translations --compiler-runtime --release -qmldir=${CMAKE_CURRENT_LIST_DIR}/qml
+            COMMENT "Windows Deploying Qt Dependencies After Build........."
+            SOURCES ${CMAKE_CURRENT_SOURCE_DIR}/CMakeLists.txt
+            WORKING_DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR}
+        )
+    endif()
+    if (APPLE)
+        find_program(QT_DEPLOY_QT NAMES macdeployqt6)
         add_custom_target(Script-DeployDebug
-            COMMAND ${QT_DEPLOY_QT} ${CMAKE_SOURCE_DIR}/bin/Debug/${PROJECT_NAME}.exe -qmldir=${CMAKE_CURRENT_LIST_DIR}/qml
+            COMMAND ${QT_DEPLOY_QT} ${CMAKE_SOURCE_DIR}/bin/Debug/${PROJECT_NAME}.app --no-translations --compiler-runtime -qmldir=${CMAKE_CURRENT_LIST_DIR} -dmg
+            COMMENT "MacOS Deploying Qt Dependencies After Build........."
+            SOURCES ${CMAKE_CURRENT_SOURCE_DIR}/CMakeLists.txt
+            WORKING_DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR}
+        )
+    endif()
+    if(WIN32)
+        find_program(QT_DEPLOY_QT NAMES windeployqt6)
+        add_custom_target(Script-DeployDebug
+            COMMAND ${QT_DEPLOY_QT} ${CMAKE_SOURCE_DIR}/bin/Debug/${PROJECT_NAME}.exe --no-translations --compiler-runtime -qmldir=${CMAKE_CURRENT_LIST_DIR}/qml
             COMMENT "Windows Deploying Qt Dependencies After Build........."
             SOURCES ${CMAKE_CURRENT_SOURCE_DIR}/CMakeLists.txt
             WORKING_DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR}

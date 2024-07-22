@@ -145,6 +145,11 @@ bool DataBase::is_maintaining()
     return maintaining;
 }
 
+QString DataBase::getdownloadurlpath(QString platform)
+{
+    return downloadurlpath[platform];
+}
+
 void DataBase::saveinfo()
 {
     QJsonDocument jdoc(jsonroot);

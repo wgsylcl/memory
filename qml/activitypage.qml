@@ -161,7 +161,6 @@ FluContentPage {
         MouseArea {
             anchors.margins: 18
             anchors.fill: parent
-            propagateComposedEvents: true
             onWheel: (wheel) => {
                          if(wheel.angleDelta.y < 0) {
                              pushmedia()
@@ -178,6 +177,7 @@ FluContentPage {
                 source: ActivityReader.getMediaPath((index-1)%mediasize)
                 loopplay: playsettings.loopplay
                 autoplay: playsettings.autoplay
+                allowmove: true
 
                 Connections {
                     target: root

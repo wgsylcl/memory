@@ -126,9 +126,9 @@ FluWindow {
             Timer {
                 id: changetiptimer
                 interval: 3800
+                repeat: true
                 onTriggered: {
                     tip = MainTool.gettip()
-                    restart()
                 }
             }
         }
@@ -266,12 +266,15 @@ FluWindow {
                 showInfo("有新版本可用噢，请在\"设置和关于\"中查看！",0)
             }
         }
-    }
-
-    Connections {
-        target: MainTool
         function onInitializefailed() {
             mainstatuslayout.showErrorView()
+        }
+        function onDownloadlatestappfinished() {
+            showSuccess("下载最新版本安装程序成功！")
+            Qt.openUrlExternally(MainTool.getdownloadurl())
+        }
+        function onDownloadlatestappfailed() {
+            showError("网络异常，下载最新版本安装程序失败！")
         }
     }
 }

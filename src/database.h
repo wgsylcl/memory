@@ -30,6 +30,8 @@ public:
     QStringList gettips();
     QString logfilename;
     bool is_maintaining();
+    QMap<QString,QString> downloadurlpath;
+    QString getdownloadurlpath(QString platform);
 signals:
 
 private:

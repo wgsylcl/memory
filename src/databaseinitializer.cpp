@@ -13,6 +13,8 @@ void DataBaseInitializer::readremoteinfo()
     database->maintaining = database->remoteroot.value("maintaining").toBool();
     infofile.close();
     database->latestapplicationversion = database->remoteroot.value("appversion").toString();
+    database->downloadurlpath["win"] = database->remoteroot.value("downloadurl").toObject().value("win").toString();
+    database->downloadurlpath["macos"] = database->remoteroot.value("downloadurl").toObject().value("macos").toString();
     parseprofile();
     parsepictures();
     parseactivities();

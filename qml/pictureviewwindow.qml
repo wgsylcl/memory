@@ -14,6 +14,8 @@ FluWindow {
     property real picwidth: 0.00
     property real picheight: 0.00
     property int intscale: scale*100
+    property alias imagex: mainimage.x
+    property alias imagey: mainimage.y
 
     onInitArgument:
         (argument)=>{
@@ -39,9 +41,7 @@ FluWindow {
         }
 
         Behavior on opacity {
-            SequentialAnimation {
-                NumberAnimation { duration: 88 }
-            }
+            NumberAnimation { duration: 88 }
         }
     }
 
@@ -64,7 +64,7 @@ FluWindow {
             id: mainimage
             x: 600.00
             y: 400.00
-            scale: scale
+            scale: rootwindow.scale
 
             smooth: true
 
@@ -84,6 +84,14 @@ FluWindow {
         }
     }
 
+    Behavior on imagex {
+        NumberAnimation { duration: 138 }
+    }
+
+    Behavior on imagey {
+        NumberAnimation { duration: 138 }
+    }
+
     Action {
         shortcut: "Ctrl+="
         onTriggered: scaleup(rootwindow.width/2,rootwindow.height/2)
@@ -96,22 +104,30 @@ FluWindow {
 
     Action {
         shortcut: "Up"
-        onTriggered: mainimage.y -= 18
+        onTriggered: {
+            imagey -= 38
+        }
     }
 
     Action {
         shortcut: "Down"
-        onTriggered: mainimage.y += 18
+        onTriggered: {
+            imagey += 38
+        }
     }
 
     Action {
         shortcut: "Left"
-        onTriggered: mainimage.x -= 18
+        onTriggered: {
+            imagex -= 38
+        }
     }
 
     Action {
         shortcut: "Right"
-        onTriggered: mainimage.x += 18
+        onTriggered: {
+            imagex += 38
+        }
     }
 
     Action {
@@ -120,10 +136,8 @@ FluWindow {
             scale = 1.0
             mainimage.width = picwidth
             mainimage.height = picheight
-            mainimage.x = (rootwindow.width - picwidth)/2
-            mainimage.y = (rootwindow.height - picheight)/2
-            mainimage.width = picwidth*scale
-            mainimage.height = picheight*scale
+            mainimage.x = (rootwindow.width - mainimage.width)/2
+            mainimage.y = (rootwindow.height - appBar.height - picheight*scale)/2
             showscaleframe.opacity = 0.8
             showscaletimer.restart()
         }
@@ -132,34 +146,30 @@ FluWindow {
     Action {
         shortcut: "Ctrl+R"
         onTriggered: {
-            mainimage.x = (rootwindow.width - mainimage.width)/2
-            mainimage.y = (rootwindow.height - mainimage.height)/2
+            imagex = (rootwindow.width - mainimage.width)/2
+            imagey = (rootwindow.height - appBar.height - mainimage.height)/2
         }
     }
 
     function scaleup(x,y) {
         var tscale = scale
         scale = getmin(100,scale*1.1)
-        var s = scale/tscale,tx = mainimage.x,ty = mainimage.y
-        mainimage.x -= (picwidth * scale - mainimage.width)/2
-        mainimage.y -= (picheight * scale - mainimage.height)/2
-        mainimage.x += (1-s)*(x-tx-mainimage.width/2)
-        mainimage.y += (1-s)*(y-ty-mainimage.height/2)
+        var s = scale/tscale,tx = mainimage.x,ty = mainimage.y,tw = mainimage.width,th = mainimage.height
         mainimage.width = picwidth * scale
         mainimage.height = picheight * scale
+        mainimage.x += (1-s)*(x-tx-tw/2) - (mainimage.width - tw)/2
+        mainimage.y += (1-s)*(y-ty-th/2) - (mainimage.height - th)/2
         showscaleframe.opacity = 0.8
         showscaletimer.restart()
     }
     function scaledown(x,y) {
         var tscale = scale
         scale = getmax(0.1,scale/1.1)
-        var s = scale/tscale,tx = mainimage.x,ty = mainimage.y
-        mainimage.x -= (picwidth * scale - mainimage.width)/2
-        mainimage.y -= (picheight * scale - mainimage.height)/2
-        mainimage.x += (1-s)*(x-tx-mainimage.width/2)
-        mainimage.y += (1-s)*(y-ty-mainimage.height/2)
+        var s = scale/tscale,tx = mainimage.x,ty = mainimage.y,tw = mainimage.width,th = mainimage.height
         mainimage.width = picwidth * scale
         mainimage.height = picheight * scale
+        mainimage.x += (1-s)*(x-tx-tw/2) - (mainimage.width - tw)/2
+        mainimage.y += (1-s)*(y-ty-th/2) - (mainimage.height - th)/2
         showscaleframe.opacity = 0.8
         showscaletimer.restart()
     }

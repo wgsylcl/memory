@@ -13,10 +13,19 @@ FluWindow {
     onInitArgument:
         (argument)=>{
             player.source = argument.videourl
-            player.play()
-            if(!playsettings.autoplay)
+            if(argument.ismoved === 1) {
+                var status = argument.status
+                player.play()
                 player.pause()
-            player.seek(0)
+                if(status.playing)
+                    player.play()
+            }
+            else {
+                player.play()
+                if(!playsettings.autoplay)
+                    player.pause()
+                player.seek(0)
+            }
         }
     MMediaPlayer {
         id: player
@@ -24,6 +33,7 @@ FluWindow {
         height: window.height
         loopplay: playsettings.loopplay
         autoplay: playsettings.autoplay
+        disautoinit: true
     }
     Settings {
         id: playsettings

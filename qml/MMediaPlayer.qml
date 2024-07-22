@@ -13,6 +13,9 @@ FluContentPage {
     property alias position: player.position
     property alias volume: d.currVolume
     property alias speed: player.playbackRate
+    property bool allowmove: false
+    property bool disautoinit: false
+    signal seekablechanged
     QtObject{
         id:d
         property bool flag: true
@@ -79,6 +82,10 @@ FluContentPage {
             }
         }
         playbackRate: speedmodel.get(speedmenu.currIndex).value
+        onSeekableChanged: (seekable) => {
+            if(player.seekable)
+                seekablechanged()
+        }
     }
 
     VideoOutput {
@@ -115,9 +122,9 @@ FluContentPage {
             (mouse) => {
                 if(!(mouse.x > control.x && mouse.y > control.y && mouse.x <control.x + control.width && mouse.y<control.y + control.height)){
                     if(player.playing){
-                        player.pause()
+                        pause()
                     }else{
-                        player.play()
+                        play()
                     }
                 }
             }
@@ -255,6 +262,23 @@ FluContentPage {
                 spacing: 38
                 Layout.alignment: Qt.AlignHCenter
 
+                FluIconButton {
+                    iconSource: FluentIcons.ChromeCloseContrast
+                    iconSize: 15
+                    text: "移动到新窗口播放"
+                    display: Button.TextOnly
+                    visible: allowmove
+                    onClicked: {
+                        var status = {
+                            playing : player.playing,
+                            position : player.position,
+                            volume : d.currVolume
+                        }
+                        pause()
+                        FluRouter.navigate("/playvideo",{videourl:source,ismoved:1,status:status})
+                    }
+                }
+
                 FluToggleSwitch {
                     id: loopswitch
                     text: "循环播放"
@@ -296,14 +320,15 @@ FluContentPage {
         shortcut: "space"
         onTriggered: {
             if(player.playing){
-                player.pause()
+                pause()
             }else{
-                player.play()
+                play()
             }
         }
     }
 
     Component.onCompleted: {
+        if(disautoinit) return
         player.play()
         player.pause()
         player.setPosition(0)
@@ -330,6 +355,7 @@ FluContentPage {
 
     function seek(position) {
         player.setPosition(position)
+        return player.seekable
     }
 
     function play() {

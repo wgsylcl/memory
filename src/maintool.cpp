@@ -1,7 +1,7 @@
 #include "maintool.h"
 
 MainTool::MainTool(QObject *parent)
-    : QObject{parent}
+    : QObject{parent}, isdownloadinglatestapp(false)
 {
     QCommandLineOption crashop("crashmode");
     QCommandLineOption crashfileop("crashfile");
@@ -25,18 +25,20 @@ MainTool::~MainTool()
 Q_INVOKABLE QString MainTool::gettip(void)
 {
     static QStringList alltips;
-    if(alltips.empty()) alltips = database->gettips();
-    if(alltips.empty()) return "";
-    int idx = QRandomGenerator::global() -> bounded(1,alltips.size() - 1);
-    memorybase::swap(alltips[0],alltips[idx]);
+    if (alltips.empty())
+        alltips = database->gettips();
+    if (alltips.empty())
+        return "";
+    int idx = QRandomGenerator::global()->bounded(1, alltips.size() - 1);
+    memorybase::swap(alltips[0], alltips[idx]);
     return alltips[0];
 }
 
 Q_INVOKABLE QString MainTool::getterms(void)
 {
-    if(!terms.isEmpty())
+    if (!terms.isEmpty())
         return terms;
-    QFile file(":/text/terms.html");
+    QFile file(":/text/terms.md");
     file.open(QIODevice::ReadOnly | QIODevice::Text);
     terms = file.readAll();
     file.close();
@@ -45,9 +47,9 @@ Q_INVOKABLE QString MainTool::getterms(void)
 
 Q_INVOKABLE QString MainTool::getpreviews(void)
 {
-    if(!previews.isEmpty())
+    if (!previews.isEmpty())
         return previews;
-    QFile file(":/text/preview.html");
+    QFile file(":/text/preview.md");
     file.open(QIODevice::ReadOnly | QIODevice::Text);
     previews = file.readAll();
     file.close();
@@ -171,6 +173,29 @@ Q_INVOKABLE QString MainTool::getlocalapplicationversion()
 Q_INVOKABLE bool MainTool::haveprofilepicture()
 {
     return database->getlocalprofilepictureversion() != "0.0.0";
+}
+
+Q_INVOKABLE void MainTool::downloadlatestapp()
+{
+    QString platform;
+#if defined(Q_OS_WIN)
+    platform = "win";
+#elif defined(Q_OS_MACOS)
+    platform = "macos";
+#endif
+    QString path = database->getdownloadurlpath(platform);
+    Downloader *downloader = new Downloader(path, memorybase::getsystemdownloadpath() + "/" + memorybase::getfilename(path));
+    QObject::connect(downloader, &Downloader::downloadfinished, [this]()
+                     { this->isdownloadinglatestapp = false;emit this->downloadlatestappfinished(); });
+    QObject::connect(downloader, &Downloader::downloadfailed, [this]()
+                     { this->isdownloadinglatestapp = false;emit this->downloadlatestappfailed(); });
+    downloadmanager->adddownloader(downloader);
+    isdownloadinglatestapp = true;
+}
+
+Q_INVOKABLE bool MainTool::is_downloadinglatestapp()
+{
+    return this->isdownloadinglatestapp;
 }
 
 void MainTool::dealinitializefail()
