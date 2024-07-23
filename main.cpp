@@ -1,5 +1,7 @@
 #include "memoryapplication.h"
+#ifdef Q_OS_WIN
 #include "app_dump.h"
+#endif
 
 void logmessagehander(QtMsgType type, const QMessageLogContext &context, const QString &msg)
 {

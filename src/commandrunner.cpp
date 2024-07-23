@@ -1,4 +1,4 @@
-#include "CommandRunner.h"
+#include "commandrunner.h"
 
 CommandRunner::CommandRunner(QObject *parent)
     : QObject{parent}

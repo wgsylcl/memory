@@ -12,7 +12,6 @@ set(CMAKE_RUNTIME_OUTPUT_DIRECTORY ${CMAKE_SOURCE_DIR}/bin/${CMAKE_BUILD_TYPE})
 
 if(APPLE)
     set(APPLICATION_DIR_PATH ${CMAKE_RUNTIME_OUTPUT_DIRECTORY}/${PROJECT_NAME}.app/Contents/MacOS)
-    set(CMAKE_MACOSX_DEPLOYMENT_TARGET "10.13")
 else()
     set(APPLICATION_DIR_PATH ${CMAKE_RUNTIME_OUTPUT_DIRECTORY})
 endif()
@@ -65,13 +64,13 @@ set(PROJECT_SOURCES
     src/uploader.h src/uploader.cpp
     src/packer.h src/packer.cpp
     src/uploadpreviewimageprovider.h src/uploadpreviewimageprovider.cpp
-    src/app_dump.h
     src/dataupdatehelper.h src/dataupdatehelper.cpp
     src/commandrunner.h src/commandrunner.cpp
 )
 
 if(WIN32)
     list(APPEND PROJECT_SOURCES win32_logo.rc)
+    list(APPEND PROJECT_SOURCES src/app_dump.h)
 endif()
 
 if(${QT_VERSION_MAJOR} GREATER_EQUAL 6)
