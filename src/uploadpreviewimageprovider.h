@@ -4,15 +4,7 @@
 #include <QObject>
 #include <QQuickImageProvider>
 #include "base.h"
-
-extern "C"
-{
-#include "libavcodec/avcodec.h"
-#include "libavdevice/avdevice.h"
-#include "libswresample/swresample.h"
-#include "libavfilter/avfilter.h"
-#include "libswscale/swscale.h"
-}
+#include "firstframepicker.h"
 
 class UploadPreviewImageProvider : public QQuickImageProvider
 {

@@ -21,15 +21,6 @@ include_directories(./src)
 find_package(QT NAMES Qt6 Qt5 REQUIRED COMPONENTS Core Quick Svg Multimedia Network)
 find_package(Qt${QT_VERSION_MAJOR} REQUIRED COMPONENTS Core Quick Svg Multimedia Network)
 
-if(WIN32)
-    set(3RDPARTY_PATH ${CMAKE_SOURCE_DIR}/3rdparty/win32)
-elseif(APPLE)
-    set(3RDPARTY_PATH ${CMAKE_SOURCE_DIR}/3rdparty/macos)
-endif()
-
-link_directories(${3RDPARTY_PATH}/ffmpeg/lib)
-include_directories(${3RDPARTY_PATH}/ffmpeg/include)
-
 qt_add_big_resources(QRC_RESOURCES qml.qrc)
 list(APPEND QRC_RESOURCES qml.qrc)
 set_property(SOURCE qml.qrc PROPERTY SKIP_AUTORCC ON)
@@ -66,6 +57,7 @@ set(PROJECT_SOURCES
     src/uploadpreviewimageprovider.h src/uploadpreviewimageprovider.cpp
     src/dataupdatehelper.h src/dataupdatehelper.cpp
     src/commandrunner.h src/commandrunner.cpp
+    src/firstframepicker.h src/firstframepicker.cpp
 )
 
 if(WIN32)
@@ -97,23 +89,7 @@ target_link_libraries(${PROJECT_NAME} PRIVATE
     Qt${QT_VERSION_MAJOR}::Multimedia
     Qt${QT_VERSION_MAJOR}::Network
     Qt${QT_VERSION_MAJOR}::Svg
-    avformat
-    avcodec
-    avutil
-    swscale
-    swresample
-    avdevice
-    avfilter
 )
-
-if(WIN32)
-    file(GLOB_RECURSE DLL_FILES ${3RDPARTY_PATH}/ffmpeg/bin/*.dll)
-    add_custom_command(TARGET ${PROJECT_NAME} POST_BUILD
-        COMMAND ${CMAKE_COMMAND} -E copy
-        ${DLL_FILES}
-        ${APPLICATION_DIR_PATH}
-    )
-endif()
 
 if(${QT_VERSION} VERSION_LESS 6.1.0)
     set(BUNDLE_ID_OPTION MACOSX_BUNDLE_GUI_IDENTIFIER com.example.${PROJECT_NAME})
