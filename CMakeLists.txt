@@ -118,7 +118,7 @@ endif()
         add_custom_target(Script-DeployRelease
             COMMAND ${CMAKE_COMMAND} -E remove_directory ${CMAKE_SOURCE_DIR}/dist
             COMMAND ${CMAKE_COMMAND} -E copy_directory ${CMAKE_RUNTIME_OUTPUT_DIRECTORY} ${CMAKE_SOURCE_DIR}/dist
-            COMMAND ${QT_DEPLOY_QT} ${CMAKE_SOURCE_DIR}/dist/${PROJECT_NAME}.app -verbose=1 -qmldir=${CMAKE_CURRENT_LIST_DIR}/qml
+            COMMAND ${QT_DEPLOY_QT} ${CMAKE_SOURCE_DIR}/dist/${PROJECT_NAME}.app -verbose=1 -qmldir=${CMAKE_CURRENT_LIST_DIR}/qml -dmg
             COMMENT "MacOS Deploying Qt Dependencies After Build........."
             SOURCES ${CMAKE_CURRENT_SOURCE_DIR}/CMakeLists.txt
             WORKING_DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR}
