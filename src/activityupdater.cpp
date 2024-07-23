@@ -22,9 +22,9 @@ void ActivityUpdater::startupdate(QString activityname)
     for (QString reponame : reponames)
     {
         FilelistReader *filelistreader = new FilelistReader(reponame);
-        QObject::connect(filelistreader, FilelistReader::receivefilelistfinished, [activityname, reponame, idx, this](QStringList filelist)
+        QObject::connect(filelistreader, &FilelistReader::receivefilelistfinished, [activityname, reponame, idx, this](QStringList filelist)
                          { this->updaterepo(activityname, reponame, filelist, idx); });
-        QObject::connect(filelistreader, FilelistReader::receivefilelistfailed, [activityname, reponame, idx, this]()
+        QObject::connect(filelistreader, &FilelistReader::receivefilelistfailed, [activityname, reponame, idx, this]()
                          { this->dealdownloadfailed(activityname, idx); });
         repocount[activityname][idx]++;
         filelistreader->startreadfilelist();
