@@ -27,7 +27,11 @@ set_property(SOURCE qml.qrc PROPERTY SKIP_AUTORCC ON)
 
 add_definitions(-DPASSWORD="${PASSWORD}")
 add_definitions(-DVERSION="${PROJECT_VERSION}")
-add_definitions(-DINFOURL="$ENV{memorydata_url}")
+add_definitions(-DINFOURL="${memorydata_url}")
+
+message("password: ${PASSWORD}")
+message("version: ${PROJECT_VERSION}")
+message("info url: ${memorydata_url}")
 
 set(PROJECT_SOURCES
     ${QRC_RESOURCES}
