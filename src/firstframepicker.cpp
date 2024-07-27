@@ -7,8 +7,6 @@ QImage FirstFramePicker::getFirstFrame()
     QObject::connect(&videoSink, &QVideoSink::videoFrameChanged, this, &FirstFramePicker::pickFirstFrame);
     player.play();
     loop.exec();
-    player.pause();
-    player.stop();
     return this->firstframe;
 }
 
