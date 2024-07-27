@@ -4,7 +4,6 @@
 #include <QMediaPlayer>
 #include <QVideoSink>
 #include <QVideoFrame>
-#include <QGuiApplication>
 #include <QEventLoop>
 
 class FirstFramePicker : public QObject {
