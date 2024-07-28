@@ -3,7 +3,7 @@
 QImage FirstFramePicker::getFirstFrame()
 {
     player.setVideoSink(&videoSink);
-    player.setSource(videoPath);
+    player.setSource(videourl);
     QObject::connect(&videoSink, &QVideoSink::videoFrameChanged, this, &FirstFramePicker::pickFirstFrame);
     player.play();
     loop.exec();
@@ -16,7 +16,6 @@ void FirstFramePicker::pickFirstFrame(QVideoFrame frame)
     {
         this->firstframe = frame.toImage();
         loop.exit();
-        QObject::disconnect(&videoSink, &QVideoSink::videoFrameChanged, this, &FirstFramePicker::pickFirstFrame);
         player.pause();
         player.stop();
     }

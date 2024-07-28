@@ -211,11 +211,11 @@ FluContentPage {
 
     function popmedia(){
         if(stack.busy) return;
-        mediachanged()
         if(index < 2) {
             showWarning("已经到顶端了噢~")
             return
         }
+        mediachanged()
         stack.pop()
         index--
         var url = ActivityReader.getMediaPath((index-1)%mediasize)
