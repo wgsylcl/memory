@@ -40,7 +40,6 @@ signals:
 
 private:
     QQmlApplicationEngine *engine;
-    const QStringList uiLanguages;
     ImageProvider *imageprovider;
     MainTool *maintool;
     ActivityHelper *activityhelper;

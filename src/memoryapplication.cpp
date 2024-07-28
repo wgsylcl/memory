@@ -2,7 +2,7 @@
 
 MemoryApplication::MemoryApplication(int &argc, char *argv[])
     : QGuiApplication{argc, argv},
-      uiLanguages(QLocale::system().uiLanguages()), engine(new QQmlApplicationEngine()),
+      engine(new QQmlApplicationEngine()),
       activityhelper(new ActivityHelper()), maintool(new MainTool()), imageprovider(new ImageProvider()),
       m_database(new DataBase()), filelocker(runtimedir + "/filelock"), m_downloadmanager(new DownloadManager()),
       profilepictureupdater(new ProfilePictureUpdater()), activityupdater(new ActivityUpdater()), uploader(new Uploader()), commandrunner(new CommandRunner()),
